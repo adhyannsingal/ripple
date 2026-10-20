@@ -1,0 +1,906 @@
+{
+  "schema_version": 1,
+  "project": "Ripple",
+  "spec": "ripple_buildspec.md",
+  "plan": "docs/implementation-plan.md",
+  "protocol": "docs/planning/execution-protocol.md",
+  "updated_at": "2026-10-19",
+  "notes": "Planning baseline only. No implementation tasks have started. Single coordinator writes this ledger.",
+  "milestones": [
+    {
+      "id": "M0",
+      "title": "Contracts and bootstrap",
+      "target": "Before week 1",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M1",
+      "title": "Source understanding",
+      "target": "Week 1",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M2",
+      "title": "Persistent graph and impact",
+      "target": "Week 2",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M3",
+      "title": "Resolver oracle",
+      "target": "Week 3",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M4",
+      "title": "Git-aware impact",
+      "target": "Week 4",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M5",
+      "title": "Incremental updates",
+      "target": "Week 5",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M6",
+      "title": "Incremental correctness",
+      "target": "Week 6",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M7",
+      "title": "Test-file impact",
+      "target": "Week 7",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    },
+    {
+      "id": "M8",
+      "title": "Safety evidence and release readiness",
+      "target": "Week 8",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
+    }
+  ],
+  "tasks": [
+    {
+      "id": "M0-T01",
+      "milestone": "M0",
+      "title": "Bootstrap the Rust workspace and validation",
+      "depends_on": [],
+      "lane": "foundation",
+      "owned_paths": [
+        "Cargo.toml",
+        "Cargo.lock",
+        "rust-toolchain.toml",
+        "crates/*/Cargo.toml",
+        ".github/workflows/ci.yml",
+        "CONTRIBUTING.md",
+        ".gitignore"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M0-T01.md"
+    },
+    {
+      "id": "M0-T02",
+      "milestone": "M0",
+      "title": "Freeze core contracts and architectural decisions",
+      "depends_on": [
+        "M0-T01"
+      ],
+      "lane": "core",
+      "owned_paths": [
+        "crates/ripple-core/",
+        "docs/architecture.md",
+        "docs/graph-model.md",
+        "docs/adr/0001-0007*.md",
+        "docs/adr/0009*.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M0-T02.md"
+    },
+    {
+      "id": "M0-T03",
+      "milestone": "M0",
+      "title": "Establish fixture and end-to-end test infrastructure",
+      "depends_on": [
+        "M0-T02"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "fixtures/README.md",
+        "fixtures/support/",
+        "crates/ripple-cli/tests/support/",
+        ".github/pull_request_template.md",
+        ".github/ISSUE_TEMPLATE/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M0-T03.md"
+    },
+    {
+      "id": "M1-T01",
+      "milestone": "M1",
+      "title": "Implement repository and revision-neutral source discovery",
+      "depends_on": [
+        "M0-T02",
+        "M0-T03"
+      ],
+      "lane": "syntax",
+      "owned_paths": [
+        "crates/ripple-parse/src/scanner*",
+        "fixtures/scanner/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M1-T01.md"
+    },
+    {
+      "id": "M1-T02",
+      "milestone": "M1",
+      "title": "Wrap Tree-sitter TS and TSX parsing",
+      "depends_on": [
+        "M0-T02",
+        "M0-T03"
+      ],
+      "lane": "syntax",
+      "owned_paths": [
+        "crates/ripple-parse/src/parser*",
+        "fixtures/parser/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M1-T02.md"
+    },
+    {
+      "id": "M1-T03",
+      "milestone": "M1",
+      "title": "Extract symbols, identity inputs and semantic hashes",
+      "depends_on": [
+        "M1-T02"
+      ],
+      "lane": "syntax",
+      "owned_paths": [
+        "crates/ripple-parse/src/symbols*",
+        "crates/ripple-parse/src/hashes*",
+        "fixtures/extraction/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M1-T03.md"
+    },
+    {
+      "id": "M1-T04",
+      "milestone": "M1",
+      "title": "Extract imports, exports, references and call-site ownership",
+      "depends_on": [
+        "M1-T03"
+      ],
+      "lane": "syntax",
+      "owned_paths": [
+        "crates/ripple-parse/src/references*",
+        "fixtures/references/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M1-T04.md"
+    },
+    {
+      "id": "M1-T05",
+      "milestone": "M1",
+      "title": "Deliver inspect with stable human and JSON output",
+      "depends_on": [
+        "M1-T01",
+        "M1-T04"
+      ],
+      "lane": "cli",
+      "owned_paths": [
+        "crates/ripple-cli/src/commands/inspect*",
+        "crates/ripple-cli/src/output*",
+        "crates/ripple-cli/tests/inspect*"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M1-T05.md"
+    },
+    {
+      "id": "M2-T01",
+      "milestone": "M2",
+      "title": "Resolve modules and export tables",
+      "depends_on": [
+        "M1-T01",
+        "M1-T04"
+      ],
+      "lane": "semantics",
+      "owned_paths": [
+        "crates/ripple-resolve/src/modules*",
+        "crates/ripple-resolve/src/exports*",
+        "fixtures/resolution/modules/",
+        "docs/resolution.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M2-T01.md"
+    },
+    {
+      "id": "M2-T02",
+      "milestone": "M2",
+      "title": "Resolve supported calls with evidence and uncertainty",
+      "depends_on": [
+        "M2-T01"
+      ],
+      "lane": "semantics",
+      "owned_paths": [
+        "crates/ripple-resolve/src/symbols*",
+        "crates/ripple-resolve/src/confidence*",
+        "fixtures/resolution/calls/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M2-T02.md"
+    },
+    {
+      "id": "M2-T03",
+      "milestone": "M2",
+      "title": "Persist versioned typed graphs atomically in SQLite",
+      "depends_on": [
+        "M0-T02",
+        "M0-T03"
+      ],
+      "lane": "storage",
+      "owned_paths": [
+        "crates/ripple-index/src/storage*",
+        "crates/ripple-index/migrations/",
+        "fixtures/storage/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M2-T03.md"
+    },
+    {
+      "id": "M2-T04",
+      "milestone": "M2",
+      "title": "Build deterministic in-memory reverse traversal",
+      "depends_on": [
+        "M0-T02",
+        "M0-T03"
+      ],
+      "lane": "impact",
+      "owned_paths": [
+        "crates/ripple-impact/src/graph*",
+        "crates/ripple-impact/src/traversal*",
+        "fixtures/impact/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M2-T04.md"
+    },
+    {
+      "id": "M2-T05",
+      "milestone": "M2",
+      "title": "Integrate cold index, status and impact commands",
+      "depends_on": [
+        "M1-T05",
+        "M2-T02",
+        "M2-T03",
+        "M2-T04"
+      ],
+      "lane": "integration",
+      "owned_paths": [
+        "crates/ripple-index/src/build*",
+        "crates/ripple-cli/src/commands/{index,status,impact}*",
+        "crates/ripple-cli/tests/index_impact*"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M2-T05.md"
+    },
+    {
+      "id": "M3-T01",
+      "milestone": "M3",
+      "title": "Build and pin the TypeScript oracle adapter",
+      "depends_on": [
+        "M2-T05"
+      ],
+      "lane": "evaluation",
+      "owned_paths": [
+        "eval/oracle/",
+        "eval/corpora/",
+        "docs/adr/0008-oracle-selection.md",
+        "docs/evaluation.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M3-T01.md"
+    },
+    {
+      "id": "M3-T02",
+      "milestone": "M3",
+      "title": "Measure resolver precision, recall and categorized mismatches",
+      "depends_on": [
+        "M3-T01"
+      ],
+      "lane": "evaluation",
+      "owned_paths": [
+        "eval/oracle/compare*",
+        "eval/results/resolver/",
+        "docs/evaluation.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M3-T02.md"
+    },
+    {
+      "id": "M3-T03",
+      "milestone": "M3",
+      "title": "Fix the leading supported-scope resolver gap",
+      "depends_on": [
+        "M3-T02"
+      ],
+      "lane": "semantics",
+      "owned_paths": [
+        "crates/ripple-resolve/",
+        "fixtures/resolution/",
+        "eval/results/resolver/",
+        "docs/limitations.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M3-T03.md"
+    },
+    {
+      "id": "M4-T01",
+      "milestone": "M4",
+      "title": "Read immutable Git endpoints and structured diffs",
+      "depends_on": [
+        "M0-T02",
+        "M0-T03"
+      ],
+      "lane": "git",
+      "owned_paths": [
+        "crates/ripple-git/",
+        "fixtures/git/",
+        "docs/adr/0009*.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M4-T01.md"
+    },
+    {
+      "id": "M4-T02",
+      "milestone": "M4",
+      "title": "Classify symbol changes across base and head",
+      "depends_on": [
+        "M4-T01",
+        "M1-T04"
+      ],
+      "lane": "impact",
+      "owned_paths": [
+        "crates/ripple-impact/src/changes*",
+        "fixtures/changes/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M4-T02.md"
+    },
+    {
+      "id": "M4-T03",
+      "milestone": "M4",
+      "title": "Combine base and head impact without losing old paths",
+      "depends_on": [
+        "M4-T02",
+        "M2-T05"
+      ],
+      "lane": "integration",
+      "owned_paths": [
+        "crates/ripple-index/src/snapshots*",
+        "crates/ripple-impact/src/revision_impact*",
+        "fixtures/revision-impact/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M4-T03.md"
+    },
+    {
+      "id": "M4-T04",
+      "milestone": "M4",
+      "title": "Ship diff and query controls with real-branch evidence",
+      "depends_on": [
+        "M4-T03",
+        "M3-T03"
+      ],
+      "lane": "cli",
+      "owned_paths": [
+        "crates/ripple-cli/src/commands/diff*",
+        "crates/ripple-cli/tests/diff*",
+        "docs/examples/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M4-T04.md"
+    },
+    {
+      "id": "M5-T01",
+      "milestone": "M5",
+      "title": "Implement canonical full-state equality and cache fingerprints",
+      "depends_on": [
+        "M2-T05",
+        "M4-T04"
+      ],
+      "lane": "storage",
+      "owned_paths": [
+        "crates/ripple-core/src/canonical*",
+        "crates/ripple-index/src/fingerprints*",
+        "fixtures/canonical/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M5-T01.md"
+    },
+    {
+      "id": "M5-T02",
+      "milestone": "M5",
+      "title": "Update changed files atomically and handle global invalidators",
+      "depends_on": [
+        "M5-T01"
+      ],
+      "lane": "storage",
+      "owned_paths": [
+        "crates/ripple-index/src/incremental*",
+        "crates/ripple-index/tests/incremental_files*"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M5-T02.md"
+    },
+    {
+      "id": "M5-T03",
+      "milestone": "M5",
+      "title": "Propagate importer invalidation with safe early cutoff",
+      "depends_on": [
+        "M5-T02",
+        "M2-T01"
+      ],
+      "lane": "semantics",
+      "owned_paths": [
+        "crates/ripple-index/src/invalidation*",
+        "crates/ripple-resolve/src/dependencies*",
+        "fixtures/incremental/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M5-T03.md"
+    },
+    {
+      "id": "M5-T04",
+      "milestone": "M5",
+      "title": "Wire incremental CLI behavior and document the algorithm",
+      "depends_on": [
+        "M5-T03"
+      ],
+      "lane": "integration",
+      "owned_paths": [
+        "crates/ripple-cli/src/commands/index*",
+        "crates/ripple-cli/tests/incremental*",
+        "docs/incremental.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M5-T04.md"
+    },
+    {
+      "id": "M6-T01",
+      "milestone": "M6",
+      "title": "Property-test incremental equality, idempotence and round trips",
+      "depends_on": [
+        "M5-T04"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "crates/ripple-index/tests/properties*",
+        "fixtures/incremental/regressions/",
+        ".github/workflows/ci.yml"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M6-T01.md"
+    },
+    {
+      "id": "M6-T02",
+      "milestone": "M6",
+      "title": "Replay pinned real Git history against cold indexing",
+      "depends_on": [
+        "M6-T01",
+        "M4-T01"
+      ],
+      "lane": "evaluation",
+      "owned_paths": [
+        "eval/commit-replay/",
+        "eval/corpora/",
+        "eval/results/replay/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M6-T02.md"
+    },
+    {
+      "id": "M6-T03",
+      "milestone": "M6",
+      "title": "Measure incremental performance and close correctness gaps",
+      "depends_on": [
+        "M6-T02"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "bench/scripts/incremental*",
+        "bench/results/",
+        "docs/incremental.md",
+        "crates/ripple-index/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M6-T03.md"
+    },
+    {
+      "id": "M7-T01",
+      "milestone": "M7",
+      "title": "Finalize test-file classification and explainable reachability",
+      "depends_on": [
+        "M4-T04",
+        "M6-T03"
+      ],
+      "lane": "impact",
+      "owned_paths": [
+        "crates/ripple-impact/src/tests*",
+        "fixtures/test-impact/",
+        "docs/graph-model.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M7-T01.md"
+    },
+    {
+      "id": "M7-T02",
+      "milestone": "M7",
+      "title": "Deliver test command and selection-ratio reporting",
+      "depends_on": [
+        "M7-T01"
+      ],
+      "lane": "cli",
+      "owned_paths": [
+        "crates/ripple-cli/src/commands/test*",
+        "crates/ripple-cli/tests/test_impact*",
+        "docs/examples/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M7-T02.md"
+    },
+    {
+      "id": "M8-T01",
+      "milestone": "M8",
+      "title": "Evaluate fault-catching recall against explicit baselines",
+      "depends_on": [
+        "M7-T02",
+        "M3-T03"
+      ],
+      "lane": "evaluation",
+      "owned_paths": [
+        "eval/mutation/",
+        "eval/results/test-safety/",
+        "docs/evaluation.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M8-T01.md"
+    },
+    {
+      "id": "M8-T02",
+      "milestone": "M8",
+      "title": "Benchmark production workflows and apply one measured optimization",
+      "depends_on": [
+        "M6-T03",
+        "M7-T02"
+      ],
+      "lane": "performance",
+      "owned_paths": [
+        "bench/",
+        "docs/benchmarks.md",
+        "crates/<profiled-subsystem>/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M8-T02.md"
+    },
+    {
+      "id": "M8-T03",
+      "milestone": "M8",
+      "title": "Complete honest product docs and contributor handoff",
+      "depends_on": [
+        "M8-T01",
+        "M8-T02"
+      ],
+      "lane": "documentation",
+      "owned_paths": [
+        "README.md",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "docs/{thesis,architecture,graph-model,resolution,incremental,evaluation,benchmarks,limitations,prior-art}.md",
+        "docs/adr/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M8-T03.md"
+    },
+    {
+      "id": "M8-T04",
+      "milestone": "M8",
+      "title": "Build installable artifacts and run the release gate",
+      "depends_on": [
+        "M8-T03"
+      ],
+      "lane": "release",
+      "owned_paths": [
+        ".github/workflows/release.yml",
+        "crates/ripple-cli/Cargo.toml",
+        "docs/release-checklist.md",
+        "dist/"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "report": "docs/task-reports/M8-T04.md"
+    }
+  ]
+}

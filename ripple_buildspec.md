@@ -1,9 +1,9 @@
-# TraceImpact
+# Ripple
 ## Final Build Specification, Architecture, and Agent Guide
 
-**Project name:** TraceImpact  
+**Project name:** Ripple\
 **Resume title:** Change Impact Engine  
-**CLI:** `traceimpact`  
+**CLI:** `ripple`\
 **Core language:** Rust  
 **Analyzed language:** TypeScript / TSX  
 **Parser:** Tree-sitter  
@@ -16,11 +16,11 @@
 
 # 1. One-line description
 
-**TraceImpact is a local Rust developer tool that maps TypeScript Git changes to symbols and traces their downstream dependency paths to explain which code and tests may be affected.**
+**Ripple is a local Rust developer tool that maps TypeScript Git changes to symbols and traces their downstream dependency paths to explain which code and tests may be affected.**
 
 Casual version:
 
-> **Git tells you what changed. TraceImpact tells you what that change could affect elsewhere in the codebase.**
+> **Git tells you what changed. Ripple tells you what that change could affect elsewhere in the codebase.**
 
 ---
 
@@ -70,13 +70,13 @@ A developer wants to know:
 - Is the analyzer confident about each edge?
 - Did analysis hit a dynamic construct it cannot safely resolve?
 
-TraceImpact answers those questions using a local static-analysis index.
+Ripple answers those questions using a local static-analysis index.
 
 ---
 
 # 3. Product thesis
 
-TraceImpact is not a dependency visualizer.
+Ripple is not a dependency visualizer.
 
 It is:
 
@@ -109,7 +109,7 @@ Adjacent categories include:
 - blast-radius tools
 - Git/CI analysis tools
 
-TraceImpact must **not** claim that it invented the category.
+Ripple must **not** claim that it invented the category.
 
 Its engineering value is narrower:
 
@@ -122,13 +122,13 @@ Its engineering value is narrower:
 - oracle-backed evaluation
 - cold-vs-incremental correctness checks
 
-Before public release, add `docs/prior-art.md` describing relevant systems and how TraceImpact’s semester scope differs.
+Before public release, add `docs/prior-art.md` describing relevant systems and how Ripple’s semester scope differs.
 
 ---
 
 # 5. Goals
 
-TraceImpact should support:
+Ripple should support:
 
 1. local TypeScript repository indexing
 2. symbol extraction
@@ -228,7 +228,7 @@ All limitations belong in `docs/limitations.md`.
 ## Index
 
 ```bash
-traceimpact index .
+ripple index .
 ```
 
 Purpose:
@@ -251,13 +251,13 @@ Candidate edges:        1,102
 Unresolved references:    213
 
 Index written to:
-.traceimpact/index.db
+.ripple/index.db
 ```
 
 ## Inspect
 
 ```bash
-traceimpact inspect src/auth/token.ts
+ripple inspect src/auth/token.ts
 ```
 
 Purpose:
@@ -268,7 +268,7 @@ Purpose:
 ## Impact
 
 ```bash
-traceimpact impact validateToken
+ripple impact validateToken
 ```
 
 Example:
@@ -292,7 +292,7 @@ validateToken
 ## Diff
 
 ```bash
-traceimpact diff main..HEAD
+ripple diff main..HEAD
 ```
 
 Example:
@@ -317,7 +317,7 @@ src/auth/legacy.ts::oldValidator
 ## Test
 
 ```bash
-traceimpact test main..HEAD
+ripple test main..HEAD
 ```
 
 Output wording must be conservative:
@@ -335,7 +335,7 @@ The only tests required
 ## Status
 
 ```bash
-traceimpact status
+ripple status
 ```
 
 Show:
@@ -533,7 +533,7 @@ Purpose:
 Files:
 
 ```text
-.traceimpact/
+.ripple/
   index.db
   metadata.json
 ```
@@ -623,7 +623,7 @@ The parser does not resolve names.
 
 # 14. Symbol extractor
 
-Convert syntax into TraceImpact records.
+Convert syntax into Ripple records.
 
 Example:
 
@@ -667,7 +667,7 @@ Why:
 
 Git gives changed text ranges.
 
-TraceImpact must map:
+Ripple must map:
 
 ```text
 lines 42–48
@@ -1073,8 +1073,8 @@ Depth 3+:       1,479
 CLI controls:
 
 ```bash
-traceimpact impact logger --depth 2
-traceimpact impact logger --limit 100
+ripple impact logger --depth 2
+ripple impact logger --limit 100
 ```
 
 Order by:
@@ -1090,7 +1090,7 @@ Order by:
 Input:
 
 ```bash
-traceimpact diff main..HEAD
+ripple diff main..HEAD
 ```
 
 Git provides:
@@ -1135,7 +1135,7 @@ src/auth.ts::validateToken
 
 A deleted symbol exists only in base.
 
-Therefore TraceImpact cannot rely only on the head index.
+Therefore Ripple cannot rely only on the head index.
 
 Concept:
 
@@ -1339,7 +1339,7 @@ Basic mutation process:
 1. apply controlled behavior change
 2. run full suite
 3. record failing test files
-4. run TraceImpact selection
+4. run Ripple selection
 5. measure how many failing files were selected
 
 Example:
@@ -1365,7 +1365,7 @@ scip-typescript
 TypeScript language service/compiler API
 ```
 
-TraceImpact does not need to beat them.
+Ripple does not need to beat them.
 
 It needs to measure how correct its own supported resolver is.
 
@@ -1384,7 +1384,7 @@ oracle symbol
    ↓
 source span
    ↓
-TraceImpact enclosing symbol
+Ripple enclosing symbol
    ↓
 comparable graph edge
 ```
@@ -1447,7 +1447,7 @@ Every public number must be reproducible.
 Every benchmark result records:
 
 ```text
-TraceImpact version
+Ripple version
 repo URL
 repo commit SHA
 hardware
@@ -1523,16 +1523,16 @@ Track regressions without fragile shared-runner thresholds.
 # 43. Repository structure
 
 ```text
-traceimpact/
+ripple/
 
 ├── crates/
-│   ├── ti-core/
-│   ├── ti-parse/
-│   ├── ti-resolve/
-│   ├── ti-index/
-│   ├── ti-git/
-│   ├── ti-impact/
-│   └── traceimpact-cli/
+│   ├── ripple-core/
+│   ├── ripple-parse/
+│   ├── ripple-resolve/
+│   ├── ripple-index/
+│   ├── ripple-git/
+│   ├── ripple-impact/
+│   └── ripple-cli/
 │
 ├── fixtures/
 ├── eval/
@@ -1563,7 +1563,7 @@ traceimpact/
 │   └── pull_request_template.md
 │
 ├── AGENTS.md
-├── TRACEIMPACT_BUILD_SPEC.md
+├── ripple_buildspec.md
 ├── CONTRIBUTING.md
 ├── CHANGELOG.md
 ├── Cargo.toml
@@ -1666,7 +1666,7 @@ Implement:
 Exit:
 
 ```text
-traceimpact inspect <fixture>
+ripple inspect <fixture>
 ```
 
 returns deterministic expected facts.
@@ -1887,7 +1887,7 @@ Use `v1.0.0` only when:
 Development:
 
 ```bash
-cargo install --path crates/traceimpact-cli
+cargo install --path crates/ripple-cli
 ```
 
 Public later:
@@ -1922,7 +1922,7 @@ No frontend is required.
 Optional after core completion:
 
 ```bash
-traceimpact graph <symbol> --format dot
+ripple graph <symbol> --format dot
 ```
 
 or a local read-only visualization.
@@ -1941,7 +1941,7 @@ No sessions.
 
 No hosted repository upload.
 
-TraceImpact analyzes local code.
+Ripple analyzes local code.
 
 ---
 
@@ -2001,13 +2001,13 @@ Require owner understanding of architecture/resolver/incremental/evaluation logi
 
 # 54. 30-second explanation
 
-> **TraceImpact is a Rust CLI for TypeScript repositories. It parses the repo, resolves functions and imports into a dependency graph, then takes a Git diff and maps changed lines to changed symbols. From those symbols it walks the reverse graph to find downstream callers and test files, and it shows the dependency path behind every result. I also track resolution confidence, update the index incrementally, and compare the resolver against TypeScript code-intelligence tooling so its accuracy is measured rather than assumed.**
+> **Ripple is a Rust CLI for TypeScript repositories. It parses the repo, resolves functions and imports into a dependency graph, then takes a Git diff and maps changed lines to changed symbols. From those symbols it walks the reverse graph to find downstream callers and test files, and it shows the dependency path behind every result. I also track resolution confidence, update the index incrementally, and compare the resolver against TypeScript code-intelligence tooling so its accuracy is measured rather than assumed.**
 
 ---
 
 # 55. Interview system-design explanation
 
-> **The repository scanner discovers TypeScript source files. Tree-sitter produces syntax trees and spans. The extractor converts those into TraceImpact symbols and unresolved references. The resolver maps supported imports and calls to concrete targets and emits confidence-annotated edges. SQLite stores the durable index, while forward and reverse adjacency structures are loaded in memory for fast queries. Git analysis compares base and head revisions, maps changed ranges to symbols, and classifies body/signature/add/delete changes. The impact engine performs reverse BFS and keeps predecessor information for witness paths. Incremental indexing reprocesses changed files and affected importers, and correctness is checked by comparing canonical incremental output with a clean rebuild.**
+> **The repository scanner discovers TypeScript source files. Tree-sitter produces syntax trees and spans. The extractor converts those into Ripple symbols and unresolved references. The resolver maps supported imports and calls to concrete targets and emits confidence-annotated edges. SQLite stores the durable index, while forward and reverse adjacency structures are loaded in memory for fast queries. Git analysis compares base and head revisions, maps changed ranges to symbols, and classifies body/signature/add/delete changes. The impact engine performs reverse BFS and keeps predecessor information for witness paths. Incremental indexing reprocesses changed files and affected importers, and correctness is checked by comparing canonical incremental output with a clean rebuild.**
 
 ---
 
@@ -2068,7 +2068,7 @@ guarantees selected tests are sufficient
 # 58. Resume framing
 
 ```text
-TraceImpact — Change Impact Engine
+Ripple — Change Impact Engine
 Rust, Tree-sitter, SQLite, Git
 ```
 
@@ -2107,7 +2107,7 @@ Replace general wording with real measurements as soon as benchmarks exist.
 - [ ] add/delete/body/signature classification
 - [ ] basic rename handling
 - [ ] global invalidators
-- [ ] `traceimpact diff`
+- [ ] `ripple diff`
 
 ## Evaluation
 
@@ -2153,7 +2153,7 @@ Replace general wording with real measurements as soon as benchmarks exist.
 
 For this semester:
 
-> **TraceImpact is a Rust CLI that analyzes TypeScript repositories, builds a persistent confidence-annotated symbol dependency graph, maps Git diffs to changed symbols, traces downstream impact with explainable witness paths, updates its index incrementally, and evaluates resolver and test-impact behavior with reproducible measurements.**
+> **Ripple is a Rust CLI that analyzes TypeScript repositories, builds a persistent confidence-annotated symbol dependency graph, maps Git diffs to changed symbols, traces downstream impact with explainable witness paths, updates its index incrementally, and evaluates resolver and test-impact behavior with reproducible measurements.**
 
 It is not:
 
@@ -2178,7 +2178,7 @@ If those answers are weak, reject the feature.
 
 # 61. Mental model
 
-TraceImpact has six stages:
+Ripple has six stages:
 
 ```text
 1. UNDERSTAND SOURCE
@@ -2216,25 +2216,18 @@ measured correctness and performance
 
 # 62. Name
 
-## Final project name: TraceImpact
+## Final project name: Ripple
 
-Why:
+Ripple describes how a code change can propagate through downstream dependencies.
 
-- **Trace**: follow dependency paths
-- **Impact**: describe downstream effects
-- fits the project without limiting it to test selection
-- gives a clean CLI:
+Use **Ripple** for the product, `ripple` for the repository and CLI, `ripple-` prefixes for crates, and `.ripple/` for the local index directory.
 
 ```bash
-traceimpact index .
-traceimpact diff main..HEAD
-traceimpact impact validateToken
-traceimpact test main..HEAD
+ripple index .
+ripple diff main..HEAD
+ripple impact validateToken
+ripple test main..HEAD
 ```
-
-A public web search performed before this decision did not surface an obvious current developer tool using the exact name `TraceImpact`.
-
-This is not trademark clearance. If the project later becomes commercial, perform proper legal/name checks.
 
 ---
 
@@ -2272,7 +2265,7 @@ If architecture changes, update or add an ADR.
 
 # 64. Canonical status
 
-This file is the authoritative implementation scope for TraceImpact during the semester.
+This file is the authoritative implementation scope for Ripple during the semester.
 
 Agents should not infer requirements from older brainstorming notes.
 
