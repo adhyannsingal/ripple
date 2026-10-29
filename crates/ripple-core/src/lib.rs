@@ -1,8 +1,11 @@
 //! Backend-independent source, identity and syntax contracts.
 
+pub mod canonical;
 pub mod graph;
 pub mod identity;
+pub mod index;
 pub mod results;
+pub mod revision;
 pub mod source;
 pub mod syntax;
 

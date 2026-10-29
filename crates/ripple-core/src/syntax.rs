@@ -41,6 +41,20 @@ pub struct VersionedHash {
     pub version: u32,
     pub digest: String,
 }
+impl VersionedHash {
+    pub fn validate(&self) -> Result<(), ContractError> {
+        if self.version == 0
+            || self.digest.len() != 64
+            || !self
+                .digest
+                .bytes()
+                .all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))
+        {
+            return Err(ContractError::InvalidFacts("invalid versioned hash"));
+        }
+        Ok(())
+    }
+}
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct SymbolFact {
     pub identity: SymbolId,
@@ -200,15 +214,7 @@ impl FileFacts {
                 .into_iter()
                 .flatten()
             {
-                if hash.version == 0
-                    || hash.digest.len() != 64
-                    || !hash
-                        .digest
-                        .bytes()
-                        .all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))
-                {
-                    return Err(ContractError::InvalidFacts("invalid versioned hash"));
-                }
+                hash.validate()?;
             }
         }
         if self.parse_status == ParseStatus::Failed

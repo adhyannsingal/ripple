@@ -1,6 +1,6 @@
 # Ripple architecture
 
-Implemented at M0-T02: a buildable workspace and backend-independent source/identity/syntax contracts. Parsing/extraction, resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
+Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. Parsing/extraction, resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
 
 ## Boundaries
 
@@ -14,7 +14,7 @@ Implemented at M0-T02: a buildable workspace and backend-independent source/iden
 | ripple-impact | Graph queries, changed-symbol comparison and witnesses | core |
 | ripple-cli | Compose providers/engines and render outputs | all as needed |
 
-Core currently uses only serde/thiserror. It has no Tree-sitter, SQLite, filesystem or Git dependencies. Syntax facts expose lexical references and bindings, never resolved edges. M0-T04 defines graph/evidence contracts; M0-T05 defines generation/revision contracts. Implementations live in their owning crates rather than leaking into core.
+Core currently uses only serde/thiserror. It has no Tree-sitter, SQLite, filesystem or Git dependencies. Syntax facts expose lexical references and bindings, never resolved edges. M0-T04 defines the implemented graph/evidence contracts; M0-T05 defines the implemented generation/revision contracts. Implementations live in their owning crates rather than leaking into core.
 
 ## Source and identity
 
@@ -34,7 +34,21 @@ The M1 extraction target includes named top-level function declarations, named c
 
 References inside nested callbacks retain lexical scope and belong to their closest supported enclosing symbol; top-level test callbacks belong to the file. Record parameter/local/import bindings to let resolution detect shadowing. Module-level direct calls retain file ownership. Namespace/computed/dynamic constructs retain syntax evidence plus unsupported diagnostics when precise resolution is unavailable.
 
-No semantic hashes are computed at M0-T02. `VersionedHash` is a versioned 256-bit lowercase hex representation; M1-T03 chooses/documents the algorithm and structure-aware hash encoding. Signature/body fields are optional until extraction, and their presence/meaning is not inferred from type construction.
+No semantic or raw-input hashes are computed by the M0 contracts. `VersionedHash` is a versioned 256-bit lowercase hex representation; M1-T03 chooses/documents the algorithm and structure-aware hash encoding. Signature/body fields are optional until extraction, and their presence/meaning is not inferred from type construction.
+
+## Graph, generations and revision binding
+
+See [graph-model.md](graph-model.md) for typed endpoints and independent symbol-backed/module-fallback witnesses. Graph snapshots are sorted semantic records; the impact crate will build adjacency/BFS later. Every stored witness must validate against the graph for its actual revision.
+
+`SnapshotData` is a serializable transport record, not an automatically trusted query index. `validate(captured_sources)` checks manifest membership/byte lengths, syntax facts, project identity, graph symbol/file membership, coordinates/provenance and hash-format shape. It returns a private, immutable `IndexSnapshot`; decoding persisted data must pass through that source validation again. Hash computation/verification is a producer responsibility and not accomplished by checking 64 hex characters. Config/ignore/package/lockfile bytes are fingerprinted as manifest inputs, but only supported UTF-8 source files enter SourceSnapshot/FileFacts.
+
+SnapshotOrigin distinguishes a possibly dirty worktree with optional HEAD (including unborn repositories) from an immutable commit. RevisionGraphs binds Base/Head labels to matching full commit IDs and compatible project/formats, so deleted symbols remain explainable only in their base graph. It never treats a clean worktree as a committed-tree index. The real Git provider/diff mapper and old/head traversal remain future tasks.
+
+`IndexVersions` separates SQLite schema, hash encoding and analyzer compatibility identifiers. Callers must compare against supported identifiers from the running analyzer with `ensure_compatible`; positive version numbers alone are not compatibility proof. Incompatible development builds must not share an unchanged package-version token. A complete generation has creation metadata/counter; SQLite implements actual transactions/locking/recovery later.
+
+`check_observation` compares supplied input/HEAD observations to the captured manifest. It performs no filesystem access and does not create a freshness certificate. The index implementation must actually recapture/re-hash membership and inputs before publication, with at most three attempts, and preserve the previous generation on continued changes/failure. Files can change after verification; queries still need compatibility/freshness checks.
+
+`CanonicalState` v1 preserves input hashes, effective-config semantics, facts, typed edges, confidence, rule/provenance, parse status and unknown/diagnostic records while normalizing order. It excludes generation numbers, times and actual checkout origin. Thus equal semantic state at different revisions can still fail freshness/revision checks. This comparison artifact cannot be loaded as an unchecked runtime index, and unsupported comparison format versions are rejected. SQLite row IDs never enter these contracts. M5/M6 extend fingerprints and test real incremental/cold updates, not just projection examples.
 
 ## Validation and execution
 
