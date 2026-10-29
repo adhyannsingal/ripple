@@ -1,6 +1,8 @@
 //! Backend-independent source, identity and syntax contracts.
 
+pub mod graph;
 pub mod identity;
+pub mod results;
 pub mod source;
 pub mod syntax;
 
