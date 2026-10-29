@@ -287,27 +287,49 @@
         "docs/graph-model.md",
         "docs/adr/0006-confidence-semantics.md"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M0-T04",
       "started_at": "2026-10-29T23:24:50.829674+00:00",
-      "heartbeat_at": "2026-10-29T23:24:50.829674+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-29T23:37:08.759697+00:00",
+      "completed_at": "2026-10-29T23:37:08.759697+00:00",
+      "integrated_commit": "88f801ab6e0f5805a5d069ee6d47af93bab0887f",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (34 Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (15 Python tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub Linux/macOS/Windows CI at 88f801a",
+          "outcome": "passed",
+          "evidence": "https://github.com/adhyannsingal/ripple/actions/runs/40974137767"
+        }
+      ],
       "blocker": null,
       "base_commit": "c931e889d42007786554f36f51847503bc2c559a",
-      "claimed_paths": [
-        "crates/ripple-core/src/graph.rs",
-        "crates/ripple-core/src/results.rs",
-        "crates/ripple-core/src/lib.rs",
-        "crates/ripple-core/tests/graph_contracts.rs",
-        "docs/graph-model.md",
-        "docs/adr/0006-confidence-semantics.md",
-        "docs/task-reports/M0-T04.md"
-      ],
-      "checkpoint": "Verified prior integration and green GitHub CI; defining graph/evidence contracts.",
-      "next_action": "Implement typed nodes/edges, validated reverse witnesses and two-track result contracts with independent examples.",
+      "claimed_paths": [],
+      "checkpoint": "Graph/evidence contracts integrated; local checks and all three CI platforms passed.",
+      "next_action": "M0-T05: index/revision/canonical contracts.",
       "report": "docs/task-reports/M0-T04.md"
     },
     {
@@ -326,19 +348,32 @@
         "docs/adr/0009-git-and-output-policy.md",
         "docs/architecture.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M0-T05",
+      "started_at": "2026-10-29T23:37:08.759697+00:00",
+      "heartbeat_at": "2026-10-29T23:37:08.759697+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "88f801ab6e0f5805a5d069ee6d47af93bab0887f",
+      "claimed_paths": [
+        "crates/ripple-core/src/index.rs",
+        "crates/ripple-core/src/revision.rs",
+        "crates/ripple-core/src/canonical.rs",
+        "crates/ripple-core/src/syntax.rs",
+        "crates/ripple-core/src/lib.rs",
+        "crates/ripple-core/tests/index_contracts.rs",
+        "docs/architecture.md",
+        "docs/adr/0003-sqlite-persistence.md",
+        "docs/adr/0005-base-head-model.md",
+        "docs/adr/0007-canonical-graph-equality.md",
+        "docs/adr/0009-git-and-output-policy.md",
+        "docs/task-reports/M0-T05.md"
+      ],
+      "checkpoint": "Graph contracts integrated and CI verified; defining minimum index/revision boundary.",
+      "next_action": "Implement manifest and generation data contracts, immutable revision binding and canonical semantic projection; add independent tests and ADRs.",
       "report": "docs/task-reports/M0-T05.md"
     },
     {
@@ -1300,8 +1335,8 @@
     "owner": "local-agent",
     "session_id": "ripple-2026-10-29",
     "integration_branch": "main",
-    "checkpoint": "M0-T04 claimed; baseline CI c931e88 succeeded.",
-    "next_action": "Integrate M0-T04, then claim M0-T05.",
-    "updated_at": "2026-10-29T23:24:50.829674+00:00"
+    "checkpoint": "M0-T04 done; M0-T05 claimed.",
+    "next_action": "Integrate M0-T05 and verify the M0 gate.",
+    "updated_at": "2026-10-29T23:37:08.759697+00:00"
   }
 }
