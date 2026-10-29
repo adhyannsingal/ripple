@@ -224,19 +224,28 @@
         ".github/pull_request_template.md",
         ".github/ISSUE_TEMPLATE/"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M0-T03",
+      "started_at": "2026-10-29T00:50:16.668599+00:00",
+      "heartbeat_at": "2026-10-29T00:50:16.668599+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "9cde4a34fbba39714327bdbc343702fe9428e3dc",
+      "claimed_paths": [
+        "fixtures/",
+        "crates/ripple-cli/tests/",
+        "crates/ripple-cli/Cargo.toml",
+        "Cargo.toml",
+        "Cargo.lock",
+        ".github/pull_request_template.md",
+        ".github/ISSUE_TEMPLATE/",
+        "docs/task-reports/M0-T03.md"
+      ],
+      "checkpoint": "Core contracts integrated; preparing independent semantic fixtures and isolated process/Git helpers.",
+      "next_action": "Add manifest-driven fixture assertions, safe temporary repos and test them on paths with spaces.",
       "report": "docs/task-reports/M0-T03.md"
     },
     {
@@ -1258,8 +1267,8 @@
     "owner": "local-agent",
     "session_id": "ripple-2026-10-28",
     "integration_branch": "main",
-    "checkpoint": "M0-T02 integrated and verified.",
-    "next_action": "Claim M0-T03.",
-    "updated_at": "2026-10-29T00:50:08.185715+00:00"
+    "checkpoint": "M0-T03 claimed.",
+    "next_action": "Integrate fixture/test infrastructure before graph contracts.",
+    "updated_at": "2026-10-29T00:50:16.668599+00:00"
   }
 }
