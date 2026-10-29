@@ -224,28 +224,44 @@
         ".github/pull_request_template.md",
         ".github/ISSUE_TEMPLATE/"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M0-T03",
       "started_at": "2026-10-29T00:50:16.668599+00:00",
-      "heartbeat_at": "2026-10-29T00:50:16.668599+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-29T02:27:31.045679+00:00",
+      "completed_at": "2026-10-29T02:27:31.045679+00:00",
+      "integrated_commit": "71192938082a9da8b25e0c88777e0a580f244a56",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (26 Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (15 Python tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "git diff --check",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "9cde4a34fbba39714327bdbc343702fe9428e3dc",
-      "claimed_paths": [
-        "fixtures/",
-        "crates/ripple-cli/tests/",
-        "crates/ripple-cli/Cargo.toml",
-        "Cargo.toml",
-        "Cargo.lock",
-        ".github/pull_request_template.md",
-        ".github/ISSUE_TEMPLATE/",
-        "docs/task-reports/M0-T03.md"
-      ],
-      "checkpoint": "Core contracts integrated; preparing independent semantic fixtures and isolated process/Git helpers.",
-      "next_action": "Add manifest-driven fixture assertions, safe temporary repos and test them on paths with spaces.",
+      "claimed_paths": [],
+      "checkpoint": "Shared fixture/process/Git infrastructure integrated and verified.",
+      "next_action": "M0-T04: define graph/evidence/result contracts.",
       "report": "docs/task-reports/M0-T03.md"
     },
     {
@@ -1264,11 +1280,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-2026-10-28",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "M0-T03 claimed.",
-    "next_action": "Integrate fixture/test infrastructure before graph contracts.",
-    "updated_at": "2026-10-29T00:50:16.668599+00:00"
+    "checkpoint": "Initial implementation batch complete: M0-T01/T02/T03 integrated and locally verified. No worker is running; M0 gate remains pending until T04/T05.",
+    "next_action": "Resume with M0-T04, the earliest ready task; parser/scanner tasks are also independently ready.",
+    "updated_at": "2026-10-29T02:27:31.045679+00:00"
   }
 }
