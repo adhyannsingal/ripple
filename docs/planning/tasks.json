@@ -11,9 +11,15 @@
       "id": "M0",
       "title": "Contracts and bootstrap",
       "target": "Before week 1",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M0-T01 through M0-T05 integrated with recorded source commits and task reports.",
+        "cargo fmt, strict clippy and locked workspace tests passed (46 Rust tests); planning validation and 15 Python tests passed.",
+        "Source identity/span, graph/evidence and revision/generation/canonical contracts have independent tests and scoped ADRs.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/40976184529",
+        "docs/task-reports/M0.md"
+      ],
+      "completed_at": "2026-10-29T23:56:09.865511+00:00"
     },
     {
       "id": "M1",
@@ -348,32 +354,53 @@
         "docs/adr/0009-git-and-output-policy.md",
         "docs/architecture.md"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M0-T05",
       "started_at": "2026-10-29T23:37:08.759697+00:00",
-      "heartbeat_at": "2026-10-29T23:37:08.759697+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-29T23:56:09.865511+00:00",
+      "completed_at": "2026-10-29T23:56:09.865511+00:00",
+      "integrated_commit": "6039fc2b8285f4b22000d9570b3c963db60d8f47",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (46 Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (15 Python tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "local Markdown links and seven-crate dependency boundary review",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub Linux/macOS/Windows CI at 6039fc2",
+          "outcome": "passed",
+          "evidence": "https://github.com/adhyannsingal/ripple/actions/runs/40976184529"
+        }
+      ],
       "blocker": null,
       "base_commit": "88f801ab6e0f5805a5d069ee6d47af93bab0887f",
-      "claimed_paths": [
-        "crates/ripple-core/src/index.rs",
-        "crates/ripple-core/src/revision.rs",
-        "crates/ripple-core/src/canonical.rs",
-        "crates/ripple-core/src/syntax.rs",
-        "crates/ripple-core/src/lib.rs",
-        "crates/ripple-core/tests/index_contracts.rs",
-        "docs/architecture.md",
-        "docs/adr/0003-sqlite-persistence.md",
-        "docs/adr/0005-base-head-model.md",
-        "docs/adr/0007-canonical-graph-equality.md",
-        "docs/adr/0009-git-and-output-policy.md",
-        "docs/task-reports/M0-T05.md"
-      ],
-      "checkpoint": "Graph contracts integrated and CI verified; defining minimum index/revision boundary.",
-      "next_action": "Implement manifest and generation data contracts, immutable revision binding and canonical semantic projection; add independent tests and ADRs.",
+      "claimed_paths": [],
+      "checkpoint": "Index/revision/canonical contracts integrated; local checks and all three CI platforms passed.",
+      "next_action": "M1-T01: repository discovery, ignore policy and early test-file classification.",
       "report": "docs/task-reports/M0-T05.md"
     },
     {
@@ -1332,11 +1359,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-2026-10-29",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "M0-T04 done; M0-T05 claimed.",
-    "next_action": "Integrate M0-T05 and verify the M0 gate.",
-    "updated_at": "2026-10-29T23:37:08.759697+00:00"
+    "checkpoint": "M0 complete; all five tasks integrated and CI verified. No worker running.",
+    "next_action": "Resume with M1-T01 repository scanner; M1-T02 parser is also ready.",
+    "updated_at": "2026-10-29T23:56:09.865511+00:00"
   }
 }
