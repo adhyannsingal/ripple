@@ -1,11 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "Ripple",
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-10-19",
-  "notes": "Planning baseline only. No implementation tasks have started. Single coordinator writes this ledger.",
+  "updated_at": "2026-10-21",
+  "notes": "Amended planning baseline: 38 implementation tasks, all pending. Planning validator exists; Rust implementation has not started. Single coordinator writes this ledger.",
   "milestones": [
     {
       "id": "M0",
@@ -105,22 +105,26 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M0-T01.md"
     },
     {
       "id": "M0-T02",
       "milestone": "M0",
-      "title": "Freeze core contracts and architectural decisions",
+      "title": "Establish source, identity and syntax-fact contracts",
       "depends_on": [
         "M0-T01"
       ],
       "lane": "core",
       "owned_paths": [
-        "crates/ripple-core/",
+        "crates/ripple-core/src/{identity,source,syntax}*",
         "docs/architecture.md",
-        "docs/graph-model.md",
-        "docs/adr/0001-0007*.md",
-        "docs/adr/0009*.md"
+        "docs/adr/0001-rust-core.md",
+        "docs/adr/0002-tree-sitter-parser.md",
+        "docs/adr/0004-symbol-identity.md"
       ],
       "status": "pending",
       "owner": null,
@@ -131,6 +135,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M0-T02.md"
     },
     {
@@ -157,7 +165,71 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M0-T03.md"
+    },
+    {
+      "id": "M0-T04",
+      "milestone": "M0",
+      "title": "Define graph transitions, confidence and result contracts",
+      "depends_on": [
+        "M0-T02",
+        "M0-T03"
+      ],
+      "lane": "core",
+      "owned_paths": [
+        "crates/ripple-core/src/{graph,results}*",
+        "docs/graph-model.md",
+        "docs/adr/0006-confidence-semantics.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
+      "report": "docs/task-reports/M0-T04.md"
+    },
+    {
+      "id": "M0-T05",
+      "milestone": "M0",
+      "title": "Define index generations, revision and canonical-state contracts",
+      "depends_on": [
+        "M0-T04"
+      ],
+      "lane": "core",
+      "owned_paths": [
+        "crates/ripple-core/src/{index,revision,canonical}*",
+        "docs/adr/0003-sqlite-persistence.md",
+        "docs/adr/0005-base-head-model.md",
+        "docs/adr/0007-canonical-graph-equality.md",
+        "docs/adr/0009-git-and-output-policy.md",
+        "docs/architecture.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
+      "report": "docs/task-reports/M0-T05.md"
     },
     {
       "id": "M1-T01",
@@ -181,6 +253,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M1-T01.md"
     },
     {
@@ -205,6 +281,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M1-T02.md"
     },
     {
@@ -229,6 +309,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M1-T03.md"
     },
     {
@@ -252,6 +336,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M1-T04.md"
     },
     {
@@ -277,12 +365,16 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M1-T05.md"
     },
     {
       "id": "M2-T01",
       "milestone": "M2",
-      "title": "Resolve modules and export tables",
+      "title": "Resolve relative modules and direct export bindings",
       "depends_on": [
         "M1-T01",
         "M1-T04"
@@ -303,6 +395,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M2-T01.md"
     },
     {
@@ -310,7 +406,8 @@
       "milestone": "M2",
       "title": "Resolve supported calls with evidence and uncertainty",
       "depends_on": [
-        "M2-T01"
+        "M2-T07",
+        "M0-T04"
       ],
       "lane": "semantics",
       "owned_paths": [
@@ -327,6 +424,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M2-T02.md"
     },
     {
@@ -334,8 +435,7 @@
       "milestone": "M2",
       "title": "Persist versioned typed graphs atomically in SQLite",
       "depends_on": [
-        "M0-T02",
-        "M0-T03"
+        "M0-T05"
       ],
       "lane": "storage",
       "owned_paths": [
@@ -352,6 +452,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M2-T03.md"
     },
     {
@@ -359,8 +463,7 @@
       "milestone": "M2",
       "title": "Build deterministic in-memory reverse traversal",
       "depends_on": [
-        "M0-T02",
-        "M0-T03"
+        "M0-T04"
       ],
       "lane": "impact",
       "owned_paths": [
@@ -377,6 +480,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M2-T04.md"
     },
     {
@@ -393,7 +500,8 @@
       "owned_paths": [
         "crates/ripple-index/src/build*",
         "crates/ripple-cli/src/commands/{index,status,impact}*",
-        "crates/ripple-cli/tests/index_impact*"
+        "crates/ripple-cli/tests/index_impact*",
+        ".github/workflows/ci.yml"
       ],
       "status": "pending",
       "owner": null,
@@ -404,7 +512,70 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M2-T05.md"
+    },
+    {
+      "id": "M2-T06",
+      "milestone": "M2",
+      "title": "Resolve effective tsconfig inputs and basic path aliases",
+      "depends_on": [
+        "M2-T01"
+      ],
+      "lane": "semantics",
+      "owned_paths": [
+        "crates/ripple-resolve/src/config*",
+        "crates/ripple-resolve/src/paths*",
+        "fixtures/resolution/config/",
+        "docs/resolution.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
+      "report": "docs/task-reports/M2-T06.md"
+    },
+    {
+      "id": "M2-T07",
+      "milestone": "M2",
+      "title": "Resolve re-exports to a deterministic fixed point",
+      "depends_on": [
+        "M2-T06",
+        "M0-T04"
+      ],
+      "lane": "semantics",
+      "owned_paths": [
+        "crates/ripple-resolve/src/reexports*",
+        "crates/ripple-resolve/src/exports*",
+        "fixtures/resolution/reexports/",
+        "docs/resolution.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
+      "report": "docs/task-reports/M2-T07.md"
     },
     {
       "id": "M3-T01",
@@ -429,6 +600,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M3-T01.md"
     },
     {
@@ -453,6 +628,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M3-T02.md"
     },
     {
@@ -478,6 +657,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M3-T03.md"
     },
     {
@@ -485,8 +668,7 @@
       "milestone": "M4",
       "title": "Read immutable Git endpoints and structured diffs",
       "depends_on": [
-        "M0-T02",
-        "M0-T03"
+        "M0-T05"
       ],
       "lane": "git",
       "owned_paths": [
@@ -503,6 +685,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M4-T01.md"
     },
     {
@@ -527,6 +713,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M4-T02.md"
     },
     {
@@ -552,6 +742,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M4-T03.md"
     },
     {
@@ -566,7 +760,8 @@
       "owned_paths": [
         "crates/ripple-cli/src/commands/diff*",
         "crates/ripple-cli/tests/diff*",
-        "docs/examples/"
+        "docs/examples/",
+        ".github/workflows/ci.yml"
       ],
       "status": "pending",
       "owner": null,
@@ -577,6 +772,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M4-T04.md"
     },
     {
@@ -585,7 +784,7 @@
       "title": "Implement canonical full-state equality and cache fingerprints",
       "depends_on": [
         "M2-T05",
-        "M4-T04"
+        "M0-T05"
       ],
       "lane": "storage",
       "owned_paths": [
@@ -602,6 +801,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M5-T01.md"
     },
     {
@@ -609,7 +812,8 @@
       "milestone": "M5",
       "title": "Update changed files atomically and handle global invalidators",
       "depends_on": [
-        "M5-T01"
+        "M5-T01",
+        "M4-T04"
       ],
       "lane": "storage",
       "owned_paths": [
@@ -625,6 +829,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M5-T02.md"
     },
     {
@@ -632,8 +840,8 @@
       "milestone": "M5",
       "title": "Propagate importer invalidation with safe early cutoff",
       "depends_on": [
-        "M5-T02",
-        "M2-T01"
+        "M5-T05",
+        "M2-T07"
       ],
       "lane": "semantics",
       "owned_paths": [
@@ -650,6 +858,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M5-T03.md"
     },
     {
@@ -674,12 +886,44 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M5-T04.md"
+    },
+    {
+      "id": "M5-T05",
+      "milestone": "M5",
+      "title": "Establish generated equality tests before early cutoff",
+      "depends_on": [
+        "M5-T02"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "crates/ripple-index/tests/properties_basic*",
+        "fixtures/incremental/regressions/",
+        ".github/workflows/ci.yml"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
+      "report": "docs/task-reports/M5-T05.md"
     },
     {
       "id": "M6-T01",
       "milestone": "M6",
-      "title": "Property-test incremental equality, idempotence and round trips",
+      "title": "Expand generated equality tests and adversarial edit sequences",
       "depends_on": [
         "M5-T04"
       ],
@@ -698,6 +942,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M6-T01.md"
     },
     {
@@ -712,7 +960,9 @@
       "owned_paths": [
         "eval/commit-replay/",
         "eval/corpora/",
-        "eval/results/replay/"
+        "eval/results/replay/",
+        "crates/ripple-index/",
+        "fixtures/incremental/regressions/"
       ],
       "status": "pending",
       "owner": null,
@@ -723,12 +973,16 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M6-T02.md"
     },
     {
       "id": "M6-T03",
       "milestone": "M6",
-      "title": "Measure incremental performance and close correctness gaps",
+      "title": "Measure validated incremental performance",
       "depends_on": [
         "M6-T02"
       ],
@@ -737,7 +991,8 @@
         "bench/scripts/incremental*",
         "bench/results/",
         "docs/incremental.md",
-        "crates/ripple-index/"
+        "crates/ripple-index/",
+        ".github/workflows/ci.yml"
       ],
       "status": "pending",
       "owner": null,
@@ -748,12 +1003,16 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M6-T03.md"
     },
     {
       "id": "M7-T01",
       "milestone": "M7",
-      "title": "Finalize test-file classification and explainable reachability",
+      "title": "Finalize revision-aware test selection and evidence partitions",
       "depends_on": [
         "M4-T04",
         "M6-T03"
@@ -773,6 +1032,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M7-T01.md"
     },
     {
@@ -797,6 +1060,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M7-T02.md"
     },
     {
@@ -822,6 +1089,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M8-T01.md"
     },
     {
@@ -847,6 +1118,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M8-T02.md"
     },
     {
@@ -875,6 +1150,10 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M8-T03.md"
     },
     {
@@ -900,7 +1179,19 @@
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": null,
+      "next_action": null,
       "report": "docs/task-reports/M8-T04.md"
     }
-  ]
+  ],
+  "coordinator": {
+    "owner": null,
+    "session_id": null,
+    "integration_branch": "main",
+    "checkpoint": "Planning amendments validated; no implementation task claimed.",
+    "next_action": "Assign M0-T01 after reading AGENTS.md and running scripts/plan.py ready.",
+    "updated_at": "2026-10-21"
+  }
 }

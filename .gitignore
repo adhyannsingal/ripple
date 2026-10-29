@@ -1,0 +1,6 @@
+# Local macOS metadata
+.DS_Store
+
+# Python planning tooling
+__pycache__/
+*.py[cod]

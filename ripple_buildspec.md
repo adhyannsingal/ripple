@@ -743,6 +743,10 @@ A body change may alter behavior.
 
 A signature change may also structurally break callers.
 
+Hash syntax structure and meaningful lexical content with versioned signature/body domains. Do not hash only whitespace-stripped token streams. Ordinary trivia-only edits are unchanged only when parsed structure and semantic content are unchanged.
+
+Automatic semicolon insertion must be observable: `return 7;` and `return` followed by a newline then `7;` have different behavior and must have different body hashes. Include newline-containing comments, TSX text, strings and template literals in regression fixtures. Parse failures remain explicit rather than receiving unsupported semantic guarantees.
+
 ---
 
 # 18. Module resolution
@@ -904,6 +908,15 @@ rule:
 named_import_direct_call
 ```
 
+Impact evidence has a separate `evidence_kind`:
+
+- `symbol_backed`: a supported symbol-level call/reference path, including exact module-level references from test files.
+- `module_fallback`: conservative file-import/re-export reachability, starting from the changed symbol's defining file or a changed-file seed.
+
+Compute and retain witnesses for both tracks independently. Do not automatically expand symbols into their containing files within the symbol-backed track. An import edge may be `RESOLVED` while its relevance to a particular changed symbol remains module fallback. When both tracks reach a result, keep both kinds of evidence.
+
+Default potentially-related test selection uses the conservative union. Show symbol-backed, fallback-only and combined results/counts separately; narrower evidence views never guarantee safe test omission. A two-export/two-test fixture must distinguish exact symbol paths from conservative fallback additions.
+
 ---
 
 # 22. Forward and reverse adjacency
@@ -936,13 +949,22 @@ Both directions should be loaded efficiently.
 
 # 23. SQLite schema
 
-Suggested first version.
+Initial logical model; record concrete constraints and indexes in the persistence ADR before migration v1. All graph endpoints reference typed nodes so files, tests and opaque boundaries can participate alongside symbols.
+
+## nodes
+
+```text
+id
+semantic_identity (unique)
+node_type
+```
 
 ## files
 
 ```text
 id
-normalized_path
+node_id (unique foreign key to nodes)
+normalized_path (unique)
 content_hash
 language
 last_indexed_revision
@@ -953,15 +975,17 @@ parse_status
 
 ```text
 id
+node_id (unique foreign key to nodes)
 file_id
 kind
 name
 qualified_name
-semantic_identity
 span_start_byte
 span_end_byte
 span_start_line
 span_end_line
+span_start_column
+span_end_column
 signature_hash
 body_hash
 exported
@@ -971,8 +995,8 @@ exported
 
 ```text
 id
-source_symbol_id
-target_symbol_id
+source_node_id
+target_node_id
 edge_type
 confidence
 source_file_id
@@ -984,25 +1008,30 @@ resolution_rule
 
 ```text
 id
-source_symbol_id
+source_node_id
 reference_text
 reference_kind
 source_span
 reason
 ```
 
-## index_metadata
+## index_metadata and captured inputs
 
 ```text
 schema_version
 analyzer_version
+hash_version
 repository_revision
-tsconfig_hash
-package_json_hash
+input_manifest_hash
+worktree_dirty
+effective_config_hash
+generation
 created_at
 ```
 
-Use migrations when schema changes.
+Persist the captured input manifest, effective configuration inputs, parse diagnostics and reusable syntax facts needed to reproduce a generation and support later incremental updates. Provenance bookkeeping such as per-file last-indexed revision is operational metadata, excluded from canonical semantic equality.
+
+Use foreign keys and migrations. Publish complete generations in a transaction and load each graph generation in a read transaction. SQLite is authoritative; `metadata.json` is a derived summary recovered from the committed database when out of sync.
 
 ---
 
@@ -1228,6 +1257,10 @@ stop when externally visible facts no longer change
 
 Start with file-level invalidation.
 
+Worktree indexing captures supported file membership and source/config/ignore bytes once and analyzes those captured bytes. Before publication, verify the manifest with a fresh scan and content hashes, including HEAD provenance. Retry capture at most twice; persistent concurrent modification reports an actionable error and preserves the previous generation. This is a verified captured-input view, not an OS-wide atomic filesystem snapshot. Edits after verification can make it stale and must be detected by later worktree queries.
+
+Use immutable Git blobs for historical inputs without checking out/stashing user files. Benchmark freshness verification separately from adjacency traversal; a fast in-memory BFS does not imply an equally fast verified end-to-end CLI query.
+
 ---
 
 # 32. Early cutoff
@@ -1243,6 +1276,8 @@ stop dependency-resolution propagation
 ```
 
 This must be guarded by correctness tests.
+
+Establish a passing generated incremental-versus-cold edit-sequence suite, idempotence tests and persistence round trips before integrating selective invalidation or early cutoff. Expand those suites and add real history replay afterward; do not defer the initial correctness harness until after optimization.
 
 ---
 
@@ -1271,6 +1306,8 @@ Compare semantic content:
 - edges
 - confidence
 
+Canonical equality also includes source spans/provenance, parse state, unresolved records, diagnostics, evidence-relevant facts and effective configuration semantics. Ignore timestamps, benchmark timings and generation counters as well as internal storage IDs; do not hide stale diagnostics or provenance to obtain equality.
+
 ---
 
 # 34. Test-file detection
@@ -1287,6 +1324,8 @@ Defaults:
 ```
 
 Do not analyze individual `it()` blocks initially.
+
+Implement these default patterns during initial source discovery, before `diff` needs reachable-test counts. The later test-impact milestone builds the dedicated command, revision-aware selection and evaluation on this existing classification.
 
 ---
 
@@ -1518,6 +1557,8 @@ Optional after core stability.
 
 Track regressions without fragile shared-runner thresholds.
 
+Generated cold-equality, no-op idempotence and persistence round-trip tests begin with the conservative incremental updater and gate early cutoff. Real-history replay owns repair of any defects it reveals (or explicit repair prerequisite tasks); a failing replay never unlocks the dependent benchmark task. Pin seeds, corpus commits and analyzer commits, and rerun affected evaluation evidence on the final integrated candidate.
+
 ---
 
 # 43. Repository structure
@@ -1653,7 +1694,7 @@ Implement:
 
 - workspace
 - CLI
-- scanner
+- scanner and test-file pattern classification
 - Tree-sitter
 - functions/classes/methods
 - imports/exports
@@ -1738,7 +1779,8 @@ Implement:
 - changed-file update
 - edge replacement
 - importer invalidation
-- early cutoff
+- generated cold-equality/idempotence/round-trip baseline before early cutoff
+- early cutoff guarded by that baseline
 - global invalidators
 - canonical representation
 
@@ -1750,10 +1792,10 @@ one-file edit avoids full parse.
 
 Implement:
 
-- cold-vs-incremental property
+- expanded cold-vs-incremental property campaigns
 - idempotence
 - deterministic serialization
-- commit replay
+- commit replay with repairs before performance handoff
 - incremental benchmarks
 
 Exit:
@@ -1764,8 +1806,8 @@ one pinned real commit sequence passes equality at every tested step.
 
 Implement:
 
-- test-file detection
-- test reachability
+- revision-aware test selection using existing detection
+- separate symbol-backed and module-fallback test reachability
 - witness paths
 - `test`
 - selection ratio
@@ -1879,6 +1921,10 @@ Use `v1.0.0` only when:
 - limitations are documented
 - evaluation is reproducible
 - install experience is reliable
+
+Candidate gates are capability-specific. v0.1 requires implemented inspect/index/status/impact installation and witness checks; v0.2 adds Git endpoint/deletion behavior and an oracle baseline; v0.3 adds property-guarded incremental updates and successful real replay; v0.4 semester readiness adds the dedicated test command, final safety/performance evidence and complete documentation/install checks. Earlier candidates do not require unfinished semester features.
+
+The semester checklist applies to final v0.4 readiness; its public tag/release occurs only when publication is authorized. Final accuracy, replay, safety and performance reports must identify the integrated analyzer version they measure. Measure precise and conservative-union selection separately against file-import/all-tests baselines, even when conservative fallback offers no reduction.
 
 ---
 
