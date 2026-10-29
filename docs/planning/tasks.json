@@ -169,27 +169,44 @@
         "docs/adr/0002-tree-sitter-parser.md",
         "docs/adr/0004-symbol-identity.md"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M0-T02",
       "started_at": "2026-10-29T00:41:56.100264+00:00",
-      "heartbeat_at": "2026-10-29T00:41:56.100264+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-29T00:50:08.185715+00:00",
+      "completed_at": "2026-10-29T00:50:08.185715+00:00",
+      "integrated_commit": "bb4da5a82c5f0cd114a1fafd22eabd3d5c883bf8",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (17 Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (15 Python tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "git diff --check",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "dc1eba79e5629f1b65b878495c0e6d26d595f796",
-      "claimed_paths": [
-        "crates/ripple-core/",
-        "Cargo.lock",
-        "docs/architecture.md",
-        "docs/adr/0001-rust-core.md",
-        "docs/adr/0002-tree-sitter-parser.md",
-        "docs/adr/0004-symbol-identity.md",
-        "docs/task-reports/M0-T02.md"
-      ],
-      "checkpoint": "M0-T01 verified; designing minimal validated source/identity and syntax-fact contracts.",
-      "next_action": "Implement contract types, independent invariant tests and the three scoped ADRs.",
+      "claimed_paths": [],
+      "checkpoint": "Source/identity contracts integrated with 12 independent core tests.",
+      "next_action": "M0-T03: shared fixtures and test support.",
       "report": "docs/task-reports/M0-T02.md"
     },
     {
@@ -1241,8 +1258,8 @@
     "owner": "local-agent",
     "session_id": "ripple-2026-10-28",
     "integration_branch": "main",
-    "checkpoint": "M0-T02 claimed after verified bootstrap.",
-    "next_action": "Integrate source/identity contracts, then claim M0-T03.",
-    "updated_at": "2026-10-29T00:41:56.100264+00:00"
+    "checkpoint": "M0-T02 integrated and verified.",
+    "next_action": "Claim M0-T03.",
+    "updated_at": "2026-10-29T00:50:08.185715+00:00"
   }
 }
