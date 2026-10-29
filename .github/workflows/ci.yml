@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  workspace:
+    name: Workspace (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.14'
+      - name: Load pinned Rust toolchain
+        run: cargo --version
+      - name: Validate plan and coordination tooling
+        run: python scripts/plan.py validate
+      - name: Test planning tooling
+        run: python -m unittest discover -s scripts/tests -v
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Build locked workspace
+        run: cargo build --workspace --locked
+      - name: Lint all targets
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: Test locked workspace
+        run: cargo test --workspace --locked
+      - name: Verify CLI bootstrap
+        run: |
+          cargo run --locked -p ripple-cli -- --help
+          cargo run --locked -p ripple-cli -- --version

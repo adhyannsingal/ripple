@@ -1,8 +1,8 @@
 # Ripple
 
-A planned local Rust CLI that maps TypeScript Git changes to symbols and explains potentially affected code and test files through dependency paths.
+A local Rust CLI in development that maps TypeScript Git changes to symbols and explains potentially affected code and test files through dependency paths.
 
-This repository currently contains the build specification, execution plan and a tested planning helper. The analyzer has not been implemented yet. The product is named Ripple; the repository and planned CLI use `ripple`.
+The Rust workspace and CLI bootstrap are implemented. Run `cargo run --locked -p ripple-cli -- --help` or `--version`; analysis commands are not implemented yet. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks. The product is named Ripple; the repository and planned CLI use `ripple`.
 
 - [Build specification](ripple_buildspec.md): authoritative product scope and constraints.
 - [Implementation plan](docs/implementation-plan.md): 38 dependency-linked tasks across nine milestones, including acceptance checks and handoffs.
@@ -11,6 +11,6 @@ This repository currently contains the build specification, execution plan and a
 - [Task ledger](docs/planning/tasks.json): current task state, dependencies, ownership and validation evidence.
 - [Completion report template](docs/task-reports/TEMPLATE.md): required short summary after every task.
 
-To begin, have the coordinator read the agent instructions and assign `M0-T01`. All implementation tasks are pending. The coordinator can be an agent; routine tasks and milestone checks do not require owner intervention.
+To begin, have the coordinator read the agent instructions and assign `M0-T01`. The task ledger records verified completion and the next ready task. The coordinator can be an agent; routine tasks and milestone checks do not require owner intervention.
 
 Check task readiness with `python3 scripts/plan.py validate` and `python3 scripts/plan.py ready`. The helper validates planning state; it does not start agents.

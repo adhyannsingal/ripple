@@ -4,3 +4,7 @@
 # Python planning tooling
 __pycache__/
 *.py[cod]
+
+# Rust build artifacts and local Ripple state
+/target/
+/.ripple/

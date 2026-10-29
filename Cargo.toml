@@ -1,0 +1,28 @@
+[workspace]
+members = ["crates/*"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0-dev"
+edition = "2024"
+rust-version = "1.99.1"
+repository = "https://github.com/adhyannsingal/ripple"
+publish = false
+
+[workspace.dependencies]
+ripple-core = { path = "crates/ripple-core" }
+ripple-parse = { path = "crates/ripple-parse" }
+ripple-resolve = { path = "crates/ripple-resolve" }
+ripple-index = { path = "crates/ripple-index" }
+ripple-git = { path = "crates/ripple-git" }
+ripple-impact = { path = "crates/ripple-impact" }
+clap = { version = "=4.6.7", features = ["derive"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.154"
+thiserror = "=2.0.21"
+tree-sitter = "=0.27.1"
+tree-sitter-typescript = "=0.23.2"
+rusqlite = { version = "=0.41.1", features = ["bundled"] }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"

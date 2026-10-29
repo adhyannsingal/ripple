@@ -1,0 +1,23 @@
+[package]
+name = "ripple-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+ripple-core.workspace = true
+ripple-parse.workspace = true
+ripple-resolve.workspace = true
+ripple-index.workspace = true
+ripple-git.workspace = true
+ripple-impact.workspace = true
+clap.workspace = true
+
+[[bin]]
+name = "ripple"
+path = "src/main.rs"
