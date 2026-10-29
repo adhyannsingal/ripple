@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-10-21",
+  "updated_at": "2026-10-28",
   "notes": "Amended planning baseline: 38 implementation tasks, all pending. Planning validator exists; Rust implementation has not started. Single coordinator writes this ledger.",
   "milestones": [
     {
@@ -96,19 +96,30 @@
         "CONTRIBUTING.md",
         ".gitignore"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M0-T01",
+      "started_at": "2026-10-29T00:36:24.422896+00:00",
+      "heartbeat_at": "2026-10-29T00:36:24.422896+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "138117ee8a6de649cf4db43b84ffe8b74caa8cd3",
+      "claimed_paths": [
+        "Cargo.toml",
+        "Cargo.lock",
+        "rust-toolchain.toml",
+        "crates/",
+        ".github/workflows/ci.yml",
+        "CONTRIBUTING.md",
+        ".gitignore",
+        "README.md",
+        "docs/adr/0010-build-toolchain-and-dependencies.md",
+        "docs/task-reports/M0-T01.md"
+      ],
+      "checkpoint": "Reviewed spec, plan and host environment; installing Rust before workspace bootstrap.",
+      "next_action": "Create seven crates, CLI bootstrap, locked dependencies and CI; run local acceptance checks.",
       "report": "docs/task-reports/M0-T01.md"
     },
     {
@@ -1187,11 +1198,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-2026-10-28",
     "integration_branch": "main",
-    "checkpoint": "Planning amendments validated; no implementation task claimed.",
-    "next_action": "Assign M0-T01 after reading AGENTS.md and running scripts/plan.py ready.",
-    "updated_at": "2026-10-21"
+    "checkpoint": "Planning baseline committed; M0-T01 claimed.",
+    "next_action": "Integrate and verify M0-T01, then claim M0-T02.",
+    "updated_at": "2026-10-29T00:36:24.422896+00:00"
   }
 }
