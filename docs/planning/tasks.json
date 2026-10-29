@@ -96,30 +96,62 @@
         "CONTRIBUTING.md",
         ".gitignore"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M0-T01",
       "started_at": "2026-10-29T00:36:24.422896+00:00",
-      "heartbeat_at": "2026-10-29T00:36:24.422896+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-29T00:41:30.439006+00:00",
+      "completed_at": "2026-10-29T00:41:30.439006+00:00",
+      "integrated_commit": "63a28c07635546b4327b63979a32618b7ce99535",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (5 Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --version",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (15 Python tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub-hosted Linux/macOS/Windows CI matrix",
+          "outcome": "not_run",
+          "required": false,
+          "reason": "Workflow configured; no remote push/run performed."
+        }
+      ],
       "blocker": null,
       "base_commit": "138117ee8a6de649cf4db43b84ffe8b74caa8cd3",
-      "claimed_paths": [
-        "Cargo.toml",
-        "Cargo.lock",
-        "rust-toolchain.toml",
-        "crates/",
-        ".github/workflows/ci.yml",
-        "CONTRIBUTING.md",
-        ".gitignore",
-        "README.md",
-        "docs/adr/0010-build-toolchain-and-dependencies.md",
-        "docs/task-reports/M0-T01.md"
-      ],
-      "checkpoint": "Reviewed spec, plan and host environment; installing Rust before workspace bootstrap.",
-      "next_action": "Create seven crates, CLI bootstrap, locked dependencies and CI; run local acceptance checks.",
+      "claimed_paths": [],
+      "checkpoint": "Bootstrap integrated; local macOS acceptance checks passed.",
+      "next_action": "M0-T02: establish source, identity and syntax-fact contracts.",
       "report": "docs/task-reports/M0-T01.md"
     },
     {
@@ -1201,8 +1233,8 @@
     "owner": "local-agent",
     "session_id": "ripple-2026-10-28",
     "integration_branch": "main",
-    "checkpoint": "Planning baseline committed; M0-T01 claimed.",
-    "next_action": "Integrate and verify M0-T01, then claim M0-T02.",
-    "updated_at": "2026-10-29T00:36:24.422896+00:00"
+    "checkpoint": "M0-T01 integrated and locally verified.",
+    "next_action": "Claim M0-T02.",
+    "updated_at": "2026-10-29T00:41:30.439006+00:00"
   }
 }

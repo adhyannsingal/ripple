@@ -11,6 +11,6 @@ The Rust workspace and CLI bootstrap are implemented. Run `cargo run --locked -p
 - [Task ledger](docs/planning/tasks.json): current task state, dependencies, ownership and validation evidence.
 - [Completion report template](docs/task-reports/TEMPLATE.md): required short summary after every task.
 
-To begin, have the coordinator read the agent instructions and assign `M0-T01`. The task ledger records verified completion and the next ready task. The coordinator can be an agent; routine tasks and milestone checks do not require owner intervention.
+Have the coordinator read the agent instructions and assign the next ready task from `python3 scripts/plan.py ready`. The task ledger records verified completion and the next ready task. The coordinator can be an agent; routine tasks and milestone checks do not require owner intervention.
 
 Check task readiness with `python3 scripts/plan.py validate` and `python3 scripts/plan.py ready`. The helper validates planning state; it does not start agents.

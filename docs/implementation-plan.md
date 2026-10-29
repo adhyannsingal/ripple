@@ -4,7 +4,7 @@
 
 Build the local Rust CLI in vertical slices, establish deterministic data contracts first, measure resolver quality early, and optimize incremental work only behind cold-equality evidence. The authoritative scope is [the build specification](../ripple_buildspec.md); this plan turns it into assignable work with explicit dependencies and independently checkable exits.
 
-The repository currently contains the spec, planning documents and a tested Python planning helper. All Rust implementation cards remain `pending`; analyzer code, CI, benchmarks and releases have not been built. The 6–8 week semester target remains aspirational: calendar estimates assume focused work and may expand when correctness gates expose defects. Preserve scope and gates before preserving dates.
+This plan began with only documentation and a Python planning helper. The task ledger is authoritative for current implementation status; do not interpret planned cards as completed features. The 6–8 week semester target remains aspirational: calendar estimates assume focused work and may expand when correctness gates expose defects. Preserve scope and gates before preserving dates.
 
 - **In:** Rust workspace/CLI; TS/TSX syntax and supported resolution; SQLite graph; Git endpoint comparisons; impact witnesses and uncertainty; incremental correctness; oracle/test safety/performance evidence; installable release artifacts.
 - **Out:** frontend, authentication, cloud backend, LLM features, complete TypeScript semantics, full monorepos, LSP, individual test-case selection, guaranteed-complete test sets.

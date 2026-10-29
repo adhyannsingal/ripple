@@ -7,7 +7,7 @@ Use **Ripple** for the product, `ripple` for the CLI, `ripple-` prefixes for cra
 1. Read `ripple_buildspec.md`, the authoritative product scope.
 2. Read `docs/implementation-plan.md` and `docs/planning/execution-protocol.md`.
 3. Read your task card, relevant ADRs, and existing fixtures/tests in the owned subsystem.
-4. Run `python3 scripts/plan.py validate` and `python3 scripts/plan.py ready`; inspect `docs/planning/tasks.json`, coordinator checkpoints and current Git/worktree state. Planning tooling exists; Rust implementation is still pending. Inspect current files rather than assuming planned analyzer code or checks already exist.
+4. Run `python3 scripts/plan.py validate` and `python3 scripts/plan.py ready`; inspect `docs/planning/tasks.json`, coordinator checkpoints and current Git/worktree state. Planning tooling and the Rust workspace exist; inspect the ledger for completed implementation tasks. Inspect current files rather than assuming planned analyzer code or checks already exist.
 
 The build spec controls scope. The plan supplies implementation defaults and scheduling; it does not silently supersede the spec. Record intentional architectural changes in an ADR and update affected cards/contracts. README claims must describe implemented behavior.
 
