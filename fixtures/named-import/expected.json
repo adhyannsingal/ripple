@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "symbols": [
+    "src/auth.ts::authenticate",
+    "src/checkout.ts::checkout"
+  ],
+  "calls": [
+    {
+      "source": "src/checkout.ts::checkout",
+      "target": "src/auth.ts::authenticate",
+      "confidence": "RESOLVED",
+      "rule": "named_import_direct_call"
+    }
+  ]
+}

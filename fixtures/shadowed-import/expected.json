@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "symbols": [
+    "src/auth.ts::login",
+    "src/checkout.ts::checkout"
+  ],
+  "forbidden_calls": [
+    {
+      "source": "src/checkout.ts::checkout",
+      "target": "src/auth.ts::login"
+    }
+  ],
+  "unresolved": [
+    {
+      "owner": "src/checkout.ts::checkout",
+      "reference": "login",
+      "reason": "parameter_shadows_import"
+    }
+  ]
+}

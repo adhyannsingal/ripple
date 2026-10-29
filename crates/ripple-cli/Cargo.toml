@@ -21,3 +21,8 @@ clap.workspace = true
 [[bin]]
 name = "ripple"
 path = "src/main.rs"
+
+[dev-dependencies]
+serde.workspace = true
+serde_json.workspace = true
+tempfile.workspace = true

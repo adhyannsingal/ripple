@@ -1,11 +1,6 @@
-use std::process::{Command, Output};
+mod support;
 
-fn ripple(args: &[&str]) -> Output {
-    Command::new(env!("CARGO_BIN_EXE_ripple"))
-        .args(args)
-        .output()
-        .expect("ripple must execute")
-}
+use support::ripple;
 
 #[test]
 fn help_identifies_bootstrap_capabilities() {

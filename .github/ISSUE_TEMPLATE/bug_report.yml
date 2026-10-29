@@ -1,0 +1,21 @@
+name: Incorrect analysis or CLI behavior
+description: Report a reproducible mismatch with evidence.
+body:
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Reproducer and expected behavior
+      description: Include a minimal fixture or pinned repository/commit and exact command.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Actual behavior and evidence
+      description: Include version, OS, output, confidence/provenance and relevant invariant/task.
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Suspected rule, unsupported construct or regression

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "changed_symbol": "src/lib.ts::a",
+  "symbol_backed_tests": [
+    "tests/a.test.ts"
+  ],
+  "module_fallback_tests": [
+    "tests/a.test.ts",
+    "tests/b.test.ts"
+  ],
+  "fallback_only_tests": [
+    "tests/b.test.ts"
+  ]
+}
