@@ -169,19 +169,27 @@
         "docs/adr/0002-tree-sitter-parser.md",
         "docs/adr/0004-symbol-identity.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M0-T02",
+      "started_at": "2026-10-29T00:41:56.100264+00:00",
+      "heartbeat_at": "2026-10-29T00:41:56.100264+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "dc1eba79e5629f1b65b878495c0e6d26d595f796",
+      "claimed_paths": [
+        "crates/ripple-core/",
+        "Cargo.lock",
+        "docs/architecture.md",
+        "docs/adr/0001-rust-core.md",
+        "docs/adr/0002-tree-sitter-parser.md",
+        "docs/adr/0004-symbol-identity.md",
+        "docs/task-reports/M0-T02.md"
+      ],
+      "checkpoint": "M0-T01 verified; designing minimal validated source/identity and syntax-fact contracts.",
+      "next_action": "Implement contract types, independent invariant tests and the three scoped ADRs.",
       "report": "docs/task-reports/M0-T02.md"
     },
     {
@@ -1233,8 +1241,8 @@
     "owner": "local-agent",
     "session_id": "ripple-2026-10-28",
     "integration_branch": "main",
-    "checkpoint": "M0-T01 integrated and locally verified.",
-    "next_action": "Claim M0-T02.",
-    "updated_at": "2026-10-29T00:41:30.439006+00:00"
+    "checkpoint": "M0-T02 claimed after verified bootstrap.",
+    "next_action": "Integrate source/identity contracts, then claim M0-T03.",
+    "updated_at": "2026-10-29T00:41:56.100264+00:00"
   }
 }
