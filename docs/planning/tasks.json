@@ -4,8 +4,8 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-10-28",
-  "notes": "Amended planning baseline: 38 implementation tasks, all pending. Planning validator exists; Rust implementation has not started. Single coordinator writes this ledger.",
+  "updated_at": "2026-10-29",
+  "notes": "38 implementation tasks; ledger statuses and evidence are authoritative. Single coordinator writes claims and integration state.",
   "milestones": [
     {
       "id": "M0",
@@ -141,10 +141,9 @@
           "outcome": "passed"
         },
         {
-          "command": "GitHub-hosted Linux/macOS/Windows CI matrix",
-          "outcome": "not_run",
-          "required": false,
-          "reason": "Workflow configured; no remote push/run performed."
+          "command": "GitHub-hosted Linux/macOS/Windows CI matrix at c931e88",
+          "outcome": "passed",
+          "evidence": "https://github.com/adhyannsingal/ripple/actions/runs/40808359929"
         }
       ],
       "blocker": null,
@@ -200,6 +199,11 @@
         {
           "command": "git diff --check",
           "outcome": "passed"
+        },
+        {
+          "command": "GitHub-hosted Linux/macOS/Windows CI matrix at c931e88",
+          "outcome": "passed",
+          "evidence": "https://github.com/adhyannsingal/ripple/actions/runs/40808359929"
         }
       ],
       "blocker": null,
@@ -255,6 +259,11 @@
         {
           "command": "git diff --check",
           "outcome": "passed"
+        },
+        {
+          "command": "GitHub-hosted Linux/macOS/Windows CI matrix at c931e88",
+          "outcome": "passed",
+          "evidence": "https://github.com/adhyannsingal/ripple/actions/runs/40808359929"
         }
       ],
       "blocker": null,
@@ -278,19 +287,27 @@
         "docs/graph-model.md",
         "docs/adr/0006-confidence-semantics.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M0-T04",
+      "started_at": "2026-10-29T23:24:50.829674+00:00",
+      "heartbeat_at": "2026-10-29T23:24:50.829674+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "c931e889d42007786554f36f51847503bc2c559a",
+      "claimed_paths": [
+        "crates/ripple-core/src/graph.rs",
+        "crates/ripple-core/src/results.rs",
+        "crates/ripple-core/src/lib.rs",
+        "crates/ripple-core/tests/graph_contracts.rs",
+        "docs/graph-model.md",
+        "docs/adr/0006-confidence-semantics.md",
+        "docs/task-reports/M0-T04.md"
+      ],
+      "checkpoint": "Verified prior integration and green GitHub CI; defining graph/evidence contracts.",
+      "next_action": "Implement typed nodes/edges, validated reverse witnesses and two-track result contracts with independent examples.",
       "report": "docs/task-reports/M0-T04.md"
     },
     {
@@ -1280,11 +1297,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-2026-10-29",
     "integration_branch": "main",
-    "checkpoint": "Initial implementation batch complete: M0-T01/T02/T03 integrated and locally verified. No worker is running; M0 gate remains pending until T04/T05.",
-    "next_action": "Resume with M0-T04, the earliest ready task; parser/scanner tasks are also independently ready.",
-    "updated_at": "2026-10-29T02:27:31.045679+00:00"
+    "checkpoint": "M0-T04 claimed; baseline CI c931e88 succeeded.",
+    "next_action": "Integrate M0-T04, then claim M0-T05.",
+    "updated_at": "2026-10-29T23:24:50.829674+00:00"
   }
 }
