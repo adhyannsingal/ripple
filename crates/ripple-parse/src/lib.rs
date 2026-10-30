@@ -1,5 +1,7 @@
+pub mod hashes;
 pub mod parser;
 pub mod scanner;
+pub mod symbols;
 
 // Repository scanning and syntax extraction.
 

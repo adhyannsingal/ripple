@@ -16,6 +16,7 @@ tree-sitter-typescript.workspace = true
 ignore.workspace = true
 cap-std.workspace = true
 thiserror.workspace = true
+sha2.workspace = true
 
 [dev-dependencies]
 tempfile.workspace = true

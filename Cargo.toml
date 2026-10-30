@@ -19,6 +19,7 @@ ripple-impact = { path = "crates/ripple-impact" }
 clap = { version = "=4.6.7", features = ["derive"] }
 serde = { version = "=1.0.229", features = ["derive"] }
 serde_json = "=1.0.154"
+sha2 = "=0.11.1"
 thiserror = "=2.0.21"
 cap-std = "=4.0.3"
 rustix = { version = "=1.1.6", features = ["fs"] }

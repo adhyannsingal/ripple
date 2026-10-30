@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "pairs": [
+    {
+      "name": "body literal",
+      "file": "changes.ts",
+      "before": "function f(){return 1;}",
+      "after": "function f(){return 2;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "return type",
+      "file": "changes.ts",
+      "before": "function f(): number {return 1;}",
+      "after": "function f(): unknown {return 1;}",
+      "signature_changed": true,
+      "body_changed": false
+    },
+    {
+      "name": "parameter shape",
+      "file": "changes.ts",
+      "before": "function f(x: number){return 1;}",
+      "after": "function f(x?: number){return 1;}",
+      "signature_changed": true,
+      "body_changed": false
+    },
+    {
+      "name": "async modifier",
+      "file": "changes.ts",
+      "before": "function f(){return 1;}",
+      "after": "async function f(){return 1;}",
+      "signature_changed": true,
+      "body_changed": false
+    },
+    {
+      "name": "ordinary trivia",
+      "file": "changes.ts",
+      "before": "function f(){const n=7;return n;}",
+      "after": "// header\nfunction f ( ) {\n const /* note */ n = 7;\n return n;\n}\n",
+      "signature_changed": false,
+      "body_changed": false
+    },
+    {
+      "name": "optional statement semicolons",
+      "file": "changes.ts",
+      "before": "function f(){const n=7;return n;}",
+      "after": "function f(){const n=7\nreturn n\n}",
+      "signature_changed": false,
+      "body_changed": false
+    },
+    {
+      "name": "return ASI",
+      "file": "changes.ts",
+      "before": "function f(){return 7;}",
+      "after": "function f(){return\n7;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "return comment ASI",
+      "file": "changes.ts",
+      "before": "function f(){return /* ordinary */ 7;}",
+      "after": "function f(){return /* line\nbreak */ 7;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "newline in harmless comment",
+      "file": "changes.ts",
+      "before": "function f(){const n=/* comment */7;return n;}",
+      "after": "function f(){const n=/* line\nbreak */7;return n;}",
+      "signature_changed": false,
+      "body_changed": false
+    },
+    {
+      "name": "parenthesized return formatting",
+      "file": "changes.ts",
+      "before": "function f(){return (7);}",
+      "after": "function f(){return (\n 7\n);}",
+      "signature_changed": false,
+      "body_changed": false
+    },
+    {
+      "name": "postfix ASI",
+      "file": "changes.ts",
+      "before": "function f(){let n=1;let m=2;n++\nm;return n+m;}",
+      "after": "function f(){let n=1;let m=2;n\n++m;return n+m;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "string whitespace",
+      "file": "changes.ts",
+      "before": "function f(){return 'a b';}",
+      "after": "function f(){return 'ab';}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "template whitespace",
+      "file": "changes.ts",
+      "before": "function f(){return `a b`;}",
+      "after": "function f(){return `a\nb`;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "TSX whitespace",
+      "file": "changes.tsx",
+      "before": "function f(){return <div>a b</div>;}",
+      "after": "function f(){return <div>ab</div>;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "regex whitespace",
+      "file": "changes.ts",
+      "before": "function f(){return /a b/;}",
+      "after": "function f(){return /ab/;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "return CR comment ASI",
+      "file": "changes.ts",
+      "before": "function f(){return /* ordinary */ 7;}",
+      "after": "function f(){return /* line\rbreak */ 7;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "return Unicode line separator ASI",
+      "file": "changes.ts",
+      "before": "function f(){return /* ordinary */ 7;}",
+      "after": "function f(){return /* line break */ 7;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "return Unicode paragraph separator ASI",
+      "file": "changes.ts",
+      "before": "function f(){return /* ordinary */ 7;}",
+      "after": "function f(){return /* line break */ 7;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "postfix comment ASI",
+      "file": "changes.ts",
+      "before": "function f(){let n=1;let m=2;n/* ordinary */++\nm;return n+m;}",
+      "after": "function f(){let n=1;let m=2;n/* line\nbreak */++\nm;return n+m;}",
+      "signature_changed": false,
+      "body_changed": true
+    },
+    {
+      "name": "return without expression formatting",
+      "file": "changes.ts",
+      "before": "function f(){return}",
+      "after": "function f(){return\n}",
+      "signature_changed": false,
+      "body_changed": false
+    },
+    {
+      "name": "return with explicit semicolon formatting",
+      "file": "changes.ts",
+      "before": "function f(){return; 7;}",
+      "after": "function f(){return;\n7;}",
+      "signature_changed": false,
+      "body_changed": false
+    },
+    {
+      "name": "async comment ASI",
+      "file": "changes.ts",
+      "before": "async/* ordinary */function f(){return 7;}",
+      "after": "async/* line\nbreak */function f(){return 7;}",
+      "signature_changed": true,
+      "body_changed": false
+    },
+    {
+      "name": "const function parenthesis comments",
+      "file": "changes.ts",
+      "before": "const f = ((x: number) => x + 1);",
+      "after": "const f = (/* ordinary */ (x: number) => x + 1);",
+      "signature_changed": false,
+      "body_changed": false
+    },
+    {
+      "name": "yield comment ASI",
+      "file": "changes.ts",
+      "before": "function* f(){yield /* ordinary */ 7;}",
+      "after": "function* f(){yield /* line\nbreak */ 7;}",
+      "signature_changed": false,
+      "body_changed": true
+    }
+  ]
+}

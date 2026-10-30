@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "file": "declarations.ts",
+      "symbols": [
+        {
+          "name": [
+            "identity"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "arrow"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "expression"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "First"
+          ],
+          "kind": "CLASS",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "First",
+            "run"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "First",
+            "run"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": "static"
+        },
+        {
+          "name": [
+            "First",
+            "value"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": "get"
+        },
+        {
+          "name": [
+            "First",
+            "value"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": "set"
+        },
+        {
+          "name": [
+            "First",
+            "hidden"
+          ],
+          "kind": "METHOD",
+          "exported": false,
+          "role": ""
+        },
+        {
+          "name": [
+            "First",
+            "guarded"
+          ],
+          "kind": "METHOD",
+          "exported": false,
+          "role": ""
+        },
+        {
+          "name": [
+            "First",
+            "#secret"
+          ],
+          "kind": "METHOD",
+          "exported": false,
+          "role": ""
+        },
+        {
+          "name": [
+            "First",
+            "a.b"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "Second"
+          ],
+          "kind": "CLASS",
+          "exported": false,
+          "role": ""
+        },
+        {
+          "name": [
+            "Second",
+            "run"
+          ],
+          "kind": "METHOD",
+          "exported": false,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "default-function.ts",
+      "symbols": [
+        {
+          "name": [
+            "default"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": "default-export"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "default-class.ts",
+      "symbols": [
+        {
+          "name": [
+            "default"
+          ],
+          "kind": "CLASS",
+          "exported": true,
+          "role": "default-export"
+        },
+        {
+          "name": [
+            "default",
+            "run"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "default-named.ts",
+      "symbols": [
+        {
+          "name": [
+            "named"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "default-arrow.ts",
+      "symbols": [
+        {
+          "name": [
+            "default"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": "default-export"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "overloads.ts",
+      "symbols": [
+        {
+          "name": [
+            "convert"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "Box"
+          ],
+          "kind": "CLASS",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "Box",
+            "constructor"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "Box",
+            "compute"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "Box",
+            "map"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "decorators.ts",
+      "symbols": [
+        {
+          "name": [
+            "Decorated"
+          ],
+          "kind": "CLASS",
+          "exported": false,
+          "role": ""
+        },
+        {
+          "name": [
+            "Decorated",
+            "run"
+          ],
+          "kind": "METHOD",
+          "exported": false,
+          "role": ""
+        }
+      ],
+      "diagnostics": [
+        "unsupported_decorator",
+        "unsupported_field_initializer",
+        "unsupported_symbol_name"
+      ]
+    },
+    {
+      "file": "ambient.ts",
+      "symbols": [
+        {
+          "name": [
+            "Base"
+          ],
+          "kind": "CLASS",
+          "exported": false,
+          "role": ""
+        },
+        {
+          "name": [
+            "Base",
+            "live"
+          ],
+          "kind": "METHOD",
+          "exported": false,
+          "role": ""
+        }
+      ],
+      "diagnostics": [
+        "unsupported_ambient_declaration",
+        "unsupported_declaration"
+      ]
+    },
+    {
+      "file": "duplicates.ts",
+      "symbols": [
+        {
+          "name": [
+            "D"
+          ],
+          "kind": "CLASS",
+          "exported": false,
+          "role": ""
+        }
+      ],
+      "diagnostics": [
+        "ambiguous_declaration"
+      ]
+    },
+    {
+      "file": "nested.ts",
+      "symbols": [
+        {
+          "name": [
+            "outer"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "bound"
+          ],
+          "kind": "FUNCTION",
+          "exported": false,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "view.tsx",
+      "symbols": [
+        {
+          "name": [
+            "View"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "generators.ts",
+      "symbols": [
+        {
+          "name": [
+            "stream"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "generator"
+          ],
+          "kind": "FUNCTION",
+          "exported": false,
+          "role": ""
+        },
+        {
+          "name": [
+            "load"
+          ],
+          "kind": "FUNCTION",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "typed"
+          ],
+          "kind": "FUNCTION",
+          "exported": false,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "default-named-class.ts",
+      "symbols": [
+        {
+          "name": [
+            "Widget"
+          ],
+          "kind": "CLASS",
+          "exported": true,
+          "role": ""
+        },
+        {
+          "name": [
+            "Widget",
+            "run"
+          ],
+          "kind": "METHOD",
+          "exported": true,
+          "role": ""
+        }
+      ],
+      "diagnostics": []
+    }
+  ]
+}
