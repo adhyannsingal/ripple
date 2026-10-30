@@ -763,11 +763,11 @@
         "README.md",
         "docs/architecture.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T06",
       "started_at": "2026-10-30T19:49:56.360906+00:00",
-      "heartbeat_at": "2026-10-30T19:49:56.360906+00:00",
+      "heartbeat_at": "2026-10-30T19:58:30.651455+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -787,8 +787,8 @@
         "README.md",
         "docs/architecture.md"
       ],
-      "checkpoint": "Repository review started; root replacement and config-directory ignore regressions identified.",
-      "next_action": "Reproduce findings, harden bounded captured reads and complete code/security verification.",
+      "checkpoint": "Review fixes, regression tests, dependency audit and documentation integrated; local checks pass.",
+      "next_action": "Validate integrated workspace and required platform CI, then record completion.",
       "report": "docs/task-reports/M1-T06.md"
     },
     {
@@ -1610,8 +1610,8 @@
     "owner": "local-agent",
     "session_id": "ripple-source-review-2026-10-30",
     "integration_branch": "main",
-    "checkpoint": "M1-T02 CI blocker resolved; M1-T06 review claimed.",
-    "next_action": "Reproduce findings, harden bounded captured reads and complete code/security verification.",
-    "updated_at": "2026-10-30T19:49:56.360906+00:00"
+    "checkpoint": "M1-T06 source review integrated; platform verification pending.",
+    "next_action": "Validate integrated workspace and required platform CI, then record completion.",
+    "updated_at": "2026-10-30T19:58:30.651455+00:00"
   }
 }
