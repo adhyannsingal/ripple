@@ -1,6 +1,6 @@
 # Ripple architecture
 
-Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. Parsing/extraction, resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
+Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery and bounded TS/TSX parsing libraries. Symbol/reference extraction, resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
 
 ## Boundaries
 
@@ -18,7 +18,7 @@ Core currently uses only serde/thiserror. It has no Tree-sitter, SQLite, filesys
 
 ## Source and identity
 
-`RepoPath` normalizes slash separators, redundant separators and `.` components while rejecting absolute/drive/UNC paths, parent traversal and control characters. Preserve case and Unicode spelling; do not derive identity from machine-specific absolute paths. Filesystem collision/symlink checks belong to scanning. Host filenames containing literal backslashes are outside this portable path contract and must be diagnosed by a scanner rather than accidentally conflated.
+`RepoPath` normalizes slash separators, redundant separators and `.` components while rejecting absolute/drive/UNC paths, parent traversal and control characters. Preserve case and Unicode spelling; do not derive identity from machine-specific absolute paths. Scanning rejects portable case collisions and skips encountered symlinks. Worktree IO is anchored to an open directory handle, with capability-relative paths and regular-file checks; see [ADR 0011](adr/0011-source-discovery.md). Host filenames containing literal backslashes are outside this portable path contract and must be diagnosed by a scanner rather than accidentally conflated.
 
 `SourceSnapshot` owns immutable captured UTF-8 text keyed by normalized paths in sorted order. Providers capture once through `SourceProvider`; the index layer will verify the original inputs before publication and bound retries. Core captures no filesystem freshness guarantee. Non-UTF-8 inputs are rejected/diagnosed at provider boundaries; core `SourceFile` accepts valid Rust strings only.
 
