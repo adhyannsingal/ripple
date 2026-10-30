@@ -169,7 +169,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 
 #### M1-T04 — Extract imports, exports, references and call-site ownership
 
-- **Depends on:** M1-T03. **Lane:** syntax.
+- **Depends on:** M1-T03, M1-T07. **Lane:** syntax.
 - **Own:** `crates/ripple-parse/src/references*`; `fixtures/references/`.
 - **Implement:** Extract relative specifiers, named/default/alias imports, basic re-exports, direct calls, lexical bindings/shadowing, module-level references and unsupported dynamic boundaries. Preserve provenance and containing symbol/file. Separate type-only imports from runtime calls and diagnose unsupported namespace/receiver patterns.
 - **Acceptance:** Goldens include alias/default/barrel/circular imports, local parameter shadowing, module-level test calls and computed calls/imports; every reference has an owning node and span; no syntax extractor emits resolved semantic edges.
@@ -190,6 +190,14 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 - **Implement:** Review the implemented repository, repair reproducible scanner/parser and documentation defects, check dependency advisories and document security coverage. Preserve source/semantic boundaries; no new analyzer features.
 - **Acceptance:** Regression evidence for findings, focused and full locked Rust checks, planning tests/validation and required platform CI pass. Captured worktree reads remain anchored to the selected directory; ignored config-named directories remain ignored. Resource bounds apply before unbounded directory accumulation. Document security review limits and actual results.
 - **Handoff:** Reviewed code, short task report and accurate ledger before M1-T03.
+
+#### M1-T07 — Recheck extraction boundaries and document current capabilities
+
+- **Depends on:** M1-T03, M1-T06. **Lane:** quality.
+- **Own:** `crates/ripple-parse/src/symbols.rs`; `crates/ripple-parse/src/hashes.rs`; `crates/ripple-parse/tests/symbols.rs`; `fixtures/extraction/`; `docs/adr/0012-syntax-hashes.md`; `docs/limitations.md`; `README.md`; `docs/project-status.md`; `docs/reviews/extraction-recheck-2026-10-30.md`; `docs/task-reports/M1-T07.md`.
+- **Implement:** Rerun available checks and review current implementation/security boundaries. Reproduce and repair missing uncertainty diagnostics without expanding supported syntax targets. Record compatibility decisions and provide an accurate current-capability summary.
+- **Acceptance:** Focused failing-before/passing-after regressions for repairs; all contributor checks, clean local install smoke, planning/link checks, dependency advisory scan and required platform CI pass. Documentation distinguishes working libraries, defined contracts and commands still upcoming.
+- **Handoff:** Verified review/report, accurate project status and released claims before M1-T04.
 
 ### M2 — Persistent graph and impact
 

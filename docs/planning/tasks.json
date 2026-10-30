@@ -5,7 +5,7 @@
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
   "updated_at": "2026-10-29",
-  "notes": "40 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
+  "notes": "41 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
       "id": "M0",
@@ -736,7 +736,8 @@
       "milestone": "M1",
       "title": "Extract imports, exports, references and call-site ownership",
       "depends_on": [
-        "M1-T03"
+        "M1-T03",
+        "M1-T07"
       ],
       "lane": "syntax",
       "owned_paths": [
@@ -865,6 +866,53 @@
       "checkpoint": "Code/security review integrated; local checks, RustSec advisory scan and required three-platform CI passed.",
       "next_action": "M1-T03 symbol extraction and structure-aware semantic hashes.",
       "report": "docs/task-reports/M1-T06.md"
+    },
+    {
+      "id": "M1-T07",
+      "milestone": "M1",
+      "title": "Recheck extraction boundaries and document current capabilities",
+      "depends_on": [
+        "M1-T03",
+        "M1-T06"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "crates/ripple-parse/src/symbols.rs",
+        "crates/ripple-parse/src/hashes.rs",
+        "crates/ripple-parse/tests/symbols.rs",
+        "fixtures/extraction/",
+        "docs/adr/0012-syntax-hashes.md",
+        "docs/limitations.md",
+        "README.md",
+        "docs/project-status.md",
+        "docs/reviews/extraction-recheck-2026-10-30.md",
+        "docs/task-reports/M1-T07.md"
+      ],
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T07",
+      "started_at": "2026-10-30T21:10:49.750186+00:00",
+      "heartbeat_at": "2026-10-30T21:10:49.750186+00:00",
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": "81e3c4b0d1530887895a1b3b3f30f23d28044c71",
+      "claimed_paths": [
+        "crates/ripple-parse/src/symbols.rs",
+        "crates/ripple-parse/src/hashes.rs",
+        "crates/ripple-parse/tests/symbols.rs",
+        "fixtures/extraction/",
+        "docs/adr/0012-syntax-hashes.md",
+        "docs/limitations.md",
+        "README.md",
+        "docs/project-status.md",
+        "docs/reviews/extraction-recheck-2026-10-30.md",
+        "docs/task-reports/M1-T07.md"
+      ],
+      "checkpoint": "Baseline checks pass; inspecting unmodeled asserted initializer diagnostics and compatibility.",
+      "next_action": "Reproduce/fix concrete findings, rerun all checks, publish review and current-capability summary.",
+      "report": "docs/task-reports/M1-T07.md"
     },
     {
       "id": "M2-T01",
@@ -1682,11 +1730,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M1-recheck-2026-10-30",
     "integration_branch": "main",
-    "checkpoint": "M1-T03 integrated and verified; no active claims. M1 remains in progress.",
-    "next_action": "Claim M1-T04 to extract imports, exports, references and lexical ownership.",
-    "updated_at": "2026-10-30T20:46:07.969489+00:00"
+    "checkpoint": "User-requested recheck claimed; M1-T04 waits on the review boundary check.",
+    "next_action": "Reproduce/fix concrete findings, rerun all checks, publish review and current-capability summary.",
+    "updated_at": "2026-10-30T21:10:49.750186+00:00"
   }
 }
