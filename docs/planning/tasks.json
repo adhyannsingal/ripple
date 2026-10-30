@@ -667,21 +667,45 @@
       "owned_paths": [
         "crates/ripple-parse/src/symbols*",
         "crates/ripple-parse/src/hashes*",
-        "fixtures/extraction/"
+        "fixtures/extraction/",
+        "crates/ripple-parse/src/lib.rs",
+        "crates/ripple-parse/tests/symbols.rs",
+        "crates/ripple-parse/Cargo.toml",
+        "Cargo.toml",
+        "Cargo.lock",
+        "docs/adr/0012-syntax-hashes.md",
+        "docs/architecture.md",
+        "docs/limitations.md",
+        "README.md",
+        "docs/task-reports/M1-T03.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T03",
+      "started_at": "2026-10-30T20:11:25.378392+00:00",
+      "heartbeat_at": "2026-10-30T20:11:25.378392+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "f6cfe877e3d4b096eaf60fc4983bc2bdf71c4a00",
+      "claimed_paths": [
+        "crates/ripple-parse/src/symbols.rs",
+        "crates/ripple-parse/src/hashes.rs",
+        "fixtures/extraction/",
+        "crates/ripple-parse/src/lib.rs",
+        "crates/ripple-parse/tests/symbols.rs",
+        "crates/ripple-parse/Cargo.toml",
+        "Cargo.toml",
+        "Cargo.lock",
+        "docs/adr/0012-syntax-hashes.md",
+        "docs/architecture.md",
+        "docs/limitations.md",
+        "README.md",
+        "docs/task-reports/M1-T03.md"
+      ],
+      "checkpoint": "M1-T02 and source review integrated/verified; preflight and extraction invariants recorded.",
+      "next_action": "Implement syntax-structure hashing and supported symbol extraction with independent fixtures.",
       "report": "docs/task-reports/M1-T03.md"
     },
     {
@@ -1635,11 +1659,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M1-T03",
     "integration_branch": "main",
-    "checkpoint": "M1-T02 CI blocker resolved; M1-T06 code/security review complete and verified; no active claims.",
-    "next_action": "Claim M1-T03 and implement symbols and structure-aware hashes when implementation resumes.",
-    "updated_at": "2026-10-30T20:01:09.811763+00:00"
+    "checkpoint": "M1-T03 claimed in dependency order.",
+    "next_action": "Implement syntax-structure hashing and supported symbol extraction with independent fixtures.",
+    "updated_at": "2026-10-30T20:11:25.378392+00:00"
   }
 }
