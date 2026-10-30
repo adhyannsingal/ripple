@@ -13,3 +13,9 @@ workspace = true
 ripple-core.workspace = true
 tree-sitter.workspace = true
 tree-sitter-typescript.workspace = true
+ignore.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+serde_json.workspace = true

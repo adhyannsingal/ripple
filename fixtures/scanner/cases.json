@@ -1,0 +1,33 @@
+{
+  "files": {
+    ".gitignore": "ignored/\n!ignored/rescue.ts\n*.omit.ts\npackage.json\n",
+    ".ignore": "src/local.ts\n",
+    "package.json": "{}",
+    "tsconfig.json": "{}",
+    "src/.gitignore": "!keep.omit.ts\n",
+    "src/keep.omit.ts": "export const kept = 1;",
+    "src/drop.omit.ts": "ignored",
+    "src/local.ts": "ignored",
+    "src/untracked.ts": "export const fresh = 1;",
+    "src/with space α.tsx": "export const element = <div/>;",
+    "tests/a.test.ts": "test('a', () => {});",
+    "tests/b.test.tsx": "test('b', () => <div/>);",
+    "tests/c.spec.ts": "test('c', () => {});",
+    "tests/d.spec.tsx": "test('d', () => <div/>);",
+    "folder.test.ts/ordinary.ts": "export {};",
+    "tests/not-test.ts": "export {};",
+    "tests/test.ts": "export {};",
+    "ignored/rescue.ts": "ignored ancestor cannot be rescued",
+    "generated/a.ts": "excluded",
+    "nested/node_modules/a.ts": "excluded",
+    "dist/a.ts": "excluded",
+    "build/a.ts": "excluded",
+    "coverage/a.ts": "excluded",
+    ".ripple/cache.ts": "excluded",
+    ".git/objects/a.ts": "excluded",
+    "src/no.js": "unsupported extension",
+    "src/no.TS": "case-sensitive extension"
+  },
+  "expected_sources": ["folder.test.ts/ordinary.ts", "src/keep.omit.ts", "src/untracked.ts", "src/with space α.tsx", "tests/a.test.ts", "tests/b.test.tsx", "tests/c.spec.ts", "tests/d.spec.tsx", "tests/not-test.ts", "tests/test.ts"],
+  "expected_tests": ["tests/a.test.ts", "tests/b.test.tsx", "tests/c.spec.ts", "tests/d.spec.tsx"]
+}

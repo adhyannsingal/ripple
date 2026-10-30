@@ -1,4 +1,6 @@
-//! Repository scanning and syntax extraction. Implementation follows the core contracts.
+pub mod scanner;
+
+// Repository scanning and syntax extraction.
 
 #[cfg(test)]
 mod bootstrap {
