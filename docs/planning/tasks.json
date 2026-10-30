@@ -679,11 +679,11 @@
         "README.md",
         "docs/task-reports/M1-T03.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T03",
       "started_at": "2026-10-30T20:11:25.378392+00:00",
-      "heartbeat_at": "2026-10-30T20:11:25.378392+00:00",
+      "heartbeat_at": "2026-10-30T20:39:00.811782+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -704,8 +704,8 @@
         "README.md",
         "docs/task-reports/M1-T03.md"
       ],
-      "checkpoint": "M1-T02 and source review integrated/verified; preflight and extraction invariants recorded.",
-      "next_action": "Implement syntax-structure hashing and supported symbol extraction with independent fixtures.",
+      "checkpoint": "Symbol/hash implementation and ADR integrated; 13 golden programs, 24 hash pairs, 74 local Rust tests and strict checks pass.",
+      "next_action": "Validate shared integration state and required Linux/macOS/Windows CI before completion.",
       "report": "docs/task-reports/M1-T03.md"
     },
     {
@@ -1662,8 +1662,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M1-T03",
     "integration_branch": "main",
-    "checkpoint": "M1-T03 claimed in dependency order.",
-    "next_action": "Implement syntax-structure hashing and supported symbol extraction with independent fixtures.",
-    "updated_at": "2026-10-30T20:11:25.378392+00:00"
+    "checkpoint": "M1-T03 code and handoff integrated; required platform verification pending.",
+    "next_action": "Validate shared integration state and required Linux/macOS/Windows CI before completion.",
+    "updated_at": "2026-10-30T20:39:00.811782+00:00"
   }
 }
