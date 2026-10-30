@@ -888,11 +888,11 @@
         "docs/reviews/extraction-recheck-2026-10-30.md",
         "docs/task-reports/M1-T07.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T07",
       "started_at": "2026-10-30T21:10:49.750186+00:00",
-      "heartbeat_at": "2026-10-30T21:10:49.750186+00:00",
+      "heartbeat_at": "2026-10-30T21:17:52.617274+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -910,8 +910,8 @@
         "docs/reviews/extraction-recheck-2026-10-30.md",
         "docs/task-reports/M1-T07.md"
       ],
-      "checkpoint": "Baseline checks pass; inspecting unmodeled asserted initializer diagnostics and compatibility.",
-      "next_action": "Reproduce/fix concrete findings, rerun all checks, publish review and current-capability summary.",
+      "checkpoint": "Regression repair and capability documentation integrated; worker checks and clean temporary install passed.",
+      "next_action": "Run integrated checks, push reviewed commits and wait for required platform CI.",
       "report": "docs/task-reports/M1-T07.md"
     },
     {
@@ -1733,8 +1733,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M1-recheck-2026-10-30",
     "integration_branch": "main",
-    "checkpoint": "User-requested recheck claimed; M1-T04 waits on the review boundary check.",
-    "next_action": "Reproduce/fix concrete findings, rerun all checks, publish review and current-capability summary.",
-    "updated_at": "2026-10-30T21:10:49.750186+00:00"
+    "checkpoint": "Regression repair and capability documentation integrated; worker checks and clean temporary install passed.",
+    "next_action": "Run integrated checks, push reviewed commits and wait for required platform CI.",
+    "updated_at": "2026-10-30T21:17:52.617274+00:00"
   }
 }
