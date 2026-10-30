@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import re
 import sys
+import unicodedata
 
 ROOT = Path(__file__).resolve().parents[1]
 STATES = {"pending", "in_progress", "review", "blocked", "done"}
@@ -30,7 +31,7 @@ def timestamp(value):
 def relative_path(value):
     if not nonempty(value) or any(c in value for c in "\\*?[]{}"):
         return False
-    if value.startswith("/") or ":" in value:
+    if value.startswith("/") or ":" in value or any(unicodedata.category(c) == "Cc" for c in value):
         return False
     parts = value.rstrip("/").split("/")
     return all(p not in {"", ".", "..", ".git"} for p in parts)
@@ -149,10 +150,12 @@ def validate(data, root):
             if not relative_path(claim):
                 errors.append(f"{tid}: invalid concrete claim {claim!r}.")
                 continue
+            if (root / claim).is_dir() and not claim.endswith("/"):
+                errors.append(f"{tid}: directory claim must end with /: {claim!r}.")
             if overlaps(claim, "docs/planning/tasks.json"):
                 errors.append(f"{tid}: task claim includes coordinator-owned ledger.")
             for other, path in claims:
-                if overlaps(claim, path):
+                if other != tid and overlaps(claim, path):
                     errors.append(f"Claim conflict: {tid} {claim} overlaps {other} {path}.")
             claims.append((tid, claim))
         report = task.get("report")

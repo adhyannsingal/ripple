@@ -137,6 +137,23 @@ class PlanTests(unittest.TestCase):
         self.second["claimed_paths"] = ["crates/ab/src/lib.rs"]
         self.assertEqual([], self.errors())
 
+    def test_same_task_can_claim_a_directory_and_its_file(self):
+        self.active(self.first, "crates/a/")
+        self.first["claimed_paths"].append("crates/a/lib.rs")
+        self.assertEqual([], self.errors())
+
+    def test_existing_directory_claim_requires_trailing_slash(self):
+        (self.root / "crates/a").mkdir(parents=True)
+        self.active(self.first, "crates/a")
+        self.assert_error("directory claim must end with /")
+        self.first["claimed_paths"] = ["crates/a/"]
+        self.assertEqual([], self.errors())
+
+    def test_control_characters_are_not_concrete_paths(self):
+        for invalid in ("src/a\n.rs", "src/a\0.rs", "src/a\x7f.rs"):
+            self.active(self.first, invalid)
+            self.assert_error("invalid concrete claim")
+
     def test_invalid_claims_and_reserved_ledger(self):
         self.active(self.first, "../escape")
         self.assert_error("invalid concrete claim")
