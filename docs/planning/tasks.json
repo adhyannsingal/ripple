@@ -562,11 +562,11 @@
         "crates/ripple-parse/src/parser*",
         "fixtures/parser/"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T02",
       "started_at": "2026-10-30T17:27:53.438629+00:00",
-      "heartbeat_at": "2026-10-30T17:27:53.438629+00:00",
+      "heartbeat_at": "2026-10-30T17:30:30.533302+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -581,8 +581,8 @@
         "docs/task-reports/M1-T02.md",
         "docs/adr/0002-tree-sitter-parser.md"
       ],
-      "checkpoint": "M0 dependencies verified; M1-T01 integrated and CI passed.",
-      "next_action": "Implement bounded TS/TSX parsing and recovery diagnostics.",
+      "checkpoint": "Bounded parser and four acceptance tests integrated; local full checks pass.",
+      "next_action": "Verify platform CI before M1-T03.",
       "report": "docs/task-reports/M1-T02.md"
     },
     {
