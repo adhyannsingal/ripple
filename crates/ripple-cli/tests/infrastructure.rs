@@ -185,3 +185,20 @@ fn timed_out_direct_child_is_killed_and_reaped() {
         support::run_with_timeout(child, std::time::Duration::from_millis(300)).unwrap_err();
     assert!(error.contains("killed and reaped"));
 }
+
+#[test]
+fn git_hash_environment_cannot_change_fixture_format() {
+    let mut child = std::process::Command::new(std::env::current_exe().unwrap());
+    child
+        .args([
+            "--exact",
+            "temporary_git_commits_are_deterministic_and_handle_spaces",
+        ])
+        .env("GIT_DEFAULT_HASH", "sha256");
+    let output = support::run(child).unwrap();
+    assert!(
+        output.status.success(),
+        "{}",
+        String::from_utf8_lossy(&output.stdout)
+    );
+}
