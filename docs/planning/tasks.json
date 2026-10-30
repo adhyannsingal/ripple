@@ -888,30 +888,72 @@
         "docs/reviews/extraction-recheck-2026-10-30.md",
         "docs/task-reports/M1-T07.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M1-T07",
       "started_at": "2026-10-30T21:10:49.750186+00:00",
-      "heartbeat_at": "2026-10-30T21:17:52.617274+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-30T21:20:23.269571+00:00",
+      "completed_at": "2026-10-30T21:20:23.269571+00:00",
+      "integrated_commit": "27cf5245e42c395e28d29b7cfe1b8f0001c45e3f",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (77 tests on macOS)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --version",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo install --locked --path crates/ripple-cli --root <temporary-directory>; installed ripple --help and --version",
+          "outcome": "passed"
+        },
+        {
+          "command": "/tmp/ripple-review-tools/bin/cargo-audit audit --json (122 packages; zero vulnerabilities/warnings)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Python stdlib local Markdown target and ADR number uniqueness check (35 links; 11 ADRs)",
+          "outcome": "passed"
+        },
+        {
+          "command": "git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "gh run watch 41129995713 --exit-status (macOS, Linux, Windows; https://github.com/adhyannsingal/ripple/actions/runs/41129995713)",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "81e3c4b0d1530887895a1b3b3f30f23d28044c71",
-      "claimed_paths": [
-        "crates/ripple-parse/src/symbols.rs",
-        "crates/ripple-parse/src/hashes.rs",
-        "crates/ripple-parse/tests/symbols.rs",
-        "fixtures/extraction/",
-        "docs/adr/0012-syntax-hashes.md",
-        "docs/limitations.md",
-        "README.md",
-        "docs/project-status.md",
-        "docs/reviews/extraction-recheck-2026-10-30.md",
-        "docs/task-reports/M1-T07.md"
-      ],
-      "checkpoint": "Regression repair and capability documentation integrated; worker checks and clean temporary install passed.",
-      "next_action": "Run integrated checks, push reviewed commits and wait for required platform CI.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated review repair and capability summary; all local checks, install smoke, advisory scan and three-platform CI passed.",
+      "next_action": "M1-T04: extract imports, exports, references and call-site ownership.",
       "report": "docs/task-reports/M1-T07.md"
     },
     {
@@ -1730,11 +1772,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M1-recheck-2026-10-30",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Regression repair and capability documentation integrated; worker checks and clean temporary install passed.",
-    "next_action": "Run integrated checks, push reviewed commits and wait for required platform CI.",
-    "updated_at": "2026-10-30T21:17:52.617274+00:00"
+    "checkpoint": "M1-T07 integrated and verified; no active claims. M0 gate passed; M1 gate remains pending for references and inspect.",
+    "next_action": "M1-T04: extract imports, exports, references and call-site ownership.",
+    "updated_at": "2026-10-30T21:20:23.269571+00:00"
   }
 }
