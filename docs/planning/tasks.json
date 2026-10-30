@@ -505,19 +505,27 @@
         "crates/ripple-parse/src/scanner*",
         "fixtures/scanner/"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T01",
+      "started_at": "2026-10-30T17:23:05.004176+00:00",
+      "heartbeat_at": "2026-10-30T17:23:05.004176+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "755782b46d13f31a6051c909c11ce99312b841d2",
+      "claimed_paths": [
+        "crates/ripple-parse/",
+        "fixtures/scanner/",
+        "docs/limitations.md",
+        "docs/adr/0010-source-discovery.md",
+        "docs/task-reports/M1-T01.md",
+        "Cargo.toml",
+        "Cargo.lock"
+      ],
+      "checkpoint": "Prerequisites integrated and M0 gate verified; scanner preflight recorded.",
+      "next_action": "Implement shared tree-provider discovery and acceptance fixtures.",
       "report": "docs/task-reports/M1-T01.md"
     },
     {
@@ -1448,11 +1456,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M1",
     "integration_branch": "main",
-    "checkpoint": "M0 review integrated and milestone revalidated with required three-platform CI; no active task claims.",
-    "next_action": "Claim M1-T01 by milestone/task order and implement repository discovery.",
-    "updated_at": "2026-10-30T02:52:30.711576+00:00"
+    "checkpoint": "M1-T01 claimed in dependency order.",
+    "next_action": "Implement shared tree-provider discovery and acceptance fixtures.",
+    "updated_at": "2026-10-30T17:23:05.004176+00:00"
   }
 }
