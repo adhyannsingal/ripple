@@ -33,7 +33,7 @@ def relative_path(value):
         return False
     if value.startswith("/") or ":" in value or any(unicodedata.category(c) == "Cc" for c in value):
         return False
-    parts = value.rstrip("/").split("/")
+    parts = (value[:-1] if value.endswith("/") else value).split("/")
     return all(p not in {"", ".", "..", ".git"} for p in parts)
 
 

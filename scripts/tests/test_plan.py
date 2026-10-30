@@ -157,7 +157,7 @@ class PlanTests(unittest.TestCase):
     def test_invalid_claims_and_reserved_ledger(self):
         self.active(self.first, "../escape")
         self.assert_error("invalid concrete claim")
-        for invalid in ("/absolute", "crates/*", ".git/config", "C:/path"):
+        for invalid in ("/absolute", "crates/*", ".git/config", "C:/path", "crates/a//"):
             self.first["claimed_paths"] = [invalid]
             self.assert_error("invalid concrete claim")
         self.first["claimed_paths"] = ["docs/planning/"]
