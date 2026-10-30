@@ -32,6 +32,9 @@ pub fn checked_join(root: &Path, relative: &str) -> Result<PathBuf, String> {
     if relative.is_empty()
         || relative.contains(['\\', ':'])
         || relative.chars().any(char::is_control)
+        || relative
+            .split('/')
+            .any(|part| matches!(part, "" | "." | ".."))
         || Path::new(relative)
             .components()
             .any(|c| !matches!(c, Component::Normal(_)))

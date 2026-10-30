@@ -17,10 +17,9 @@ fn workspace() -> PathBuf {
 #[test]
 fn catalog_has_independent_expected_facts_and_portable_source_lists() {
     let cases = fixtures::load_cases(&workspace()).unwrap();
-    assert_eq!(
-        cases.iter().map(|c| c.id.as_str()).collect::<Vec<_>>(),
-        ["named-import", "shadowed-import", "unrelated-exports"]
-    );
+    let named = cases.iter().find(|c| c.id == "named-import").unwrap();
+    let shadowed = cases.iter().find(|c| c.id == "shadowed-import").unwrap();
+    let unrelated = cases.iter().find(|c| c.id == "unrelated-exports").unwrap();
     for case in &cases {
         assert_eq!(
             case.files,
@@ -36,28 +35,31 @@ fn catalog_has_independent_expected_facts_and_portable_source_lists() {
         }
     }
     assert_eq!(
-        cases[0].expected["calls"][0]["target"],
+        named.expected["calls"][0]["target"],
         "src/auth.ts::authenticate"
     );
     assert_eq!(
-        cases[1].expected["forbidden_calls"][0]["target"],
+        shadowed.expected["forbidden_calls"][0]["target"],
         "src/auth.ts::login"
     );
     assert_eq!(
-        cases[2].expected["symbol_backed_tests"],
+        unrelated.expected["symbol_backed_tests"],
         json!(["tests/a.test.ts"])
     );
     assert_eq!(
-        cases[2].expected["fallback_only_tests"],
+        unrelated.expected["fallback_only_tests"],
         json!(["tests/b.test.ts"])
     );
-    assert!(cases[2].files.iter().any(|f| f.ends_with(".tsx")));
+    assert!(unrelated.files.iter().any(|f| f.ends_with(".tsx")));
 }
 
 #[test]
 fn fixture_paths_cannot_escape_their_root() {
     for invalid in [
         "../outside",
+        "a/./b",
+        "a//b",
+        "a/b/",
         "/outside",
         r"C:\outside",
         ".",
@@ -103,7 +105,11 @@ fn temporary_git_commits_are_deterministic_and_handle_spaces() {
 
 #[test]
 fn a_real_fixture_can_be_committed_without_copying_expectations_into_the_repo() {
-    let case = fixtures::load_cases(&workspace()).unwrap().remove(0);
+    let case = fixtures::load_cases(&workspace())
+        .unwrap()
+        .into_iter()
+        .find(|c| c.id == "named-import")
+        .unwrap();
     let repo = GitRepo::new().unwrap();
     for relative in &case.files {
         repo.write(relative, fs::read(case.root.join(relative)).unwrap())

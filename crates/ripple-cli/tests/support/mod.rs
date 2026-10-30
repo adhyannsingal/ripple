@@ -137,6 +137,7 @@ impl GitRepo {
             .env("GIT_AUTHOR_DATE", "2000-01-01T00:00:00Z")
             .env("GIT_COMMITTER_DATE", "2000-01-01T00:00:00Z");
         for key in [
+            "GIT_DEFAULT_HASH",
             "GIT_DIR",
             "GIT_WORK_TREE",
             "GIT_INDEX_FILE",
