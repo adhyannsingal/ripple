@@ -407,6 +407,26 @@
         }
       ],
       "diagnostics": []
+    },
+    {
+      "file": "asserted-initializers.ts",
+      "symbols": [
+        {
+          "name": [
+            "known"
+          ],
+          "kind": "FUNCTION",
+          "exported": false,
+          "role": ""
+        }
+      ],
+      "diagnostics": [
+        "unhashable_declaration",
+        "unsupported_class_binding",
+        "unsupported_function_binding",
+        "unsupported_nested_class"
+      ],
+      "signatures_available": false
     }
   ]
 }

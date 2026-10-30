@@ -69,7 +69,15 @@ fn independent_symbol_goldens_cover_supported_declarations_and_diagnostics() {
             "{file}"
         );
         for symbol in &actual.symbols {
-            symbol.signature_hash.as_ref().unwrap().validate().unwrap();
+            if case
+                .get("signatures_available")
+                .and_then(Value::as_bool)
+                .unwrap_or(true)
+            {
+                symbol.signature_hash.as_ref().unwrap().validate().unwrap();
+            } else {
+                assert!(symbol.signature_hash.is_none(), "{file}");
+            }
             symbol.body_hash.as_ref().unwrap().validate().unwrap();
             assert!(symbol.span.encloses(symbol.signature_span.unwrap()));
             assert!(symbol.span.encloses(symbol.body_span.unwrap()));
@@ -394,4 +402,59 @@ fn commonjs_and_namespace_exports_do_not_receive_supported_es_export_fingerprint
                 .any(|d| d.code == "unsupported_export_form")
         );
     }
+}
+
+#[test]
+fn asserted_function_and_class_initializers_are_explicitly_unsupported() {
+    for value in [
+        "(()=>1) as Fn",
+        "(()=>1) satisfies Fn",
+        "<Fn>(()=>1)",
+        "(()=>1)!",
+        "(((function named(){return 1;}) as Fn)!)",
+    ] {
+        let actual = facts(
+            "assertions.ts",
+            &format!("function known(){{return 1;}} export const wrapped = {value};"),
+        );
+        assert_eq!(actual.parse_status, ParseStatus::Clean);
+        assert_eq!(actual.symbols.len(), 1);
+        assert!(
+            actual
+                .diagnostics
+                .iter()
+                .any(|d| d.code == "unsupported_function_binding"),
+            "{value}"
+        );
+        assert!(named(&actual, "known").signature_hash.is_none(), "{value}");
+        assert!(named(&actual, "known").body_hash.is_some());
+    }
+    let aliased = facts(
+        "assertions.ts",
+        "function known(){} const wrapped = (()=>1) as Fn; export { wrapped as published };",
+    );
+    assert!(named(&aliased, "known").signature_hash.is_none());
+    let class = facts(
+        "assertions.ts",
+        "function known(){} export const Wrapped = (class { run(){} }) as Constructor;",
+    );
+    assert_eq!(class.symbols.len(), 1);
+    assert!(
+        class
+            .diagnostics
+            .iter()
+            .any(|d| d.code == "unsupported_class_binding")
+    );
+    assert!(named(&class, "known").signature_hash.is_none());
+}
+
+#[test]
+fn type_assertions_on_nonliteral_values_do_not_fabricate_callable_bindings() {
+    let actual = facts(
+        "assertions.ts",
+        "function known(){} const value=1 as number; const result=factory(()=>1) as Fn;",
+    );
+    assert_eq!(actual.symbols.len(), 1);
+    assert!(actual.diagnostics.is_empty());
+    assert!(named(&actual, "known").signature_hash.is_some());
 }

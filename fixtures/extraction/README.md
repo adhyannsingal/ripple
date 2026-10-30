@@ -1,6 +1,6 @@
 # Symbol and fingerprint fixtures
 
-Each source file listed in `expected.json` is a separate program. The expectations are hand-authored symbol names/components, kinds, stable roles, syntactic export status and diagnostic codes; they are not analyzer-generated snapshots. All declared symbols/spans/hashes must also satisfy core contracts.
+Each source file listed in `expected.json` is a separate program. The expectations are hand-authored symbol names/components, kinds, stable roles, syntactic export status and diagnostic codes; they are not analyzer-generated snapshots. All declared symbols/spans/hashes must also satisfy core contracts. `signatures_available` defaults to true; an explicit false requires withheld signatures and an `unhashable_declaration` diagnostic for the known declaration when export shape is incomplete. Assertion fixture type names are syntax-only inputs, not compiler-validity claims.
 
 `hash-pairs.json` independently states which signature/body hashes should change for paired source text. It includes ordinary formatting/comments, explicit/automatic semicolons, restricted line breaks (including comments and Unicode separators), and meaningful literal/TSX text. It intentionally does not claim full semantic equivalence normalization.
 

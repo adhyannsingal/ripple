@@ -96,6 +96,26 @@ fn unparenthesize(mut node: Node<'_>) -> Node<'_> {
     }
     node
 }
+/// Look through type-only wrappers for diagnosis, never to invent a supported target.
+fn asserted_literal(mut node: Node<'_>) -> Option<Node<'_>> {
+    let mut asserted = false;
+    loop {
+        node = unparenthesize(node);
+        let child = match node.kind() {
+            "as_expression" | "satisfies_expression" | "non_null_expression" => {
+                children(node).into_iter().find(|n| n.kind() != "comment")
+            }
+            "type_assertion" => children(node)
+                .into_iter()
+                .rev()
+                .find(|n| n.kind() != "comment"),
+            _ => break,
+        }?;
+        asserted = true;
+        node = child;
+    }
+    (asserted && (is_function(node) || is_class(node))).then_some(node)
+}
 fn token(node: Node<'_>, kind: &str) -> bool {
     let mut cursor = node.walk();
     node.children(&mut cursor)
@@ -278,6 +298,22 @@ fn top_declarations<'a>(
                     continue;
                 };
                 let value = unparenthesize(value);
+                if let Some(literal) = asserted_literal(value) {
+                    let exposed = exported
+                        || declarator.child_by_field_name("name").is_some_and(|name| {
+                            name.kind() == "identifier" && aliases.contains_key(cx.text(name))
+                        });
+                    if exposed {
+                        cx.export_shape_complete = false;
+                    }
+                    let code = if is_class(literal) {
+                        "unsupported_class_binding"
+                    } else {
+                        "unsupported_function_binding"
+                    };
+                    cx.warn(declarator, code, "Assertion/non-null wrappers around function or class literals are not supported declaration targets");
+                    continue;
+                }
                 if is_function(value) {
                     let Some(name_node) = declarator.child_by_field_name("name") else {
                         continue;
