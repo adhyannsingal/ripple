@@ -505,11 +505,11 @@
         "crates/ripple-parse/src/scanner*",
         "fixtures/scanner/"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T01",
       "started_at": "2026-10-30T17:23:05.004176+00:00",
-      "heartbeat_at": "2026-10-30T17:23:05.004176+00:00",
+      "heartbeat_at": "2026-10-30T17:25:50.551184+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -524,8 +524,8 @@
         "Cargo.toml",
         "Cargo.lock"
       ],
-      "checkpoint": "Prerequisites integrated and M0 gate verified; scanner preflight recorded.",
-      "next_action": "Implement shared tree-provider discovery and acceptance fixtures.",
+      "checkpoint": "Scanner implementation and handoff integrated; five scanner tests and local workspace checks pass.",
+      "next_action": "Verify integrated platform CI before done.",
       "report": "docs/task-reports/M1-T01.md"
     },
     {
