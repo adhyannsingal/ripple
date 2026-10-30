@@ -428,11 +428,11 @@
         "docs/reviews/",
         "docs/task-reports/M0-T06.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M0-T06",
       "started_at": "2026-10-30T02:44:24.348833+00:00",
-      "heartbeat_at": "2026-10-30T02:44:24.348833+00:00",
+      "heartbeat_at": "2026-10-30T02:50:16.532654+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -450,8 +450,8 @@
         "docs/adr/0005-base-head-model.md",
         "docs/graph-model.md"
       ],
-      "checkpoint": "Full repository review started; preparing failing regressions before focused fixes.",
-      "next_action": "Verify/fix malformed Git hunks, task-claim validation and test-helper reproducibility, then run all checks and push.",
+      "checkpoint": "Focused review fixes and report committed on agent/M0-T06; local acceptance checks pass.",
+      "next_action": "Fast-forward reviewed source, run integration checks and required platform CI.",
       "report": "docs/task-reports/M0-T06.md"
     },
     {
