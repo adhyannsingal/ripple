@@ -186,7 +186,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M1-T06 — Review and harden source discovery and parsing
 
 - **Depends on:** M1-T01, M1-T02. **Lane:** quality.
-- **Own:** `crates/ripple-parse/`; `fixtures/scanner/`; `docs/adr/0010-source-discovery.md`; `docs/adr/0011-source-discovery.md`; `docs/limitations.md`; `docs/reviews/source-review-2026-10-30.md`; `docs/task-reports/M1-T06.md`; `docs/task-reports/M1-T01.md`; `Cargo.toml`; `Cargo.lock`.
+- **Own:** `crates/ripple-parse/`; `fixtures/scanner/`; `docs/adr/0010-source-discovery.md`; `docs/adr/0011-source-discovery.md`; `docs/limitations.md`; `docs/reviews/source-review-2026-10-30.md`; `docs/task-reports/M1-T06.md`; `docs/task-reports/M1-T01.md`; `Cargo.toml`; `Cargo.lock`; `README.md`; `docs/architecture.md`.
 - **Implement:** Review the implemented repository, repair reproducible scanner/parser and documentation defects, check dependency advisories and document security coverage. Preserve source/semantic boundaries; no new analyzer features.
 - **Acceptance:** Regression evidence for findings, focused and full locked Rust checks, planning tests/validation and required platform CI pass. Captured worktree reads remain anchored to the selected directory; ignored config-named directories remain ignored. Resource bounds apply before unbounded directory accumulation. Document security review limits and actual results.
 - **Handoff:** Reviewed code, short task report and accurate ledger before M1-T03.

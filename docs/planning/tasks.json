@@ -759,7 +759,9 @@
         "docs/task-reports/M1-T06.md",
         "docs/task-reports/M1-T01.md",
         "Cargo.toml",
-        "Cargo.lock"
+        "Cargo.lock",
+        "README.md",
+        "docs/architecture.md"
       ],
       "status": "in_progress",
       "owner": "local-agent",
@@ -781,7 +783,9 @@
         "docs/task-reports/M1-T06.md",
         "docs/task-reports/M1-T01.md",
         "Cargo.toml",
-        "Cargo.lock"
+        "Cargo.lock",
+        "README.md",
+        "docs/architecture.md"
       ],
       "checkpoint": "Repository review started; root replacement and config-directory ignore regressions identified.",
       "next_action": "Reproduce findings, harden bounded captured reads and complete code/security verification.",
