@@ -5,7 +5,7 @@
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
   "updated_at": "2026-10-29",
-  "notes": "39 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
+  "notes": "40 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
       "id": "M0",
@@ -562,13 +562,13 @@
         "crates/ripple-parse/src/parser*",
         "fixtures/parser/"
       ],
-      "status": "blocked",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M1-T02",
       "started_at": "2026-10-30T17:27:53.438629+00:00",
-      "heartbeat_at": "2026-10-30T17:42:23.305941+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
+      "heartbeat_at": "2026-10-30T19:49:56.360906+00:00",
+      "completed_at": "2026-10-30T19:49:56.360906+00:00",
+      "integrated_commit": "ccd37cb10bfade1b8c833f590ef8815a943d4e0d",
       "validation": [
         {
           "command": "cargo fmt --all -- --check",
@@ -583,7 +583,7 @@
           "outcome": "passed"
         },
         {
-          "command": "cargo test --workspace --locked (57 tests on macOS)",
+          "command": "cargo test --workspace --locked (57 Rust tests on macOS; rerun during review)",
           "outcome": "passed"
         },
         {
@@ -595,37 +595,66 @@
           "outcome": "passed"
         },
         {
-          "command": "GitHub CI Linux and Windows https://github.com/adhyannsingal/ripple/actions/runs/41099434077",
+          "command": "GitHub CI Linux/macOS/Windows https://github.com/adhyannsingal/ripple/actions/runs/41100928398",
           "outcome": "passed"
-        },
-        {
-          "command": "GitHub CI macOS https://github.com/adhyannsingal/ripple/actions/runs/41099434077",
-          "outcome": "not_run",
-          "notes": "No completed result; runner has no steps; GitHub state/restart endpoints conflict."
         }
       ],
-      "blocker": {
-        "cause": "Required macOS CI unavailable: runner assigned without steps; workflow state responses conflict.",
-        "attempted": "Checked run/job/check-run endpoints; status queries intermittently fail with 502. Cancel returned 409 not in progress, job rerun returned 403 already running.",
-        "next_action": "Verify the fresh checkpoint workflow on the same source; then complete M1-T02 before M1-T03.",
-        "command": "gh run view 41099434077 / gh api actions/jobs/124213627428",
-        "dependent_ids": [
-          "M1-T03"
-        ]
-      },
+      "blocker": null,
       "base_commit": "62f6ac2e7f8366c644a61de0cb243047b8a268d8",
-      "claimed_paths": [
-        "crates/ripple-parse/src/parser.rs",
-        "crates/ripple-parse/src/lib.rs",
-        "crates/ripple-parse/tests/parser.rs",
-        "fixtures/parser/",
-        "docs/limitations.md",
-        "docs/task-reports/M1-T02.md",
-        "docs/adr/0002-tree-sitter-parser.md"
-      ],
-      "checkpoint": "Parser source integrated; 57 local Rust tests, strict checks and Windows/Linux CI passed. Required macOS job has no steps and GitHub cannot restart it.",
-      "next_action": "Recheck required platform CI; resume parser integration only after macOS passes.",
-      "report": "docs/task-reports/M1-T02.md"
+      "claimed_paths": [],
+      "checkpoint": "Integrated and reviewed; local acceptance and required three-platform CI passed.",
+      "next_action": "M1-T03 symbol/hash extraction after the user-requested review.",
+      "report": "docs/task-reports/M1-T02.md",
+      "blocker_history": [
+        {
+          "blocker": {
+            "cause": "Required macOS CI unavailable: runner assigned without steps; workflow state responses conflict.",
+            "attempted": "Checked run/job/check-run endpoints; status queries intermittently fail with 502. Cancel returned 409 not in progress, job rerun returned 403 already running.",
+            "next_action": "Verify the fresh checkpoint workflow on the same source; then complete M1-T02 before M1-T03.",
+            "command": "gh run view 41099434077 / gh api actions/jobs/124213627428",
+            "dependent_ids": [
+              "M1-T03"
+            ]
+          },
+          "validation": [
+            {
+              "command": "cargo fmt --all -- --check",
+              "outcome": "passed"
+            },
+            {
+              "command": "cargo build --workspace --locked",
+              "outcome": "passed"
+            },
+            {
+              "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+              "outcome": "passed"
+            },
+            {
+              "command": "cargo test --workspace --locked (57 tests on macOS)",
+              "outcome": "passed"
+            },
+            {
+              "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+              "outcome": "passed"
+            },
+            {
+              "command": "python3 scripts/plan.py validate",
+              "outcome": "passed"
+            },
+            {
+              "command": "GitHub CI Linux and Windows https://github.com/adhyannsingal/ripple/actions/runs/41099434077",
+              "outcome": "passed"
+            },
+            {
+              "command": "GitHub CI macOS https://github.com/adhyannsingal/ripple/actions/runs/41099434077",
+              "outcome": "not_run",
+              "notes": "No completed result; runner has no steps; GitHub state/restart endpoints conflict."
+            }
+          ],
+          "resolved_at": "2026-10-30T19:49:56.360906+00:00",
+          "resolution": "Required CI subsequently passed on all platforms in run 41100928398."
+        }
+      ]
     },
     {
       "id": "M1-T03",
@@ -710,6 +739,53 @@
       "checkpoint": null,
       "next_action": null,
       "report": "docs/task-reports/M1-T05.md"
+    },
+    {
+      "id": "M1-T06",
+      "milestone": "M1",
+      "title": "Review and harden source discovery and parsing",
+      "depends_on": [
+        "M1-T01",
+        "M1-T02"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "crates/ripple-parse/",
+        "fixtures/scanner/",
+        "docs/adr/0010-source-discovery.md",
+        "docs/adr/0011-source-discovery.md",
+        "docs/limitations.md",
+        "docs/reviews/source-review-2026-10-30.md",
+        "docs/task-reports/M1-T06.md",
+        "docs/task-reports/M1-T01.md",
+        "Cargo.toml",
+        "Cargo.lock"
+      ],
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T06",
+      "started_at": "2026-10-30T19:49:56.360906+00:00",
+      "heartbeat_at": "2026-10-30T19:49:56.360906+00:00",
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": "ccd37cb10bfade1b8c833f590ef8815a943d4e0d",
+      "claimed_paths": [
+        "crates/ripple-parse/",
+        "fixtures/scanner/",
+        "docs/adr/0010-source-discovery.md",
+        "docs/adr/0011-source-discovery.md",
+        "docs/limitations.md",
+        "docs/reviews/source-review-2026-10-30.md",
+        "docs/task-reports/M1-T06.md",
+        "docs/task-reports/M1-T01.md",
+        "Cargo.toml",
+        "Cargo.lock"
+      ],
+      "checkpoint": "Repository review started; root replacement and config-directory ignore regressions identified.",
+      "next_action": "Reproduce findings, harden bounded captured reads and complete code/security verification.",
+      "report": "docs/task-reports/M1-T06.md"
     },
     {
       "id": "M2-T01",
@@ -1528,10 +1604,10 @@
   ],
   "coordinator": {
     "owner": "local-agent",
-    "session_id": "ripple-M1",
+    "session_id": "ripple-source-review-2026-10-30",
     "integration_branch": "main",
-    "checkpoint": "M1-T01 done; M1-T02 implemented but blocked on external required macOS CI.",
-    "next_action": "Recheck required platform CI; resume parser integration only after macOS passes.",
-    "updated_at": "2026-10-30T17:42:23.305941+00:00"
+    "checkpoint": "M1-T02 CI blocker resolved; M1-T06 review claimed.",
+    "next_action": "Reproduce findings, harden bounded captured reads and complete code/security verification.",
+    "updated_at": "2026-10-30T19:49:56.360906+00:00"
   }
 }
