@@ -1,0 +1,7 @@
+# Symbol and fingerprint fixtures
+
+Each source file listed in `expected.json` is a separate program. The expectations are hand-authored symbol names/components, kinds, stable roles, syntactic export status and diagnostic codes; they are not analyzer-generated snapshots. All declared symbols/spans/hashes must also satisfy core contracts.
+
+`hash-pairs.json` independently states which signature/body hashes should change for paired source text. It includes ordinary formatting/comments, explicit/automatic semicolons, restricted line breaks (including comments and Unicode separators), and meaningful literal/TSX text. It intentionally does not claim full semantic equivalence normalization.
+
+Run `cargo test --locked -p ripple-parse --test symbols`. The hash module also has a known digest calculated independently from a tiny hand-authored CST using the ADR 0012 frame encoding. Add behavior cases with manually reviewed expectations; do not copy actual output into goldens. Generated test inputs cover class fallback, Unicode/CRLF ownership and unsupported/recovered cases. Import/reference and semantic-resolution expectations belong to their later subsystem tasks.

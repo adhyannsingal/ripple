@@ -1,6 +1,6 @@
 # Ripple architecture
 
-Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery and bounded TS/TSX parsing libraries. Symbol/reference extraction, resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
+Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery, bounded TS/TSX parsing, supported symbol extraction and structural signature/body hashes. Import/reference extraction, resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
 
 ## Boundaries
 
@@ -26,15 +26,17 @@ Core currently uses only serde/thiserror. It has no Tree-sitter, SQLite, filesys
 
 `SymbolId` has project key, path, kind, structured qualified-name components and a disambiguator. Use persisted `default` project key for initial single-project support. Line/byte spans and revisions are absent from identity. `semantic_key()` is versioned and byte-length-framed; dotted display names are not unique identifiers. A method literally named `a.b` cannot collide with two qualified-name components. Disambiguators describe stable declaration roles/signatures, never byte positions or line numbers.
 
-## Syntax facts and planned declaration support
+## Syntax facts and supported declaration subset
 
 `FileFacts` holds symbols, imports/exports, lexical scopes, bindings, references and diagnostics. Validate paths, coordinates, owner membership, lexical parent containment/cycles, hash shape and incomplete-parse diagnostics before downstream use. Recovered syntax may emit validated partial facts with explicit diagnostics; failed parsing emits diagnostics without syntax facts. Validation does not prove that extraction or resolution is correct.
 
-The M1 extraction target includes named top-level function declarations, named classes/methods, named/default exports and top-level const bindings to arrow/function expressions, represented as FUNCTION nodes. Support anonymous default declarations using stable default-export roles. Treat overload signatures with their implementation as one logical symbol and hash the public signature group. Ambient-only declarations and unsupported anonymous/computed cases are diagnosed instead of fabricated as executable targets. No additional symbol kinds are introduced for callbacks initially.
+`ripple-parse::symbols::extract` now supports named top-level function declarations, named classes/methods, named/default exports and top-level const bindings to arrow/function expressions, represented as FUNCTION nodes. Anonymous default declarations use stable default-export roles. Contiguous overload signatures preceding one implementation form one logical symbol; fingerprints retain all headers conservatively. Static/get/set roles distinguish methods with the same local name. Ambient-only declarations and unsupported anonymous/computed cases are diagnosed instead of fabricated as executable targets. No additional symbol kinds are introduced for callbacks initially.
 
 References inside nested callbacks retain lexical scope and belong to their closest supported enclosing symbol; top-level test callbacks belong to the file. Record parameter/local/import bindings to let resolution detect shadowing. Module-level direct calls retain file ownership. Namespace/computed/dynamic constructs retain syntax evidence plus unsupported diagnostics when precise resolution is unavailable.
 
-No semantic or raw-input hashes are computed by the M0 contracts. `VersionedHash` is a versioned 256-bit lowercase hex representation; M1-T03 chooses/documents the algorithm and structure-aware hash encoding. Signature/body fields are optional until extraction, and their presence/meaning is not inferred from type construction.
+M0 contracts compute no hashes themselves. M1-T03 produces SHA-256 syntax fingerprints with versioned domains, length-framed node kinds/fields/leaf content and ASI-sensitive line-break evidence, as specified in [ADR 0012](adr/0012-syntax-hashes.md). Supported method bodies are omitted from class shape, while unrepresented class members retain full syntax conservatively. Hashes and semantic IDs ignore source line shifts. Signature hashes may be absent for recovered/unmodeled export input; their presence does not prove TypeScript compiler API equality or justify early cutoff. Raw source/config digest production remains separate.
+
+The current extraction entry point returns symbol-only FileFacts; imports, ExportFact records, references and scopes remain empty until M1-T04. Local export syntax contributes only exposure/fingerprint metadata at this stage. owner_for_span selects the smallest enclosing supported symbol for the next reference task. Unsupported names, bindings, ambient/type-only declarations, decorators and class initialization have diagnostics and documented limits.
 
 ## Graph, generations and revision binding
 

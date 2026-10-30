@@ -4,7 +4,7 @@ A local Rust CLI in development that maps TypeScript Git changes to symbols and 
 
 M0 (contracts and bootstrap) is complete and reviewed: the workspace, CLI bootstrap, source/syntax/graph/evidence and index/revision/canonical contracts are implemented and tested. Run `cargo run --locked -p ripple-cli -- --help` or `--version`; analysis commands are not implemented yet. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks. The product is named Ripple; the repository and planned CLI use `ripple`.
 
-M1 source discovery and TS/TSX parsing libraries are implemented. Symbol/reference extraction and the `inspect` command remain upcoming; the CLI currently supports help/version.
+M1 source discovery, TS/TSX parsing, supported symbol extraction and structural signature/body hash libraries are implemented. Import/reference extraction and the `inspect` command remain upcoming; the CLI currently supports help/version.
 
 - [Build specification](ripple_buildspec.md): authoritative product scope and constraints.
 - [Implementation plan](docs/implementation-plan.md): 40 dependency-linked tasks across nine milestones, including acceptance checks and handoffs.
