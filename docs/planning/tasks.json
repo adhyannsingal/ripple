@@ -505,27 +505,48 @@
         "crates/ripple-parse/src/scanner*",
         "fixtures/scanner/"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M1-T01",
       "started_at": "2026-10-30T17:23:05.004176+00:00",
-      "heartbeat_at": "2026-10-30T17:25:50.551184+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-30T17:27:53.438629+00:00",
+      "completed_at": "2026-10-30T17:27:53.438629+00:00",
+      "integrated_commit": "62f6ac2e7f8366c644a61de0cb243047b8a268d8",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (53 tests on macOS; 5 scanner tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub CI Linux/macOS/Windows https://github.com/adhyannsingal/ripple/actions/runs/41098771197",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "755782b46d13f31a6051c909c11ce99312b841d2",
-      "claimed_paths": [
-        "crates/ripple-parse/",
-        "fixtures/scanner/",
-        "docs/limitations.md",
-        "docs/adr/0010-source-discovery.md",
-        "docs/task-reports/M1-T01.md",
-        "Cargo.toml",
-        "Cargo.lock"
-      ],
-      "checkpoint": "Scanner implementation and handoff integrated; five scanner tests and local workspace checks pass.",
-      "next_action": "Verify integrated platform CI before done.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated and verified on Linux/macOS/Windows; scanner acceptance fixtures pass.",
+      "next_action": "M1-T02 parser wrapper.",
       "report": "docs/task-reports/M1-T01.md"
     },
     {
@@ -541,19 +562,27 @@
         "crates/ripple-parse/src/parser*",
         "fixtures/parser/"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T02",
+      "started_at": "2026-10-30T17:27:53.438629+00:00",
+      "heartbeat_at": "2026-10-30T17:27:53.438629+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "62f6ac2e7f8366c644a61de0cb243047b8a268d8",
+      "claimed_paths": [
+        "crates/ripple-parse/src/parser.rs",
+        "crates/ripple-parse/src/lib.rs",
+        "crates/ripple-parse/tests/parser.rs",
+        "fixtures/parser/",
+        "docs/limitations.md",
+        "docs/task-reports/M1-T02.md",
+        "docs/adr/0002-tree-sitter-parser.md"
+      ],
+      "checkpoint": "M0 dependencies verified; M1-T01 integrated and CI passed.",
+      "next_action": "Implement bounded TS/TSX parsing and recovery diagnostics.",
       "report": "docs/task-reports/M1-T02.md"
     },
     {
@@ -1459,8 +1488,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M1",
     "integration_branch": "main",
-    "checkpoint": "M1-T01 claimed in dependency order.",
-    "next_action": "Implement shared tree-provider discovery and acceptance fixtures.",
-    "updated_at": "2026-10-30T17:23:05.004176+00:00"
+    "checkpoint": "M1-T01 done; M1-T02 claimed.",
+    "next_action": "Implement bounded TS/TSX parsing and recovery diagnostics.",
+    "updated_at": "2026-10-30T17:27:53.438629+00:00"
   }
 }
