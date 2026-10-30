@@ -763,32 +763,60 @@
         "README.md",
         "docs/architecture.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M1-T06",
       "started_at": "2026-10-30T19:49:56.360906+00:00",
-      "heartbeat_at": "2026-10-30T19:58:30.651455+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-30T20:01:09.811763+00:00",
+      "completed_at": "2026-10-30T20:01:09.811763+00:00",
+      "integrated_commit": "2c0fe0e0b97530d024aa5a12a8aeb67497a98abf",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (62 on macOS; Linux CI 63 including FIFO)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help / --version",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo-audit 0.22.2 audit --json: 114 packages, no known vulnerabilities or warnings; RustSec 2295466c4e9df26647fd67d8fa1c705ac2fc7f81",
+          "outcome": "passed"
+        },
+        {
+          "command": "Tracked secret-pattern check; local Markdown links and unique ADR-number checks",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub CI Linux/macOS/Windows https://github.com/adhyannsingal/ripple/actions/runs/41119592647",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "ccd37cb10bfade1b8c833f590ef8815a943d4e0d",
-      "claimed_paths": [
-        "crates/ripple-parse/",
-        "fixtures/scanner/",
-        "docs/adr/0010-source-discovery.md",
-        "docs/adr/0011-source-discovery.md",
-        "docs/limitations.md",
-        "docs/reviews/source-review-2026-10-30.md",
-        "docs/task-reports/M1-T06.md",
-        "docs/task-reports/M1-T01.md",
-        "Cargo.toml",
-        "Cargo.lock",
-        "README.md",
-        "docs/architecture.md"
-      ],
-      "checkpoint": "Review fixes, regression tests, dependency audit and documentation integrated; local checks pass.",
-      "next_action": "Validate integrated workspace and required platform CI, then record completion.",
+      "claimed_paths": [],
+      "checkpoint": "Code/security review integrated; local checks, RustSec advisory scan and required three-platform CI passed.",
+      "next_action": "M1-T03 symbol extraction and structure-aware semantic hashes.",
       "report": "docs/task-reports/M1-T06.md"
     },
     {
@@ -1607,11 +1635,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-source-review-2026-10-30",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "M1-T06 source review integrated; platform verification pending.",
-    "next_action": "Validate integrated workspace and required platform CI, then record completion.",
-    "updated_at": "2026-10-30T19:58:30.651455+00:00"
+    "checkpoint": "M1-T02 CI blocker resolved; M1-T06 code/security review complete and verified; no active claims.",
+    "next_action": "Claim M1-T03 and implement symbols and structure-aware hashes when implementation resumes.",
+    "updated_at": "2026-10-30T20:01:09.811763+00:00"
   }
 }

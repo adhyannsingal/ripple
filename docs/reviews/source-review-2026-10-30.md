@@ -32,7 +32,7 @@ A tracked-file pattern check for private-key headers, AWS access-key IDs and Git
 
 ## Validation and limits
 
-On macOS with Rust 1.99.1: locked build, formatting, strict all-target Clippy, 62 Rust tests, 18 Python tests, ledger validation and CLI help/version pass. Final integration/platform CI evidence belongs in the task ledger. Linux CI additionally exercises the FIFO test; platform-specific test counts differ.
+On macOS with Rust 1.99.1: locked build, formatting, strict all-target Clippy, 62 Rust tests, 18 Python tests, ledger validation and CLI help/version pass. [Integrated CI](https://github.com/adhyannsingal/ripple/actions/runs/41119592647) passed on Linux, macOS and Windows; evidence is recorded in the task ledger. Linux passed 63 Rust tests including the FIFO regression; platform-specific counts differ.
 
 Performance is not measured. Capability-relative IO adds directory-handle/metadata operations; compare costs once the benchmark harness exists. The initial explicitly authorized root open uses ambient authority. Capture is not an OS-atomic snapshot; hard links, mounts, concurrent content writes and total memory across many individually bounded files remain limitations. M2-T05 must verify freshly observed membership/content before publication with bounded retries. This is a code/security review with regression and advisory checks, not a formal audit or penetration test.
 
