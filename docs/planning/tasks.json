@@ -11,9 +11,16 @@
       "id": "M0",
       "title": "Contracts and bootstrap",
       "target": "Before week 1",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null,
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M0-T01 through M0-T06 integrated; original gate evidence retained in gate_history.",
+        "Formatting, locked build, strict Clippy, 48 Rust tests, 18 Python tests and planning validation passed.",
+        "Review findings repaired with regression tests; source contracts and crate boundaries reviewed.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/40994011389",
+        "docs/reviews/foundation-review-2026-10-29.md",
+        "docs/task-reports/M0.md"
+      ],
+      "completed_at": "2026-10-30T02:52:30.711576+00:00",
       "gate_history": [
         {
           "gate_status": "passed",
@@ -425,33 +432,64 @@
         "scripts/tests/test_plan.py",
         "fixtures/support/mod.rs",
         "crates/ripple-cli/tests/",
+        "docs/adr/0005-base-head-model.md",
         "docs/reviews/",
         "docs/task-reports/M0-T06.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "local-agent",
       "branch": "agent/M0-T06",
       "started_at": "2026-10-30T02:44:24.348833+00:00",
-      "heartbeat_at": "2026-10-30T02:50:16.532654+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-30T02:52:30.711576+00:00",
+      "completed_at": "2026-10-30T02:52:30.711576+00:00",
+      "integrated_commit": "a882e96d81b48a74da30faa0bd76a48af5a4c686",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (48 Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help / --version",
+          "outcome": "passed"
+        },
+        {
+          "command": "GIT_DEFAULT_HASH=sha256 cargo test --locked -p ripple-cli --test infrastructure",
+          "outcome": "passed"
+        },
+        {
+          "command": "Local Markdown link verification and git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub CI: Linux, macOS, Windows \u2014 https://github.com/adhyannsingal/ripple/actions/runs/40994011389",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "8d0a4f3478f7bebcb0990a8f204697777253cfea",
-      "claimed_paths": [
-        "crates/ripple-core/src/revision.rs",
-        "crates/ripple-core/tests/index_contracts.rs",
-        "scripts/plan.py",
-        "scripts/tests/test_plan.py",
-        "fixtures/support/mod.rs",
-        "crates/ripple-cli/tests/",
-        "docs/reviews/",
-        "docs/task-reports/M0-T06.md",
-        "docs/adr/0005-base-head-model.md",
-        "docs/graph-model.md"
-      ],
-      "checkpoint": "Focused review fixes and report committed on agent/M0-T06; local acceptance checks pass.",
-      "next_action": "Fast-forward reviewed source, run integration checks and required platform CI.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated focused review fixes and report; acceptance checks and Linux/macOS/Windows CI passed.",
+      "next_action": "M1-T01 repository discovery and test-file classification.",
       "report": "docs/task-reports/M0-T06.md"
     },
     {
@@ -1410,11 +1448,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-review-2026-10-29",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Original M0 gate archived; focused review follow-up M0-T06 claimed.",
-    "next_action": "Integrate reviewed fixes and revalidate M0 before M1.",
-    "updated_at": "2026-10-30T02:44:24.348833+00:00"
+    "checkpoint": "M0 review integrated and milestone revalidated with required three-platform CI; no active task claims.",
+    "next_action": "Claim M1-T01 by milestone/task order and implement repository discovery.",
+    "updated_at": "2026-10-30T02:52:30.711576+00:00"
   }
 }

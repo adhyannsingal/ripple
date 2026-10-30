@@ -16,11 +16,11 @@ Scope: the implemented M0 foundation, reviewed against `ripple_buildspec.md`, th
 
 Reviewed the Rust source in all seven crates: CLI bootstrap; identity, source/span, syntax, graph, witness/result, input/index, revision and canonical-state contracts; parser and SQLite smoke tests; intentionally staged Git/resolver/impact modules. Reviewed all Rust integration tests, shared fixture loader and Git/process helpers, fixture manifest and expectations, Python ledger validator/tests, Cargo manifests/toolchain/lockfile setup, CI, README, instructions, execution protocol, task cards and ADR contracts.
 
-Checked crate dependency direction, validated-deserialization boundaries, deterministic ordering, symbol identity, source coordinates, graph endpoints/provenance, confidence and fallback separation, revision-labelled evidence, canonical equality versus runtime validation, CLI exit behavior, test-process isolation and planning ownership. No additional actionable defect was established in those areas during this pass. No remaining TraceImpact references were found in the reviewed source/docs search.
+Checked crate dependency direction, validated-deserialization boundaries, deterministic ordering, symbol identity, source coordinates, graph endpoints/provenance, confidence and fallback separation, revision-labelled evidence, canonical equality versus runtime validation, CLI exit behavior, test-process isolation and planning ownership. No additional actionable defect was established in those areas during this pass. Product naming is consistent with Ripple.
 
 ## Verification
 
-On macOS with pinned Rust 1.99.1: `cargo fmt --all -- --check`, `cargo build --workspace --locked`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, `cargo test --workspace --locked`, `python3 -m unittest discover -s scripts/tests`, `python3 scripts/plan.py validate`, and CLI help/version passed. Final suite: 48 Rust tests and 18 Python tests. The entire infrastructure suite also passed with `GIT_DEFAULT_HASH=sha256`. Integration and platform CI evidence is recorded in the task ledger after publication.
+On macOS with pinned Rust 1.99.1: `cargo fmt --all -- --check`, `cargo build --workspace --locked`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, `cargo test --workspace --locked`, `python3 -m unittest discover -s scripts/tests`, `python3 scripts/plan.py validate`, and CLI help/version passed. Final suite: 48 Rust tests and 18 Python tests. The entire infrastructure suite also passed with `GIT_DEFAULT_HASH=sha256`. [Integrated platform CI](https://github.com/adhyannsingal/ripple/actions/runs/40994011389) passed on Linux, macOS and Windows; evidence is recorded in the task ledger.
 
 ## Limits and handoff
 

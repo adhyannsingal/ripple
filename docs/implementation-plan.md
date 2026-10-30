@@ -136,7 +136,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M0-T06 — Review and harden foundational validation
 
 - **Depends on:** M0-T05. **Lane:** quality.
-- **Own:** `crates/ripple-core/src/revision.rs`; `crates/ripple-core/tests/index_contracts.rs`; `scripts/plan.py`; `scripts/tests/test_plan.py`; `fixtures/support/mod.rs`; `crates/ripple-cli/tests/`; `docs/reviews/`; `docs/task-reports/M0-T06.md`.
+- **Own:** `crates/ripple-core/src/revision.rs`; `crates/ripple-core/tests/index_contracts.rs`; `scripts/plan.py`; `scripts/tests/test_plan.py`; `fixtures/support/mod.rs`; `crates/ripple-cli/tests/`; `docs/adr/0005-base-head-model.md`; `docs/reviews/`; `docs/task-reports/M0-T06.md`.
 - **Implement:** Review the implemented repository end to end against the spec. Reproduce concrete contract, coordination and helper defects before fixing them; preserve valid APIs/evidence semantics and document review coverage and limitations. This user-requested follow-up does not implement new analyzer features.
 - **Acceptance:** New regressions fail before their fixes and pass afterward; format/strict Clippy/locked Rust tests, Python tests, plan consistency and GitHub platform CI pass. Invalid diff ranges are rejected; claims cannot silently hide directory overlap or falsely conflict with themselves; helpers remain reproducible as fixtures and Git settings grow. Record review findings and revalidate M0 after integration.
 - **Handoff:** A documented reviewed foundation, short completion report and clean integration checkpoint before M1.
