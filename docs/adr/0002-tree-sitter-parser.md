@@ -12,7 +12,7 @@ Text/regex extraction; invoking the full TypeScript compiler as the production p
 
 ## Decision
 
-Use the pinned Tree-sitter runtime and TypeScript/TSX grammars in ripple-parse. Convert syntax into backend-independent FileFacts including lexical binding/scope evidence and explicit diagnostics. Keep name/module/call resolution in ripple-resolve. Planned declarations and unsupported cases are enumerated in architecture.md; parser implementation belongs to M1.
+Use the pinned Tree-sitter runtime and TypeScript/TSX grammars in ripple-parse. Convert syntax into backend-independent FileFacts including lexical binding/scope evidence and explicit diagnostics. Keep name/module/call resolution in ripple-resolve. Planned declarations and unsupported cases are enumerated in architecture.md; the bounded parser wrapper is implemented in M1-T02. It selects grammar by case-sensitive extension, rejects invalid UTF-8 and inputs above 16 MiB, and stops through the runtime progress callback after a five-second budget. A cancelled parse has Failed status and no tree; syntax recovery has Recovered status with error/missing-node spans. Diagnostics are capped with an explicit truncation record.
 
 ## Reasoning
 
