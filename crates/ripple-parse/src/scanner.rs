@@ -1,4 +1,5 @@
 //! Discovery policy shared by worktrees and immutable tree providers.
+use cap_std::fs::{Dir, OpenOptions};
 use ignore::gitignore::{Gitignore, GitignoreBuilder};
 use ripple_core::{
     identity::RepoPath,
@@ -12,6 +13,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+pub const MAX_TREE_ENTRIES: usize = 100_000;
 pub const MAX_INPUT_BYTES: u64 = 16 * 1024 * 1024;
 const EXCLUDED: &[&str] = &[
     "node_modules",
@@ -39,8 +41,13 @@ pub struct TreeEntry {
 }
 /// Directory listings must contain only immediate children, with portable paths.
 /// Implementations read immutable bytes or captured worktree bytes, never execute scripts.
+/// Abort listing when max_entries is exceeded, rather than collecting an unbounded directory.
 pub trait SourceTree {
-    fn entries(&self, directory: Option<&RepoPath>) -> Result<Vec<TreeEntry>, ScanError>;
+    fn entries(
+        &self,
+        directory: Option<&RepoPath>,
+        max_entries: usize,
+    ) -> Result<Vec<TreeEntry>, ScanError>;
     fn read(&self, path: &RepoPath) -> Result<Vec<u8>, ScanError>;
 }
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -116,7 +123,7 @@ pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
         if depth > 128 {
             return Err(ScanError("directory nesting exceeds 128".into()));
         }
-        let mut entries = tree.entries(directory.as_ref())?;
+        let mut entries = tree.entries(directory.as_ref(), MAX_TREE_ENTRIES - seen.len())?;
         entries.sort_by(|a, b| a.path.cmp(&b.path));
         for entry in &entries {
             let parent = entry.path.as_str().rsplit_once('/').map(|(p, _)| p);
@@ -134,7 +141,7 @@ pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
                     entry.path
                 )));
             }
-            if seen.len() > 100_000 {
+            if seen.len() > MAX_TREE_ENTRIES {
                 return Err(ScanError("tree exceeds 100000 entries".into()));
             }
         }
@@ -172,8 +179,9 @@ pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
                 });
                 continue;
             }
-            let root_config =
-                directory.is_none() && ["tsconfig.json", "package.json"].contains(&name);
+            let root_config = entry.kind == EntryKind::File
+                && directory.is_none()
+                && ["tsconfig.json", "package.json"].contains(&name);
             let is_dir = entry.kind == EntryKind::Directory;
             if !root_config && ignored(&rules, &entry.path, is_dir) {
                 continue;
@@ -221,6 +229,7 @@ pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
 #[derive(Debug)]
 pub struct Worktree {
     root: PathBuf,
+    directory: Dir,
 }
 impl Worktree {
     /// The explicit root is the project boundary; parent project settings are not inherited.
@@ -229,38 +238,55 @@ impl Worktree {
         if !root.is_dir() {
             return Err(ScanError("project root must be a directory".into()));
         }
-        Ok(Self { root })
+        let directory = Dir::open_ambient_dir(&root, cap_std::ambient_authority())
+            .map_err(|e| ScanError(e.to_string()))?;
+        Ok(Self { root, directory })
     }
+    /// Canonical spelling at construction; subsequent IO uses the held directory handle.
     pub fn root(&self) -> &Path {
         &self.root
     }
     pub fn discover(&self) -> Result<Discovery, ScanError> {
         discover(self)
     }
-    fn checked(&self, path: &RepoPath) -> Result<PathBuf, ScanError> {
-        let mut current = self.root.clone();
-        for part in path.as_str().split('/') {
-            current.push(part);
-            if fs::symlink_metadata(&current)
-                .map_err(|e| ScanError(format!("{path}: {e}")))?
-                .file_type()
-                .is_symlink()
-            {
-                return Err(ScanError(format!("{path}: symlink changed during capture")));
+    fn checked_directory(&self, path: Option<&RepoPath>) -> Result<Dir, ScanError> {
+        let mut current = self
+            .directory
+            .try_clone()
+            .map_err(|e| ScanError(e.to_string()))?;
+        if let Some(path) = path {
+            for part in path.as_str().split('/') {
+                let metadata = current
+                    .symlink_metadata(part)
+                    .map_err(|e| ScanError(format!("{path}: {e}")))?;
+                if metadata.file_type().is_symlink() || !metadata.is_dir() {
+                    return Err(ScanError(format!(
+                        "{path}: directory changed or is a symlink"
+                    )));
+                }
+                // Capability-relative opening keeps races inside the captured directory.
+                current = current
+                    .open_dir(part)
+                    .map_err(|e| ScanError(format!("{path}: {e}")))?;
             }
         }
         Ok(current)
     }
 }
 impl SourceTree for Worktree {
-    fn entries(&self, directory: Option<&RepoPath>) -> Result<Vec<TreeEntry>, ScanError> {
-        let dir = match directory {
-            Some(p) => self.checked(p)?,
-            None => self.root.clone(),
-        };
-        fs::read_dir(dir)
+    fn entries(
+        &self,
+        directory: Option<&RepoPath>,
+        max_entries: usize,
+    ) -> Result<Vec<TreeEntry>, ScanError> {
+        let dir = self.checked_directory(directory)?;
+        dir.entries()
             .map_err(|e| ScanError(e.to_string()))?
-            .map(|e| {
+            .enumerate()
+            .map(|(index, e)| {
+                if index >= max_entries.min(MAX_TREE_ENTRIES) {
+                    return Err(ScanError("directory entry limit exceeded".into()));
+                }
                 let e = e.map_err(|e| ScanError(e.to_string()))?;
                 let name = e
                     .file_name()
@@ -291,23 +317,84 @@ impl SourceTree for Worktree {
             .collect()
     }
     fn read(&self, path: &RepoPath) -> Result<Vec<u8>, ScanError> {
-        let path_on_disk = self.checked(path)?;
-        let metadata = fs::symlink_metadata(&path_on_disk).map_err(|e| ScanError(e.to_string()))?;
-        if !metadata.is_file() {
-            return Err(ScanError(format!("{path}: expected regular file")));
+        let (parent, name) = match path.as_str().rsplit_once('/') {
+            Some((parent, name)) => (
+                Some(RepoPath::new(parent).map_err(|e| ScanError(e.to_string()))?),
+                name,
+            ),
+            None => (None, path.as_str()),
+        };
+        let dir = self.checked_directory(parent.as_ref())?;
+        let metadata = dir
+            .symlink_metadata(name)
+            .map_err(|e| ScanError(format!("{path}: {e}")))?;
+        if metadata.file_type().is_symlink() || !metadata.is_file() {
+            return Err(ScanError(format!(
+                "{path}: expected regular file, not a symlink"
+            )));
         }
-        let mut bytes = Vec::new();
-        fs::File::open(path_on_disk)
-            .map_err(|e| ScanError(e.to_string()))?
-            .take(MAX_INPUT_BYTES + 1)
-            .read_to_end(&mut bytes)
-            .map_err(|e| ScanError(e.to_string()))?;
-        Ok(bytes)
+        read_regular(&dir, name).map_err(|e| ScanError(format!("{path}: {e}")))
     }
 }
+fn read_regular(dir: &Dir, name: &str) -> Result<Vec<u8>, ScanError> {
+    let mut options = OpenOptions::new();
+    options.read(true);
+    #[cfg(unix)]
+    {
+        use cap_std::fs::OpenOptionsExt;
+        options.custom_flags(
+            (rustix::fs::OFlags::NONBLOCK | rustix::fs::OFlags::NOFOLLOW).bits() as i32,
+        );
+    }
+    let file = dir
+        .open_with(name, &options)
+        .map_err(|e| ScanError(e.to_string()))?;
+    // Validate the opened handle too: the path may have changed since metadata lookup.
+    if !file
+        .metadata()
+        .map_err(|e| ScanError(e.to_string()))?
+        .is_file()
+    {
+        return Err(ScanError("opened input is not a regular file".into()));
+    }
+    let mut bytes = Vec::new();
+    file.take(MAX_INPUT_BYTES + 1)
+        .read_to_end(&mut bytes)
+        .map_err(|e| ScanError(e.to_string()))?;
+    Ok(bytes)
+}
+
 impl SourceProvider for Worktree {
     type Error = ScanError;
     fn capture(&self) -> Result<SourceSnapshot, ScanError> {
         Ok(self.discover()?.sources)
+    }
+}
+
+#[cfg(all(test, target_os = "linux"))]
+mod tests {
+    use super::*;
+    #[test]
+    fn opening_a_replaced_fifo_never_waits_for_a_writer() {
+        let temp = tempfile::tempdir().unwrap();
+        rustix::fs::mkfifoat(
+            rustix::fs::CWD,
+            temp.path().join("input.ts"),
+            rustix::fs::Mode::RUSR | rustix::fs::Mode::WUSR,
+        )
+        .unwrap();
+        let dir = Dir::open_ambient_dir(temp.path(), cap_std::ambient_authority()).unwrap();
+        let (sender, receiver) = std::sync::mpsc::channel();
+        let worker = std::thread::spawn(move || {
+            sender
+                .send(read_regular(&dir, "input.ts").is_err())
+                .unwrap()
+        });
+        assert!(
+            receiver
+                .recv_timeout(std::time::Duration::from_secs(2))
+                .expect("FIFO open must not block")
+        );
+        worker.join().unwrap();
     }
 }

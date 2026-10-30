@@ -14,8 +14,12 @@ ripple-core.workspace = true
 tree-sitter.workspace = true
 tree-sitter-typescript.workspace = true
 ignore.workspace = true
+cap-std.workspace = true
 thiserror.workspace = true
 
 [dev-dependencies]
 tempfile.workspace = true
 serde_json.workspace = true
+
+[target.'cfg(unix)'.dependencies]
+rustix.workspace = true

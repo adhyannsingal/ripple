@@ -6,7 +6,11 @@ fn path(s: &str) -> RepoPath {
 }
 struct MemoryTree(BTreeMap<RepoPath, Vec<u8>>);
 impl SourceTree for MemoryTree {
-    fn entries(&self, directory: Option<&RepoPath>) -> Result<Vec<TreeEntry>, ScanError> {
+    fn entries(
+        &self,
+        directory: Option<&RepoPath>,
+        max_entries: usize,
+    ) -> Result<Vec<TreeEntry>, ScanError> {
         let prefix = directory.map_or(String::new(), |p| format!("{p}/"));
         let mut entries = BTreeMap::new();
         for p in self.0.keys() {
@@ -16,6 +20,9 @@ impl SourceTree for MemoryTree {
                     None => (tail, EntryKind::File),
                 };
                 entries.insert(path(&format!("{prefix}{name}")), kind);
+                if entries.len() > max_entries {
+                    return Err(ScanError("directory entry limit exceeded".into()));
+                }
             }
         }
         Ok(entries
@@ -130,4 +137,54 @@ fn symlinks_inside_and_outside_root_are_never_followed() {
             .iter()
             .all(|d| d.code == "symlink_skipped")
     );
+}
+
+#[test]
+fn ignored_directories_named_like_root_configuration_stay_ignored() {
+    let input = MemoryTree(BTreeMap::from([
+        (
+            path(".gitignore"),
+            b"package.json/\ntsconfig.json/\n".to_vec(),
+        ),
+        (path("package.json/hidden.ts"), b"export {};".to_vec()),
+        (path("tsconfig.json/hidden.ts"), b"export {};".to_vec()),
+    ]));
+    assert!(discover(&input).unwrap().files.is_empty());
+}
+
+#[cfg(unix)]
+#[test]
+fn replacing_the_root_path_cannot_redirect_captured_reads() {
+    use std::os::unix::fs::symlink;
+    let temp = tempfile::tempdir().unwrap();
+    let root = temp.path().join("project");
+    let moved = temp.path().join("moved project");
+    let outside = temp.path().join("outside");
+    fs::create_dir_all(&root).unwrap();
+    fs::create_dir_all(&outside).unwrap();
+    fs::write(root.join("a.ts"), "inside").unwrap();
+    fs::write(outside.join("a.ts"), "outside").unwrap();
+    let provider = Worktree::new(&root).unwrap();
+    fs::rename(&root, &moved).unwrap();
+    symlink(&outside, &root).unwrap();
+    let captured = provider.capture().unwrap();
+    assert_eq!(captured.get(&path("a.ts")).unwrap().text(), "inside");
+}
+
+#[test]
+fn directory_listing_enforces_its_remaining_budget_without_truncating() {
+    let temp = tempfile::tempdir().unwrap();
+    let provider = Worktree::new(temp.path()).unwrap();
+    assert!(provider.entries(None, 0).unwrap().is_empty());
+    for name in ["a.ts", "b.ts", "c.ts"] {
+        fs::write(temp.path().join(name), "").unwrap();
+    }
+    assert!(
+        provider
+            .entries(None, 2)
+            .unwrap_err()
+            .to_string()
+            .contains("entry limit")
+    );
+    assert_eq!(provider.entries(None, 3).unwrap().len(), 3);
 }
