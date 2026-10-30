@@ -6,6 +6,7 @@ M0 (contracts and bootstrap) is complete and reviewed: the workspace, CLI bootst
 
 M1 source discovery, TS/TSX parsing, supported symbol extraction and structural signature/body hash libraries are implemented. Import/reference extraction and the `inspect` command remain upcoming; the CLI currently supports help/version.
 
+- [Current capabilities](docs/project-status.md): what works now, current CLI usage and the next implementation steps.
 - [Build specification](ripple_buildspec.md): authoritative product scope and constraints.
 - [Implementation plan](docs/implementation-plan.md): 41 dependency-linked tasks across nine milestones, including acceptance checks and handoffs.
 - [Agent instructions](AGENTS.md): how to start, work, validate and report each task.
