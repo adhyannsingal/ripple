@@ -110,3 +110,41 @@ fn unsupported_encoding_extension_and_resource_limits_are_visible() {
     assert!(failed.tree().is_none());
     assert_eq!(failed.diagnostics()[0].code, "parse_resource_limit");
 }
+
+#[test]
+fn excessive_recovery_diagnostics_are_bounded_and_explicit() {
+    let text = "const x = ;\n".repeat(1100);
+    let parsed = parse(path("many-errors.ts"), text.as_bytes()).unwrap();
+    assert_eq!(parsed.status(), ParseStatus::Recovered);
+    assert_eq!(parsed.diagnostics().len(), 1025);
+    assert_eq!(
+        parsed
+            .diagnostics()
+            .iter()
+            .filter(|d| d.code == "parse_diagnostics_truncated")
+            .count(),
+        1
+    );
+    for diagnostic in parsed.diagnostics() {
+        if let Some(location) = diagnostic.span {
+            location.validate_against(&text).unwrap();
+        }
+    }
+}
+
+#[test]
+fn progress_callback_cancels_a_nonzero_budget_without_publishing_a_tree() {
+    let text = "const x = (".repeat(20_000);
+    let parsed = parse_with_limits(
+        path("cancel.ts"),
+        text.as_bytes(),
+        ParseLimits {
+            timeout: Duration::from_nanos(1),
+            ..Default::default()
+        },
+    )
+    .unwrap();
+    assert_eq!(parsed.status(), ParseStatus::Failed);
+    assert!(parsed.tree().is_none());
+    assert_eq!(parsed.diagnostics()[0].code, "parse_resource_limit");
+}
