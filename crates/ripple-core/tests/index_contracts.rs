@@ -580,3 +580,89 @@ fn unknown_canonical_formats_cannot_be_used_for_equality() {
     encoded["format_version"] = serde_json::json!(999);
     assert!(serde_json::from_value::<CanonicalState>(encoded).is_err());
 }
+
+#[test]
+fn diff_hunks_reject_nonexistent_sides_overlaps_and_crossing_order() {
+    let revisions = RevisionPair {
+        base: commit("a"),
+        head: commit("b"),
+    };
+    let hunk = |a, b, c, d| DiffHunk {
+        old: LineRange { start: a, count: b },
+        new: LineRange { start: c, count: d },
+    };
+    let modified = FileChange {
+        old_path: Some(path("a.ts")),
+        new_path: Some(path("a.ts")),
+        kind: FileChangeKind::Modified,
+        rename_similarity: None,
+        hunks: vec![],
+    };
+    for hunks in [
+        vec![hunk(1, 3, 1, 3), hunk(2, 1, 4, 1)],
+        vec![hunk(1, 1, 4, 1), hunk(4, 1, 1, 1)],
+        vec![hunk(1, 1, 1, 3), hunk(4, 1, 2, 1)],
+    ] {
+        let file = FileChange {
+            hunks,
+            ..modified.clone()
+        };
+        assert!(RevisionChanges::new(revisions.clone(), vec![file.clone()]).is_err());
+        assert!(
+            serde_json::from_value::<RevisionChanges>(serde_json::json!({
+                "revisions": revisions, "files": [file]
+            }))
+            .is_err()
+        );
+    }
+    for (kind, old_path, new_path, hunks) in [
+        (
+            FileChangeKind::Added,
+            None,
+            Some(path("a.ts")),
+            vec![hunk(1, 1, 1, 1)],
+        ),
+        (
+            FileChangeKind::Deleted,
+            Some(path("a.ts")),
+            None,
+            vec![hunk(1, 1, 1, 1)],
+        ),
+        (
+            FileChangeKind::Added,
+            None,
+            Some(path("a.ts")),
+            vec![hunk(2, 0, 1, 1)],
+        ),
+    ] {
+        assert!(
+            RevisionChanges::new(
+                revisions.clone(),
+                vec![FileChange {
+                    kind,
+                    old_path,
+                    new_path,
+                    hunks,
+                    rename_similarity: None
+                }]
+            )
+            .is_err()
+        );
+    }
+    // Empty ranges anchor AFTER their line; replacement line 1 comes first.
+    let replacement = hunk(1, 1, 1, 1);
+    let insertion = hunk(1, 0, 2, 1);
+    let changes = RevisionChanges::new(
+        revisions.clone(),
+        vec![FileChange {
+            hunks: vec![insertion.clone(), replacement.clone()],
+            ..modified
+        }],
+    )
+    .unwrap();
+    assert_eq!(changes.files()[0].hunks, vec![replacement, insertion]);
+    assert_eq!(
+        changes,
+        serde_json::from_value(serde_json::to_value(&changes).unwrap()).unwrap()
+    );
+}

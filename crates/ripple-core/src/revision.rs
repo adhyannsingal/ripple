@@ -84,6 +84,12 @@ pub struct LineRange {
     pub count: u32,
 }
 impl LineRange {
+    // Git empty ranges anchor after start; nonempty ranges are one-based.
+    fn interval(self) -> (u64, u64) {
+        let start = u64::from(self.start) - u64::from(self.count > 0);
+        (start, start + u64::from(self.count))
+    }
+
     pub fn validate(self) -> Result<(), RevisionError> {
         if (self.count > 0 && self.start == 0) || self.start.checked_add(self.count).is_none() {
             return Err(RevisionError(
@@ -173,13 +179,30 @@ impl RevisionChanges {
             for hunk in &file.hunks {
                 hunk.old.validate()?;
                 hunk.new.validate()?;
+                if (file.old_path.is_none() && hunk.old != (LineRange { start: 0, count: 0 }))
+                    || (file.new_path.is_none() && hunk.new != (LineRange { start: 0, count: 0 }))
+                {
+                    return Err(RevisionError(
+                        "nonexistent file side must have the zero range",
+                    ));
+                }
                 if hunk.old.count == 0 && hunk.new.count == 0 {
                     return Err(RevisionError("hunk changes neither endpoint"));
                 }
             }
-            file.hunks.sort();
+            file.hunks.sort_by_key(|h| {
+                let (old_start, old_end) = h.old.interval();
+                let (new_start, new_end) = h.new.interval();
+                (old_start, new_start, old_end, new_end)
+            });
             if file.hunks.windows(2).any(|p| p[0] == p[1]) {
                 return Err(RevisionError("duplicate diff hunk"));
+            }
+            if file.hunks.windows(2).any(|p| {
+                p[1].old.interval().0 < p[0].old.interval().1
+                    || p[1].new.interval().0 < p[0].new.interval().1
+            }) {
+                return Err(RevisionError("overlapping or crossing diff hunks"));
             }
         }
         files.sort();

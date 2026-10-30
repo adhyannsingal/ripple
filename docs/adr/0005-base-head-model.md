@@ -16,7 +16,7 @@ Head-only traversal; checking out user revisions; or separate snapshots built fr
 
 SnapshotOrigin distinguishes worktree (optional HEAD plus dirty marker) from immutable commit data. RevisionGraphs binds Base/Head witness sides to snapshots whose immutable origins match the requested pair, project and analyzer formats. A clean worktree origin is still not a commit origin. Keep both graphs, union results by semantic identity and retain revision-labelled witnesses—including base-only deleted code/tests. Never relabel a base-only path as a head path.
 
-RevisionChanges retains old/new paths, change kinds and both Git line ranges. Empty-side ranges may use line zero; nonempty ranges start at one. Git rename similarity is only a file-level hint; path-based symbol identities can become delete+add. Source-range mapping/classification remains M4 work.
+RevisionChanges retains old/new paths, change kinds and both Git line ranges. Empty-side ranges may use line zero; nonempty ranges start at one. A nonexistent file side must use the zero range. Empty ranges anchor after their line; normalize ranges to zero-based half-open intervals before sorting and reject overlaps or crossing order on either endpoint. Git rename similarity is only a file-level hint; path-based symbol identities can become delete+add. Source-range mapping/classification remains M4 work.
 
 ## Reasoning
 
