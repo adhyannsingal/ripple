@@ -274,6 +274,8 @@ fn unsupported_export_spelling_and_directives_withhold_complete_signatures() {
     for text in [
         r#"function f(){} export { f as "\u0061" };"#,
         "/** @jsx customFactory */\nfunction f(){}",
+        r"function f(){} export function \u0067(){}",
+        "function f(){} export default factory();",
     ] {
         let actual = facts("unsupported.ts", text);
         let symbol = named(&actual, "f");
@@ -373,4 +375,23 @@ fn unsupported_names_are_visible_and_hashes_do_not_depend_on_repository_path() {
     assert_ne!(named(&a, "f").identity, named(&b, "f").identity);
     assert_eq!(named(&a, "f").signature_hash, named(&b, "f").signature_hash);
     assert_eq!(named(&a, "f").body_hash, named(&b, "f").body_hash);
+}
+
+#[test]
+fn commonjs_and_namespace_exports_do_not_receive_supported_es_export_fingerprints() {
+    for text in [
+        "function f(){} export = f;",
+        "function f(){} export as namespace Library;",
+    ] {
+        let actual = facts("exports.ts", text);
+        assert_eq!(actual.parse_status, ParseStatus::Clean);
+        assert!(!named(&actual, "f").exported);
+        assert!(named(&actual, "f").signature_hash.is_none());
+        assert!(
+            actual
+                .diagnostics
+                .iter()
+                .any(|d| d.code == "unsupported_export_form")
+        );
+    }
 }

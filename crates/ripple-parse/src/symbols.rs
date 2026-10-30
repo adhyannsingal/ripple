@@ -143,6 +143,15 @@ fn local_exports(cx: &mut Context<'_>, tops: &[Node<'_>]) -> BTreeMap<String, BT
         if top.kind() != "export_statement" || top.child_by_field_name("source").is_some() {
             continue;
         }
+        if token(top, "=") || token(top, "namespace") {
+            cx.export_shape_complete = false;
+            cx.warn(
+                top,
+                "unsupported_export_form",
+                "CommonJS and namespace export forms are outside supported local ES export shape",
+            );
+            continue;
+        }
         if let Some(value) = top
             .child_by_field_name("value")
             .map(unparenthesize)
@@ -230,7 +239,12 @@ fn top_declarations<'a>(
             let (name, role) = match node.child_by_field_name("name") {
                 Some(n) => match cx.name(n) {
                     Some(s) => (s, String::new()),
-                    None => continue,
+                    None => {
+                        if exported {
+                            cx.export_shape_complete = false;
+                        }
+                        continue;
+                    }
                 },
                 None if default => ("default".into(), "default-export".into()),
                 _ => {
@@ -269,10 +283,16 @@ fn top_declarations<'a>(
                         continue;
                     };
                     if !constant || name_node.kind() != "identifier" {
+                        if exported {
+                            cx.export_shape_complete = false;
+                        }
                         cx.warn(declarator,"unsupported_function_binding","Only top-level const identifier bindings to function/arrow expressions are supported");
                         continue;
                     }
                     let Some(name) = cx.name(name_node) else {
+                        if exported {
+                            cx.export_shape_complete = false;
+                        }
                         continue;
                     };
                     let mut exports = aliases.get(&name).cloned().unwrap_or_default();
@@ -288,10 +308,14 @@ fn top_declarations<'a>(
                         ordinal,
                     });
                 } else if is_class(value) {
+                    if exported {
+                        cx.export_shape_complete = false;
+                    }
                     cx.warn(declarator,"unsupported_class_binding","Class expressions in variable bindings are outside initial declaration support");
                 }
             }
         } else if default && node.kind() != "identifier" {
+            cx.export_shape_complete = false;
             cx.warn(top,"unsupported_default_export","Default expressions without a supported declaration or identifier remain file-level syntax");
         } else if matches!(
             node.kind(),
@@ -302,6 +326,9 @@ fn top_declarations<'a>(
                 | "interface_declaration"
                 | "type_alias_declaration"
         ) {
+            if exported {
+                cx.export_shape_complete = false;
+            }
             cx.warn(node,"unsupported_declaration","Ambient, namespace, enum and type-only declarations are not executable symbol targets");
         }
     }
