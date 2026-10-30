@@ -5,21 +5,28 @@
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
   "updated_at": "2026-10-29",
-  "notes": "38 implementation tasks; ledger statuses and evidence are authoritative. Single coordinator writes claims and integration state.",
+  "notes": "39 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
       "id": "M0",
       "title": "Contracts and bootstrap",
       "target": "Before week 1",
-      "gate_status": "passed",
-      "gate_evidence": [
-        "M0-T01 through M0-T05 integrated with recorded source commits and task reports.",
-        "cargo fmt, strict clippy and locked workspace tests passed (46 Rust tests); planning validation and 15 Python tests passed.",
-        "Source identity/span, graph/evidence and revision/generation/canonical contracts have independent tests and scoped ADRs.",
-        "https://github.com/adhyannsingal/ripple/actions/runs/40976184529",
-        "docs/task-reports/M0.md"
-      ],
-      "completed_at": "2026-10-29T23:56:09.865511+00:00"
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null,
+      "gate_history": [
+        {
+          "gate_status": "passed",
+          "gate_evidence": [
+            "M0-T01 through M0-T05 integrated with recorded source commits and task reports.",
+            "cargo fmt, strict clippy and locked workspace tests passed (46 Rust tests); planning validation and 15 Python tests passed.",
+            "Source identity/span, graph/evidence and revision/generation/canonical contracts have independent tests and scoped ADRs.",
+            "https://github.com/adhyannsingal/ripple/actions/runs/40976184529",
+            "docs/task-reports/M0.md"
+          ],
+          "completed_at": "2026-10-29T23:56:09.865511+00:00"
+        }
+      ]
     },
     {
       "id": "M1",
@@ -402,6 +409,50 @@
       "checkpoint": "Index/revision/canonical contracts integrated; local checks and all three CI platforms passed.",
       "next_action": "M1-T01: repository discovery, ignore policy and early test-file classification.",
       "report": "docs/task-reports/M0-T05.md"
+    },
+    {
+      "id": "M0-T06",
+      "milestone": "M0",
+      "title": "Review and harden foundational validation",
+      "depends_on": [
+        "M0-T05"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "crates/ripple-core/src/revision.rs",
+        "crates/ripple-core/tests/index_contracts.rs",
+        "scripts/plan.py",
+        "scripts/tests/test_plan.py",
+        "fixtures/support/mod.rs",
+        "crates/ripple-cli/tests/",
+        "docs/reviews/",
+        "docs/task-reports/M0-T06.md"
+      ],
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M0-T06",
+      "started_at": "2026-10-30T02:44:24.348833+00:00",
+      "heartbeat_at": "2026-10-30T02:44:24.348833+00:00",
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": "8d0a4f3478f7bebcb0990a8f204697777253cfea",
+      "claimed_paths": [
+        "crates/ripple-core/src/revision.rs",
+        "crates/ripple-core/tests/index_contracts.rs",
+        "scripts/plan.py",
+        "scripts/tests/test_plan.py",
+        "fixtures/support/mod.rs",
+        "crates/ripple-cli/tests/",
+        "docs/reviews/",
+        "docs/task-reports/M0-T06.md",
+        "docs/adr/0005-base-head-model.md",
+        "docs/graph-model.md"
+      ],
+      "checkpoint": "Full repository review started; preparing failing regressions before focused fixes.",
+      "next_action": "Verify/fix malformed Git hunks, task-claim validation and test-helper reproducibility, then run all checks and push.",
+      "report": "docs/task-reports/M0-T06.md"
     },
     {
       "id": "M1-T01",
@@ -1359,11 +1410,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-review-2026-10-29",
     "integration_branch": "main",
-    "checkpoint": "M0 complete; all five tasks integrated and CI verified. No worker running.",
-    "next_action": "Resume with M1-T01 repository scanner; M1-T02 parser is also ready.",
-    "updated_at": "2026-10-29T23:56:09.865511+00:00"
+    "checkpoint": "Original M0 gate archived; focused review follow-up M0-T06 claimed.",
+    "next_action": "Integrate reviewed fixes and revalidate M0 before M1.",
+    "updated_at": "2026-10-30T02:44:24.348833+00:00"
   }
 }
