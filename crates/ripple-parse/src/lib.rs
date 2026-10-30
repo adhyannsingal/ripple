@@ -1,3 +1,4 @@
+pub mod parser;
 pub mod scanner;
 
 // Repository scanning and syntax extraction.
