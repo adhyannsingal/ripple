@@ -1118,11 +1118,11 @@
         "docs/project-status.md",
         "README.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T08",
       "started_at": "2026-10-31T23:17:52.832783+00:00",
-      "heartbeat_at": "2026-10-31T23:17:52.832783+00:00",
+      "heartbeat_at": "2026-10-31T23:21:42.580450+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1139,8 +1139,8 @@
         "docs/project-status.md",
         "README.md"
       ],
-      "checkpoint": "Baseline checks pass; reproduced raw Unicode control/direction characters in human re-export snippets.",
-      "next_action": "Add failing regression, repair human rendering without changing JSON facts, review and revalidate.",
+      "checkpoint": "Human Unicode escaping repair and review documentation integrated; worker checks and installed smoke passed.",
+      "next_action": "Run integrated checks/demos, push focused commits and verify platform CI before completing review and M1 revalidation.",
       "report": "docs/task-reports/M1-T08.md"
     },
     {
@@ -1962,8 +1962,8 @@
     "owner": "local-agent",
     "session_id": "ripple-inspect-review-2026-10-31",
     "integration_branch": "main",
-    "checkpoint": "Baseline checks pass; reproduced raw Unicode control/direction characters in human re-export snippets.",
-    "next_action": "Add failing regression, repair human rendering without changing JSON facts, review and revalidate.",
-    "updated_at": "2026-10-31T23:17:52.832783+00:00"
+    "checkpoint": "Human Unicode escaping repair and review documentation integrated; worker checks and installed smoke passed.",
+    "next_action": "Run integrated checks/demos, push focused commits and verify platform CI before completing review and M1 revalidation.",
+    "updated_at": "2026-10-31T23:21:42.580450+00:00"
   }
 }
