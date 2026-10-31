@@ -840,13 +840,14 @@
         "docs/limitations.md",
         "README.md",
         "CONTRIBUTING.md",
-        "docs/task-reports/M1-T05.md"
+        "docs/task-reports/M1-T05.md",
+        ".github/workflows/ci.yml"
       ],
       "status": "in_progress",
       "owner": "local-agent",
       "branch": "agent/M1-T05",
       "started_at": "2026-10-31T19:51:06.762285+00:00",
-      "heartbeat_at": "2026-10-31T19:51:06.762285+00:00",
+      "heartbeat_at": "2026-10-31T19:55:14.692639+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -869,10 +870,11 @@
         "docs/limitations.md",
         "README.md",
         "CONTRIBUTING.md",
-        "docs/task-reports/M1-T05.md"
+        "docs/task-reports/M1-T05.md",
+        ".github/workflows/ci.yml"
       ],
-      "checkpoint": "Verified discovery/reference prerequisites on clean main; inspect output and CLI routing design selected.",
-      "next_action": "Compose captured discovery/parser/extractor facts, implement typed output and independent CLI fixtures.",
+      "checkpoint": "Inspect implementation compiles; 14 inspect tests and 5 routing/help tests pass, including independent JSON and populated human goldens.",
+      "next_action": "Commit implementation, add documentation and CI inspect demos, then run full checks and clean install smoke.",
       "report": "docs/task-reports/M1-T05.md"
     },
     {
@@ -1862,8 +1864,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M1-T05-2026-10-31",
     "integration_branch": "main",
-    "checkpoint": "Verified discovery/reference prerequisites on clean main; inspect output and CLI routing design selected.",
-    "next_action": "Compose captured discovery/parser/extractor facts, implement typed output and independent CLI fixtures.",
-    "updated_at": "2026-10-31T19:51:06.762285+00:00"
+    "checkpoint": "Inspect implementation compiles; 14 inspect tests and 5 routing/help tests pass, including independent JSON and populated human goldens.",
+    "next_action": "Commit implementation, add documentation and CI inspect demos, then run full checks and clean install smoke.",
+    "updated_at": "2026-10-31T19:55:14.692639+00:00"
   }
 }
