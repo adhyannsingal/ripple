@@ -64,6 +64,24 @@ fn hash(hash: &Option<VersionedHash>) -> String {
 fn yes(value: bool) -> &'static str {
     if value { "yes" } else { "no" }
 }
+// serde_json escapes ASCII controls, but leaves Unicode controls/direction markers raw.
+// Human snippets use the same non-printable policy as Rust's debug strings while
+// retaining valid JSON escapes and readable ordinary Unicode.
+fn terminal_json(value: &impl Serialize) -> Result<String, fmt::Error> {
+    let json = serde_json::to_string(value).map_err(|_| fmt::Error)?;
+    let mut out = String::with_capacity(json.len());
+    for ch in json.chars() {
+        if !ch.is_ascii() && ch.escape_debug().next() == Some('\\') {
+            let mut units = [0u16; 2];
+            for unit in ch.encode_utf16(&mut units) {
+                write!(out, "\\u{unit:04x}")?;
+            }
+        } else {
+            out.push(ch);
+        }
+    }
+    Ok(out)
+}
 impl Report<InspectData> {
     pub fn render(&self, format: Format) -> Result<Vec<u8>, String> {
         match format {
@@ -121,7 +139,7 @@ impl Report<InspectData> {
                 writeln!(
                     out,
                     "    {} as {:?} type_only={} @ {}",
-                    serde_json::to_string(&binding.imported).map_err(|_| fmt::Error)?,
+                    terminal_json(&binding.imported)?,
                     binding.local,
                     yes(binding.type_only),
                     location(binding.span)
@@ -133,7 +151,7 @@ impl Report<InspectData> {
             writeln!(
                 out,
                 "  {} @ {}",
-                serde_json::to_string(&export.kind).map_err(|_| fmt::Error)?,
+                terminal_json(&export.kind)?,
                 location(export.span)
             )?;
         }

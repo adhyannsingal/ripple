@@ -374,3 +374,42 @@ fn populated_human_report_matches_independent_template_and_json_hash_fields() {
     assert!(crlf.status.success());
     assert_eq!(String::from_utf8(crlf.stdout).unwrap(), expected);
 }
+#[test]
+fn human_export_snippets_escape_unicode_controls_without_changing_json_facts() {
+    let root = fixture();
+    // Raw Unicode is intentional: these are valid string-literal characters,
+    // not backslash escapes rejected by the syntax extractor.
+    let source = "export * from './\u{009b}31m';\nexport { value } from './\u{202e}hidden';\nexport * from './café😀';\nexport * from './\u{e0001}tag';\n";
+    fs::write(root.path().join("controls.ts"), source).unwrap();
+    let report = json_report(root.path(), "controls.ts");
+    assert_eq!(report["data"]["parse_status"], "CLEAN");
+    let exported = report["data"]["exports"].as_array().unwrap();
+    for specifier in [
+        "./\u{009b}31m",
+        "./\u{202e}hidden",
+        "./café😀",
+        "./\u{e0001}tag",
+    ] {
+        assert!(exported.iter().any(|e| e["kind"]["specifier"] == specifier));
+    }
+    let output = inspect(root.path(), &["controls.ts"]);
+    assert!(output.status.success());
+    let human = String::from_utf8(output.stdout).unwrap();
+    assert!(!human.contains(['\u{009b}', '\u{202e}', '\u{e0001}']));
+    assert!(human.contains("\\u009b31m") && human.contains("\\u202ehidden"));
+    assert!(human.contains("café😀"));
+    assert!(human.contains("\\udb40\\udc01tag"));
+    // Rendered snippets must still parse to the exact typed export JSON.
+    let mut snippets = human
+        .lines()
+        .filter(|line| line.trim_start().starts_with('{'))
+        .map(|line| {
+            serde_json::from_str::<Value>(line.trim().split(" @ ").next().unwrap()).unwrap()
+        })
+        .collect::<Vec<_>>();
+    snippets.sort_by_key(Value::to_string);
+    assert_eq!(
+        snippets,
+        sorted(exported.iter().map(|e| e["kind"].clone()).collect())
+    );
+}
