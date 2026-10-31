@@ -39,9 +39,17 @@
       "id": "M1",
       "title": "Source understanding",
       "target": "Week 1",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null,
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M1-T01 through M1-T08 integrated and verified; earlier M1 gate evidence retained in gate_history.",
+        "115 Rust tests on macOS, strict formatting/build/Clippy, 18 Python tests and plan validation passed.",
+        "TS/TSX inspect goldens, spans/ownership, explicit uncertainty, read-only tests and installed CLI smoke passed.",
+        "User-requested code/security review repaired Unicode human-output controls; exact JSON facts and existing goldens unchanged.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41252220857",
+        "docs/reviews/inspect-review-2026-10-31.md",
+        "docs/task-reports/M1.md"
+      ],
+      "completed_at": "2026-10-31T23:24:46.441532+00:00",
       "gate_history": [
         {
           "gate_status": "passed",
@@ -1118,29 +1126,68 @@
         "docs/project-status.md",
         "README.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M1-T08",
       "started_at": "2026-10-31T23:17:52.832783+00:00",
-      "heartbeat_at": "2026-10-31T23:21:42.580450+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-31T23:24:46.441532+00:00",
+      "completed_at": "2026-10-31T23:24:46.441532+00:00",
+      "integrated_commit": "6034163810ebdd901199d8db1b96b9eb5315cc9f",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (115 Rust tests on macOS; 15 inspect tests; failing-before Unicode regression)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo install --locked --path crates/ripple-cli --root <temporary-directory>; installed help/version/inspect and Unicode human/JSON regression smoke",
+          "outcome": "passed"
+        },
+        {
+          "command": "/tmp/ripple-review-tools/bin/cargo-audit audit --json (122 packages; zero known vulnerabilities/warnings)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Local Markdown targets/ADR uniqueness check and git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "gh run watch 41252220857 --exit-status (all platforms passed; https://github.com/adhyannsingal/ripple/actions/runs/41252220857)",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "f1d280a9fad560b28b7b7ba9affef20968016888",
-      "claimed_paths": [
-        "crates/ripple-cli/src/output.rs",
-        "crates/ripple-cli/tests/inspect.rs",
-        "docs/adr/0014-inspect-output.md",
-        "docs/cli.md",
-        "docs/reviews/inspect-review-2026-10-31.md",
-        "docs/task-reports/M1-T08.md",
-        "docs/task-reports/M1.md",
-        "docs/project-status.md",
-        "README.md"
-      ],
-      "checkpoint": "Human Unicode escaping repair and review documentation integrated; worker checks and installed smoke passed.",
-      "next_action": "Run integrated checks/demos, push focused commits and verify platform CI before completing review and M1 revalidation.",
+      "claimed_paths": [],
+      "checkpoint": "Inspect output review integrated and verified; Unicode display defect repaired, all local/install/platform checks passed. M1 revalidated; claims released.",
+      "next_action": "M2-T01: resolve relative modules and direct export bindings.",
       "report": "docs/task-reports/M1-T08.md"
     },
     {
@@ -1959,11 +2006,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-inspect-review-2026-10-31",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Human Unicode escaping repair and review documentation integrated; worker checks and installed smoke passed.",
-    "next_action": "Run integrated checks/demos, push focused commits and verify platform CI before completing review and M1 revalidation.",
-    "updated_at": "2026-10-31T23:21:42.580450+00:00"
+    "checkpoint": "Inspect code/security review complete; M0 and revalidated M1 gates passed. No active claims.",
+    "next_action": "M2-T01: resolve relative modules and direct export bindings.",
+    "updated_at": "2026-10-31T23:24:46.441532+00:00"
   }
 }

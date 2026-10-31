@@ -30,8 +30,10 @@ The binary reports `ripple 0.1.0-dev`. `inspect` now exposes source facts withou
 
 ## Progress and next steps
 
-M0 contracts/bootstrap and the prior M1 gate are complete; a requested inspect-output review is in progress, with the prior gate evidence retained in the ledger. M1 discovery, parsing, supported symbols/hashes, import/export/reference extraction and the inspect CLI are integrated and verified. See the [M1 gate report](task-reports/M1.md) for evidence. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
+M0 contracts/bootstrap and the revalidated M1 source-understanding gate are complete. M1 discovery, parsing, supported symbols/hashes, import/export/reference extraction and the inspect CLI are integrated and verified. See the [M1 gate report](task-reports/M1.md) for evidence. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
 
 Next is **M2-T01**, resolving relative modules and direct export bindings. Later milestones add semantic resolution and SQLite generations, compiler-oracle evaluation, Git base/head impact analysis, incremental/replay correctness, related-test evidence and measured release benchmarks.
 
 No resolver accuracy, latency, incremental-equality or test-sufficiency results are claimed. See [limitations](limitations.md), the [task ledger](planning/tasks.json), [implementation plan](implementation-plan.md), the [reference extraction report](task-reports/M1-T04.md) and [extraction review](reviews/extraction-recheck-2026-10-30.md) for the exact boundaries and evidence.
+
+The [inspect code/security review](reviews/inspect-review-2026-10-31.md) repaired human Unicode-control rendering while preserving exact JSON facts; its regression and platform checks passed.
