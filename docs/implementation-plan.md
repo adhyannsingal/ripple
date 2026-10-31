@@ -178,7 +178,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M1-T05 — Deliver inspect with stable human and JSON output
 
 - **Depends on:** M1-T01, M1-T04. **Lane:** cli.
-- **Own:** `crates/ripple-cli/src/commands/inspect*`; `crates/ripple-cli/src/output*`; `crates/ripple-cli/tests/inspect*`.
+- **Own:** `crates/ripple-cli/src/commands/`; `crates/ripple-cli/src/output.rs`; `crates/ripple-cli/src/main.rs`; `crates/ripple-cli/tests/inspect.rs`; `crates/ripple-cli/tests/cli.rs`; `crates/ripple-cli/Cargo.toml`; `Cargo.lock`; `fixtures/inspect/`; `docs/adr/0014-inspect-output.md`; `docs/adr/0009-git-and-output-policy.md`; `docs/cli.md`; `docs/project-status.md`; `docs/architecture.md`; `docs/limitations.md`; `README.md`; `CONTRIBUTING.md`; `docs/task-reports/M1-T05.md`.
 - **Implement:** Wire source discovery, parsing and extraction into inspect. Implement versioned output envelope, sorted facts, diagnostics, missing-file errors and common stdout/stderr policy. Register future commands without pretending they are implemented.
 - **Acceptance:** CLI golden tests match independent TS/TSX expectations; JSON parses as one document; repeated output is byte-stable where metadata is fixed; malformed source diagnostics and usage errors follow documented exits.
 - **Handoff:** M1 demo command and reusable CLI rendering/error conventions.
