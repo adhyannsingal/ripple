@@ -30,7 +30,7 @@ The binary reports `ripple 0.1.0-dev`. `inspect` now exposes source facts withou
 
 ## Progress and next steps
 
-M0 contracts/bootstrap are complete. M1 discovery, parsing, supported symbols/hashes and import/export/reference extraction are implemented. The inspect CLI now connects those libraries; the task ledger records integration and M1 gate evidence. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
+M0 contracts/bootstrap and the M1 source-understanding gate are complete. M1 discovery, parsing, supported symbols/hashes, import/export/reference extraction and the inspect CLI are integrated and verified. See the [M1 gate report](task-reports/M1.md) for evidence. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
 
 Next is **M2-T01**, resolving relative modules and direct export bindings. Later milestones add semantic resolution and SQLite generations, compiler-oracle evaluation, Git base/head impact analysis, incremental/replay correctness, related-test evidence and measured release benchmarks.
 

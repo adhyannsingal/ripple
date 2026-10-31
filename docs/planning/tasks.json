@@ -39,9 +39,16 @@
       "id": "M1",
       "title": "Source understanding",
       "target": "Week 1",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M1-T01 through M1-T07 integrated with recorded commits, reports and verification; M0 gate already passed.",
+        "114 Rust tests on macOS, strict formatting/build/Clippy, 18 Python tests and plan validation passed.",
+        "Independent TS/TSX JSON and human CLI goldens verify deterministic facts, spans, ownership and explicit parse/unsupported diagnostics.",
+        "Installed help/version and TS-human/TSX-JSON smoke passed; repeated JSON byte-stable; no index/Git state written.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41236840736",
+        "docs/task-reports/M1.md"
+      ],
+      "completed_at": "2026-10-31T20:03:15.458315+00:00"
     },
     {
       "id": "M2",
@@ -841,40 +848,79 @@
         "README.md",
         "CONTRIBUTING.md",
         "docs/task-reports/M1-T05.md",
-        ".github/workflows/ci.yml"
+        ".github/workflows/ci.yml",
+        "docs/task-reports/M1.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M1-T05",
       "started_at": "2026-10-31T19:51:06.762285+00:00",
-      "heartbeat_at": "2026-10-31T19:59:55.731246+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-31T20:03:15.458315+00:00",
+      "completed_at": "2026-10-31T20:03:15.458315+00:00",
+      "integrated_commit": "6f06c7fff76658f2cd4406cbaaaef8d35de3b4c3",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (114 tests on macOS; 14 inspect CLI tests and independent goldens)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --version",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo install --locked --path crates/ripple-cli --root <temporary-directory>; installed help/version, TS-human and TSX-JSON inspect with stable JSON repeat",
+          "outcome": "passed"
+        },
+        {
+          "command": "/tmp/ripple-review-tools/bin/cargo-audit audit --json (122 packages; zero known vulnerabilities/warnings)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Local Markdown targets/ADR uniqueness check and git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "gh run watch 41236840736 --exit-status (Linux/macOS/Windows passed; https://github.com/adhyannsingal/ripple/actions/runs/41236840736)",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "1b8a0ef96a354a18b3e076cbb13c01a9babbfa8e",
-      "claimed_paths": [
-        "crates/ripple-cli/src/commands/",
-        "crates/ripple-cli/src/output.rs",
-        "crates/ripple-cli/src/main.rs",
-        "crates/ripple-cli/tests/inspect.rs",
-        "crates/ripple-cli/tests/cli.rs",
-        "crates/ripple-cli/Cargo.toml",
-        "Cargo.lock",
-        "fixtures/inspect/",
-        "docs/adr/0014-inspect-output.md",
-        "docs/adr/0009-git-and-output-policy.md",
-        "docs/cli.md",
-        "docs/project-status.md",
-        "docs/architecture.md",
-        "docs/limitations.md",
-        "README.md",
-        "CONTRIBUTING.md",
-        "docs/task-reports/M1-T05.md",
-        ".github/workflows/ci.yml"
-      ],
-      "checkpoint": "Inspect integrated with typed reports, independent goldens, CLI docs and platform demos; worker checks and clean temporary install passed.",
-      "next_action": "Run all integrated checks and demos, push commits, verify platform CI, then record M1 gate.",
+      "claimed_paths": [],
+      "checkpoint": "Inspect integrated, reviewed and verified; full local checks, installed smoke and three-platform CI passed. M1 gate passed; claims released.",
+      "next_action": "M2-T01: resolve relative modules and direct export bindings.",
       "report": "docs/task-reports/M1-T05.md"
     },
     {
@@ -1861,11 +1907,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M1-T05-2026-10-31",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Inspect integrated with typed reports, independent goldens, CLI docs and platform demos; worker checks and clean temporary install passed.",
-    "next_action": "Run all integrated checks and demos, push commits, verify platform CI, then record M1 gate.",
-    "updated_at": "2026-10-31T19:59:55.731246+00:00"
+    "checkpoint": "M0 and M1 gates passed. Inspect task complete and verified; no active claims.",
+    "next_action": "M2-T01: resolve relative modules and direct export bindings.",
+    "updated_at": "2026-10-31T20:03:15.458315+00:00"
   }
 }
