@@ -170,7 +170,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M1-T04 — Extract imports, exports, references and call-site ownership
 
 - **Depends on:** M1-T03, M1-T07. **Lane:** syntax.
-- **Own:** `crates/ripple-parse/src/references*`; `fixtures/references/`.
+- **Own:** `crates/ripple-parse/src/references*`; `crates/ripple-parse/src/lib.rs`; `crates/ripple-parse/src/hashes.rs`; `crates/ripple-parse/tests/references.rs`; `fixtures/references/`; `docs/adr/0013-reference-extraction.md`; `docs/architecture.md`; `docs/limitations.md`; `docs/project-status.md`; `README.md`; `docs/task-reports/M1-T04.md`.
 - **Implement:** Extract relative specifiers, named/default/alias imports, basic re-exports, direct calls, lexical bindings/shadowing, module-level references and unsupported dynamic boundaries. Preserve provenance and containing symbol/file. Separate type-only imports from runtime calls and diagnose unsupported namespace/receiver patterns.
 - **Acceptance:** Goldens include alias/default/barrel/circular imports, local parameter shadowing, module-level test calls and computed calls/imports; every reference has an owning node and span; no syntax extractor emits resolved semantic edges.
 - **Handoff:** Complete FileFacts input and documented unsupported syntax categories.

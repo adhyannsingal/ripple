@@ -742,21 +742,42 @@
       "lane": "syntax",
       "owned_paths": [
         "crates/ripple-parse/src/references*",
-        "fixtures/references/"
+        "crates/ripple-parse/src/lib.rs",
+        "crates/ripple-parse/src/hashes.rs",
+        "crates/ripple-parse/tests/references.rs",
+        "fixtures/references/",
+        "docs/adr/0013-reference-extraction.md",
+        "docs/architecture.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M1-T04.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T04",
+      "started_at": "2026-10-31T01:02:34.709568+00:00",
+      "heartbeat_at": "2026-10-31T01:02:34.709568+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "a06bd55e5f127804014e21b7eea9cef60486cc6f",
+      "claimed_paths": [
+        "crates/ripple-parse/src/references.rs",
+        "crates/ripple-parse/src/lib.rs",
+        "crates/ripple-parse/src/hashes.rs",
+        "crates/ripple-parse/tests/references.rs",
+        "fixtures/references/",
+        "docs/adr/0013-reference-extraction.md",
+        "docs/architecture.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M1-T04.md"
+      ],
+      "checkpoint": "Dependencies verified on clean main; syntax-only extraction design and fixture inspection underway.",
+      "next_action": "Implement complete FileFacts entry point, import/export syntax and lexical reference provenance.",
       "report": "docs/task-reports/M1-T04.md"
     },
     {
@@ -1772,11 +1793,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M1-T04-2026-10-30",
     "integration_branch": "main",
-    "checkpoint": "M1-T07 integrated and verified; no active claims. M0 gate passed; M1 gate remains pending for references and inspect.",
-    "next_action": "M1-T04: extract imports, exports, references and call-site ownership.",
-    "updated_at": "2026-10-30T21:20:23.269571+00:00"
+    "checkpoint": "Dependencies verified on clean main; syntax-only extraction design and fixture inspection underway.",
+    "next_action": "Implement complete FileFacts entry point, import/export syntax and lexical reference provenance.",
+    "updated_at": "2026-10-31T01:02:34.709568+00:00"
   }
 }
