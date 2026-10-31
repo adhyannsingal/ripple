@@ -843,11 +843,11 @@
         "docs/task-reports/M1-T05.md",
         ".github/workflows/ci.yml"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T05",
       "started_at": "2026-10-31T19:51:06.762285+00:00",
-      "heartbeat_at": "2026-10-31T19:55:14.692639+00:00",
+      "heartbeat_at": "2026-10-31T19:59:55.731246+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -873,8 +873,8 @@
         "docs/task-reports/M1-T05.md",
         ".github/workflows/ci.yml"
       ],
-      "checkpoint": "Inspect implementation compiles; 14 inspect tests and 5 routing/help tests pass, including independent JSON and populated human goldens.",
-      "next_action": "Commit implementation, add documentation and CI inspect demos, then run full checks and clean install smoke.",
+      "checkpoint": "Inspect integrated with typed reports, independent goldens, CLI docs and platform demos; worker checks and clean temporary install passed.",
+      "next_action": "Run all integrated checks and demos, push commits, verify platform CI, then record M1 gate.",
       "report": "docs/task-reports/M1-T05.md"
     },
     {
@@ -1864,8 +1864,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M1-T05-2026-10-31",
     "integration_branch": "main",
-    "checkpoint": "Inspect implementation compiles; 14 inspect tests and 5 routing/help tests pass, including independent JSON and populated human goldens.",
-    "next_action": "Commit implementation, add documentation and CI inspect demos, then run full checks and clean install smoke.",
-    "updated_at": "2026-10-31T19:55:14.692639+00:00"
+    "checkpoint": "Inspect integrated with typed reports, independent goldens, CLI docs and platform demos; worker checks and clean temporary install passed.",
+    "next_action": "Run all integrated checks and demos, push commits, verify platform CI, then record M1 gate.",
+    "updated_at": "2026-10-31T19:59:55.731246+00:00"
   }
 }
