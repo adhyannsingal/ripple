@@ -754,11 +754,11 @@
         "docs/task-reports/M1-T04.md",
         "docs/adr/0012-syntax-hashes.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T04",
       "started_at": "2026-10-31T01:02:34.709568+00:00",
-      "heartbeat_at": "2026-10-31T01:10:11.730991+00:00",
+      "heartbeat_at": "2026-10-31T01:14:11.246040+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -778,8 +778,8 @@
         "docs/task-reports/M1-T04.md",
         "docs/adr/0012-syntax-hashes.md"
       ],
-      "checkpoint": "Complete syntax extraction compiles; 17 focused tests and strict workspace Clippy pass. Independent fixtures cover aliases, types, cycles, scopes and dynamic boundaries.",
-      "next_action": "Review extraction edge cases, document v3 compatibility and limits, then run all workspace checks.",
+      "checkpoint": "Import/export/reference extraction integrated; 97 Rust tests, 18 Python tests, Clippy and advisory scan passed in worker; report and ADR present.",
+      "next_action": "Run integrated workspace checks, push focused commits and verify required platform CI.",
       "report": "docs/task-reports/M1-T04.md"
     },
     {
@@ -1798,8 +1798,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M1-T04-2026-10-30",
     "integration_branch": "main",
-    "checkpoint": "Complete syntax extraction compiles; 17 focused tests and strict workspace Clippy pass. Independent fixtures cover aliases, types, cycles, scopes and dynamic boundaries.",
-    "next_action": "Review extraction edge cases, document v3 compatibility and limits, then run all workspace checks.",
-    "updated_at": "2026-10-31T01:10:11.730991+00:00"
+    "checkpoint": "Import/export/reference extraction integrated; 97 Rust tests, 18 Python tests, Clippy and advisory scan passed in worker; report and ADR present.",
+    "next_action": "Run integrated workspace checks, push focused commits and verify required platform CI.",
+    "updated_at": "2026-10-31T01:14:11.246040+00:00"
   }
 }
