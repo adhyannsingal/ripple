@@ -754,32 +754,64 @@
         "docs/task-reports/M1-T04.md",
         "docs/adr/0012-syntax-hashes.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M1-T04",
       "started_at": "2026-10-31T01:02:34.709568+00:00",
-      "heartbeat_at": "2026-10-31T01:14:11.246040+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-10-31T01:17:46.646415+00:00",
+      "completed_at": "2026-10-31T01:17:46.646415+00:00",
+      "integrated_commit": "873bdee7e29bdf8e686b1b5415ce0b997bb8e06c",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (98 tests on macOS; 21 reference tests; 8 independent fixture programs)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --version",
+          "outcome": "passed"
+        },
+        {
+          "command": "/tmp/ripple-review-tools/bin/cargo-audit audit --json (122 packages; zero known vulnerabilities/warnings)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Local Markdown target/ADR uniqueness check (40 targets; 12 ADRs) and git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "gh run view 41154448791 --json status,conclusion,jobs (all three platforms passed; https://github.com/adhyannsingal/ripple/actions/runs/41154448791)",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "a06bd55e5f127804014e21b7eea9cef60486cc6f",
-      "claimed_paths": [
-        "crates/ripple-parse/src/references.rs",
-        "crates/ripple-parse/src/lib.rs",
-        "crates/ripple-parse/src/hashes.rs",
-        "crates/ripple-parse/tests/references.rs",
-        "fixtures/references/",
-        "docs/adr/0013-reference-extraction.md",
-        "docs/architecture.md",
-        "docs/limitations.md",
-        "docs/project-status.md",
-        "README.md",
-        "docs/task-reports/M1-T04.md",
-        "docs/adr/0012-syntax-hashes.md"
-      ],
-      "checkpoint": "Import/export/reference extraction integrated; 97 Rust tests, 18 Python tests, Clippy and advisory scan passed in worker; report and ADR present.",
-      "next_action": "Run integrated workspace checks, push focused commits and verify required platform CI.",
+      "claimed_paths": [],
+      "checkpoint": "Syntax imports/exports/references/scopes integrated and reviewed; all local checks and macOS/Linux/Windows CI passed. Claims released.",
+      "next_action": "M1-T05: compose complete syntax facts into inspect human/JSON output.",
       "report": "docs/task-reports/M1-T04.md"
     },
     {
@@ -1795,11 +1827,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M1-T04-2026-10-30",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Import/export/reference extraction integrated; 97 Rust tests, 18 Python tests, Clippy and advisory scan passed in worker; report and ADR present.",
-    "next_action": "Run integrated workspace checks, push focused commits and verify required platform CI.",
-    "updated_at": "2026-10-31T01:14:11.246040+00:00"
+    "checkpoint": "M1-T04 complete and verified; no active claims. M1 gate awaits inspect (M1-T05).",
+    "next_action": "M1-T05: compose complete syntax facts into inspect human/JSON output.",
+    "updated_at": "2026-10-31T01:17:46.646415+00:00"
   }
 }
