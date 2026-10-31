@@ -39,16 +39,23 @@
       "id": "M1",
       "title": "Source understanding",
       "target": "Week 1",
-      "gate_status": "passed",
-      "gate_evidence": [
-        "M1-T01 through M1-T07 integrated with recorded commits, reports and verification; M0 gate already passed.",
-        "114 Rust tests on macOS, strict formatting/build/Clippy, 18 Python tests and plan validation passed.",
-        "Independent TS/TSX JSON and human CLI goldens verify deterministic facts, spans, ownership and explicit parse/unsupported diagnostics.",
-        "Installed help/version and TS-human/TSX-JSON smoke passed; repeated JSON byte-stable; no index/Git state written.",
-        "https://github.com/adhyannsingal/ripple/actions/runs/41236840736",
-        "docs/task-reports/M1.md"
-      ],
-      "completed_at": "2026-10-31T20:03:15.458315+00:00"
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null,
+      "gate_history": [
+        {
+          "gate_status": "passed",
+          "gate_evidence": [
+            "M1-T01 through M1-T07 integrated with recorded commits, reports and verification; M0 gate already passed.",
+            "114 Rust tests on macOS, strict formatting/build/Clippy, 18 Python tests and plan validation passed.",
+            "Independent TS/TSX JSON and human CLI goldens verify deterministic facts, spans, ownership and explicit parse/unsupported diagnostics.",
+            "Installed help/version and TS-human/TSX-JSON smoke passed; repeated JSON byte-stable; no index/Git state written.",
+            "https://github.com/adhyannsingal/ripple/actions/runs/41236840736",
+            "docs/task-reports/M1.md"
+          ],
+          "completed_at": "2026-10-31T20:03:15.458315+00:00"
+        }
+      ]
     },
     {
       "id": "M2",
@@ -1092,6 +1099,51 @@
       "report": "docs/task-reports/M1-T07.md"
     },
     {
+      "id": "M1-T08",
+      "milestone": "M1",
+      "title": "Review inspect output and revalidate source understanding",
+      "depends_on": [
+        "M1-T05",
+        "M1-T07"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "crates/ripple-cli/src/output.rs",
+        "crates/ripple-cli/tests/inspect.rs",
+        "docs/adr/0014-inspect-output.md",
+        "docs/cli.md",
+        "docs/reviews/inspect-review-2026-10-31.md",
+        "docs/task-reports/M1-T08.md",
+        "docs/task-reports/M1.md",
+        "docs/project-status.md",
+        "README.md"
+      ],
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T08",
+      "started_at": "2026-10-31T23:17:52.832783+00:00",
+      "heartbeat_at": "2026-10-31T23:17:52.832783+00:00",
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": "f1d280a9fad560b28b7b7ba9affef20968016888",
+      "claimed_paths": [
+        "crates/ripple-cli/src/output.rs",
+        "crates/ripple-cli/tests/inspect.rs",
+        "docs/adr/0014-inspect-output.md",
+        "docs/cli.md",
+        "docs/reviews/inspect-review-2026-10-31.md",
+        "docs/task-reports/M1-T08.md",
+        "docs/task-reports/M1.md",
+        "docs/project-status.md",
+        "README.md"
+      ],
+      "checkpoint": "Baseline checks pass; reproduced raw Unicode control/direction characters in human re-export snippets.",
+      "next_action": "Add failing regression, repair human rendering without changing JSON facts, review and revalidate.",
+      "report": "docs/task-reports/M1-T08.md"
+    },
+    {
       "id": "M2-T01",
       "milestone": "M2",
       "title": "Resolve relative modules and direct export bindings",
@@ -1907,11 +1959,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-inspect-review-2026-10-31",
     "integration_branch": "main",
-    "checkpoint": "M0 and M1 gates passed. Inspect task complete and verified; no active claims.",
-    "next_action": "M2-T01: resolve relative modules and direct export bindings.",
-    "updated_at": "2026-10-31T20:03:15.458315+00:00"
+    "checkpoint": "Baseline checks pass; reproduced raw Unicode control/direction characters in human re-export snippets.",
+    "next_action": "Add failing regression, repair human rendering without changing JSON facts, review and revalidate.",
+    "updated_at": "2026-10-31T23:17:52.832783+00:00"
   }
 }

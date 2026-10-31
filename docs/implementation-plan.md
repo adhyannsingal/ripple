@@ -199,6 +199,14 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 - **Acceptance:** Focused failing-before/passing-after regressions for repairs; all contributor checks, clean local install smoke, planning/link checks, dependency advisory scan and required platform CI pass. Documentation distinguishes working libraries, defined contracts and commands still upcoming.
 - **Handoff:** Verified review/report, accurate project status and released claims before M1-T04.
 
+#### M1-T08 — Review inspect output and revalidate source understanding
+
+- **Depends on:** M1-T05, M1-T07. **Lane:** quality.
+- **Own:** `crates/ripple-cli/src/output.rs`; `crates/ripple-cli/tests/inspect.rs`; `docs/adr/0014-inspect-output.md`; `docs/cli.md`; `docs/reviews/inspect-review-2026-10-31.md`; `docs/task-reports/M1-T08.md`; `docs/task-reports/M1.md`; `docs/project-status.md`; `README.md`.
+- **Implement:** Review the integrated inspect command and its source/output/security boundaries; repair reproduced defects without adding analyzer features. Preserve JSON facts and document actual review results.
+- **Acceptance:** Failing-before/passing-after regressions for repairs; formatting, locked build/tests, strict Clippy, planning/link checks, advisory scan, inspect/install smoke and required platform CI pass. Revalidate M1 while preserving earlier gate evidence.
+- **Handoff:** Reviewed inspect command, report and verified gate before the next implementation task.
+
 ### M2 — Persistent graph and impact
 
 #### M2-T01 — Resolve relative modules and direct export bindings

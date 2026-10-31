@@ -15,7 +15,7 @@ See [CLI usage](docs/cli.md) for paths, output and exit codes.
 
 - [Current capabilities](docs/project-status.md): what works now, current CLI usage and the next implementation steps.
 - [Build specification](ripple_buildspec.md): authoritative product scope and constraints.
-- [Implementation plan](docs/implementation-plan.md): 41 dependency-linked tasks across nine milestones, including acceptance checks and handoffs.
+- [Implementation plan](docs/implementation-plan.md): 42 dependency-linked tasks across nine milestones, including acceptance checks and handoffs.
 - [Agent instructions](AGENTS.md): how to start, work, validate and report each task.
 - [Execution protocol](docs/planning/execution-protocol.md): asynchronous coordination, implementation defaults, recovery and integration rules.
 - [Task ledger](docs/planning/tasks.json): current task state, dependencies, ownership and validation evidence.
