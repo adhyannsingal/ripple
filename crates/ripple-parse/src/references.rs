@@ -80,7 +80,7 @@ impl Context<'_> {
         &self.parsed.source().text()[node.byte_range()]
     }
     fn warn(&mut self, node: Node<'_>, code: &str, reason: &str) {
-        if self.facts.diagnostics.len() < MAX_DIAGNOSTICS {
+        if code == "reference_resource_limit" || self.facts.diagnostics.len() < MAX_DIAGNOSTICS {
             self.facts.diagnostics.push(Diagnostic {
                 code: code.into(),
                 severity: Severity::Warning,

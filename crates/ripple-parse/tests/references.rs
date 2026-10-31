@@ -539,3 +539,26 @@ fn nested_module_statements_do_not_publish_global_import_or_export_facts() {
         BindingKind::Import
     );
 }
+#[test]
+fn resource_limit_diagnostic_survives_the_detailed_warning_budget() {
+    let text = format!(
+        "{}{}run();{}",
+        "obj.run();".repeat(1100),
+        "{".repeat(260),
+        "}".repeat(260)
+    );
+    let actual = facts("truncated-limit.ts", &text);
+    assert!(actual.references.is_empty() && actual.scopes.is_empty());
+    assert!(
+        actual
+            .diagnostics
+            .iter()
+            .any(|d| d.code == "reference_diagnostics_truncated")
+    );
+    assert!(
+        actual
+            .diagnostics
+            .iter()
+            .any(|d| d.code == "reference_resource_limit")
+    );
+}
