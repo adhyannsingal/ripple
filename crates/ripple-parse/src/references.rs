@@ -19,6 +19,7 @@ const MAX_DIAGNOSTICS: usize = 1024;
 const MAX_DEPTH: usize = 256;
 const MAX_SCOPES: usize = 8192;
 const MAX_REFERENCES: usize = 100_000;
+const MAX_REFERENCE_TEXT_BYTES: usize = 8 * 1024 * 1024;
 fn children(node: Node<'_>) -> Vec<Node<'_>> {
     let mut cursor = node.walk();
     node.named_children(&mut cursor).collect()
@@ -71,6 +72,8 @@ struct Context<'a> {
     parsed: &'a ParsedSource,
     facts: FileFacts,
     binding_nodes: BTreeSet<usize>,
+    reference_text_bytes: usize,
+    text_budget_exceeded: bool,
 }
 impl Context<'_> {
     fn text(&self, node: Node<'_>) -> &str {
@@ -208,6 +211,13 @@ impl Context<'_> {
             return;
         }
         if let Some(clause) = parts.iter().find(|n| n.kind() == "export_clause") {
+            if specifier.is_some()
+                && !children(*clause)
+                    .iter()
+                    .any(|n| n.kind() == "export_specifier")
+            {
+                self.warn(node,"unsupported_empty_reexport","Empty re-exports load a module but have no binding in the current export contract");
+            }
             for item in children(*clause)
                 .into_iter()
                 .filter(|n| n.kind() == "export_specifier")
@@ -406,6 +416,12 @@ impl Context<'_> {
         id
     }
     fn reference(&mut self, node: Node<'_>, scope: ScopeId, kind: ReferenceKind) {
+        let bytes = node.end_byte() - node.start_byte();
+        if bytes > MAX_REFERENCE_TEXT_BYTES.saturating_sub(self.reference_text_bytes) {
+            self.text_budget_exceeded = true;
+            return;
+        }
+        self.reference_text_bytes += bytes;
         self.facts.references.push(ReferenceFact {
             text: self.text(node).into(),
             kind,
@@ -457,7 +473,8 @@ impl Context<'_> {
         let mut stack = vec![(root, module, module, 0usize)];
         let mut callees = BTreeSet::new();
         while let Some((node, parent_scope, parent_var_scope, depth)) = stack.pop() {
-            if depth > MAX_DEPTH
+            if self.text_budget_exceeded
+                || depth > MAX_DEPTH
                 || self.facts.scopes.len() > MAX_SCOPES
                 || self.facts.references.len() > MAX_REFERENCES
             {
@@ -465,7 +482,7 @@ impl Context<'_> {
                 self.facts.exports.clear();
                 self.facts.scopes.clear();
                 self.facts.references.clear();
-                self.warn(node,"reference_resource_limit","Reference extraction exceeds depth/scope/reference budget; supplemental facts withheld");
+                self.warn(node,"reference_resource_limit","Reference extraction exceeds depth/scope/reference/text budget; supplemental facts withheld");
                 return;
             }
             if node.is_error() || node.is_missing() || node.kind() == "comment" {
@@ -722,7 +739,10 @@ impl Context<'_> {
             }
         }
         // Also check the last visited leaf, which may have no next iteration.
-        if self.facts.scopes.len() > MAX_SCOPES || self.facts.references.len() > MAX_REFERENCES {
+        if self.text_budget_exceeded
+            || self.facts.scopes.len() > MAX_SCOPES
+            || self.facts.references.len() > MAX_REFERENCES
+        {
             self.facts.imports.clear();
             self.facts.exports.clear();
             self.facts.scopes.clear();
@@ -730,7 +750,7 @@ impl Context<'_> {
             self.warn(
                 root,
                 "reference_resource_limit",
-                "Reference extraction exceeds scope/reference budget; supplemental facts withheld",
+                "Reference extraction exceeds scope/reference/text budget; supplemental facts withheld",
             );
             return;
         }
@@ -755,6 +775,8 @@ pub fn extract(parsed: &ParsedSource, project: ProjectKey) -> Result<FileFacts, 
         parsed,
         facts,
         binding_nodes: BTreeSet::new(),
+        reference_text_bytes: 0,
+        text_budget_exceeded: false,
     };
     // Symbol extraction already preflights every tree node against the shared budget.
     cx.walk(parsed.tree().unwrap().root_node());

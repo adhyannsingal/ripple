@@ -491,3 +491,31 @@ fn generated_source_intervals_match_independent_owner_lookup() {
         assert_eq!(reference.owner, owner_for_span(&actual, reference.span));
     }
 }
+#[test]
+fn nested_computed_targets_have_an_aggregate_text_budget() {
+    let text = format!("make('{}'){};", "x".repeat(1024 * 1024), "()".repeat(12));
+    let actual = facts("text-budget.ts", &text);
+    assert_eq!(actual.parse_status, ParseStatus::Clean);
+    assert!(actual.references.is_empty() && actual.scopes.is_empty());
+    assert!(
+        actual
+            .diagnostics
+            .iter()
+            .any(|d| d.code == "reference_resource_limit")
+    );
+}
+#[test]
+fn empty_type_imports_and_empty_reexports_cannot_masquerade_as_runtime_imports_or_stars() {
+    let actual = facts(
+        "empty.ts",
+        "import type {} from './types'; export {} from './side-effect';",
+    );
+    assert_eq!(actual.parse_status, ParseStatus::Clean);
+    assert!(actual.imports.is_empty() && actual.exports.is_empty());
+    for code in [
+        "unsupported_empty_type_import",
+        "unsupported_empty_reexport",
+    ] {
+        assert!(actual.diagnostics.iter().any(|d| d.code == code));
+    }
+}
