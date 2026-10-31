@@ -492,7 +492,13 @@ impl Context<'_> {
                 continue;
             }
             if node.kind() == "import_statement" {
-                if node.has_error() {
+                if parent_scope != module {
+                    self.warn(
+                        node,
+                        "unsupported_nested_module_statement",
+                        "Static imports outside module scope cannot publish module import facts",
+                    );
+                } else if node.has_error() {
                     self.warn(
                         node,
                         "incomplete_import",
@@ -561,7 +567,13 @@ impl Context<'_> {
                 self.bind_name(parent_scope, name, BindingKind::Local);
             }
             if node.kind() == "export_statement" {
-                if node.has_error() {
+                if parent_scope != module {
+                    self.warn(
+                        node,
+                        "unsupported_nested_module_statement",
+                        "Exports outside module scope cannot publish module export facts",
+                    );
+                } else if node.has_error() {
                     self.warn(
                         node,
                         "incomplete_export",

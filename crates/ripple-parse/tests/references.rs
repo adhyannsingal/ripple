@@ -519,3 +519,23 @@ fn empty_type_imports_and_empty_reexports_cannot_masquerade_as_runtime_imports_o
         assert!(actual.diagnostics.iter().any(|d| d.code == code));
     }
 }
+#[test]
+fn nested_module_statements_do_not_publish_global_import_or_export_facts() {
+    let actual = facts(
+        "nested-module.ts",
+        "function f(){ import { run } from './mod'; export {run}; run(); }",
+    );
+    assert!(actual.imports.is_empty() && actual.exports.is_empty());
+    assert!(
+        actual
+            .diagnostics
+            .iter()
+            .any(|d| d.code == "unsupported_nested_module_statement")
+    );
+    let refs = calls(&actual, "run");
+    assert_eq!(refs.len(), 1);
+    assert_eq!(
+        nearest(&actual, refs[0].scope, "run").unwrap().kind,
+        BindingKind::Import
+    );
+}
