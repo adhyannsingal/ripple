@@ -115,7 +115,7 @@ fn empty_human_report_matches_independent_full_golden() {
     assert!(output.stderr.is_empty());
     assert_eq!(
         String::from_utf8(output.stdout).unwrap(),
-        include_str!("../../../fixtures/inspect/empty-human.txt")
+        include_str!("../../../fixtures/inspect/empty-human.txt").replace("\r\n", "\n")
     );
 }
 #[test]
@@ -349,7 +349,7 @@ fn populated_human_report_matches_independent_template_and_json_hash_fields() {
     let root = fixture();
     let report = json_report(root.path(), "src/caller.ts");
     let symbol = &report["data"]["symbols"][0];
-    let template = include_str!("../../../fixtures/inspect/caller-human.txt");
+    let template = include_str!("../../../fixtures/inspect/caller-human.txt").replace("\r\n", "\n");
     let signature = format!(
         "v{}:{}",
         symbol["signature_hash"]["version"],
@@ -367,4 +367,10 @@ fn populated_human_report_matches_independent_template_and_json_hash_fields() {
     assert!(output.status.success());
     assert!(output.stderr.is_empty());
     assert_eq!(String::from_utf8(output.stdout).unwrap(), expected);
+    let path = root.path().join("src/caller.ts");
+    let source = fs::read_to_string(&path).unwrap().replace("\r\n", "\n");
+    fs::write(&path, source.replace('\n', "\r\n")).unwrap();
+    let crlf = inspect(root.path(), &["src/caller.ts"]);
+    assert!(crlf.status.success());
+    assert_eq!(String::from_utf8(crlf.stdout).unwrap(), expected);
 }
