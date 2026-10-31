@@ -1,0 +1,587 @@
+{
+  "cases": [
+    {
+      "file": "aliases.ts",
+      "imports": [
+        {
+          "specifier": "./auth",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "DEFAULT"
+              },
+              "local": "run",
+              "type_only": false
+            },
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "login"
+              },
+              "local": "authenticate",
+              "type_only": false
+            },
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "Session"
+              },
+              "local": "Session",
+              "type_only": true
+            }
+          ]
+        },
+        {
+          "specifier": "./types",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "DEFAULT"
+              },
+              "local": "Config",
+              "type_only": true
+            }
+          ]
+        },
+        {
+          "specifier": "./setup",
+          "bindings": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "LOCAL",
+          "local": "authenticate",
+          "exported": {
+            "kind": "NAMED",
+            "name": "login"
+          },
+          "type_only": false
+        },
+        {
+          "kind": "RE_EXPORT",
+          "specifier": "./auth",
+          "imported": {
+            "kind": "DEFAULT"
+          },
+          "exported": {
+            "kind": "NAMED",
+            "name": "start"
+          },
+          "type_only": false
+        },
+        {
+          "kind": "RE_EXPORT",
+          "specifier": "./auth",
+          "imported": {
+            "kind": "NAMED",
+            "name": "login"
+          },
+          "exported": {
+            "kind": "NAMED",
+            "name": "verify"
+          },
+          "type_only": false
+        },
+        {
+          "kind": "RE_EXPORT",
+          "specifier": "./auth",
+          "imported": {
+            "kind": "NAMED",
+            "name": "Session"
+          },
+          "exported": {
+            "kind": "NAMED",
+            "name": "Session"
+          },
+          "type_only": true
+        },
+        {
+          "kind": "STAR",
+          "specifier": "./barrel",
+          "type_only": false
+        },
+        {
+          "kind": "LOCAL",
+          "local": "checkout",
+          "exported": {
+            "kind": "NAMED",
+            "name": "checkout"
+          },
+          "type_only": false
+        }
+      ],
+      "references": [
+        {
+          "text": "authenticate",
+          "owner": "checkout",
+          "kind": "READ"
+        },
+        {
+          "text": "run",
+          "owner": "checkout",
+          "kind": "CALL"
+        },
+        {
+          "text": "copy",
+          "owner": "checkout",
+          "kind": "READ"
+        },
+        {
+          "text": "input",
+          "owner": "checkout",
+          "kind": "READ"
+        },
+        {
+          "text": "authenticate",
+          "owner": "checkout",
+          "kind": "CALL"
+        },
+        {
+          "text": "input",
+          "owner": "checkout",
+          "kind": "READ"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "shadowing.ts",
+      "imports": [
+        {
+          "specifier": "./auth",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "login"
+              },
+              "local": "login",
+              "type_only": false
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "LOCAL",
+          "local": "checkout",
+          "exported": {
+            "kind": "NAMED",
+            "name": "checkout"
+          },
+          "type_only": false
+        }
+      ],
+      "references": [
+        {
+          "text": "login",
+          "owner": "checkout",
+          "kind": "CALL"
+        },
+        {
+          "text": "login",
+          "owner": "checkout",
+          "kind": "CALL"
+        },
+        {
+          "text": "login",
+          "owner": "checkout",
+          "kind": "CALL"
+        },
+        {
+          "text": "login",
+          "owner": "checkout",
+          "kind": "CALL"
+        },
+        {
+          "text": "login",
+          "owner": "FILE",
+          "kind": "CALL"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "module.test.ts",
+      "imports": [
+        {
+          "specifier": "./auth",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "login"
+              },
+              "local": "login",
+              "type_only": false
+            }
+          ]
+        }
+      ],
+      "exports": [],
+      "references": [
+        {
+          "text": "describe",
+          "owner": "FILE",
+          "kind": "CALL"
+        },
+        {
+          "text": "it",
+          "owner": "FILE",
+          "kind": "CALL"
+        },
+        {
+          "text": "login",
+          "owner": "FILE",
+          "kind": "CALL"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "dynamic.ts",
+      "imports": [
+        {
+          "specifier": "./auth",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMESPACE"
+              },
+              "local": "ns",
+              "type_only": false
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "LOCAL",
+          "local": "uncertain",
+          "exported": {
+            "kind": "NAMED",
+            "name": "uncertain"
+          },
+          "type_only": false
+        }
+      ],
+      "references": [
+        {
+          "text": "ns.login",
+          "owner": "uncertain",
+          "kind": "COMPUTED_CALL"
+        },
+        {
+          "text": "obj[key]",
+          "owner": "uncertain",
+          "kind": "COMPUTED_CALL"
+        },
+        {
+          "text": "obj?.run",
+          "owner": "uncertain",
+          "kind": "COMPUTED_CALL"
+        },
+        {
+          "text": "ns.Service",
+          "owner": "uncertain",
+          "kind": "COMPUTED_CALL"
+        },
+        {
+          "text": "eval",
+          "owner": "uncertain",
+          "kind": "COMPUTED_CALL"
+        },
+        {
+          "text": "require",
+          "owner": "uncertain",
+          "kind": "COMPUTED_CALL"
+        },
+        {
+          "text": "import(\"./auth\")",
+          "owner": "uncertain",
+          "kind": "DYNAMIC_IMPORT"
+        },
+        {
+          "text": "import(key)",
+          "owner": "uncertain",
+          "kind": "DYNAMIC_IMPORT"
+        },
+        {
+          "text": "ns",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "obj",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "key",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "obj",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "key",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "ns",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "eval",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "key",
+          "owner": "uncertain",
+          "kind": "READ"
+        },
+        {
+          "text": "require",
+          "owner": "uncertain",
+          "kind": "READ"
+        }
+      ],
+      "diagnostics": [
+        "unsupported_namespace_import",
+        "unsupported_call_target",
+        "unsupported_dynamic_import"
+      ]
+    },
+    {
+      "file": "view.tsx",
+      "imports": [
+        {
+          "specifier": "./Widget",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "DEFAULT"
+              },
+              "local": "Widget",
+              "type_only": false
+            }
+          ]
+        },
+        {
+          "specifier": "./data",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "load"
+              },
+              "local": "load",
+              "type_only": false
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "LOCAL",
+          "local": "View",
+          "exported": {
+            "kind": "NAMED",
+            "name": "View"
+          },
+          "type_only": false
+        }
+      ],
+      "references": [
+        {
+          "text": "Widget",
+          "owner": "View",
+          "kind": "READ"
+        },
+        {
+          "text": "load",
+          "owner": "View",
+          "kind": "CALL"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "default.ts",
+      "imports": [
+        {
+          "specifier": "./service",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "DEFAULT"
+              },
+              "local": "run",
+              "type_only": false
+            },
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "Options"
+              },
+              "local": "Settings",
+              "type_only": true
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "LOCAL",
+          "local": "execute",
+          "exported": {
+            "kind": "DEFAULT"
+          },
+          "type_only": false
+        },
+        {
+          "kind": "LOCAL",
+          "local": "Settings",
+          "exported": {
+            "kind": "NAMED",
+            "name": "Options"
+          },
+          "type_only": true
+        },
+        {
+          "kind": "RE_EXPORT",
+          "specifier": "./types",
+          "imported": {
+            "kind": "NAMED",
+            "name": "Shape"
+          },
+          "exported": {
+            "kind": "NAMED",
+            "name": "Shape"
+          },
+          "type_only": true
+        }
+      ],
+      "references": [
+        {
+          "text": "run",
+          "owner": "execute",
+          "kind": "CALL"
+        },
+        {
+          "text": "execute",
+          "owner": "FILE",
+          "kind": "READ"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "cycle/a.ts",
+      "imports": [
+        {
+          "specifier": "./b",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "b"
+              },
+              "local": "b",
+              "type_only": false
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "LOCAL",
+          "local": "a",
+          "exported": {
+            "kind": "NAMED",
+            "name": "a"
+          },
+          "type_only": false
+        },
+        {
+          "kind": "RE_EXPORT",
+          "specifier": "./b",
+          "imported": {
+            "kind": "NAMED",
+            "name": "b"
+          },
+          "exported": {
+            "kind": "NAMED",
+            "name": "b"
+          },
+          "type_only": false
+        }
+      ],
+      "references": [
+        {
+          "text": "b",
+          "owner": "a",
+          "kind": "CALL"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "file": "cycle/b.ts",
+      "imports": [
+        {
+          "specifier": "./a",
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "a"
+              },
+              "local": "a",
+              "type_only": false
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "LOCAL",
+          "local": "b",
+          "exported": {
+            "kind": "NAMED",
+            "name": "b"
+          },
+          "type_only": false
+        },
+        {
+          "kind": "RE_EXPORT",
+          "specifier": "./a",
+          "imported": {
+            "kind": "NAMED",
+            "name": "a"
+          },
+          "exported": {
+            "kind": "NAMED",
+            "name": "a"
+          },
+          "type_only": false
+        }
+      ],
+      "references": [
+        {
+          "text": "a",
+          "owner": "b",
+          "kind": "CALL"
+        }
+      ],
+      "diagnostics": []
+    }
+  ]
+}

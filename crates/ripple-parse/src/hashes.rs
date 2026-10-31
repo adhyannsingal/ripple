@@ -7,7 +7,7 @@ use tree_sitter::Node;
 
 pub const SYNTAX_HASH_VERSION: u32 = 1;
 /// Index consumers must use a syntax compatibility token, not just the package version.
-pub const EXTRACTOR_VERSION: &str = "ripple-symbols-v2-ts0.23.2-runtime0.27.1";
+pub const EXTRACTOR_VERSION: &str = "ripple-facts-v3-ts0.23.2-runtime0.27.1";
 pub(crate) const MAX_SYNTAX_NODES: usize = 1_000_000;
 
 fn frame(hash: &mut Sha256, bytes: &[u8]) {
