@@ -23,7 +23,7 @@ Human output includes symbols, signature/body fingerprints, imports/exports, lex
 | `diagnostics` | Sorted path/code/severity/message records with optional source spans. |
 | `incomplete_analysis` | Non-clean parsing or reported discovery/syntax diagnostics. |
 
-Diagnostics also go to stderr in both formats. With JSON, capture stdout for tools and stderr for readable explanations. Reported source text is escaped in human output. No timestamps, machine root paths or timing measurements enter successful output by default, so supported fixture reports are byte-stable across identical captures.
+Diagnostics also go to stderr in both formats. With JSON, capture stdout for tools and stderr for readable explanations. Reported source text is escaped in human output, including Unicode controls/direction markers in embedded export records. JSON facts retain the original source values. No timestamps, machine root paths or timing measurements enter successful output by default, so supported fixture reports are byte-stable across identical captures.
 
 `resolution_available` is always false at this stage. `incomplete_analysis: false` means no known syntax/discovery issue was reported; it does not prove semantic completeness, resolved imports or safe test skipping. Recovered parsing and unsupported/dynamic forms stay visible. See [limitations](limitations.md) and [the output decision](adr/0014-inspect-output.md).
 
