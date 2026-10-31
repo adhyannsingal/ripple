@@ -1,0 +1,33 @@
+File: "src/caller.ts"
+Language: TypeScript
+Test file: no
+Parse status: Clean
+Analysis: syntax only (dependency resolution unavailable)
+Incomplete analysis: no
+Diagnostics: 0 (details on stderr)
+
+Symbols (1):
+  Function "caller" exported=yes @ 2:1-2:36
+    identity: "symbol:v1:7:default13:src/caller.ts8:FUNCTION0:6:caller"
+    signature hash: ${SIGNATURE_HASH}
+    body hash: ${BODY_HASH}
+
+Imports (1):
+  "./service" @ 1:1-1:41
+    {"kind":"NAMED","name":"ping"} as "run" type_only=no @ 1:10-1:21
+
+Exports (1):
+  {"kind":"LOCAL","local":"caller","exported":{"kind":"NAMED","name":"caller"},"type_only":false} @ 2:17-2:23
+
+Scopes (3):
+  0 parent=none @ 1:1-3:1
+    Local "caller" @ 2:17-2:23
+    Import "run" @ 1:18-1:21
+  1 parent=0 @ 2:8-2:36
+    Local "arguments" @ 2:8-2:36
+    Local "caller" @ 2:17-2:23
+  2 parent=1 @ 2:26-2:36
+
+References (1):
+  Call "run" @ 2:28-2:31
+    owner: symbol "symbol:v1:7:default13:src/caller.ts8:FUNCTION0:6:caller"; scope: 2

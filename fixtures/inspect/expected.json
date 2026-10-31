@@ -1,0 +1,18 @@
+{
+  "cases": [
+    {
+      "path": "src/caller.ts", "language": "TYPE_SCRIPT", "is_test": false,
+      "symbols": [{"name": ["caller"], "kind": "FUNCTION", "exported": true}],
+      "imports": [{"specifier": "./service", "bindings": [{"imported": {"kind": "NAMED", "name": "ping"}, "local": "run", "type_only": false}]}],
+      "exports": [{"kind": "LOCAL", "local": "caller", "exported": {"kind": "NAMED", "name": "caller"}, "type_only": false}],
+      "references": [{"text": "run", "kind": "CALL", "owner": ["caller"]}]
+    },
+    {
+      "path": "src/view.tsx", "language": "TSX", "is_test": false,
+      "symbols": [{"name": ["View"], "kind": "FUNCTION", "exported": true}],
+      "imports": [{"specifier": "./Widget", "bindings": [{"imported": {"kind": "DEFAULT"}, "local": "Widget", "type_only": false}]}],
+      "exports": [{"kind": "LOCAL", "local": "View", "exported": {"kind": "NAMED", "name": "View"}, "type_only": false}],
+      "references": [{"text": "Widget", "kind": "READ", "owner": ["View"]}]
+    }
+  ]
+}

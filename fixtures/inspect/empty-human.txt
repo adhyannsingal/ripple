@@ -1,0 +1,18 @@
+File: "empty.ts"
+Language: TypeScript
+Test file: no
+Parse status: Clean
+Analysis: syntax only (dependency resolution unavailable)
+Incomplete analysis: no
+Diagnostics: 0 (details on stderr)
+
+Symbols (0):
+
+Imports (0):
+
+Exports (0):
+
+Scopes (1):
+  0 parent=none @ 1:1-1:1
+
+References (0):
