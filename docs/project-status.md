@@ -12,6 +12,7 @@ Ripple is being built as a local Rust tool that explains which TypeScript code a
 | Symbols | Supported top-level functions, const-bound function/arrow expressions, classes and methods; overload groups; syntactic export metadata; stable semantic identities and enclosing-symbol ownership. Unsupported forms remain explicit diagnostics. |
 | Imports, exports and references | Unescaped static module specifiers, named/default aliases, type-only bindings and basic re-exports; direct calls, runtime uses, lexical scopes/shadowing and symbol/file ownership. Dynamic/receiver/unsupported forms retain diagnostics; targets remain unresolved. |
 | Fingerprints | Separate structural signature/body SHA-256 hashes. Ordinary comments/spacing are stable while ASI and meaningful literal/TSX changes remain observable. Supported method body edits do not change the class shape fingerprint. Unsupported export shapes withhold complete signatures. |
+| Inspect CLI | Captures a selected root and displays one discovered TS/TSX file as deterministic human or versioned JSON facts, with source spans, ownership and explicit diagnostics/incompleteness. No index or Git state is written. |
 | Shared contracts | Validated source, syntax, graph/evidence, revision, index and canonical-state data structures. These are boundaries for later implementations; a graph contract does not mean graph traversal or persistent indexing is available. |
 
 For example, changing `function f() { return 1; }` to `function f() { return 2; }` preserves its identity and syntactic signature hash but changes its body hash. Adding blank lines preserves identity and hashes. These library-level facts will feed future change/impact analysis; they do not establish semantic API equality or safe test skipping.
@@ -21,14 +22,16 @@ For example, changing `function f() { return 1; }` to `function f() { return 2; 
 ```sh
 cargo run --locked -p ripple-cli -- --help
 cargo run --locked -p ripple-cli -- --version
+cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
+cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json
 ```
 
-The binary reports `ripple 0.1.0-dev`. Help and version are the only current commands. It cannot yet inspect/index a repository, analyze a Git diff, traverse affected symbols or select related tests. No Node runtime or hosted service is required by the binary.
+The binary reports `ripple 0.1.0-dev`. `inspect` now exposes source facts without resolving dependency targets. It cannot yet build a persistent index, analyze a Git diff, traverse affected symbols or select related tests. See [CLI usage](cli.md). No Node runtime or hosted service is required by the binary.
 
 ## Progress and next steps
 
-M0 contracts/bootstrap are complete. M1 discovery, parsing, supported symbols/hashes and import/export/reference extraction are implemented. M1 remains in progress until the inspect CLI is integrated and verified. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
+M0 contracts/bootstrap are complete. M1 discovery, parsing, supported symbols/hashes and import/export/reference extraction are implemented. The inspect CLI now connects those libraries; the task ledger records integration and M1 gate evidence. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
 
-Next is **M1-T05**, exposing inspect output from the completed syntax libraries. Later milestones add semantic resolution and SQLite generations, compiler-oracle evaluation, Git base/head impact analysis, incremental/replay correctness, related-test evidence and measured release benchmarks.
+Next is **M2-T01**, resolving relative modules and direct export bindings. Later milestones add semantic resolution and SQLite generations, compiler-oracle evaluation, Git base/head impact analysis, incremental/replay correctness, related-test evidence and measured release benchmarks.
 
-No resolver accuracy, latency, incremental-equality or test-sufficiency results are claimed. See [limitations](limitations.md), the [task ledger](planning/tasks.json), [implementation plan](implementation-plan.md) the [reference extraction report](task-reports/M1-T04.md) and [extraction review](reviews/extraction-recheck-2026-10-30.md) for the exact boundaries and evidence.
+No resolver accuracy, latency, incremental-equality or test-sufficiency results are claimed. See [limitations](limitations.md), the [task ledger](planning/tasks.json), [implementation plan](implementation-plan.md), the [reference extraction report](task-reports/M1-T04.md) and [extraction review](reviews/extraction-recheck-2026-10-30.md) for the exact boundaries and evidence.

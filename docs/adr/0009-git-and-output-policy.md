@@ -1,6 +1,6 @@
 # ADR 0009: Read-only Git adapter and versioned CLI data output
 
-Status: accepted (M0-T05); real Git/command integration remains M4/M1 work.
+Status: accepted (M0-T05); inspect output is implemented in M1-T05; real Git integration remains M4 work.
 
 ## Context
 
@@ -16,7 +16,7 @@ Start with the installed Git executable behind ripple-git and the core provider/
 
 Add human output and `--format json` as commands are implemented. JSON reports use a versioned envelope: `format_version`, command, typed data, diagnostics and an explicit incomplete-analysis indicator. This output version is separate from SQLite `schema_version` and the canonical comparison format. Sort records deterministically, preserve evidence_kind/revision/confidence/provenance, and keep stdout data-only; send progress/errors to stderr. A failure produces no fabricated success report. No timestamps/timings enter deterministic facts by default.
 
-Exit 0 means a report was produced (or help/version), including explicitly reported uncertainty; it never guarantees complete TypeScript support or sufficient selected tests. Usage errors use 2; operational failures such as invalid refs, incompatible/stale state or failed indexing use 1. Actual commands/renderer tests must establish these behaviors; M0 CLI still implements only help/version. Inspection can report parse diagnostics, while an unusable index build preserves the prior generation and fails.
+Exit 0 means a report was produced (or help/version), including explicitly reported uncertainty; it never guarantees complete TypeScript support or sufficient selected tests. Usage errors use 2; operational failures such as invalid refs, incompatible/stale state or failed indexing use 1. The inspect command and its renderer tests now establish these behaviors; see [ADR 0014](0014-inspect-output.md). Inspection can report parse diagnostics, while an unusable index build preserves the prior generation and fails.
 
 ## Reasoning
 

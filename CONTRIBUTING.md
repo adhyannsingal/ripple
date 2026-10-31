@@ -19,11 +19,13 @@ cargo clippy --workspace --all-targets --locked -- -D warnings
 cargo test --workspace --locked
 cargo run --locked -p ripple-cli -- --help
 cargo run --locked -p ripple-cli -- --version
+cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
+cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json
 ```
 
 On Windows use `python` if `python3` is unavailable. On first build, rustup loads the pinned compiler/components and Cargo fetches the committed lockfile dependencies. CI defines the same checks for macOS, Linux and Windows; defining a job is not evidence that it has already passed remotely.
 
-Install the current binary locally with `cargo install --locked --path crates/ripple-cli`. During bootstrap, only help/version are available. Analysis commands are implemented by later tasks and currently return usage errors.
+Install the current binary locally with `cargo install --locked --path crates/ripple-cli`. The implemented command is `inspect` (plus help/version). See [CLI usage](docs/cli.md). Future index/impact/diff/test/status placeholders return operational failure without success output.
 
 ## Dependencies and ownership
 

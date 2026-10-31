@@ -1,6 +1,6 @@
 # Ripple architecture
 
-Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery, bounded TS/TSX parsing, supported symbol extraction and structural signature/body hashes. Import/export/reference and lexical-scope extraction are now implemented; resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
+Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery, bounded TS/TSX parsing, supported symbol extraction and structural signature/body hashes. Import/export/reference and lexical-scope extraction and the inspect CLI are now implemented; resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
 
 ## Boundaries
 
@@ -55,3 +55,5 @@ SnapshotOrigin distinguishes a possibly dirty worktree with optional HEAD (inclu
 ## Validation and execution
 
 Contract tests use manually authored facts, not parser-generated expected output. Every task has its own report and integrated commit in the ledger. See [the execution protocol](planning/execution-protocol.md) for claims, integration, uncertainty, cold-equality gates and version-specific completion requirements.
+
+`ripple inspect` composes captured discovery and complete syntax facts without writing state. Human and versioned JSON reports retain paths/spans/ownership, diagnostics and explicit incomplete-analysis status. See [CLI usage](cli.md) and [ADR 0014](adr/0014-inspect-output.md); no dependency resolution is implied by a successful syntax report.

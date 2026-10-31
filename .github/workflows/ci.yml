@@ -37,7 +37,9 @@ jobs:
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - name: Test locked workspace
         run: cargo test --workspace --locked
-      - name: Verify CLI bootstrap
+      - name: Verify implemented CLI commands
         run: |
           cargo run --locked -p ripple-cli -- --help
           cargo run --locked -p ripple-cli -- --version
+          cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
+          cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json

@@ -2,9 +2,16 @@
 
 A local Rust CLI in development that maps TypeScript Git changes to symbols and explains potentially affected code and test files through dependency paths.
 
-M0 (contracts and bootstrap) is complete and reviewed: the workspace, CLI bootstrap, source/syntax/graph/evidence and index/revision/canonical contracts are implemented and tested. Run `cargo run --locked -p ripple-cli -- --help` or `--version`; analysis commands are not implemented yet. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks. The product is named Ripple; the repository and planned CLI use `ripple`.
+M0 (contracts and bootstrap) is complete and reviewed: the workspace, CLI bootstrap, source/syntax/graph/evidence and index/revision/canonical contracts are implemented and tested. Run `cargo run --locked -p ripple-cli -- --help` or try `inspect` below. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks. The product is named Ripple; the repository and CLI use `ripple`.
 
-M1 source discovery, TS/TSX parsing, supported symbol extraction, structural signature/body hashes and import/export/reference libraries are implemented. Lexical scopes retain shadowing and call ownership without resolving dependency targets. The `inspect` command remains upcoming; the CLI currently supports help/version.
+M1 source discovery, TS/TSX parsing, supported symbol extraction, structural signature/body hashes and import/export/reference libraries are implemented. Lexical scopes retain shadowing and call ownership without resolving dependency targets. `inspect` exposes these facts as human output or versioned JSON, with explicit diagnostics and incomplete-analysis status. Dependency resolution, persistent indexing and Git impact commands remain upcoming.
+
+```sh
+cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
+cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json
+```
+
+See [CLI usage](docs/cli.md) for paths, output and exit codes.
 
 - [Current capabilities](docs/project-status.md): what works now, current CLI usage and the next implementation steps.
 - [Build specification](ripple_buildspec.md): authoritative product scope and constraints.
