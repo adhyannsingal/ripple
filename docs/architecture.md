@@ -1,6 +1,6 @@
 # Ripple architecture
 
-Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery, bounded TS/TSX parsing, supported symbol extraction and structural signature/body hashes. Import/reference extraction, resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
+Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery, bounded TS/TSX parsing, supported symbol extraction and structural signature/body hashes. Import/export/reference and lexical-scope extraction are now implemented; resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
 
 ## Boundaries
 
@@ -36,7 +36,7 @@ References inside nested callbacks retain lexical scope and belong to their clos
 
 M0 contracts compute no hashes themselves. M1-T03 produces SHA-256 syntax fingerprints with versioned domains, length-framed node kinds/fields/leaf content and ASI-sensitive line-break evidence, as specified in [ADR 0012](adr/0012-syntax-hashes.md). Supported method bodies are omitted from class shape, while unrepresented class members retain full syntax conservatively. Hashes and semantic IDs ignore source line shifts. Signature hashes may be absent for recovered/unmodeled export input; their presence does not prove TypeScript compiler API equality or justify early cutoff. Raw source/config digest production remains separate.
 
-The current extraction entry point returns symbol-only FileFacts; imports, ExportFact records, references and scopes remain empty until M1-T04. Local export syntax contributes only exposure/fingerprint metadata at this stage. owner_for_span selects the smallest enclosing supported symbol for the next reference task. Unsupported names, bindings, ambient/type-only declarations, decorators and class initialization have diagnostics and documented limits.
+`ripple_parse::extract` now returns supported symbol/import/export/reference/scope facts; `symbols::extract` remains the symbol-only API. References retain exact source spans, lexical parents and smallest enclosing symbol/file ownership. Binding-level type-only imports, shadowing and module-level callbacks stay explicit; no resolved targets or graph edges are emitted. Supplemental extraction has depth/scope/count/text budgets, with all supplemental facts withheld on a resource limit. See [ADR 0013](adr/0013-reference-extraction.md) for supported syntax, opaque boundaries, compatibility and limits. Unsupported names, bindings, ambient/type-only declarations, decorators and class initialization have diagnostics and documented limits.
 
 ## Graph, generations and revision binding
 
