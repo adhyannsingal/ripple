@@ -606,6 +606,9 @@ name = "ripple-resolve"
 version = "0.1.0-dev"
 dependencies = [
  "ripple-core",
+ "ripple-parse",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

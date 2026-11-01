@@ -1288,24 +1288,43 @@
       ],
       "lane": "semantics",
       "owned_paths": [
-        "crates/ripple-resolve/src/modules*",
-        "crates/ripple-resolve/src/exports*",
+        "crates/ripple-resolve/src/",
+        "crates/ripple-resolve/tests/modules.rs",
+        "crates/ripple-resolve/Cargo.toml",
+        "Cargo.lock",
         "fixtures/resolution/modules/",
-        "docs/resolution.md"
+        "docs/adr/0015-relative-resolution.md",
+        "docs/resolution.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M2-T01.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M2-T01",
+      "started_at": "2026-11-01T19:24:13.553739+00:00",
+      "heartbeat_at": "2026-11-01T19:24:13.553739+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "44df29a0c9868b3544a1b60df03d40c7ea4d8667",
+      "claimed_paths": [
+        "crates/ripple-resolve/src/",
+        "crates/ripple-resolve/tests/modules.rs",
+        "crates/ripple-resolve/Cargo.toml",
+        "Cargo.lock",
+        "fixtures/resolution/modules/",
+        "docs/adr/0015-relative-resolution.md",
+        "docs/resolution.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M2-T01.md"
+      ],
+      "checkpoint": "M1 producer audit and repair integrated/verified on all platforms. Relative lookup/direct-export boundary selected.",
+      "next_action": "Implement captured-path lookup evidence and supported direct export/import bindings with independent fixtures.",
       "report": "docs/task-reports/M2-T01.md"
     },
     {
@@ -2094,11 +2113,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M2-T01-2026-11-01",
     "integration_branch": "main",
-    "checkpoint": "M1 thoroughly reviewed and revalidated; all claims released. M2 is authorized next.",
-    "next_action": "M2-T01 relative module and direct export resolution.",
-    "updated_at": "2026-11-01T19:22:01.920588+00:00"
+    "checkpoint": "M1 producer audit and repair integrated/verified on all platforms. Relative lookup/direct-export boundary selected.",
+    "next_action": "Implement captured-path lookup evidence and supported direct export/import bindings with independent fixtures.",
+    "updated_at": "2026-11-01T19:24:13.553739+00:00"
   }
 }

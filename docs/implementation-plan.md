@@ -220,7 +220,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M2-T01 — Resolve relative modules and direct export bindings
 
 - **Depends on:** M1-T01, M1-T04. **Lane:** semantics.
-- **Own:** `crates/ripple-resolve/src/modules*`; `crates/ripple-resolve/src/exports*`; `fixtures/resolution/modules/`; `docs/resolution.md`.
+- **Own:** `crates/ripple-resolve/src/`; `crates/ripple-resolve/tests/modules.rs`; `crates/ripple-resolve/Cargo.toml`; `Cargo.lock`; `fixtures/resolution/modules/`; `docs/adr/0015-relative-resolution.md`; `docs/resolution.md`; `docs/limitations.md`; `docs/project-status.md`; `README.md`; `docs/task-reports/M2-T01.md`.
 - **Implement:** Implement deterministic relative extension/index lookup, named/default exports and import aliases against extracted facts. Track successful and failed lookups as dependency records. Keep tsconfig interpretation and re-export fixed points in M2-T06/T07. Define unsupported external package resolution as a diagnostic, not a guessed target.
 - **Acceptance:** Fixtures cover relative extension/index lookup, aliases, default exports, conflicting extensions, missing modules and type-only bindings. Output/diagnostics are deterministic; direct export bindings agree with independently expected fixtures.
 - **Handoff:** Relative lookup/direct-export API and lookup dependency records for calls, config aliases and re-export expansion.
