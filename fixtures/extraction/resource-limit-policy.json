@@ -1,0 +1,7 @@
+{
+  "directive_comments": 1100,
+  "empty_statements": 1000,
+  "test_node_budget": 2000,
+  "prelude": "import {run} from './p'; export function f(){run();}\n",
+  "required_diagnostics": ["unsupported_compiler_directive", "extraction_diagnostics_truncated", "extraction_resource_limit"]
+}

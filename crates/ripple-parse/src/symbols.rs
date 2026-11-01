@@ -26,7 +26,7 @@ impl Context<'_> {
         &self.parsed.source().text()[node.byte_range()]
     }
     fn warn(&mut self, node: Node<'_>, code: &str, message: &str) {
-        if self.facts.diagnostics.len() < MAX_DIAGNOSTICS {
+        if code == "extraction_resource_limit" || self.facts.diagnostics.len() < MAX_DIAGNOSTICS {
             self.facts.diagnostics.push(Diagnostic {
                 code: code.into(),
                 severity: Severity::Warning,
@@ -578,6 +578,13 @@ pub fn owner_for_span(facts: &FileFacts, location: SourceSpan) -> ReferenceOwner
 }
 /// Produce symbol-only FileFacts. M1-T04 adds imports, exports, scopes and references.
 pub fn extract(parsed: &ParsedSource, project: ProjectKey) -> Result<FileFacts, ContractError> {
+    extract_with_node_budget(parsed, project, MAX_SYNTAX_NODES)
+}
+fn extract_with_node_budget(
+    parsed: &ParsedSource,
+    project: ProjectKey,
+    node_budget: usize,
+) -> Result<FileFacts, ContractError> {
     let mut facts = FileFacts::empty(parsed.source().path().clone(), parsed.language());
     facts.parse_status = parsed.status();
     facts.diagnostics = parsed.diagnostics().to_vec();
@@ -595,7 +602,7 @@ pub fn extract(parsed: &ParsedSource, project: ProjectKey) -> Result<FileFacts, 
         'tree: loop {
             let node = cursor.node();
             visited += 1;
-            if visited > MAX_SYNTAX_NODES {
+            if visited > node_budget {
                 cx.facts.symbols.clear();
                 cx.warn(
                     node,
@@ -665,4 +672,44 @@ pub fn extract(parsed: &ParsedSource, project: ProjectKey) -> Result<FileFacts, 
     cx.facts.diagnostics.dedup();
     cx.facts.validate(parsed.source())?;
     Ok(cx.facts)
+}
+
+#[cfg(test)]
+mod resource_tests {
+    use super::*;
+    #[test]
+    fn primary_node_cutoff_survives_warning_saturation() {
+        let recipe: serde_json::Value = serde_json::from_str(include_str!(
+            "../../../fixtures/extraction/resource-limit-policy.json"
+        ))
+        .unwrap();
+        let source = format!(
+            "{}{}{}",
+            "// @ts-ignore\n".repeat(recipe["directive_comments"].as_u64().unwrap() as usize),
+            recipe["prelude"].as_str().unwrap(),
+            ";".repeat(recipe["empty_statements"].as_u64().unwrap() as usize)
+        );
+        let parsed = crate::parser::parse(
+            ripple_core::identity::RepoPath::new("budget.ts").unwrap(),
+            source.as_bytes(),
+        )
+        .unwrap();
+        assert_eq!(parsed.status(), ripple_core::syntax::ParseStatus::Clean);
+        let facts = extract_with_node_budget(
+            &parsed,
+            ProjectKey::single_project(),
+            recipe["test_node_budget"].as_u64().unwrap() as usize,
+        )
+        .unwrap();
+        assert!(facts.symbols.is_empty());
+        for code in recipe["required_diagnostics"].as_array().unwrap() {
+            assert!(
+                facts
+                    .diagnostics
+                    .iter()
+                    .any(|d| d.code == code.as_str().unwrap()),
+                "missing {code}"
+            );
+        }
+    }
 }
