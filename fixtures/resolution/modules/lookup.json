@@ -1,0 +1,86 @@
+{
+  "inventory": [
+    "src/main.ts",
+    "src/api.ts",
+    "src/api.tsx",
+    "src/folder/index.tsx",
+    "root.ts",
+    "index.ts",
+    "src/types.d.ts"
+  ],
+  "importer": "src/main.ts",
+  "cases": [
+    {
+      "specifier": "./api",
+      "target": "src/api.ts",
+      "rule": "EXTENSION"
+    },
+    {
+      "specifier": "./api.js",
+      "target": "src/api.ts",
+      "rule": "JAVA_SCRIPT_SUBSTITUTION"
+    },
+    {
+      "specifier": "./api.tsx",
+      "target": "src/api.tsx",
+      "rule": "EXPLICIT_SOURCE"
+    },
+    {
+      "specifier": "./types.js",
+      "target": "src/types.d.ts",
+      "rule": "JAVA_SCRIPT_SUBSTITUTION"
+    },
+    {
+      "specifier": "./folder",
+      "target": "src/folder/index.tsx",
+      "rule": "DIRECTORY_INDEX"
+    },
+    {
+      "specifier": "../root.ts",
+      "target": "root.ts",
+      "rule": "EXPLICIT_SOURCE"
+    },
+    {
+      "specifier": "../",
+      "target": "index.ts",
+      "rule": "DIRECTORY_INDEX"
+    },
+    {
+      "specifier": "./../root",
+      "target": "root.ts",
+      "rule": "EXTENSION"
+    },
+    {
+      "specifier": "./missing",
+      "reason": "MISSING"
+    },
+    {
+      "specifier": "../../escape",
+      "reason": "OUTSIDE_ROOT"
+    },
+    {
+      "specifier": "package",
+      "reason": "NON_RELATIVE"
+    },
+    {
+      "specifier": "/tmp/path",
+      "reason": "INVALID_SPECIFIER"
+    },
+    {
+      "specifier": "./file.json",
+      "reason": "UNSUPPORTED_EXTENSION"
+    },
+    {
+      "specifier": "./api?raw",
+      "reason": "INVALID_SPECIFIER"
+    },
+    {
+      "specifier": "./a\\b",
+      "reason": "INVALID_SPECIFIER"
+    },
+    {
+      "specifier": "./api.jsx",
+      "reason": "UNSUPPORTED_EXTENSION"
+    }
+  ]
+}

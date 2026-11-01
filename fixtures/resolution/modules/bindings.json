@@ -1,0 +1,179 @@
+{
+  "sources": [
+    "client.ts",
+    "providers/anon.ts",
+    "providers/barrel.ts",
+    "providers/basic.ts",
+    "providers/forward.ts",
+    "providers/klass.ts",
+    "providers/mixed.ts",
+    "providers/opaque.ts",
+    "providers/overload.ts",
+    "providers/recovered.ts",
+    "providers/script.ts",
+    "providers/shadow.ts",
+    "providers/view.tsx",
+    "side-effect.ts"
+  ],
+  "importer": "client.ts",
+  "bindings": [
+    {
+      "local": "start",
+      "type_only": false,
+      "target": {
+        "file": "providers/basic.ts",
+        "name": [
+          "defaultName"
+        ],
+        "kind": "FUNCTION",
+        "role": ""
+      }
+    },
+    {
+      "local": "alias",
+      "type_only": false,
+      "target": {
+        "file": "providers/basic.ts",
+        "name": [
+          "named"
+        ],
+        "kind": "FUNCTION",
+        "role": ""
+      }
+    },
+    {
+      "local": "publicFn",
+      "type_only": false,
+      "target": {
+        "file": "providers/basic.ts",
+        "name": [
+          "internal"
+        ],
+        "kind": "FUNCTION",
+        "role": ""
+      }
+    },
+    {
+      "local": "TypeFn",
+      "type_only": true,
+      "target": {
+        "file": "providers/basic.ts",
+        "name": [
+          "internal"
+        ],
+        "kind": "FUNCTION",
+        "role": ""
+      }
+    },
+    {
+      "local": "Shape",
+      "type_only": true,
+      "reason": "TYPE_ONLY_DECLARATION"
+    },
+    {
+      "local": "other",
+      "type_only": false,
+      "target": {
+        "file": "providers/anon.ts",
+        "name": [
+          "default"
+        ],
+        "kind": "FUNCTION",
+        "role": "default-export"
+      }
+    },
+    {
+      "local": "Klass",
+      "type_only": false,
+      "target": {
+        "file": "providers/klass.ts",
+        "name": [
+          "Thing"
+        ],
+        "kind": "CLASS",
+        "role": ""
+      }
+    },
+    {
+      "local": "barrel",
+      "type_only": false,
+      "reason": "REEXPORT_DEFERRED"
+    },
+    {
+      "local": "clash",
+      "type_only": false,
+      "reason": "AMBIGUOUS_EXPORT"
+    },
+    {
+      "local": "damaged",
+      "type_only": false,
+      "reason": "INCOMPLETE_PROVIDER"
+    },
+    {
+      "local": "opaque",
+      "type_only": false,
+      "target": {
+        "file": "providers/opaque.ts",
+        "name": [
+          "f"
+        ],
+        "kind": "FUNCTION",
+        "role": ""
+      }
+    },
+    {
+      "local": "shadow",
+      "type_only": false,
+      "reason": "AMBIGUOUS_LOCAL"
+    },
+    {
+      "local": "overloaded",
+      "type_only": false,
+      "target": {
+        "file": "providers/overload.ts",
+        "name": [
+          "overloaded"
+        ],
+        "kind": "FUNCTION",
+        "role": ""
+      }
+    },
+    {
+      "local": "hidden",
+      "type_only": false,
+      "reason": "MISSING_EXPORT"
+    },
+    {
+      "local": "forwarded",
+      "type_only": false,
+      "reason": "IMPORTED_ALIAS_DEFERRED"
+    },
+    {
+      "local": "ns",
+      "type_only": false,
+      "reason": "UNSUPPORTED_NAMESPACE"
+    },
+    {
+      "local": "missing",
+      "type_only": false,
+      "reason": "MODULE_UNAVAILABLE"
+    },
+    {
+      "local": "ext",
+      "type_only": false,
+      "reason": "MODULE_UNAVAILABLE"
+    },
+    {
+      "local": "View",
+      "type_only": false,
+      "target": {
+        "file": "providers/view.tsx",
+        "name": [
+          "View"
+        ],
+        "kind": "FUNCTION",
+        "role": ""
+      }
+    }
+  ]
+}
