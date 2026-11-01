@@ -1301,11 +1301,11 @@
         "docs/task-reports/M2-T01.md",
         "crates/ripple-core/src/identity.rs"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M2-T01",
       "started_at": "2026-11-01T19:24:13.553739+00:00",
-      "heartbeat_at": "2026-11-01T19:24:13.553739+00:00",
+      "heartbeat_at": "2026-11-01T19:39:35.929790+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1325,8 +1325,8 @@
         "docs/task-reports/M2-T01.md",
         "crates/ripple-core/src/identity.rs"
       ],
-      "checkpoint": "M1 producer audit and repair integrated/verified on all platforms. Relative lookup/direct-export boundary selected.",
-      "next_action": "Implement captured-path lookup evidence and supported direct export/import bindings with independent fixtures.",
+      "checkpoint": "Initial module/direct-binding library and fixtures integrated; 126 Rust tests and strict worker checks passed.",
+      "next_action": "Run integrated checks, push commits and verify all-platform CI before releasing claims.",
       "report": "docs/task-reports/M2-T01.md"
     },
     {
@@ -2118,8 +2118,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M2-T01-2026-11-01",
     "integration_branch": "main",
-    "checkpoint": "M1 producer audit and repair integrated/verified on all platforms. Relative lookup/direct-export boundary selected.",
-    "next_action": "Implement captured-path lookup evidence and supported direct export/import bindings with independent fixtures.",
-    "updated_at": "2026-11-01T19:24:13.553739+00:00"
+    "checkpoint": "Initial module/direct-binding library and fixtures integrated; 126 Rust tests and strict worker checks passed.",
+    "next_action": "Run integrated checks, push commits and verify all-platform CI before releasing claims.",
+    "updated_at": "2026-11-01T19:39:35.929790+00:00"
   }
 }
