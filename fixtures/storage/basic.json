@@ -1,0 +1,10 @@
+{
+  "library_path": "src/café.ts",
+  "test_path": "tests/café.test.ts",
+  "library_source": "// café\r\nexport function f(){ return $VALUE; }\r\n",
+  "test_source": "import { f } from '../src/café';\r\nf(); unknown();\r\n",
+  "call_confidence": "CANDIDATE",
+  "unresolved_reason": "dynamic target is unsupported",
+  "config": "{\"baseUrl\":\".\"}",
+  "ignore": "node_modules/\n"
+}

@@ -1,4 +1,5 @@
-//! Persistent cold and incremental indexing. Storage implementation is not present yet.
+//! Persistent generation storage; cold/incremental orchestration is staged separately.
+pub mod storage;
 
 #[cfg(test)]
 mod bootstrap {
