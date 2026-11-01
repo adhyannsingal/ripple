@@ -1399,23 +1399,49 @@
       ],
       "lane": "storage",
       "owned_paths": [
-        "crates/ripple-index/src/storage*",
+        "crates/ripple-index/src/storage.rs",
+        "crates/ripple-index/src/lib.rs",
         "crates/ripple-index/migrations/",
-        "fixtures/storage/"
+        "crates/ripple-index/tests/storage.rs",
+        "crates/ripple-index/Cargo.toml",
+        "Cargo.lock",
+        "fixtures/storage/",
+        "docs/adr/0003-sqlite-persistence.md",
+        "docs/adr/0016-storage-generations.md",
+        "docs/storage.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M2-T03.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M2-T03",
+      "started_at": "2026-11-01T21:38:55.764671+00:00",
+      "heartbeat_at": "2026-11-01T21:38:55.764671+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "b93f728876f3a74e1f288f74013f458a422a9b36",
+      "claimed_paths": [
+        "crates/ripple-index/src/storage.rs",
+        "crates/ripple-index/src/lib.rs",
+        "crates/ripple-index/migrations/",
+        "crates/ripple-index/tests/storage.rs",
+        "crates/ripple-index/Cargo.toml",
+        "Cargo.lock",
+        "fixtures/storage/",
+        "docs/adr/0003-sqlite-persistence.md",
+        "docs/adr/0016-storage-generations.md",
+        "docs/storage.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M2-T03.md"
+      ],
+      "checkpoint": "Main clean and exactly synchronized after fetch; prerequisites verified. Designing atomic typed generations and captured-byte validation.",
+      "next_action": "Implement schema/storage API, independent persistence fixtures, transactional failure/concurrency and metadata recovery tests.",
       "report": "docs/task-reports/M2-T03.md"
     },
     {
@@ -2147,11 +2173,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M2-T03-storage",
     "integration_branch": "main",
-    "checkpoint": "M1 handoff audit verified and M2-T01 complete. No active claims. M2 gate remains pending.",
-    "next_action": "M2-T03: persist versioned typed graphs atomically in SQLite.",
-    "updated_at": "2026-11-01T19:43:39.337541+00:00"
+    "checkpoint": "Main clean and exactly synchronized after fetch; prerequisites verified. Designing atomic typed generations and captured-byte validation.",
+    "next_action": "Implement schema/storage API, independent persistence fixtures, transactional failure/concurrency and metadata recovery tests.",
+    "updated_at": "2026-11-01T21:38:55.764671+00:00"
   }
 }

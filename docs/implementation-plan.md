@@ -236,7 +236,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M2-T03 — Persist versioned typed graphs atomically in SQLite
 
 - **Depends on:** M0-T05. **Lane:** storage.
-- **Own:** `crates/ripple-index/src/storage*`; `crates/ripple-index/migrations/`; `fixtures/storage/`.
+- **Own:** `crates/ripple-index/src/storage.rs`; `crates/ripple-index/src/lib.rs`; `crates/ripple-index/migrations/`; `crates/ripple-index/tests/storage.rs`; `crates/ripple-index/Cargo.toml`; `Cargo.lock`; `fixtures/storage/`; `docs/adr/0003-sqlite-persistence.md`; `docs/adr/0016-storage-generations.md`; `docs/storage.md`; `docs/limitations.md`; `docs/project-status.md`; `README.md`; `docs/task-reports/M2-T03.md`.
 - **Implement:** Implement schema v1 with typed node endpoints, file/symbol details, edge provenance, unresolved references and metadata. Add transactions, foreign keys, migration/version checks, a single-writer lock/error and recoverable derived metadata.json. Store file content/config/hash provenance and a complete-generation marker. Load a graph generation in a read transaction so concurrent refreshes cannot mix generations. Persist the captured bytes/facts needed for repeatable analysis, including effective-config and ignore-policy provenance.
 - **Acceptance:** Round-trip canonical fixtures include FILE/TEST_FILE/OPAQUE_BOUNDARY nodes and unresolved records; injected write failure preserves previous generation; foreign keys reject dangling edges; incompatible/newer schema and concurrent writes produce actionable errors; metadata disagreement recovers from SQLite. A reader racing publication observes one complete generation; never mixed nodes/edges.
 - **Handoff:** Storage repository API and migration policy; no traversal SQL at each hop.
