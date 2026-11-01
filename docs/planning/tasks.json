@@ -39,9 +39,16 @@
       "id": "M1",
       "title": "Source understanding",
       "target": "Week 1",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null,
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M1-T01 through M1-T09 integrated and verified; earlier gate evidence retained in history.",
+        "116 Rust tests, strict fmt/build/Clippy, 18 Python tests, plan/link checks passed.",
+        "M1 producer audit, independent fixture/hash/ownership/CLI evidence and installed full-budget cutoff reproduction passed.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41341146389",
+        "docs/reviews/M1-handoff-review-2026-11-01.md",
+        "docs/task-reports/M1.md"
+      ],
+      "completed_at": "2026-11-01T19:22:01.920588+00:00",
       "gate_history": [
         {
           "gate_status": "passed",
@@ -1215,30 +1222,60 @@
         "docs/project-status.md",
         "README.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M1-T09",
       "started_at": "2026-11-01T19:17:19.763726+00:00",
-      "heartbeat_at": "2026-11-01T19:19:13.031169+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-01T19:22:01.920588+00:00",
+      "completed_at": "2026-11-01T19:22:01.920588+00:00",
+      "integrated_commit": "2f2265ef6e4d5de5db7cebbdb128ed5a3889ded9",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (116 Rust tests on macOS; cutoff regression fails before repair)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "Clean temporary cargo install --locked and installed TS/TSX inspect plus production-budget saturated-warning cutoff reproduction",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo-audit audit --json (122 packages; zero known vulnerabilities/warnings)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Local Markdown target/ADR checks and git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub Linux/macOS/Windows CI https://github.com/adhyannsingal/ripple/actions/runs/41341146389",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "ff5254554a562a00de3de9859a76edb3ce913892",
-      "claimed_paths": [
-        "crates/ripple-parse/src/symbols.rs",
-        "crates/ripple-parse/src/hashes.rs",
-        "fixtures/extraction/resource-limit-policy.json",
-        "docs/adr/0012-syntax-hashes.md",
-        "docs/adr/0013-reference-extraction.md",
-        "docs/reviews/M1-handoff-review-2026-11-01.md",
-        "docs/task-reports/M1-T09.md",
-        "docs/task-reports/M1.md",
-        "docs/project-status.md",
-        "README.md"
-      ],
-      "checkpoint": "M1 audit/cutoff repair integrated; 116 Rust tests and installed production-budget regression passed.",
-      "next_action": "Run integrated checks and platform CI; complete M1 revalidation, then begin M2-T01.",
+      "claimed_paths": [],
+      "checkpoint": "M1 audit/cutoff repair integrated and verified, including installed production reproduction and all platform CI. Claims released.",
+      "next_action": "M2-T01 relative module and direct export resolution.",
       "report": "docs/task-reports/M1-T09.md"
     },
     {
@@ -2057,11 +2094,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M1-M2-handoff-2026-11-01",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "M1 audit/cutoff repair integrated; 116 Rust tests and installed production-budget regression passed.",
-    "next_action": "Run integrated checks and platform CI; complete M1 revalidation, then begin M2-T01.",
-    "updated_at": "2026-11-01T19:19:13.031169+00:00"
+    "checkpoint": "M1 thoroughly reviewed and revalidated; all claims released. M2 is authorized next.",
+    "next_action": "M2-T01 relative module and direct export resolution.",
+    "updated_at": "2026-11-01T19:22:01.920588+00:00"
   }
 }
