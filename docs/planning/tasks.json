@@ -1414,11 +1414,11 @@
         "README.md",
         "docs/task-reports/M2-T03.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M2-T03",
       "started_at": "2026-11-01T21:38:55.764671+00:00",
-      "heartbeat_at": "2026-11-01T21:38:55.764671+00:00",
+      "heartbeat_at": "2026-11-01T21:56:31.796675+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1440,8 +1440,8 @@
         "README.md",
         "docs/task-reports/M2-T03.md"
       ],
-      "checkpoint": "Main clean and exactly synchronized after fetch; prerequisites verified. Designing atomic typed generations and captured-byte validation.",
-      "next_action": "Implement schema/storage API, independent persistence fixtures, transactional failure/concurrency and metadata recovery tests.",
+      "checkpoint": "Storage, fixtures and review repairs integrated locally. Worker tests and strict Clippy pass; audit clean. Running integrated checks and CI.",
+      "next_action": "Run integrated workspace/planning/CLI checks, push and verify all platform CI before completion.",
       "report": "docs/task-reports/M2-T03.md"
     },
     {
@@ -2176,8 +2176,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M2-T03-storage",
     "integration_branch": "main",
-    "checkpoint": "Main clean and exactly synchronized after fetch; prerequisites verified. Designing atomic typed generations and captured-byte validation.",
-    "next_action": "Implement schema/storage API, independent persistence fixtures, transactional failure/concurrency and metadata recovery tests.",
-    "updated_at": "2026-11-01T21:38:55.764671+00:00"
+    "checkpoint": "Storage, fixtures and review repairs integrated locally. Worker tests and strict Clippy pass; audit clean. Running integrated checks and CI.",
+    "next_action": "Run integrated workspace/planning/CLI checks, push and verify all platform CI before completion.",
+    "updated_at": "2026-11-01T21:56:31.796675+00:00"
   }
 }
