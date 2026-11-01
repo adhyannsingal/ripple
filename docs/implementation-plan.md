@@ -207,6 +207,14 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 - **Acceptance:** Failing-before/passing-after regressions for repairs; formatting, locked build/tests, strict Clippy, planning/link checks, advisory scan, inspect/install smoke and required platform CI pass. Revalidate M1 while preserving earlier gate evidence.
 - **Handoff:** Reviewed inspect command, report and verified gate before the next implementation task.
 
+#### M1-T09 — Audit M1 producer contracts before semantic resolution
+
+- **Depends on:** M1-T08. **Lane:** quality.
+- **Own:** `crates/ripple-parse/src/symbols.rs`; `crates/ripple-parse/src/hashes.rs`; `fixtures/extraction/resource-limit-policy.json`; `docs/adr/0012-syntax-hashes.md`; `docs/adr/0013-reference-extraction.md`; `docs/reviews/M1-handoff-review-2026-11-01.md`; `docs/task-reports/M1-T09.md`; `docs/task-reports/M1.md`; `docs/project-status.md`; `README.md`.
+- **Implement:** Review M1 against its gate and downstream semantic consumers. Repair reproduced producer uncertainty/resource defects without expanding source scope; record handoff evidence and compatibility decisions.
+- **Acceptance:** Failing-before/passing-after cutoff regression; complete workspace/planning checks, inspect/install smoke, advisory scan and platform CI pass. A primary node cutoff withholds supplemental facts even after warning saturation. Preserve previous M1 gate history.
+- **Handoff:** Verified M1 facts and review report before M2 implementation.
+
 ### M2 — Persistent graph and impact
 
 #### M2-T01 — Resolve relative modules and direct export bindings

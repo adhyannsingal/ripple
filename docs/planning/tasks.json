@@ -39,17 +39,9 @@
       "id": "M1",
       "title": "Source understanding",
       "target": "Week 1",
-      "gate_status": "passed",
-      "gate_evidence": [
-        "M1-T01 through M1-T08 integrated and verified; earlier M1 gate evidence retained in gate_history.",
-        "115 Rust tests on macOS, strict formatting/build/Clippy, 18 Python tests and plan validation passed.",
-        "TS/TSX inspect goldens, spans/ownership, explicit uncertainty, read-only tests and installed CLI smoke passed.",
-        "User-requested code/security review repaired Unicode human-output controls; exact JSON facts and existing goldens unchanged.",
-        "https://github.com/adhyannsingal/ripple/actions/runs/41252220857",
-        "docs/reviews/inspect-review-2026-10-31.md",
-        "docs/task-reports/M1.md"
-      ],
-      "completed_at": "2026-10-31T23:24:46.441532+00:00",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null,
       "gate_history": [
         {
           "gate_status": "passed",
@@ -62,6 +54,19 @@
             "docs/task-reports/M1.md"
           ],
           "completed_at": "2026-10-31T20:03:15.458315+00:00"
+        },
+        {
+          "gate_status": "passed",
+          "gate_evidence": [
+            "M1-T01 through M1-T08 integrated and verified; earlier M1 gate evidence retained in gate_history.",
+            "115 Rust tests on macOS, strict formatting/build/Clippy, 18 Python tests and plan validation passed.",
+            "TS/TSX inspect goldens, spans/ownership, explicit uncertainty, read-only tests and installed CLI smoke passed.",
+            "User-requested code/security review repaired Unicode human-output controls; exact JSON facts and existing goldens unchanged.",
+            "https://github.com/adhyannsingal/ripple/actions/runs/41252220857",
+            "docs/reviews/inspect-review-2026-10-31.md",
+            "docs/task-reports/M1.md"
+          ],
+          "completed_at": "2026-10-31T23:24:46.441532+00:00"
         }
       ]
     },
@@ -1191,6 +1196,52 @@
       "report": "docs/task-reports/M1-T08.md"
     },
     {
+      "id": "M1-T09",
+      "milestone": "M1",
+      "title": "Audit M1 producer contracts before semantic resolution",
+      "depends_on": [
+        "M1-T08"
+      ],
+      "lane": "quality",
+      "owned_paths": [
+        "crates/ripple-parse/src/symbols.rs",
+        "crates/ripple-parse/src/hashes.rs",
+        "fixtures/extraction/resource-limit-policy.json",
+        "docs/adr/0012-syntax-hashes.md",
+        "docs/adr/0013-reference-extraction.md",
+        "docs/reviews/M1-handoff-review-2026-11-01.md",
+        "docs/task-reports/M1-T09.md",
+        "docs/task-reports/M1.md",
+        "docs/project-status.md",
+        "README.md"
+      ],
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M1-T09",
+      "started_at": "2026-11-01T19:17:19.763726+00:00",
+      "heartbeat_at": "2026-11-01T19:17:19.763726+00:00",
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": "ff5254554a562a00de3de9859a76edb3ce913892",
+      "claimed_paths": [
+        "crates/ripple-parse/src/symbols.rs",
+        "crates/ripple-parse/src/hashes.rs",
+        "fixtures/extraction/resource-limit-policy.json",
+        "docs/adr/0012-syntax-hashes.md",
+        "docs/adr/0013-reference-extraction.md",
+        "docs/reviews/M1-handoff-review-2026-11-01.md",
+        "docs/task-reports/M1-T09.md",
+        "docs/task-reports/M1.md",
+        "docs/project-status.md",
+        "README.md"
+      ],
+      "checkpoint": "Full M1 baseline passes; reproduced saturated warning budget hiding primary extraction resource cutoff and allowing supplemental facts.",
+      "next_action": "Preserve the primary cutoff marker, add a bounded regression and validate complete M1 handoff before M2.",
+      "report": "docs/task-reports/M1-T09.md"
+    },
+    {
       "id": "M2-T01",
       "milestone": "M2",
       "title": "Resolve relative modules and direct export bindings",
@@ -2006,11 +2057,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M1-M2-handoff-2026-11-01",
     "integration_branch": "main",
-    "checkpoint": "Inspect code/security review complete; M0 and revalidated M1 gates passed. No active claims.",
-    "next_action": "M2-T01: resolve relative modules and direct export bindings.",
-    "updated_at": "2026-10-31T23:24:46.441532+00:00"
+    "checkpoint": "Full M1 baseline passes; reproduced saturated warning budget hiding primary extraction resource cutoff and allowing supplemental facts.",
+    "next_action": "Preserve the primary cutoff marker, add a bounded regression and validate complete M1 handoff before M2.",
+    "updated_at": "2026-11-01T19:17:19.763726+00:00"
   }
 }
