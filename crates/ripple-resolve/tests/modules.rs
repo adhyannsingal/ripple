@@ -116,6 +116,7 @@ fn independent_direct_export_and_import_alias_fixture_never_guesses_opaque_targe
         sorted(fixture["bindings"].as_array().unwrap().clone())
     );
     assert!(actual.incomplete_resolution);
+    assert!(!actual.configuration_evaluated);
     assert_eq!(actual.deferred_exports.len(), 1);
     assert!(
         actual
@@ -262,6 +263,7 @@ fn adding_a_captured_provider_repairs_a_previously_missing_import_in_a_cold_reru
         matches!(&after.imports[0].bindings[0].binding,BindingOutcome::Symbol{identity} if identity.path()==&p("new.ts"))
     );
     assert!(!after.incomplete_resolution);
+    assert!(!after.configuration_evaluated);
 }
 #[test]
 fn wrong_project_or_cross_file_symbol_facts_are_rejected_before_resolution() {

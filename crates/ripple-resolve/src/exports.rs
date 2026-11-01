@@ -89,6 +89,8 @@ pub struct ResolutionDiagnostic {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ModuleResolution {
     pub resolver_version: String,
+    /// Config/module/package policy is a later stage; inventory matches alone are conditional.
+    pub configuration_evaluated: bool,
     pub direct_exports: Vec<DirectExport>,
     pub deferred_exports: Vec<DeferredExport>,
     pub imports: Vec<ImportResolution>,
@@ -418,6 +420,7 @@ pub fn resolve(
         || files.iter().any(|f| !f.diagnostics.is_empty());
     Ok(ModuleResolution {
         resolver_version: RESOLVER_VERSION.into(),
+        configuration_evaluated: false,
         direct_exports,
         deferred_exports,
         imports,
