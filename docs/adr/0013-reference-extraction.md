@@ -33,3 +33,5 @@ The analyzer compatibility token becomes `ripple-facts-v3-ts0.23.2-runtime0.27.1
 ## Evidence and follow-ups
 
 Eight independently specified TS/TSX fixture programs cover default/alias/type-only imports, local/barrel exports, circular module specifiers, shadowing, module-level test callbacks and dynamic boundaries. Behavioral tests cover lexical environments, provenance, round trips, generated ownership, unsupported/recovered cases and budgets. Overlapping-text and warning-cap/resource-marker regressions failed before their repairs. Performance and compiler-oracle accuracy are not measured; M1-T05 wires inspect, M2 resolves supported facts and M3 establishes oracle evidence.
+
+M1-T09 advances analyzer compatibility to `ripple-facts-v4-ts0.23.2-runtime0.27.1`: the primary symbol node-budget marker now survives diagnostic saturation, so composed extraction stops without supplemental facts. Hash encoding and IDs remain unchanged. A bounded recipe fixture exercises the actual cutoff with a private reduced test budget; production remains capped at one million nodes.
