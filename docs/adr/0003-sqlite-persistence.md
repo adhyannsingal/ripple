@@ -1,6 +1,6 @@
 # ADR 0003: Atomic SQLite generations with captured-input manifests
 
-Status: accepted (M0-T05); storage implementation belongs to M2-T03.
+Status: accepted (M0-T05); storage implemented by M2-T03; see [ADR 0016](0016-storage-generations.md). Live capture/re-observation remains M2-T05.
 
 ## Context
 
@@ -26,7 +26,7 @@ SQLite supports the local no-server product while transaction boundaries make pu
 
 SnapshotData is an untrusted transport record until validated against captured UTF-8 sources; runtime IndexSnapshot has no unchecked deserializer. Validate manifests, facts, graph membership/spans and compatibility before use. Digest shape validation does not compute or verify content hashes: production capture must do that. A changing worktree is a bounded failure, not an excuse to publish mixed state. Initial verified queries may scan/hash inputs; measure that cost separately from graph traversal.
 
-M0 contract tests do not establish SQLite migration, crash-recovery, read/write concurrency or filesystem guarantees. M2/M5 must test those actual implementations.
+M0 contract tests do not establish SQLite migration, crash-recovery, read/write concurrency or filesystem guarantees. M2-T03 tests actual transactional rollback, generation-consistent reads, contention and summary recovery. Power-loss fault injection and performance remain unmeasured; M2-T05 must verify live capture/retry behavior.
 
 ## Revisit condition
 

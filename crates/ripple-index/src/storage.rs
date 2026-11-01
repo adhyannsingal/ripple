@@ -562,6 +562,9 @@ impl Store {
         };
         let mut expected = serde_json::to_vec_pretty(&summary)?;
         expected.push(b'\n');
+        if expected.len() > MAX_RECORD_BYTES {
+            return Err(invalid("metadata summary exceeds 64 MiB"));
+        }
         let path = self.directory.join("metadata.json");
         reject_special(&path)?;
         let existing = match fs::File::open(&path) {

@@ -14,7 +14,8 @@ Ripple is being built as a local Rust tool that explains which TypeScript code a
 | Fingerprints | Separate structural signature/body SHA-256 hashes. Ordinary comments/spacing are stable while ASI and meaningful literal/TSX changes remain observable. Supported method body edits do not change the class shape fingerprint. Unsupported export shapes withhold complete signatures. |
 | Inspect CLI | Captures a selected root and displays one discovered TS/TSX file as deterministic human or versioned JSON facts, with source spans, ownership and explicit diagnostics/incompleteness. No index or Git state is written. |
 | Initial resolution library | M2-T01 matches captured relative source paths, retains positive/negative lookup evidence and links supported direct exports/import aliases. Types, ambiguity and deferred barrels stay explicit; no call graph or compiler-mode agreement is claimed. |
-| Shared contracts | Validated source, syntax, graph/evidence, revision, index and canonical-state data structures. These are boundaries for later implementations; a graph contract does not mean graph traversal or persistent indexing is available. |
+| Storage library | Versioned SQLite generations retain captured bytes, syntax facts, typed nodes/edges and uncertainty. Publication is atomic, reads are generation-consistent, compatibility/corruption checks are explicit and derived metadata is recoverable. This does not implement the index CLI or live manifest verification. |
+| Shared contracts | Validated source, syntax, graph/evidence, revision, index and canonical-state data structures. These are boundaries for later implementations; a graph contract does not mean graph traversal or end-to-end indexing is available. |
 
 For example, changing `function f() { return 1; }` to `function f() { return 2; }` preserves its identity and syntactic signature hash but changes its body hash. Adding blank lines preserves identity and hashes. These library-level facts will feed future change/impact analysis; they do not establish semantic API equality or safe test skipping.
 
@@ -33,7 +34,7 @@ The binary reports `ripple 0.1.0-dev`. `inspect` now exposes source facts withou
 
 M0 contracts/bootstrap and the revalidated M1 source-understanding gate are complete. M1 discovery, parsing, supported symbols/hashes, import/export/reference extraction and the inspect CLI are integrated and verified. See the [M1 gate report](task-reports/M1.md) for evidence. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
 
-M2-T01 adds relative module/direct binding evidence. Next by ready dependency order is **M2-T03**, persistent typed graph storage. Later milestones add semantic resolution and SQLite generations, compiler-oracle evaluation, Git base/head impact analysis, incremental/replay correctness, related-test evidence and measured release benchmarks.
+M2-T01 adds relative module/direct binding evidence. M2-T03 adds validated atomic SQLite generations. Next by ready dependency order is **M2-T04**, deterministic in-memory reverse traversal. Later milestones add remaining semantic resolution and index building, compiler-oracle evaluation, Git base/head impact analysis, incremental/replay correctness, related-test evidence and measured release benchmarks.
 
 No resolver accuracy, latency, incremental-equality or test-sufficiency results are claimed. See [limitations](limitations.md), the [task ledger](planning/tasks.json), [implementation plan](implementation-plan.md), the [reference extraction report](task-reports/M1-T04.md) and [extraction review](reviews/extraction-recheck-2026-10-30.md) for the exact boundaries and evidence.
 
