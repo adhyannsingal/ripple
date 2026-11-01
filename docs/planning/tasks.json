@@ -1215,11 +1215,11 @@
         "docs/project-status.md",
         "README.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M1-T09",
       "started_at": "2026-11-01T19:17:19.763726+00:00",
-      "heartbeat_at": "2026-11-01T19:17:19.763726+00:00",
+      "heartbeat_at": "2026-11-01T19:19:13.031169+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1237,8 +1237,8 @@
         "docs/project-status.md",
         "README.md"
       ],
-      "checkpoint": "Full M1 baseline passes; reproduced saturated warning budget hiding primary extraction resource cutoff and allowing supplemental facts.",
-      "next_action": "Preserve the primary cutoff marker, add a bounded regression and validate complete M1 handoff before M2.",
+      "checkpoint": "M1 audit/cutoff repair integrated; 116 Rust tests and installed production-budget regression passed.",
+      "next_action": "Run integrated checks and platform CI; complete M1 revalidation, then begin M2-T01.",
       "report": "docs/task-reports/M1-T09.md"
     },
     {
@@ -2060,8 +2060,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M1-M2-handoff-2026-11-01",
     "integration_branch": "main",
-    "checkpoint": "Full M1 baseline passes; reproduced saturated warning budget hiding primary extraction resource cutoff and allowing supplemental facts.",
-    "next_action": "Preserve the primary cutoff marker, add a bounded regression and validate complete M1 handoff before M2.",
-    "updated_at": "2026-11-01T19:17:19.763726+00:00"
+    "checkpoint": "M1 audit/cutoff repair integrated; 116 Rust tests and installed production-budget regression passed.",
+    "next_action": "Run integrated checks and platform CI; complete M1 revalidation, then begin M2-T01.",
+    "updated_at": "2026-11-01T19:19:13.031169+00:00"
   }
 }
