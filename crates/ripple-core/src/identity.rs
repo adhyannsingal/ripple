@@ -200,6 +200,9 @@ impl SymbolId {
         self.kind
     }
     /// Versioned, unambiguous UTF-8 byte-length framing; display strings are not IDs.
+    pub fn disambiguator(&self) -> &str {
+        &self.disambiguator
+    }
     pub fn semantic_key(&self) -> String {
         let mut key = "symbol:v1:".to_owned();
         let mut fields = vec![

@@ -1298,7 +1298,8 @@
         "docs/limitations.md",
         "docs/project-status.md",
         "README.md",
-        "docs/task-reports/M2-T01.md"
+        "docs/task-reports/M2-T01.md",
+        "crates/ripple-core/src/identity.rs"
       ],
       "status": "in_progress",
       "owner": "local-agent",
@@ -1321,7 +1322,8 @@
         "docs/limitations.md",
         "docs/project-status.md",
         "README.md",
-        "docs/task-reports/M2-T01.md"
+        "docs/task-reports/M2-T01.md",
+        "crates/ripple-core/src/identity.rs"
       ],
       "checkpoint": "M1 producer audit and repair integrated/verified on all platforms. Relative lookup/direct-export boundary selected.",
       "next_action": "Implement captured-path lookup evidence and supported direct export/import bindings with independent fixtures.",
