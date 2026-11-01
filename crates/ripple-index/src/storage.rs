@@ -489,6 +489,8 @@ impl Store {
                 ],
             )?;
         }
+        // Never commit a generation that the bounded loader would reject.
+        check_stored_budget(&tx, id)?;
         tx.execute("UPDATE generations SET complete=1 WHERE id=?1", [id])?;
         tx.execute("INSERT INTO current_generation VALUES(1,?1) ON CONFLICT(singleton) DO UPDATE SET generation_id=excluded.generation_id",[id])?;
         tx.commit()?;
@@ -600,6 +602,39 @@ impl Store {
         Ok(status)
     }
 }
+fn check_stored_budget(c: &Connection, id: i64) -> Result<(), StorageError> {
+    let mut count = 0usize;
+    let mut json_bytes = 0usize;
+    for (table, column) in [
+        ("files", "facts_json"),
+        ("symbols", "record_json"),
+        ("nodes", "record_json"),
+        ("edges", "record_json"),
+        ("unresolved_references", "record_json"),
+    ] {
+        let (rows,max,sum):(i64,i64,i64)=c.query_row(&format!("SELECT count(*),COALESCE(max(length(CAST({column} AS BLOB))),0),COALESCE(sum(length(CAST({column} AS BLOB))),0) FROM {table} WHERE generation_id=?1"),[id],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?)))?;
+        count = count.saturating_add(rows as usize);
+        json_bytes = json_bytes.saturating_add(sum as usize);
+        if count > MAX_RECORDS
+            || max < 0
+            || max as usize > MAX_RECORD_BYTES
+            || json_bytes > MAX_TOTAL_INPUT_BYTES
+        {
+            return Err(invalid("stored record budget exceeded"));
+        }
+    }
+    let (rows,max,sum):(i64,i64,i64)=c.query_row("SELECT count(*),COALESCE(max(length(bytes)),0),COALESCE(sum(length(bytes)),0) FROM captured_inputs WHERE generation_id=?1",[id],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?)))?;
+    if rows as usize + count > MAX_RECORDS
+        || max < 0
+        || max as usize > MAX_INPUT_BYTES
+        || sum < 0
+        || sum as usize > MAX_TOTAL_INPUT_BYTES
+    {
+        return Err(invalid("stored captured-input budget exceeded"));
+    }
+    Ok(())
+}
+
 fn header(c: &Connection, id: i64) -> Result<Option<(IndexMetadata, String)>, StorageError> {
     let sizes:Option<(i64,i64,i64)>=c.query_row("SELECT length(CAST(metadata_json AS BLOB)),length(seal),complete FROM generations WHERE id=?1",[id],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?))).optional()?;
     let Some((length, seal_length, complete)) = sizes else {
@@ -632,35 +667,7 @@ fn load(
             "stored analyzer/schema/hash differs from this reader".into(),
         ));
     }
-    let mut count = 0usize;
-    let mut json_bytes = 0usize;
-    for (table, column) in [
-        ("files", "facts_json"),
-        ("symbols", "record_json"),
-        ("nodes", "record_json"),
-        ("edges", "record_json"),
-        ("unresolved_references", "record_json"),
-    ] {
-        let (rows,max,sum):(i64,i64,i64)=c.query_row(&format!("SELECT count(*),COALESCE(max(length(CAST({column} AS BLOB))),0),COALESCE(sum(length(CAST({column} AS BLOB))),0) FROM {table} WHERE generation_id=?1"),[id],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?)))?;
-        count = count.saturating_add(rows as usize);
-        json_bytes = json_bytes.saturating_add(sum as usize);
-        if count > MAX_RECORDS
-            || max < 0
-            || max as usize > MAX_RECORD_BYTES
-            || json_bytes > MAX_TOTAL_INPUT_BYTES
-        {
-            return Err(invalid("stored record budget exceeded"));
-        }
-    }
-    let (rows,max,sum):(i64,i64,i64)=c.query_row("SELECT count(*),COALESCE(max(length(bytes)),0),COALESCE(sum(length(bytes)),0) FROM captured_inputs WHERE generation_id=?1",[id],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?)))?;
-    if rows as usize + count > MAX_RECORDS
-        || max < 0
-        || max as usize > MAX_INPUT_BYTES
-        || sum < 0
-        || sum as usize > MAX_TOTAL_INPUT_BYTES
-    {
-        return Err(invalid("stored captured-input budget exceeded"));
-    }
+    check_stored_budget(c, id)?;
     let mut inputs = Vec::new();
     let mut manifest = Vec::new();
     let mut sources = Vec::new();
