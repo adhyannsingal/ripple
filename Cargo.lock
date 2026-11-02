@@ -573,6 +573,7 @@ name = "ripple-impact"
 version = "0.1.0-dev"
 dependencies = [
  "ripple-core",
+ "serde",
 ]
 
 [[package]]

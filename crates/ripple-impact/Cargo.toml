@@ -11,3 +11,4 @@ workspace = true
 
 [dependencies]
 ripple-core.workspace = true
+serde.workspace = true

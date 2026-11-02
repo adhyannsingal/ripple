@@ -1380,28 +1380,48 @@
         "docs/limitations.md",
         "docs/task-reports/M2-T02.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M2-T02",
       "started_at": "2026-11-02T06:17:40.615808+00:00",
-      "heartbeat_at": "2026-11-02T06:24:43.968354+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-02T06:32:28.570713+00:00",
+      "completed_at": "2026-11-02T06:32:28.570713+00:00",
+      "integrated_commit": "5809fda115d5c3b5c024364cf05000d1cf3c9f44",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (205 macOS tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "Linux/macOS/Windows CI https://github.com/adhyannsingal/ripple/actions/runs/41400249303",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "9902230e20e7d9cda00c67bdb3e56bf968e0779a",
-      "claimed_paths": [
-        "crates/ripple-resolve/src/symbols.rs",
-        "crates/ripple-resolve/src/lib.rs",
-        "crates/ripple-resolve/tests/calls.rs",
-        "fixtures/resolution/calls/",
-        "docs/adr/0020-call-resolution.md",
-        "docs/resolution.md",
-        "docs/limitations.md",
-        "docs/task-reports/M2-T02.md"
-      ],
-      "checkpoint": "Call graph implementation/review fixtures integrated; eight focused and full worker tests passed. Running integrated CI before M2-T05.",
-      "next_action": "Verify integrated checks and CI, then claim M2-T05.",
+      "claimed_paths": [],
+      "checkpoint": "Call graph rules and boundary review fixes integrated; all local and Linux/macOS/Windows CI checks passed; claims released.",
+      "next_action": "M2-T05 cold index/status/impact integration.",
       "report": "docs/task-reports/M2-T02.md"
     },
     {
@@ -1577,24 +1597,85 @@
       ],
       "lane": "integration",
       "owned_paths": [
-        "crates/ripple-index/src/build*",
-        "crates/ripple-cli/src/commands/{index,status,impact}*",
-        "crates/ripple-cli/tests/index_impact*",
-        ".github/workflows/ci.yml"
+        "crates/ripple-index/src/build.rs",
+        "crates/ripple-index/src/build_capture.rs",
+        "crates/ripple-index/src/build_git.rs",
+        "crates/ripple-index/src/lib.rs",
+        "crates/ripple-index/tests/build.rs",
+        "crates/ripple-index/Cargo.toml",
+        "crates/ripple-resolve/src/config.rs",
+        "crates/ripple-impact/src/traversal.rs",
+        "crates/ripple-impact/Cargo.toml",
+        "Cargo.lock",
+        "crates/ripple-cli/src/main.rs",
+        "crates/ripple-cli/src/output.rs",
+        "crates/ripple-cli/src/commands/mod.rs",
+        "crates/ripple-cli/src/commands/index.rs",
+        "crates/ripple-cli/src/commands/status.rs",
+        "crates/ripple-cli/src/commands/impact.rs",
+        "crates/ripple-cli/src/commands/persistent.rs",
+        "crates/ripple-cli/tests/index_impact.rs",
+        "crates/ripple-cli/tests/cli.rs",
+        "fixtures/cold-index/",
+        ".github/workflows/ci.yml",
+        "scripts/m2-smoke.py",
+        "docs/adr/0021-cold-index.md",
+        "docs/task-reports/M2-T05.md",
+        "docs/task-reports/M2.md",
+        "docs/reviews/M2-security-verification-2026-11-02.md",
+        "docs/cli.md",
+        "docs/storage.md",
+        "docs/resolution.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M2-T05",
+      "started_at": "2026-11-02T06:32:28.639244+00:00",
+      "heartbeat_at": "2026-11-02T06:32:28.639244+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "5809fda115d5c3b5c024364cf05000d1cf3c9f44",
+      "claimed_paths": [
+        "crates/ripple-index/src/build.rs",
+        "crates/ripple-index/src/build_capture.rs",
+        "crates/ripple-index/src/build_git.rs",
+        "crates/ripple-index/src/lib.rs",
+        "crates/ripple-index/tests/build.rs",
+        "crates/ripple-index/Cargo.toml",
+        "crates/ripple-resolve/src/config.rs",
+        "crates/ripple-impact/src/traversal.rs",
+        "crates/ripple-impact/Cargo.toml",
+        "Cargo.lock",
+        "crates/ripple-cli/src/main.rs",
+        "crates/ripple-cli/src/output.rs",
+        "crates/ripple-cli/src/commands/mod.rs",
+        "crates/ripple-cli/src/commands/index.rs",
+        "crates/ripple-cli/src/commands/status.rs",
+        "crates/ripple-cli/src/commands/impact.rs",
+        "crates/ripple-cli/src/commands/persistent.rs",
+        "crates/ripple-cli/tests/index_impact.rs",
+        "crates/ripple-cli/tests/cli.rs",
+        "fixtures/cold-index/",
+        ".github/workflows/ci.yml",
+        "scripts/m2-smoke.py",
+        "docs/adr/0021-cold-index.md",
+        "docs/task-reports/M2-T05.md",
+        "docs/task-reports/M2.md",
+        "docs/reviews/M2-security-verification-2026-11-02.md",
+        "docs/cli.md",
+        "docs/storage.md",
+        "docs/resolution.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md"
+      ],
+      "checkpoint": "M2-T02 verified/integrated. Implementing cold capture/build/publication and verified queries; security/verification gate follows.",
+      "next_action": "Implement bounded Git/config/input capture, cold pipeline, CLI outputs and adversarial acceptance/install tests.",
       "report": "docs/task-reports/M2-T05.md"
     },
     {
@@ -2380,8 +2461,8 @@
     "owner": "local-agent",
     "session_id": "ripple-finish-M2",
     "integration_branch": "main",
-    "checkpoint": "Call graph implementation/review fixtures integrated; eight focused and full worker tests passed. Running integrated CI before M2-T05.",
-    "next_action": "Verify integrated checks and CI, then claim M2-T05.",
-    "updated_at": "2026-11-02T06:24:43.968354+00:00"
+    "checkpoint": "M2-T02 verified/integrated. Implementing cold capture/build/publication and verified queries; security/verification gate follows.",
+    "next_action": "Implement bounded Git/config/input capture, cold pipeline, CLI outputs and adversarial acceptance/install tests.",
+    "updated_at": "2026-11-02T06:32:28.639244+00:00"
   }
 }
