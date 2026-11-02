@@ -1491,11 +1491,11 @@
         "README.md",
         "docs/task-reports/M2-T04.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M2-T04",
       "started_at": "2026-11-02T02:22:55.129072+00:00",
-      "heartbeat_at": "2026-11-02T02:22:55.129072+00:00",
+      "heartbeat_at": "2026-11-02T02:30:08.608921+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1514,8 +1514,8 @@
         "README.md",
         "docs/task-reports/M2-T04.md"
       ],
-      "checkpoint": "Main clean and synchronized; graph/evidence contracts and storage integration verified. Designing deterministic dual-track adjacency/BFS.",
-      "next_action": "Implement adjacency and shortest paths, then independently expected traversal fixtures.",
+      "checkpoint": "Dual-track queries and documentation integrated locally; 155 worker Rust tests, strict Clippy, independent path oracle and advisory audit passed. Code/security review complete.",
+      "next_action": "Run integrated checks, push commits and verify all platform CI before marking done.",
       "report": "docs/task-reports/M2-T04.md"
     },
     {
@@ -2222,8 +2222,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M2-T04-traversal",
     "integration_branch": "main",
-    "checkpoint": "Main clean and synchronized; graph/evidence contracts and storage integration verified. Designing deterministic dual-track adjacency/BFS.",
-    "next_action": "Implement adjacency and shortest paths, then independently expected traversal fixtures.",
-    "updated_at": "2026-11-02T02:22:55.129072+00:00"
+    "checkpoint": "Dual-track queries and documentation integrated locally; 155 worker Rust tests, strict Clippy, independent path oracle and advisory audit passed. Code/security review complete.",
+    "next_action": "Run integrated checks, push commits and verify all platform CI before marking done.",
+    "updated_at": "2026-11-02T02:30:08.608921+00:00"
   }
 }
