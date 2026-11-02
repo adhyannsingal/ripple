@@ -1,0 +1,11 @@
+# M2 handoff review — 2026-11-01
+
+Baseline: `435ebe0278155568d2528ae638b992d9c614804a`, clean and synchronized with GitHub after fetch. Reviewed implemented M2-T01 relative/direct binding evidence, M2-T03 SQLite storage and M2-T04 reverse queries against the build spec, ADRs and acceptance fixtures, using the code-review checklist for correctness, security, tests and boundaries.
+
+- Storage: inspected transactional complete-generation publication, stale-writer/busy handling, pinned readers, captured-byte and canonical seals, foreign keys, version checks, metadata repair and size limits. Existing fault/concurrency/corruption fixtures cover these boundaries. Private local directory assumptions, lack of power-loss injection and archive GC remain documented.
+- Traversal: inspected both edge policies, layer/predecessor ordering, confidence-prefix states, cycle termination, zero-hop seeds, complete evidence versus display limits, depth boundaries, test partitions and hub summaries. The independent simple-path oracle covers all seeds of 256 bounded five-node graphs; it does not establish resolver accuracy or performance.
+- Resolver: reviewed captured-source validation, ordered missing/winning probes, direct-export/import/type-only uncertainty and deferred boundaries. Existing configuration_evaluated=false remains truthful; config and binding composition require separate APIs/tasks.
+
+No blocking code defect was established in the existing implemented scope. The resolution document incorrectly still called storage/traversal upcoming; M2-T06 corrects that stale description and keeps CLI indexing/impact clearly deferred. Fresh baseline checks passed: 155 Rust tests, 18 planning tests and strict workspace Clippy. Earlier platform CI is recorded in the per-task ledger; this review does not invent new platform evidence for that baseline.
+
+The next authorized task is M2-T06. It must preserve raw captured config dependencies, missing probes and path origins; reject unsupported config instead of silently supplying graph confidence. Current TypeScript baseUrl semantics differ from the requested legacy build-spec policy; ADR 0018 makes this deliberate compatibility boundary explicit. No compiler-oracle or performance measurements were made. This review and a clean advisory scan are not an exhaustive security audit.
