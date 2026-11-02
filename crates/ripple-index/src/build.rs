@@ -191,7 +191,15 @@ fn cold_inner(
             attempts: attempt,
             counts: counts(&snapshot),
             incomplete: analysis.incomplete || !captured.discovery.diagnostics.is_empty(),
-            metadata: format!("{metadata:?}"),
+            metadata: match metadata {
+                crate::storage::MetadataStatus::Current { generation } => {
+                    format!("current (generation {generation})")
+                }
+                crate::storage::MetadataStatus::Updated { generation } => {
+                    format!("updated (generation {generation})")
+                }
+                crate::storage::MetadataStatus::Pending { reason } => format!("pending: {reason}"),
+            },
             module_cache: module_cache
                 .err()
                 .map_or("written".into(), |e| format!("pending: {e}")),
@@ -437,7 +445,7 @@ mod tests {
         fs::create_dir_all(temp.path().join(".ripple/metadata.json")).unwrap();
         fs::create_dir(temp.path().join(".ripple/modules-1.json")).unwrap();
         let out = cold_index(temp.path()).unwrap();
-        assert!(out.metadata.contains("Pending"));
+        assert!(out.metadata.starts_with("pending:"));
         assert!(out.module_cache.starts_with("pending:"));
         assert_eq!(
             load_current(temp.path())

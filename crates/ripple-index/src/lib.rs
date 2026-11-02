@@ -1,4 +1,4 @@
-//! Persistent generation storage; cold/incremental orchestration is staged separately.
+//! Atomic storage and cold captured-input indexing; incremental updates are later work.
 pub mod storage;
 
 #[cfg(test)]

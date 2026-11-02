@@ -1,4 +1,4 @@
 //! Immutable Git revision and change providers.
-//! Implementation is staged through the task plan.
+//! Read-only worktree provenance is implemented; immutable endpoint/diff adapters remain later work.
 
 pub mod worktree;
