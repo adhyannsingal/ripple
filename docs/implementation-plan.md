@@ -228,7 +228,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M2-T02 — Resolve supported calls with evidence and uncertainty
 
 - **Depends on:** M2-T07, M0-T04. **Lane:** semantics.
-- **Own:** `crates/ripple-resolve/src/symbols*`; `crates/ripple-resolve/src/confidence*`; `fixtures/resolution/calls/`.
+- **Own:** `crates/ripple-resolve/src/symbols.rs`; `crates/ripple-resolve/src/lib.rs`; `crates/ripple-resolve/tests/calls.rs`; `fixtures/resolution/calls/`; `docs/adr/0020-call-resolution.md`; `docs/resolution.md`; `docs/limitations.md`; `docs/task-reports/M2-T02.md`.
 - **Implement:** Resolve supported local and direct imported calls with lexical scope checks. Emit CALLS/REFERENCES/IMPORTS/REEXPORTS records with rule/provenance. Candidate targets need bounded evidence; unresolved records retain reasons and opaque boundaries. Do not infer receivers solely from matching method names.
 - **Acceptance:** Every supported rule has a fixture; shadowed imported names never resolve to imports; ambiguous/dynamic/unknown receivers cannot become false RESOLVED edges; all confidence states survive serialization.
 - **Handoff:** Resolved graph facts and uncertainty catalog for persistence/oracle.

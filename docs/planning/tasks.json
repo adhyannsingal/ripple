@@ -1371,23 +1371,37 @@
       ],
       "lane": "semantics",
       "owned_paths": [
-        "crates/ripple-resolve/src/symbols*",
-        "crates/ripple-resolve/src/confidence*",
-        "fixtures/resolution/calls/"
+        "crates/ripple-resolve/src/symbols.rs",
+        "crates/ripple-resolve/src/lib.rs",
+        "crates/ripple-resolve/tests/calls.rs",
+        "fixtures/resolution/calls/",
+        "docs/adr/0020-call-resolution.md",
+        "docs/resolution.md",
+        "docs/limitations.md",
+        "docs/task-reports/M2-T02.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M2-T02",
+      "started_at": "2026-11-02T06:17:40.615808+00:00",
+      "heartbeat_at": "2026-11-02T06:17:40.615808+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "9902230e20e7d9cda00c67bdb3e56bf968e0779a",
+      "claimed_paths": [
+        "crates/ripple-resolve/src/symbols.rs",
+        "crates/ripple-resolve/src/lib.rs",
+        "crates/ripple-resolve/tests/calls.rs",
+        "fixtures/resolution/calls/",
+        "docs/adr/0020-call-resolution.md",
+        "docs/resolution.md",
+        "docs/limitations.md",
+        "docs/task-reports/M2-T02.md"
+      ],
+      "checkpoint": "Main clean/synchronized; M2 prerequisites verified. Implementing lexical direct-call graph rules with explicit uncertainty.",
+      "next_action": "Implement graph resolver and fixtures, integrate/check CI, then continue M2-T05.",
       "report": "docs/task-reports/M2-T02.md"
     },
     {
@@ -2363,11 +2377,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-finish-M2",
     "integration_branch": "main",
-    "checkpoint": "Config review and configured re-export analysis integrated, reviewed and verified locally/on all CI platforms. Claims released; M2 gate remains pending.",
-    "next_action": "M2-T02: resolve supported calls/references with evidence and uncertainty.",
-    "updated_at": "2026-11-02T06:04:40.130776+00:00"
+    "checkpoint": "Main clean/synchronized; M2 prerequisites verified. Implementing lexical direct-call graph rules with explicit uncertainty.",
+    "next_action": "Implement graph resolver and fixtures, integrate/check CI, then continue M2-T05.",
+    "updated_at": "2026-11-02T06:17:40.615808+00:00"
   }
 }
