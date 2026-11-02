@@ -289,8 +289,8 @@ pub fn resolve_graph(
             unresolved.push(UnresolvedReference {
                 source,
                 boundary,
-                text: if d.lookup.specifier.is_empty() {
-                    "module specifier: empty string".into()
+                text: if d.lookup.specifier.trim().is_empty() {
+                    "module specifier: empty or whitespace string".into()
                 } else {
                     d.lookup.specifier.clone()
                 },

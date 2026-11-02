@@ -175,3 +175,10 @@ fn an_empty_module_specifier_is_an_explicit_boundary_not_a_graph_failure() {
     assert!(a.modules.dependencies[0].lookup.specifier.is_empty());
     assert!(!a.graph.unresolved()[0].text.is_empty());
 }
+
+#[test]
+fn whitespace_only_module_requests_also_retain_a_valid_boundary() {
+    let a = graph(&[("a.ts", "import ' '; export function f() {}")]);
+    assert_eq!(a.graph.unresolved().len(), 1);
+    assert_eq!(a.modules.dependencies[0].lookup.specifier, " ");
+}
