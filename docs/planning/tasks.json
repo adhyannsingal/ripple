@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-10-29",
+  "updated_at": "2026-11-02",
   "notes": "41 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -1628,13 +1628,16 @@
         "docs/resolution.md",
         "docs/limitations.md",
         "docs/project-status.md",
-        "README.md"
+        "README.md",
+        "crates/ripple-resolve/src/config_json.rs",
+        "crates/ripple-git/src/lib.rs",
+        "crates/ripple-git/src/worktree.rs"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M2-T05",
       "started_at": "2026-11-02T06:32:28.639244+00:00",
-      "heartbeat_at": "2026-11-02T06:32:28.639244+00:00",
+      "heartbeat_at": "2026-11-02T21:17:27.900885+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1672,10 +1675,13 @@
         "docs/resolution.md",
         "docs/limitations.md",
         "docs/project-status.md",
-        "README.md"
+        "README.md",
+        "crates/ripple-resolve/src/config_json.rs",
+        "crates/ripple-git/src/lib.rs",
+        "crates/ripple-git/src/worktree.rs"
       ],
-      "checkpoint": "M2-T02 verified/integrated. Implementing cold capture/build/publication and verified queries; security/verification gate follows.",
-      "next_action": "Implement bounded Git/config/input capture, cold pipeline, CLI outputs and adversarial acceptance/install tests.",
+      "checkpoint": "Integrated on main; 222 Rust tests, 18 Python tests, fmt/build/strict Clippy and installed M2 smoke passed. Security review and advisory scan passed within documented scope.",
+      "next_action": "Push integrated candidate and verify Linux/macOS/Windows CI before completing M2.",
       "report": "docs/task-reports/M2-T05.md"
     },
     {
@@ -2461,8 +2467,8 @@
     "owner": "local-agent",
     "session_id": "ripple-finish-M2",
     "integration_branch": "main",
-    "checkpoint": "M2-T02 verified/integrated. Implementing cold capture/build/publication and verified queries; security/verification gate follows.",
-    "next_action": "Implement bounded Git/config/input capture, cold pipeline, CLI outputs and adversarial acceptance/install tests.",
-    "updated_at": "2026-11-02T06:32:28.639244+00:00"
+    "checkpoint": "Integrated on main; 222 Rust tests, 18 Python tests, fmt/build/strict Clippy and installed M2 smoke passed. Security review and advisory scan passed within documented scope.",
+    "next_action": "Push integrated candidate and verify Linux/macOS/Windows CI before completing M2.",
+    "updated_at": "2026-11-02T21:17:27.900885+00:00"
   }
 }
