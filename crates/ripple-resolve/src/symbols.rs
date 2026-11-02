@@ -289,7 +289,11 @@ pub fn resolve_graph(
             unresolved.push(UnresolvedReference {
                 source,
                 boundary,
-                text: d.lookup.specifier.clone(),
+                text: if d.lookup.specifier.is_empty() {
+                    "module specifier: empty string".into()
+                } else {
+                    d.lookup.specifier.clone()
+                },
                 reference_kind: ReferenceKind::Read,
                 provenance: loc(&d.file, d.span),
                 reason: format!("module lookup: {:?}", d.lookup.outcome),
