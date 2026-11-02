@@ -1380,11 +1380,11 @@
         "docs/limitations.md",
         "docs/task-reports/M2-T02.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M2-T02",
       "started_at": "2026-11-02T06:17:40.615808+00:00",
-      "heartbeat_at": "2026-11-02T06:17:40.615808+00:00",
+      "heartbeat_at": "2026-11-02T06:24:43.968354+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1400,8 +1400,8 @@
         "docs/limitations.md",
         "docs/task-reports/M2-T02.md"
       ],
-      "checkpoint": "Main clean/synchronized; M2 prerequisites verified. Implementing lexical direct-call graph rules with explicit uncertainty.",
-      "next_action": "Implement graph resolver and fixtures, integrate/check CI, then continue M2-T05.",
+      "checkpoint": "Call graph implementation/review fixtures integrated; eight focused and full worker tests passed. Running integrated CI before M2-T05.",
+      "next_action": "Verify integrated checks and CI, then claim M2-T05.",
       "report": "docs/task-reports/M2-T02.md"
     },
     {
@@ -2380,8 +2380,8 @@
     "owner": "local-agent",
     "session_id": "ripple-finish-M2",
     "integration_branch": "main",
-    "checkpoint": "Main clean/synchronized; M2 prerequisites verified. Implementing lexical direct-call graph rules with explicit uncertainty.",
-    "next_action": "Implement graph resolver and fixtures, integrate/check CI, then continue M2-T05.",
-    "updated_at": "2026-11-02T06:17:40.615808+00:00"
+    "checkpoint": "Call graph implementation/review fixtures integrated; eight focused and full worker tests passed. Running integrated CI before M2-T05.",
+    "next_action": "Verify integrated checks and CI, then claim M2-T05.",
+    "updated_at": "2026-11-02T06:24:43.968354+00:00"
   }
 }
