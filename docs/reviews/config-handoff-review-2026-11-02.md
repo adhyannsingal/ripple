@@ -1,0 +1,7 @@
+# Config handoff review — 2026-11-02
+
+Baseline `a35b458b6eab498b726bdd82992fc25f4391ed0f` was clean and exactly synchronized after fetch. Reviewed M2-T06 config parsing, immutable captured inputs, local normalization/inheritance, policy diagnostics, fingerprint inputs and alias probe records against its ADR/card and existing fixtures, following the code-review checklist already used in this session.
+
+No new blocking config defect was established. Fresh baseline workspace tests passed (176 Rust tests) and strict Clippy passed. The existing runtime EffectiveConfig still cannot bypass evaluation through deserialization. The M2-T07 transport additions add Deserialize only to dependency/diagnostic/lookup artifacts; runtime config remains constructed through bounded evaluation. No benchmark or compiler-oracle claim follows from this review.
+
+M2-T07 consumes captured config and inventory, not live filesystem paths. Its review tests exposed overly broad unknown-star taint: a provider's explicitly known export became unresolved after a second star barrel. The repair distinguishes unknown competing names from known provider names, while keeping missing/empty cyclic branches conservative. Regression fixtures cover both preserved explicit names and additional unknown competitors. Review also requires actual declaration spans, project-bound artifacts, explicit type-only flags, complete ambiguity candidates and bounded failure without partial output. Full integration checks/platform evidence are recorded in the M2-T07 ledger/report after they actually pass.
