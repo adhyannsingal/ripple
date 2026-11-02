@@ -260,7 +260,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M2-T06 — Resolve effective tsconfig inputs and basic path aliases
 
 - **Depends on:** M2-T01. **Lane:** semantics.
-- **Own:** `crates/ripple-resolve/src/config*`; `crates/ripple-resolve/src/paths*`; `fixtures/resolution/config/`; `docs/resolution.md`.
+- **Own:** `crates/ripple-resolve/src/config.rs`; `crates/ripple-resolve/src/config_json.rs`; `crates/ripple-resolve/src/paths.rs`; `crates/ripple-resolve/src/lib.rs`; `crates/ripple-resolve/tests/config.rs`; `crates/ripple-resolve/Cargo.toml`; `Cargo.lock`; `fixtures/resolution/config/`; `docs/adr/0018-effective-config.md`; `docs/resolution.md`; `docs/limitations.md`; `docs/project-status.md`; `README.md`; `docs/reviews/M2-handoff-review-2026-11-01.md`; `docs/task-reports/M2-T06.md`.
 - **Implement:** Implement documented baseUrl/paths matching and finite repository-local config inheritance, including JSON-with-comments handling and config-relative paths. Record all effective config inputs in the fingerprint. Diagnose inheritance cycles, unsupported project references/package-based extends and unsupported resolution modes instead of silently approximating them.
 - **Acceptance:** Fixtures cover inherited baseUrl/paths, multiple aliases/targets, wildcard precedence, missing configs, commented/trailing-comma config, inheritance cycles and unsupported forms. Matching results and effective-config hashes are deterministic and independently expected.
 - **Handoff:** Effective module configuration plus all source inputs for global invalidation.
