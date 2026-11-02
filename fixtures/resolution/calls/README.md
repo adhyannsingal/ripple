@@ -1,0 +1,3 @@
+# Supported call fixtures
+
+Run `cargo test --locked -p ripple-resolve --test calls`. Independently authored programs in that test cover lexical local/const function calls, default/named imported aliases through configured barrels, file-owned test calls, parameter/block/destructuring shadowing, value reads, recursion, type-only imports, missing modules and unsupported receivers/dynamic/optional/constructor calls. Expected edge counts/owners and unresolved reasons are independent assertions. Complete graph serialization preserves uncertainty; input order does not select a different target. These are supported-rule fixtures, not a compiler oracle or runtime equivalence claim.
