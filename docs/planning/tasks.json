@@ -1608,11 +1608,11 @@
         "docs/reviews/M2-handoff-review-2026-11-01.md",
         "docs/task-reports/M2-T06.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M2-T06",
       "started_at": "2026-11-02T04:18:45.886072+00:00",
-      "heartbeat_at": "2026-11-02T04:18:45.886072+00:00",
+      "heartbeat_at": "2026-11-02T04:29:39.345026+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1635,8 +1635,8 @@
         "docs/reviews/M2-handoff-review-2026-11-01.md",
         "docs/task-reports/M2-T06.md"
       ],
-      "checkpoint": "M2 code/security handoff review found no blocking code defect; baseline tests and Clippy passed. Main synchronized. Preparing bounded pure captured-config APIs.",
-      "next_action": "Implement JSONC/local inheritance/fingerprints and configured inventory lookup; record review and fixtures.",
+      "checkpoint": "M2 handoff review recorded; config/alias APIs, fixtures and macro review repair integrated locally. Worker checks: 176 Rust tests, strict Clippy and clean advisory audit.",
+      "next_action": "Run integrated checks, push commits and verify Linux/macOS/Windows CI before completion.",
       "report": "docs/task-reports/M2-T06.md"
     },
     {
@@ -2282,8 +2282,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M2-T06-config",
     "integration_branch": "main",
-    "checkpoint": "M2 code/security handoff review found no blocking code defect; baseline tests and Clippy passed. Main synchronized. Preparing bounded pure captured-config APIs.",
-    "next_action": "Implement JSONC/local inheritance/fingerprints and configured inventory lookup; record review and fixtures.",
-    "updated_at": "2026-11-02T04:18:45.886072+00:00"
+    "checkpoint": "M2 handoff review recorded; config/alias APIs, fixtures and macro review repair integrated locally. Worker checks: 176 Rust tests, strict Clippy and clean advisory audit.",
+    "next_action": "Run integrated checks, push commits and verify Linux/macOS/Windows CI before completion.",
+    "updated_at": "2026-11-02T04:29:39.345026+00:00"
   }
 }
