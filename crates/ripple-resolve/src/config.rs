@@ -6,6 +6,7 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 use std::collections::{BTreeMap, BTreeSet};
 
+pub const PACKAGE_POLICY_VERSION: &str = "ripple-package-policy-v1";
 pub const CONFIG_VERSION: &str = "ripple-config-v1-legacy-baseurl";
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ConfigInput {
@@ -41,6 +42,123 @@ pub struct EffectiveConfig {
     fingerprint: VersionedHash,
 }
 impl EffectiveConfig {
+    /// Capture package policy without executing scripts or guessing unsupported entry rules.
+    pub fn with_package_manifests<'a>(
+        mut self,
+        inputs: impl IntoIterator<Item = (&'a RepoPath, &'a [u8])>,
+    ) -> Result<Self, String> {
+        let mut seen = self
+            .inputs
+            .iter()
+            .map(|i| (i.path.clone(), i.content_hash.clone()))
+            .collect::<BTreeMap<_, _>>();
+        for (path, bytes) in inputs {
+            let digest = hash(bytes);
+            if seen
+                .get(path)
+                .is_some_and(|old| old.as_ref() != Some(&digest))
+            {
+                return Err("conflicting captured package/config bytes".into());
+            }
+            seen.insert(path.clone(), Some(digest.clone()));
+            self.inputs.push(ConfigDependency {
+                path: path.clone(),
+                content_hash: Some(digest),
+                byte_len: Some(bytes.len() as u64),
+            });
+            let problem = match config_json::parse_strict(bytes) {
+                Ok(Value::Object(map)) => {
+                    if map
+                        .get("type")
+                        .is_some_and(|v| v.as_str() != Some("commonjs"))
+                        || [
+                            "main",
+                            "module",
+                            "exports",
+                            "imports",
+                            "types",
+                            "typings",
+                            "typesVersions",
+                            "browser",
+                            "workspaces",
+                        ]
+                        .iter()
+                        .any(|key| map.contains_key(*key))
+                    {
+                        Some("package entry points, conditions or module mode are outside the source-inventory policy".to_string())
+                    } else {
+                        None
+                    }
+                }
+                Ok(_) => Some("package manifest must be an object".into()),
+                Err(error) => Some(format!("invalid package manifest: {error}")),
+            };
+            if let Some(detail) = problem {
+                if self.diagnostics.len() < 128 {
+                    self.diagnostics.push(ConfigDiagnostic {
+                        file: path.clone(),
+                        code: "unsupported_package_policy".into(),
+                        detail,
+                    });
+                } else if self.diagnostics.len() == 128 {
+                    self.diagnostics.push(ConfigDiagnostic {
+                        file: path.clone(),
+                        code: "package_diagnostics_truncated".into(),
+                        detail: "more unsupported package policy remains".into(),
+                    });
+                }
+            }
+        }
+        self.inputs.sort_by(|a, b| a.path.cmp(&b.path));
+        self.inputs.dedup_by(|a, b| a.path == b.path);
+        self.diagnostics.sort();
+        self.diagnostics.dedup();
+        self.fingerprint = hash(
+            &serde_json::to_vec(&(
+                CONFIG_VERSION,
+                PACKAGE_POLICY_VERSION,
+                &self.root,
+                &self.base_url,
+                &self.paths,
+                &self.inputs,
+                &self.diagnostics,
+            ))
+            .map_err(|e| e.to_string())?,
+        );
+        Ok(self)
+    }
+
+    /// Explicit absence of a main config, verified by the caller; no synthetic input bytes.
+    pub fn implicit(root: RepoPath) -> Result<Self, String> {
+        let inputs = vec![ConfigDependency {
+            path: root.clone(),
+            content_hash: None,
+            byte_len: None,
+        }];
+        let paths = BTreeMap::<String, PathMapping>::new();
+        let diagnostics = Vec::<ConfigDiagnostic>::new();
+        let base_url = None::<String>;
+        let fingerprint = hash(
+            &serde_json::to_vec(&(
+                CONFIG_VERSION,
+                &root,
+                &base_url,
+                &paths,
+                &inputs,
+                &diagnostics,
+            ))
+            .map_err(|e| e.to_string())?,
+        );
+        Ok(Self {
+            root,
+            base_url,
+            paths,
+            inputs,
+            diagnostics,
+            fingerprint,
+        })
+    }
+
     pub fn root(&self) -> &RepoPath {
         &self.root
     }

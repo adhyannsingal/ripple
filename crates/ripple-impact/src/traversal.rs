@@ -6,24 +6,25 @@ use ripple_core::{
         EvidenceKind, EvidenceSets, ImpactResult, QueryLimits, RevisionSide, Truncation, Witness,
     },
 };
+use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 
 /// A reporting threshold only: hubs never prune traversal.
 pub const HUB_THRESHOLD: usize = 50;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ImpactRow {
     pub target: NodeId,
     /// Best witness ordered by distance, confidence, then semantic path order.
     pub distance: usize,
     pub confidence: Confidence,
 }
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct Hub {
     pub node: NodeId,
     pub direct_dependents: usize,
 }
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct TraversalSummary {
     pub seed: NodeId,
     pub revision: RevisionSide,
@@ -33,7 +34,7 @@ pub struct TraversalSummary {
     pub nodes_by_depth: BTreeMap<usize, usize>,
     pub hubs: Vec<Hub>,
 }
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct TestReachability {
     pub symbol_backed: BTreeSet<NodeId>,
     pub module_fallback: BTreeSet<NodeId>,
@@ -41,7 +42,7 @@ pub struct TestReachability {
     pub combined: BTreeSet<NodeId>,
     pub total_test_files: usize,
 }
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct TraversalResult {
     /// Complete evidence within the requested depth, independent of display limiting.
     /// Unresolved records are graph-wide uncertainty, not fabricated reachable paths.

@@ -152,3 +152,10 @@ impl<'de> Deserialize<'de> for UniqueValue {
         deserializer.deserialize_any(UniqueVisitor)
     }
 }
+
+pub(crate) fn parse_strict(bytes: &[u8]) -> Result<Value, String> {
+    let mut d = serde_json::Deserializer::from_slice(bytes);
+    let value = UniqueValue::deserialize(&mut d).map_err(|e| e.to_string())?;
+    d.end().map_err(|e| e.to_string())?;
+    Ok(value.0)
+}
