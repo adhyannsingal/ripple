@@ -1,7 +1,4 @@
-use crate::{
-    build_git,
-    storage::{InputBytes, input_hash},
-};
+use crate::storage::{InputBytes, input_hash};
 use ripple_core::{
     identity::RepoPath,
     index::{CapturedInput, InputManifest, InputRole},
@@ -142,8 +139,11 @@ impl Capture {
             && self.config.fingerprint() == other.config.fingerprint()
     }
 }
-pub(crate) fn capture(root: &Path) -> Result<Capture, String> {
-    let origin = build_git::observe(root)?;
+pub(crate) fn capture(
+    root: &Path,
+    provenance: crate::build::Provenance,
+) -> Result<Capture, String> {
+    let origin = provenance(root)?;
     let tree = BudgetTree {
         tree: Worktree::new(root).map_err(|e| e.to_string())?,
         total: Cell::new(0),
@@ -266,7 +266,7 @@ pub(crate) fn capture(root: &Path) -> Result<Capture, String> {
             .collect(),
     )
     .map_err(|e| e.to_string())?;
-    if origin != build_git::observe(root)? {
+    if origin != provenance(root)? {
         return Err("Git provenance changed during capture".into());
     }
     Ok(Capture {

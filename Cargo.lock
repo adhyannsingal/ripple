@@ -581,6 +581,7 @@ name = "ripple-index"
 version = "0.1.0-dev"
 dependencies = [
  "ripple-core",
+ "ripple-git",
  "ripple-parse",
  "ripple-resolve",
  "rusqlite",

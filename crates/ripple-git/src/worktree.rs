@@ -77,7 +77,7 @@ fn run(root: &Path, args: &[&str]) -> Result<(bool, Vec<u8>), String> {
     }
     Ok((status?.success(), output))
 }
-pub(crate) fn observe(root: &Path) -> Result<SnapshotOrigin, String> {
+pub fn observe(root: &Path) -> Result<SnapshotOrigin, String> {
     let (ok, top) = run(root, &["rev-parse", "--show-toplevel"])?;
     if !ok {
         return Err("index root must be a Git repository root".into());

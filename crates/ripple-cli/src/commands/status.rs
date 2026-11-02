@@ -2,7 +2,8 @@ use super::{CommandError, persistent};
 use crate::output::{Format, terminal_json};
 use std::path::Path;
 pub fn run(root: &Path, format: Format) -> Result<(), CommandError> {
-    let current = ripple_index::build::load_current(root).map_err(persistent::error)?;
+    let current = ripple_index::build::load_current(root, ripple_git::worktree::observe)
+        .map_err(persistent::error)?;
     let metadata = current.loaded.snapshot.metadata();
     let human = format!(
         "Freshness: verified captured inputs\nGeneration: {}\nOrigin: {}\nAnalyzer: {}\nSchema: {}\nFiles: {}\nSymbols: {}\nEdges: {}\nUnresolved: {}\nIncomplete analysis: {}\n",

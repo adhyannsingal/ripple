@@ -82,17 +82,22 @@ enum Phase {
     BeforeVerification,
     AfterVerification,
 }
-pub fn cold_index(root: &Path) -> Result<IndexOutcome, String> {
-    cold_inner(root, |_, _| {})
+pub type Provenance = fn(&Path) -> Result<ripple_core::revision::SnapshotOrigin, String>;
+pub fn cold_index(root: &Path, provenance: Provenance) -> Result<IndexOutcome, String> {
+    cold_inner(root, provenance, |_, _| {})
 }
-fn cold_inner(root: &Path, mut hook: impl FnMut(usize, Phase)) -> Result<IndexOutcome, String> {
+fn cold_inner(
+    root: &Path,
+    provenance: Provenance,
+    mut hook: impl FnMut(usize, Phase),
+) -> Result<IndexOutcome, String> {
     let root = fs::canonicalize(root).map_err(|e| e.to_string())?;
     // Validate provenance before creating local state.
-    crate::build_git::observe(&root)?;
+    provenance(&root)?;
     let mut store = Store::open(root.join(".ripple"), versions()).map_err(|e| e.to_string())?;
     let mut failure = String::new();
     for attempt in 1..=3 {
-        let captured = match capture(&root) {
+        let captured = match capture(&root, provenance) {
             Ok(c) => c,
             Err(e) => {
                 failure = e;
@@ -116,7 +121,7 @@ fn cold_inner(root: &Path, mut hook: impl FnMut(usize, Phase)) -> Result<IndexOu
         )
         .map_err(|e| e.to_string())?;
         hook(attempt, Phase::BeforeVerification);
-        let fresh = match capture(&root) {
+        let fresh = match capture(&root, provenance) {
             Ok(c) => c,
             Err(e) => {
                 failure = e;
@@ -195,7 +200,7 @@ fn cold_inner(root: &Path, mut hook: impl FnMut(usize, Phase)) -> Result<IndexOu
         "concurrent modification or capture failure after three attempts; prior generation preserved: {failure}"
     ))
 }
-pub fn load_current(root: &Path) -> Result<CurrentIndex, String> {
+pub fn load_current(root: &Path, provenance: Provenance) -> Result<CurrentIndex, String> {
     let root = fs::canonicalize(root).map_err(|e| e.to_string())?;
     if !root.join(".ripple/index.db").exists() {
         return Err("no index; run ripple index .".into());
@@ -205,8 +210,8 @@ pub fn load_current(root: &Path) -> Result<CurrentIndex, String> {
         .load()
         .map_err(|e| e.to_string())?
         .ok_or("no complete index; run ripple index .")?;
-    let a = capture(&root)?;
-    let b = capture(&root)?;
+    let a = capture(&root, provenance)?;
+    let b = capture(&root, provenance)?;
     if !a.matches(&b)
         || loaded.snapshot.inputs() != &a.manifest
         || loaded.snapshot.metadata().origin != a.origin
@@ -243,6 +248,15 @@ mod tests {
     use super::*;
     use ripple_core::canonical::CanonicalState;
     use std::process::Command;
+    fn cold_index(root: &Path) -> Result<IndexOutcome, String> {
+        super::cold_index(root, ripple_git::worktree::observe)
+    }
+    fn load_current(root: &Path) -> Result<CurrentIndex, String> {
+        super::load_current(root, ripple_git::worktree::observe)
+    }
+    fn cold_inner(root: &Path, hook: impl FnMut(usize, Phase)) -> Result<IndexOutcome, String> {
+        super::cold_inner(root, ripple_git::worktree::observe, hook)
+    }
     fn git(root: &Path, args: &[&str]) {
         let mut c = Command::new("git");
         for (k, _) in std::env::vars_os() {

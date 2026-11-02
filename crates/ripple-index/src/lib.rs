@@ -15,4 +15,3 @@ mod bootstrap {
 
 pub mod build;
 mod build_capture;
-mod build_git;

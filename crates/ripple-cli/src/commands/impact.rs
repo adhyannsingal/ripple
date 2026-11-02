@@ -23,7 +23,8 @@ pub fn run(
     limit: usize,
     format: Format,
 ) -> Result<(), CommandError> {
-    let current = ripple_index::build::load_current(root).map_err(persistent::error)?;
+    let current = ripple_index::build::load_current(root, ripple_git::worktree::observe)
+        .map_err(persistent::error)?;
     let snapshot = &current.loaded.snapshot;
     let matches = snapshot
         .graph()
