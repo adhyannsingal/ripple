@@ -96,6 +96,7 @@ pub struct ExportSurface {
 /// Serializable evidence only. Revalidate deserialized artifacts against captured inputs before use.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ModuleAnalysis {
+    pub project: ProjectKey,
     pub version: String,
     pub config_version: String,
     pub config_hash: VersionedHash,
@@ -779,6 +780,7 @@ pub fn resolve_modules(
         let bytes = serde_json::to_vec(&(
             "ripple.external.v1",
             MODULES_VERSION,
+            project,
             config.fingerprint(),
             path,
             &exports,
@@ -805,6 +807,7 @@ pub fn resolve_modules(
             .iter()
             .any(|d| matches!(d.lookup.outcome, ConfigOutcome::Unresolved { .. }));
     Ok(ModuleAnalysis {
+        project: project.clone(),
         version: MODULES_VERSION.into(),
         config_version: CONFIG_VERSION.into(),
         config_hash: config.fingerprint().clone(),
