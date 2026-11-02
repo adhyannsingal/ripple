@@ -81,9 +81,17 @@
       "id": "M2",
       "title": "Persistent graph and impact",
       "target": "Week 2",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "All seven M2 task cards integrated and verified; M0/M1 gates passed.",
+        "Integrated formatting, locked workspace build/tests (222 Rust tests), strict Clippy, 18 Python tests, planning and documentation checks passed.",
+        "Clean-installed index/inspect/status/impact smoke: persistent two-hop witness, independent symbol/fallback tracks, stale detection, Git index preservation.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41530483704",
+        "Scoped security review, 122 dependency RustSec audit with zero advisories/warnings and tracked-tree credential pattern scan passed.",
+        "docs/task-reports/M2.md",
+        "docs/reviews/M2-security-verification-2026-11-02.md"
+      ],
+      "completed_at": "2026-11-02T21:46:19.305057+00:00"
     },
     {
       "id": "M3",
@@ -1633,13 +1641,13 @@
         "crates/ripple-git/src/lib.rs",
         "crates/ripple-git/src/worktree.rs"
       ],
-      "status": "in_progress",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M2-T05",
       "started_at": "2026-11-02T06:32:28.639244+00:00",
-      "heartbeat_at": "2026-11-02T21:40:22.967522+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
+      "heartbeat_at": "2026-11-02T21:46:19.305057+00:00",
+      "completed_at": "2026-11-02T21:46:19.305057+00:00",
+      "integrated_commit": "b4a11428aa1983ca8822141bf56a2c1478935300",
       "validation": [
         {
           "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets -- -D warnings; cargo test --workspace --locked",
@@ -1662,52 +1670,16 @@
           "detail": "122 dependencies, zero advisories/warnings; no scanned credential pattern matches; scoped review report."
         },
         {
-          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41526995164",
-          "outcome": "not_run",
-          "detail": "Linux and Windows passed; macOS queued without runner. Required gate remains pending."
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41530483704",
+          "outcome": "passed",
+          "detail": "Linux, macos-15-intel and Windows: all steps including clean install and M2 smoke passed."
         }
       ],
       "blocker": null,
       "base_commit": "5809fda115d5c3b5c024364cf05000d1cf3c9f44",
-      "claimed_paths": [
-        "crates/ripple-index/src/build.rs",
-        "crates/ripple-index/src/build_capture.rs",
-        "crates/ripple-index/src/build_git.rs",
-        "crates/ripple-index/src/lib.rs",
-        "crates/ripple-index/tests/build.rs",
-        "crates/ripple-index/Cargo.toml",
-        "crates/ripple-resolve/src/config.rs",
-        "crates/ripple-impact/src/traversal.rs",
-        "crates/ripple-impact/Cargo.toml",
-        "Cargo.lock",
-        "crates/ripple-cli/src/main.rs",
-        "crates/ripple-cli/src/output.rs",
-        "crates/ripple-cli/src/commands/mod.rs",
-        "crates/ripple-cli/src/commands/index.rs",
-        "crates/ripple-cli/src/commands/status.rs",
-        "crates/ripple-cli/src/commands/impact.rs",
-        "crates/ripple-cli/src/commands/persistent.rs",
-        "crates/ripple-cli/tests/index_impact.rs",
-        "crates/ripple-cli/tests/cli.rs",
-        "fixtures/cold-index/",
-        ".github/workflows/ci.yml",
-        "scripts/m2-smoke.py",
-        "docs/adr/0021-cold-index.md",
-        "docs/task-reports/M2-T05.md",
-        "docs/task-reports/M2.md",
-        "docs/reviews/M2-security-verification-2026-11-02.md",
-        "docs/cli.md",
-        "docs/storage.md",
-        "docs/resolution.md",
-        "docs/limitations.md",
-        "docs/project-status.md",
-        "README.md",
-        "crates/ripple-resolve/src/config_json.rs",
-        "crates/ripple-git/src/lib.rs",
-        "crates/ripple-git/src/worktree.rs"
-      ],
-      "checkpoint": "Source verified locally and Linux/Windows CI passed. GitHub cancelled unassigned ARM macOS job due hosted capacity. Applying documented standard Intel macOS runner fallback with identical checks.",
-      "next_action": "Push CI runner repair and verify all three platform jobs.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated source and full supported-platform capability gate passed; scoped code/security review complete. Claims released.",
+      "next_action": "M3-T01 \u2014 pin TypeScript compiler oracle harness.",
       "report": "docs/task-reports/M2-T05.md"
     },
     {
@@ -2490,11 +2462,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-finish-M2",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Source verified locally and Linux/Windows CI passed. GitHub cancelled unassigned ARM macOS job due hosted capacity. Applying documented standard Intel macOS runner fallback with identical checks.",
-    "next_action": "Push CI runner repair and verify all three platform jobs.",
-    "updated_at": "2026-11-02T21:40:22.967522+00:00"
+    "checkpoint": "M2 complete: all cards integrated, code/security review and Linux/macOS Intel/Windows CI/install gate passed. No retained M2 claims.",
+    "next_action": "Next authorized milestone: M3-T01 compiler oracle; select and claim before editing.",
+    "updated_at": "2026-11-02T21:46:19.305057+00:00"
   }
 }
