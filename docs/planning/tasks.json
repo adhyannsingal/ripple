@@ -1633,14 +1633,40 @@
         "crates/ripple-git/src/lib.rs",
         "crates/ripple-git/src/worktree.rs"
       ],
-      "status": "review",
+      "status": "in_progress",
       "owner": "local-agent",
       "branch": "agent/M2-T05",
       "started_at": "2026-11-02T06:32:28.639244+00:00",
-      "heartbeat_at": "2026-11-02T21:17:27.900885+00:00",
+      "heartbeat_at": "2026-11-02T21:40:22.967522+00:00",
       "completed_at": null,
       "integrated_commit": null,
-      "validation": [],
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "Integrated main: 222 Rust tests."
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate",
+          "outcome": "passed",
+          "detail": "18 Python tests; 43 tasks / 9 milestones consistent."
+        },
+        {
+          "command": "python3 scripts/m2-smoke.py --install-root /tmp/ripple-M2-install",
+          "outcome": "passed",
+          "detail": "Final installed source: both witness tracks, stale detection and unchanged Git index."
+        },
+        {
+          "command": "cargo audit --json; tracked-tree credential pattern scan; code/security review",
+          "outcome": "passed",
+          "detail": "122 dependencies, zero advisories/warnings; no scanned credential pattern matches; scoped review report."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41526995164",
+          "outcome": "not_run",
+          "detail": "Linux and Windows passed; macOS queued without runner. Required gate remains pending."
+        }
+      ],
       "blocker": null,
       "base_commit": "5809fda115d5c3b5c024364cf05000d1cf3c9f44",
       "claimed_paths": [
@@ -1680,8 +1706,8 @@
         "crates/ripple-git/src/lib.rs",
         "crates/ripple-git/src/worktree.rs"
       ],
-      "checkpoint": "Integrated on main; 222 Rust tests, 18 Python tests, fmt/build/strict Clippy and installed M2 smoke passed. Security review and advisory scan passed within documented scope.",
-      "next_action": "Push integrated candidate and verify Linux/macOS/Windows CI before completing M2.",
+      "checkpoint": "Source verified locally and Linux/Windows CI passed. GitHub cancelled unassigned ARM macOS job due hosted capacity. Applying documented standard Intel macOS runner fallback with identical checks.",
+      "next_action": "Push CI runner repair and verify all three platform jobs.",
       "report": "docs/task-reports/M2-T05.md"
     },
     {
@@ -2467,8 +2493,8 @@
     "owner": "local-agent",
     "session_id": "ripple-finish-M2",
     "integration_branch": "main",
-    "checkpoint": "Integrated on main; 222 Rust tests, 18 Python tests, fmt/build/strict Clippy and installed M2 smoke passed. Security review and advisory scan passed within documented scope.",
-    "next_action": "Push integrated candidate and verify Linux/macOS/Windows CI before completing M2.",
-    "updated_at": "2026-11-02T21:17:27.900885+00:00"
+    "checkpoint": "Source verified locally and Linux/Windows CI passed. GitHub cancelled unassigned ARM macOS job due hosted capacity. Applying documented standard Intel macOS runner fallback with identical checks.",
+    "next_action": "Push CI runner repair and verify all three platform jobs.",
+    "updated_at": "2026-11-02T21:40:22.967522+00:00"
   }
 }
