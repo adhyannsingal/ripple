@@ -1608,35 +1608,64 @@
         "docs/reviews/M2-handoff-review-2026-11-01.md",
         "docs/task-reports/M2-T06.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M2-T06",
       "started_at": "2026-11-02T04:18:45.886072+00:00",
-      "heartbeat_at": "2026-11-02T04:29:39.345026+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-02T04:32:44.954780+00:00",
+      "completed_at": "2026-11-02T04:32:44.954780+00:00",
+      "integrated_commit": "27d3302d0eae5f6b539a8d6ce282b5dcd0d291fb",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (176 tests on macOS)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --locked -p ripple-resolve (21 config tests and 10 module tests; independent target/probe/digest fixtures)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help / --version; inspect TS human and TSX JSON smoke",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo-audit audit --json (122 dependencies; zero advisories/warnings)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Local Markdown targets/ADR uniqueness check and git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub Linux/macOS/Windows CI https://github.com/adhyannsingal/ripple/actions/runs/41388791397",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "435ebe0278155568d2528ae638b992d9c614804a",
-      "claimed_paths": [
-        "crates/ripple-resolve/src/config.rs",
-        "crates/ripple-resolve/src/config_json.rs",
-        "crates/ripple-resolve/src/paths.rs",
-        "crates/ripple-resolve/src/lib.rs",
-        "crates/ripple-resolve/tests/config.rs",
-        "crates/ripple-resolve/Cargo.toml",
-        "Cargo.lock",
-        "fixtures/resolution/config/",
-        "docs/adr/0018-effective-config.md",
-        "docs/resolution.md",
-        "docs/limitations.md",
-        "docs/project-status.md",
-        "README.md",
-        "docs/reviews/M2-handoff-review-2026-11-01.md",
-        "docs/task-reports/M2-T06.md"
-      ],
-      "checkpoint": "M2 handoff review recorded; config/alias APIs, fixtures and macro review repair integrated locally. Worker checks: 176 Rust tests, strict Clippy and clean advisory audit.",
-      "next_action": "Run integrated checks, push commits and verify Linux/macOS/Windows CI before completion.",
+      "claimed_paths": [],
+      "checkpoint": "M2 handoff review and config/alias APIs integrated, reviewed and verified locally and on all CI platforms. Claims released; M2 gate remains pending.",
+      "next_action": "M2-T07: re-export fixed points and configured binding composition.",
       "report": "docs/task-reports/M2-T06.md"
     },
     {
@@ -2279,11 +2308,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M2-T06-config",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "M2 handoff review recorded; config/alias APIs, fixtures and macro review repair integrated locally. Worker checks: 176 Rust tests, strict Clippy and clean advisory audit.",
-    "next_action": "Run integrated checks, push commits and verify Linux/macOS/Windows CI before completion.",
-    "updated_at": "2026-11-02T04:29:39.345026+00:00"
+    "checkpoint": "M2 handoff review and config/alias APIs integrated, reviewed and verified locally and on all CI platforms. Claims released; M2 gate remains pending.",
+    "next_action": "M2-T07: re-export fixed points and configured binding composition.",
+    "updated_at": "2026-11-02T04:32:44.954780+00:00"
   }
 }
