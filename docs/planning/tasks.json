@@ -1491,31 +1491,64 @@
         "README.md",
         "docs/task-reports/M2-T04.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M2-T04",
       "started_at": "2026-11-02T02:22:55.129072+00:00",
-      "heartbeat_at": "2026-11-02T02:30:08.608921+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-02T02:32:56.556480+00:00",
+      "completed_at": "2026-11-02T02:32:56.556480+00:00",
+      "integrated_commit": "5cfeee4e3cf10a1cbba376ffe1237bd63023c76e",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (155 tests on macOS)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --locked -p ripple-impact (14 tests; independent exhaustive path oracle: 256 five-symbol graphs/all five seeds)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (18 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo run --locked -p ripple-cli -- --help / --version; inspect TS human and TSX JSON smoke",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo-audit audit --json (122 dependencies; zero advisories/warnings)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Local Markdown targets/ADR uniqueness check and git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub Linux/macOS/Windows CI https://github.com/adhyannsingal/ripple/actions/runs/41378090702",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "c760210735392ccf3fb5ae3ed495f0400cc46e3f",
-      "claimed_paths": [
-        "crates/ripple-impact/src/graph.rs",
-        "crates/ripple-impact/src/traversal.rs",
-        "crates/ripple-impact/src/traversal_tests.rs",
-        "crates/ripple-impact/src/lib.rs",
-        "fixtures/impact/",
-        "docs/adr/0017-reverse-traversal.md",
-        "docs/graph-model.md",
-        "docs/limitations.md",
-        "docs/project-status.md",
-        "README.md",
-        "docs/task-reports/M2-T04.md"
-      ],
-      "checkpoint": "Dual-track queries and documentation integrated locally; 155 worker Rust tests, strict Clippy, independent path oracle and advisory audit passed. Code/security review complete.",
-      "next_action": "Run integrated checks, push commits and verify all platform CI before marking done.",
+      "claimed_paths": [],
+      "checkpoint": "Dual-track reverse queries integrated, reviewed and verified locally and on all CI platforms. Claims released; M2 gate remains pending.",
+      "next_action": "M2-T06: effective tsconfig inputs and basic path aliases.",
       "report": "docs/task-reports/M2-T04.md"
     },
     {
@@ -2219,11 +2252,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M2-T04-traversal",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Dual-track queries and documentation integrated locally; 155 worker Rust tests, strict Clippy, independent path oracle and advisory audit passed. Code/security review complete.",
-    "next_action": "Run integrated checks, push commits and verify all platform CI before marking done.",
-    "updated_at": "2026-11-02T02:30:08.608921+00:00"
+    "checkpoint": "Dual-track reverse queries integrated, reviewed and verified locally and on all CI platforms. Claims released; M2 gate remains pending.",
+    "next_action": "M2-T06: effective tsconfig inputs and basic path aliases.",
+    "updated_at": "2026-11-02T02:32:56.556480+00:00"
   }
 }
