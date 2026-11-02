@@ -151,6 +151,14 @@ pub(crate) fn capture(
         listings: RefCell::new(BTreeMap::new()),
     };
     let discovery = ripple_parse::scanner::discover(&tree).map_err(|e| e.to_string())?;
+    if tree
+        .listings
+        .borrow()
+        .iter()
+        .any(|(dir, entries)| dir.is_some() && entries.contains_key(".git"))
+    {
+        return Err("nested Git projects are unsupported in the single-project M2 scope".into());
+    }
     let mut bytes = discovery
         .inputs
         .iter()

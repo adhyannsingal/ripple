@@ -9,7 +9,7 @@ use ripple_core::{
     syntax::FileFacts,
 };
 use ripple_resolve::{
-    config::CONFIG_VERSION,
+    config::{CONFIG_VERSION, PACKAGE_POLICY_VERSION},
     reexports::{MODULES_VERSION, resolve_modules},
     symbols::{GRAPH_VERSION, resolve_graph},
 };
@@ -52,8 +52,9 @@ pub fn versions() -> IndexVersions {
         schema_version: SCHEMA_VERSION,
         hash_version: HASH_VERSION,
         analyzer_version: format!(
-            "cold-v1|package-v1|{}|{MODULES_VERSION}|{CONFIG_VERSION}|{GRAPH_VERSION}",
-            ripple_parse::hashes::EXTRACTOR_VERSION
+            "cold-v1|{PACKAGE_POLICY_VERSION}|{}|{}|{MODULES_VERSION}|{CONFIG_VERSION}|{GRAPH_VERSION}",
+            ripple_parse::hashes::EXTRACTOR_VERSION,
+            ripple_resolve::RESOLVER_VERSION
         ),
     }
 }
@@ -485,6 +486,55 @@ mod tests {
                 .generation,
             1
         );
+    }
+    #[test]
+    fn submodules_and_nested_git_projects_are_explicitly_rejected() {
+        let temp = repo();
+        let output = std::process::Command::new("git")
+            .arg("-C")
+            .arg(temp.path())
+            .args(["rev-parse", "HEAD"])
+            .output()
+            .unwrap();
+        assert!(output.status.success());
+        let head = String::from_utf8(output.stdout).unwrap();
+        git(
+            temp.path(),
+            &[
+                "update-index",
+                "--add",
+                "--cacheinfo",
+                &format!("160000,{},submodule", head.trim()),
+            ],
+        );
+        assert!(cold_index(temp.path()).unwrap_err().contains("submodule"));
+        assert!(!temp.path().join(".ripple").exists());
+        let temp = repo();
+        let nested = temp.path().join("nested");
+        fs::create_dir(&nested).unwrap();
+        git(&nested, &["init", "-q"]);
+        fs::write(nested.join("x.ts"), "export function x() {} ").unwrap();
+        assert!(cold_index(temp.path()).unwrap_err().contains("nested Git"));
+    }
+    #[cfg(unix)]
+    #[test]
+    fn configured_filesystem_monitor_script_is_not_executed() {
+        use std::os::unix::fs::PermissionsExt;
+        let temp = repo();
+        let marker = temp.path().join("EXECUTED");
+        let script = temp.path().join("monitor.sh");
+        fs::write(
+            &script,
+            format!("#!/bin/sh\nprintf compromised > '{}'\n", marker.display()),
+        )
+        .unwrap();
+        fs::set_permissions(&script, fs::Permissions::from_mode(0o700)).unwrap();
+        git(
+            temp.path(),
+            &["config", "core.fsmonitor", script.to_str().unwrap()],
+        );
+        cold_index(temp.path()).unwrap();
+        assert!(!marker.exists());
     }
 }
 #[cfg(test)]

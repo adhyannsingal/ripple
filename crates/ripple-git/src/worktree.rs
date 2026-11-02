@@ -102,6 +102,16 @@ pub fn observe(root: &Path) -> Result<SnapshotOrigin, String> {
             "external Git clean/process filters are unsupported; no scripts were executed".into(),
         );
     }
+    let (ok, entries) = run(root, &["ls-files", "--stage", "-z"])?;
+    if !ok {
+        return Err("cannot verify Git index metadata".into());
+    }
+    if entries
+        .split(|b| *b == 0)
+        .any(|entry| entry.starts_with(b"160000 "))
+    {
+        return Err("Git submodules are unsupported in the single-project M2 scope".into());
+    }
     let (ok, head) = run(root, &["rev-parse", "--verify", "HEAD"])?;
     let head = if ok {
         Some(
