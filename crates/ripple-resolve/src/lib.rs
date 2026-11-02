@@ -4,6 +4,7 @@ mod config_json;
 pub mod exports;
 pub mod modules;
 pub mod paths;
+pub mod reexports;
 pub use exports::{ModuleResolution, resolve};
 
 pub const RESOLVER_VERSION: &str = "ripple-relative-v1";

@@ -98,7 +98,7 @@ pub struct ModuleResolution {
     pub diagnostics: Vec<ResolutionDiagnostic>,
     pub incomplete_resolution: bool,
 }
-fn incomplete(facts: &FileFacts) -> bool {
+pub(crate) fn incomplete(facts: &FileFacts) -> bool {
     facts.parse_status != ParseStatus::Clean
         || facts.diagnostics.iter().any(|d| {
             d.code.contains("resource_limit")
@@ -113,7 +113,7 @@ fn incomplete(facts: &FileFacts) -> bool {
                 )
         })
 }
-fn direct(facts: &FileFacts) -> Vec<DirectExport> {
+pub(crate) fn direct(facts: &FileFacts) -> Vec<DirectExport> {
     let mut groups = BTreeMap::<ExportName, Vec<(&str, bool, SourceSpan)>>::new();
     for export in &facts.exports {
         if let ExportKind::Local {
@@ -234,39 +234,7 @@ pub fn resolve(
     files: &[FileFacts],
 ) -> Result<ModuleResolution, ResolutionError> {
     let resolver = ModuleResolver::new(sources.files().map(|s| s.path().clone()))?;
-    let mut facts_by_path = BTreeMap::new();
-    let mut requests = 0usize;
-    for facts in files {
-        let source = sources
-            .get(&facts.path)
-            .ok_or_else(|| ResolutionError("Facts are outside captured inventory".into()))?;
-        facts
-            .validate(source)
-            .map_err(|e| ResolutionError(e.to_string()))?;
-        if facts
-            .symbols
-            .iter()
-            .any(|s| s.identity.project() != project)
-            || facts_by_path.insert(facts.path.clone(), facts).is_some()
-        {
-            return Err(ResolutionError(
-                "Duplicate facts or cross-project symbol identity".into(),
-            ));
-        }
-        requests = requests
-            .saturating_add(facts.imports.len())
-            .saturating_add(facts.exports.len());
-        if requests > 100_000 {
-            return Err(ResolutionError(
-                "Module/export request budget exceeds 100000".into(),
-            ));
-        }
-    }
-    if facts_by_path.len() != sources.files().count() {
-        return Err(ResolutionError(
-            "Captured sources require exactly one validated fact record each".into(),
-        ));
-    }
+    let facts_by_path = validate_facts(project, sources, files)?;
     let mut direct_exports = Vec::new();
     let mut deferred_exports = Vec::new();
     let mut diagnostics = Vec::new();
@@ -428,4 +396,46 @@ pub fn resolve(
         diagnostics,
         incomplete_resolution,
     })
+}
+
+/// Shared validation, independent of the chosen relative/configured lookup policy.
+pub(crate) fn validate_facts<'a>(
+    project: &ProjectKey,
+    sources: &SourceSnapshot,
+    files: &'a [FileFacts],
+) -> Result<BTreeMap<RepoPath, &'a FileFacts>, ResolutionError> {
+    let mut facts_by_path = BTreeMap::new();
+    let mut requests = 0usize;
+    for facts in files {
+        let source = sources
+            .get(&facts.path)
+            .ok_or_else(|| ResolutionError("Facts are outside captured inventory".into()))?;
+        facts
+            .validate(source)
+            .map_err(|e| ResolutionError(e.to_string()))?;
+        if facts
+            .symbols
+            .iter()
+            .any(|s| s.identity.project() != project)
+            || facts_by_path.insert(facts.path.clone(), facts).is_some()
+        {
+            return Err(ResolutionError(
+                "Duplicate facts or cross-project symbol identity".into(),
+            ));
+        }
+        requests = requests
+            .saturating_add(facts.imports.len())
+            .saturating_add(facts.exports.len());
+        if requests > 100_000 {
+            return Err(ResolutionError(
+                "Module/export request budget exceeds 100000".into(),
+            ));
+        }
+    }
+    if facts_by_path.len() != sources.files().count() {
+        return Err(ResolutionError(
+            "Captured sources require exactly one validated fact record each".into(),
+        ));
+    }
+    Ok(facts_by_path)
 }

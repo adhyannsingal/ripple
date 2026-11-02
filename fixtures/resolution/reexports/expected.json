@@ -1,0 +1,90 @@
+[
+  {
+    "local": "renamed",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": false
+  },
+  {
+    "local": "starValue",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": false
+  },
+  {
+    "local": "Only",
+    "file": "origin.ts",
+    "name": "other",
+    "type_only": true
+  },
+  {
+    "local": "forwardedDefault",
+    "file": "origin.ts",
+    "name": "main",
+    "type_only": false
+  },
+  {
+    "local": "forwarded",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": false
+  },
+  {
+    "local": "diamond",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": false
+  },
+  {
+    "local": "explicit",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": false
+  },
+  {
+    "local": "cyclic",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": false
+  },
+  {
+    "local": "certain",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": false
+  },
+  {
+    "local": "typeForward",
+    "file": "origin.ts",
+    "name": "value",
+    "type_only": true
+  },
+  {
+    "local": "missingDefault",
+    "problem": "MissingExport"
+  },
+  {
+    "local": "collision",
+    "problem": "AmbiguousOrigins"
+  },
+  {
+    "local": "empty",
+    "problem": "NoSupportedOrigin"
+  },
+  {
+    "local": "emptyJoin",
+    "problem": "NoSupportedOrigin"
+  },
+  {
+    "local": "uncertain",
+    "problem": "UnknownStarSurface"
+  },
+  {
+    "local": "Shape",
+    "problem": "UnsupportedLocal"
+  },
+  {
+    "local": "namespace",
+    "problem": "UnsupportedNamespace"
+  }
+]

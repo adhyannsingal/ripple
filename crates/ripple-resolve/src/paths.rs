@@ -7,19 +7,19 @@ use crate::{
     },
 };
 use ripple_core::{identity::RepoPath, syntax::VersionedHash};
-use serde::Serialize;
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+use serde::{Deserialize, Serialize};
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ConfigLookupProblem {
     UnsupportedConfiguration,
     AmbiguousAlias,
     Module(ModuleProblem),
 }
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ConfigOutcome {
     Found { path: RepoPath, rule: LookupRule },
     Unresolved { reason: ConfigLookupProblem },
 }
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ConfigRoute {
     Relative,
     Paths {
@@ -29,7 +29,7 @@ pub enum ConfigRoute {
     BaseUrl,
     Unmapped,
 }
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ConfiguredLookup {
     pub importer: RepoPath,
     pub specifier: String,

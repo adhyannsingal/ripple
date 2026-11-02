@@ -1,0 +1,12 @@
+import { renamed } from './named';
+import missingDefault, { renamed as starValue, Only } from './star';
+import forwardedDefault, { forwarded } from './forward';
+import { shared as collision } from './collision';
+import { value as diamond } from './diamond';
+import { shared as explicit } from './override';
+import { value as cyclic } from './cycle-b';
+import { shared as empty } from './empty-a';
+import { shared as emptyJoin } from './empty-join';
+import { shared as uncertain, certain } from './unknown-forward';
+import { v as typeForward, Shape } from './only-types';
+import * as namespace from './origin';

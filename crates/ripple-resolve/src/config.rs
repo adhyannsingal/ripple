@@ -1,7 +1,7 @@
 //! Bounded, pure evaluation of captured repository-local configuration inputs.
 use crate::{ResolutionError, config_json};
 use ripple_core::{identity::RepoPath, index::HASH_VERSION, syntax::VersionedHash};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use sha2::{Digest, Sha256};
 use std::collections::{BTreeMap, BTreeSet};
@@ -12,14 +12,14 @@ pub struct ConfigInput {
     pub path: RepoPath,
     pub bytes: Vec<u8>,
 }
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ConfigDependency {
     pub path: RepoPath,
     /// None records a missing probe, also needed for later invalidation.
     pub content_hash: Option<VersionedHash>,
     pub byte_len: Option<u64>,
 }
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct ConfigDiagnostic {
     pub file: RepoPath,
     pub code: String,
