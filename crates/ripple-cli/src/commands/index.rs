@@ -16,5 +16,11 @@ pub fn run(root: &Path, format: Format) -> Result<(), CommandError> {
         terminal_json(&result.module_cache).map_err(|e| persistent::error(e.to_string()))?,
         result.incomplete
     );
+    let human = format!(
+        "{human}Config diagnostics: {}\nDiscovery diagnostics: {}\n",
+        terminal_json(&result.config_diagnostics).map_err(|e| persistent::error(e.to_string()))?,
+        terminal_json(&result.discovery_diagnostics)
+            .map_err(|e| persistent::error(e.to_string()))?
+    );
     persistent::emit("index", &result, result.incomplete, format, human)
 }

@@ -18,6 +18,12 @@ pub fn run(root: &Path, format: Format) -> Result<(), CommandError> {
         current.counts.unresolved,
         current.incomplete
     );
+    let human = format!(
+        "{human}Config diagnostics: {}\nDiscovery diagnostics: {}\n",
+        terminal_json(&current.config_diagnostics).map_err(|e| persistent::error(e.to_string()))?,
+        terminal_json(&current.discovery_diagnostics)
+            .map_err(|e| persistent::error(e.to_string()))?
+    );
     persistent::emit(
         "status",
         &serde_json::json!({"freshness":"verified","metadata":metadata,"counts":current.counts,"config_diagnostics":current.config_diagnostics,"discovery_diagnostics":current.discovery_diagnostics}),
