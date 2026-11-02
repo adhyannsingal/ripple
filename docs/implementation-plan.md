@@ -268,7 +268,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M2-T07 — Resolve re-exports to a deterministic fixed point
 
 - **Depends on:** M2-T06, M0-T04. **Lane:** semantics.
-- **Own:** `crates/ripple-resolve/src/reexports*`; `crates/ripple-resolve/src/exports*`; `fixtures/resolution/reexports/`; `docs/resolution.md`.
+- **Own:** `crates/ripple-resolve/src/reexports.rs`; `crates/ripple-resolve/src/exports.rs`; `crates/ripple-resolve/src/lib.rs`; `crates/ripple-resolve/src/config.rs`; `crates/ripple-resolve/src/paths.rs`; `crates/ripple-resolve/tests/reexports.rs`; `fixtures/resolution/reexports/`; `docs/adr/0019-reexport-fixed-point.md`; `docs/resolution.md`; `docs/limitations.md`; `docs/project-status.md`; `README.md`; `docs/reviews/config-handoff-review-2026-11-02.md`; `docs/task-reports/M2-T07.md`.
 - **Implement:** Add basic named/star re-export chains over relative/path-alias resolution, preserving binding origin and type-only distinctions. Define ambiguity handling and termination for cyclic barrels. Persist external fingerprints and importer/re-export dependency records; do not convert ambiguous export collisions into resolved targets.
 - **Acceptance:** Fixtures cover alias barrels, star-export collisions, default-export rules, type-only exports, cycles, deletion and missing-provider repair. Cycles terminate deterministically and every emitted binding has evidence; failed lookups are retained for incremental repair.
 - **Handoff:** Complete supported module/export layer and stable dependency records for call resolution and invalidation.
