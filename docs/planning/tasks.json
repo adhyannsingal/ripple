@@ -1479,23 +1479,43 @@
       ],
       "lane": "impact",
       "owned_paths": [
-        "crates/ripple-impact/src/graph*",
-        "crates/ripple-impact/src/traversal*",
-        "fixtures/impact/"
+        "crates/ripple-impact/src/graph.rs",
+        "crates/ripple-impact/src/traversal.rs",
+        "crates/ripple-impact/src/traversal_tests.rs",
+        "crates/ripple-impact/src/lib.rs",
+        "fixtures/impact/",
+        "docs/adr/0017-reverse-traversal.md",
+        "docs/graph-model.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M2-T04.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M2-T04",
+      "started_at": "2026-11-02T02:22:55.129072+00:00",
+      "heartbeat_at": "2026-11-02T02:22:55.129072+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "c760210735392ccf3fb5ae3ed495f0400cc46e3f",
+      "claimed_paths": [
+        "crates/ripple-impact/src/graph.rs",
+        "crates/ripple-impact/src/traversal.rs",
+        "crates/ripple-impact/src/traversal_tests.rs",
+        "crates/ripple-impact/src/lib.rs",
+        "fixtures/impact/",
+        "docs/adr/0017-reverse-traversal.md",
+        "docs/graph-model.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "README.md",
+        "docs/task-reports/M2-T04.md"
+      ],
+      "checkpoint": "Main clean and synchronized; graph/evidence contracts and storage integration verified. Designing deterministic dual-track adjacency/BFS.",
+      "next_action": "Implement adjacency and shortest paths, then independently expected traversal fixtures.",
       "report": "docs/task-reports/M2-T04.md"
     },
     {
@@ -2199,11 +2219,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M2-T04-traversal",
     "integration_branch": "main",
-    "checkpoint": "Atomic storage integrated, reviewed and verified locally and on all CI platforms. Claims released; M2 gate remains pending.",
-    "next_action": "M2-T04: deterministic in-memory reverse traversal.",
-    "updated_at": "2026-11-01T21:58:55.629541+00:00"
+    "checkpoint": "Main clean and synchronized; graph/evidence contracts and storage integration verified. Designing deterministic dual-track adjacency/BFS.",
+    "next_action": "Implement adjacency and shortest paths, then independently expected traversal fixtures.",
+    "updated_at": "2026-11-02T02:22:55.129072+00:00"
   }
 }

@@ -244,7 +244,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M2-T04 — Build deterministic in-memory reverse traversal
 
 - **Depends on:** M0-T04. **Lane:** impact.
-- **Own:** `crates/ripple-impact/src/graph*`; `crates/ripple-impact/src/traversal*`; `fixtures/impact/`.
+- **Own:** `crates/ripple-impact/src/graph.rs`; `crates/ripple-impact/src/traversal.rs`; `crates/ripple-impact/src/traversal_tests.rs`; `crates/ripple-impact/src/lib.rs`; `fixtures/impact/`; `docs/adr/0017-reverse-traversal.md`; `docs/graph-model.md`; `docs/limitations.md`; `docs/project-status.md`; `README.md`; `docs/task-reports/M2-T04.md`.
 - **Implement:** Build sorted adjacency and reverse BFS with cycles, shortest deterministic witnesses, weakest-hop confidence, limits and hubs. Run symbol-backed traversal over CALLS/REFERENCES and exact module-level symbol references; do not unconditionally expand symbols to containing files in this track. Run a separate module_fallback traversal through defining files and reverse IMPORTS/REEXPORTS. Preserve both evidence kinds and their union; fallback is a relevance label independent of edge-resolution confidence. Basic test reachability/counts use the early scanner classification.
 - **Acceptance:** Hand-authored chains, diamonds, cycles, multiple seeds, confidence ties, module-level test references, hubs and limits have independently expected results. The unrelated-two-export fixture keeps precise paths separate from fallback additions. Each witness exists in its revision graph; fallback cannot be displayed as a proven symbol dependency; display truncation does not alter complete traversal.
 - **Handoff:** Query engine and typed impact results usable by index, diff and test commands.
