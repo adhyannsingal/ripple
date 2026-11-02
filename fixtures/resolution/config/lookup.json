@@ -1,0 +1,12 @@
+{
+  "inventory": ["apps/main.ts", "apps/local.ts", "src/lib/util.ts", "src/exact.ts", "src/special/item.ts", "src/fallback/other.ts", "src/baseonly.ts", "src/suffix/x.ts"],
+  "cases": [
+    {"specifier": "@app/util", "target": "src/lib/util.ts", "probes": 7, "pattern": "@app/*"},
+    {"specifier": "@app/exact", "target": "src/exact.ts", "probes": 1, "pattern": "@app/exact"},
+    {"specifier": "@app/special/item", "target": "src/special/item.ts", "probes": 1, "pattern": "@app/special/*"},
+    {"specifier": "other", "target": "src/fallback/other.ts", "probes": 1, "pattern": "*"},
+    {"specifier": "baseonly", "target": "src/baseonly.ts", "probes": 7, "pattern": "*"},
+    {"specifier": "@suffix/x/end", "target": "src/suffix/x.ts", "probes": 1, "pattern": "@suffix/*/end"},
+    {"specifier": "./local", "target": "apps/local.ts", "probes": 1}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  // Origin is configs/base, not apps/tsconfig.json.
+  "compilerOptions": {
+    "moduleResolution": "node10",
+    "baseUrl": "../src",
+    "paths": {
+      "@app/*": ["missing/*", "lib/*"],
+      "@app/exact": ["exact.ts"],
+      "@app/special/*": ["special/*"],
+      "@suffix/*/end": ["suffix/*"],
+      "*": ["fallback/*"],
+    },
+  },
+}
