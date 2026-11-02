@@ -18,7 +18,7 @@ use std::{
     name = "ripple",
     version,
     arg_required_else_help = true,
-    after_help = "Inspect reports syntax facts. Index, impact, diff, test and status are not implemented yet."
+    after_help = "Index builds a cold graph; status/impact verify it. Diff and test are not implemented yet."
 )]
 struct Cli {
     /// Output style for implemented commands.
@@ -38,16 +38,30 @@ enum Command {
         #[arg(long, default_value = ".")]
         root: PathBuf,
     },
-    /// Not implemented yet: build a persistent dependency index.
-    Index(FutureArgs),
-    /// Not implemented yet: query downstream dependency paths.
-    Impact(FutureArgs),
+    /// Build a cold persistent index from verified captured inputs.
+    Index {
+        #[arg(default_value = ".")]
+        root: PathBuf,
+    },
+    /// Query explainable downstream paths from a fresh index.
+    Impact {
+        symbol: String,
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+        #[arg(long)]
+        depth: Option<usize>,
+        #[arg(long, default_value_t = 100)]
+        limit: usize,
+    },
     /// Not implemented yet: analyze Git base/head changes.
     Diff(FutureArgs),
     /// Not implemented yet: report potentially related test files.
     Test(FutureArgs),
-    /// Not implemented yet: show persistent index freshness.
-    Status(FutureArgs),
+    /// Verify index freshness and show provenance/counts.
+    Status {
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+    },
 }
 #[derive(Args)]
 struct FutureArgs {
@@ -56,15 +70,20 @@ struct FutureArgs {
 }
 fn run(cli: Cli) -> Result<(), CommandError> {
     let report = match cli.command {
+        Command::Index { root } => return commands::index::run(&root, cli.format),
+        Command::Status { root } => return commands::status::run(&root, cli.format),
+        Command::Impact {
+            symbol,
+            root,
+            depth,
+            limit,
+        } => return commands::impact::run(&root, &symbol, depth, limit, cli.format),
         Command::Inspect { root, file } => commands::inspect::run(&root, file)?,
         other => {
             let name = match other {
-                Command::Index(_) => "index",
-                Command::Impact(_) => "impact",
                 Command::Diff(_) => "diff",
                 Command::Test(_) => "test",
-                Command::Status(_) => "status",
-                Command::Inspect { .. } => unreachable!(),
+                _ => unreachable!(),
             };
             return Err(CommandError::new(
                 "command_not_implemented",

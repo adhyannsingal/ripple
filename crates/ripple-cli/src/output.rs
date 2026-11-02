@@ -67,7 +67,7 @@ fn yes(value: bool) -> &'static str {
 // serde_json escapes ASCII controls, but leaves Unicode controls/direction markers raw.
 // Human snippets use the same non-printable policy as Rust's debug strings while
 // retaining valid JSON escapes and readable ordinary Unicode.
-fn terminal_json(value: &impl Serialize) -> Result<String, fmt::Error> {
+pub(crate) fn terminal_json(value: &impl Serialize) -> Result<String, fmt::Error> {
     let json = serde_json::to_string(value).map_err(|_| fmt::Error)?;
     let mut out = String::with_capacity(json.len());
     for ch in json.chars() {

@@ -22,13 +22,7 @@ fn version_matches_the_package() {
 }
 #[test]
 fn registered_future_commands_fail_without_success_output() {
-    for args in [
-        &["index", "."][..],
-        &["impact", "caller"][..],
-        &["diff", "main..HEAD"][..],
-        &["test", "main..HEAD"][..],
-        &["status"][..],
-    ] {
+    for args in [&["diff", "main..HEAD"][..], &["test", "main..HEAD"][..]] {
         let output = ripple(args);
         assert_eq!(output.status.code(), Some(1), "{args:?}");
         assert!(output.stdout.is_empty());
