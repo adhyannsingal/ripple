@@ -1,6 +1,6 @@
 # SQLite storage library
 
-`ripple_index::storage::Store` persists validated caller-supplied snapshots in `.ripple/index.db`. The index CLI and live freshness verification remain M2-T05 work.
+`ripple_index::storage::Store` persists validated caller-supplied snapshots in `.ripple/index.db`. M2-T05 now composes cold publication and live freshness verification through index/status/impact.
 
 1. Open a private local state directory with `Store::open(directory, expected_versions)`. Unknown/nonempty foreign databases and incompatible schema/migration history fail explicitly.
 2. Build an `IndexSnapshot` validated against captured sources. Supply one `InputBytes` for every manifest entry, including source/config/ignore/package/lockfile roles. `input_hash(bytes)` computes raw SHA-256 version 1; syntax fingerprints use separate framing/domains. Retain effective-config and ignore-policy provenance in the core metadata/manifest.
@@ -15,3 +15,5 @@ A busy writer returns `StorageError::Busy` immediately. Reads pin a generation u
 Inputs are capped at 16 MiB each and 256 MiB total; JSON records/summary at 64 MiB each, aggregate records at 256 MiB and persisted rows at one million per generation. Unsupported oversized state fails explicitly. Storage assumes a caller-owned local directory; observed symlinks/nonregular database sidecars are rejected, but adversarial replacement races, hard links and network filesystems are outside the containment guarantee. Integrity seals are corruption checks, not authentication. Performance and power-loss fault injection are not measured.
 
 Run `cargo test --locked -p ripple-index` for the fixture, rollback, corruption, concurrency and recovery tests. See [ADR 0016](adr/0016-storage-generations.md) and [storage fixtures](../fixtures/storage/README.md).
+
+The cold builder additionally writes `modules-N.json` as a derived per-generation module-evidence cache after publication. Missing/corrupt/pending cache files do not override SQLite; current queries reconstruct module completeness from captured facts/config. Future cache reuse must run module artifact validation and index freshness checks. See [cold-index policy](adr/0021-cold-index.md).

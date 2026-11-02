@@ -1,0 +1,19 @@
+# M2 security and verification — 2026-11-02
+
+Status: local review/checks passed; integrated platform gate pending.
+
+Reviewed the completed M2 path using the code-review and security-review checklists, scoped to a local CLI: input/path boundaries, parser/config limits, graph uncertainty, storage transactions/SQL, artifact trust, Git subprocesses, terminal output, dependencies and unchanged user work. Authentication/hosted-service/browser controls are outside this product scope.
+
+| Boundary | Finding and actual evidence |
+|---|---|
+| Source/config/package inputs | Anchored Worktree reads, no symlink inputs/parents, 16 MiB/input and 256 MiB capture caps, finite config inheritance/JSON bounds, duplicate-key rejection and explicit unsupported package entry/mode diagnostics. Existing config/symlink/capture tests pass. |
+| Semantic graph | Nearest lexical bindings and configured origins; type-only/shadowed/dynamic receivers never become guessed precise calls. Empty/whitespace failed module requests retain valid boundaries. Ambiguous/cyclic/unknown-star behavior and declaration witnesses have regressions. |
+| Persistence | Parameterized data SQL, constrained typed endpoints, foreign keys, defensive/WAL settings, compatibility/integrity validation and atomic complete-generation publication. Fault/reader/writer/corruption tests pass. Metadata/module cache failure after commit reports pending derived work. |
+| Git | Argument arrays, isolated GIT_* environment/system/global config, 10-second/8 MiB command bounds, fsmonitor disabled, external clean/process filters and submodules rejected, nested Git scope explicit. Environment spoof/filter/monitor/index-preservation tests pass. No checkout/stash/stage/network/project script operation is requested. |
+| Output/cache trust | Human paths/text use control/direction escaping; JSON retains exact values. Scope/diagnostics/completeness remain visible. Module sidecars are derived/untrusted; no cached artifact is promoted without recomputation/validation. |
+| Dependency/credential checks | RustSec scanned 122 dependencies with zero known advisories/warnings. A limited tracked-tree pattern scan found no AWS access-key, GitHub/OpenAI token or private-key matches; matching values were never printed. This is not a full Git-history secret audit. Production crate dependency direction was checked with cargo tree. |
+| Verification | 222 local Rust tests, strict Clippy, canonical cold rebuild/reopen, input/HEAD mutation hooks and debug/clean-installed capability smoke passed. The smoke tests paths with spaces/Unicode, all implemented commands, both witness tracks, stale detection, depth/display semantics and unchanged Git index. |
+
+Review repairs included preserving empty module boundaries, blocking unmodeled package policy before resolved matches, retaining Git execution in its own crate, composing actual policy versions and explicitly rejecting unsupported nested/submodule roots. No remaining blocking finding was established in the supported scope. Final integrated checks/three-platform CI are pending and must pass before the ledger's M2 gate is marked complete.
+
+Limits: private local repository metadata/filesystem and a trusted Git binary are assumed. Active hostile replacement/races, arbitrary user-global conversion policy, hard links/network filesystems, OS-atomic capture, hard RSS/end-to-end deadlines and power-loss injection are not established guarantees. These are code/advisory/fixture checks, not exhaustive penetration testing or compiler accuracy/mutation-safety evidence. Tested local toolchain: rustc 1.99.1, Git 2.51.2. Runtime requires Git but not Node or a database server.

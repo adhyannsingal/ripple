@@ -1,46 +1,21 @@
 # What Ripple does today
 
-Ripple is being built as a local Rust tool that explains which TypeScript code and tests may be affected by Git changes, with dependency paths showing why. The current implementation provides the source-analysis foundation. End-to-end impact analysis is upcoming.
+Ripple is a local Rust CLI in development for explainable TypeScript change impact. M0 source/graph/index contracts, M1 source understanding and the M2 cold persistent graph pipeline are implemented. Git endpoint comparison, incremental updates and the dedicated test command remain later milestones.
 
-## Implemented and tested
-
-| Area | Current behavior |
+| Area | Implemented behavior |
 |---|---|
-| Workspace and coordination | Seven Rust crates, pinned dependencies/toolchain, CI on macOS/Linux/Windows, dependency-linked task cards and resumable task reports. The planning helper validates state and lists ready tasks; it does not launch agents. |
-| Repository discovery | Captures supported `.ts`/`.tsx` source and root configuration/ignore bytes, applies repository ignores and mandatory exclusions, identifies test filename suffixes and sorts portable paths deterministically. Anchored directory reads, resource bounds and explicit diagnostics guard unsupported paths and symlinks. |
-| Parsing | Tree-sitter TS/TSX syntax trees, UTF-8 byte/line/column spans, clean/recovered/failed states and bounded error reporting. Syntax is not proof of TypeScript semantics. |
-| Symbols | Supported top-level functions, const-bound function/arrow expressions, classes and methods; overload groups; syntactic export metadata; stable semantic identities and enclosing-symbol ownership. Unsupported forms remain explicit diagnostics. |
-| Imports, exports and references | Unescaped static module specifiers, named/default aliases, type-only bindings and basic re-exports; direct calls, runtime uses, lexical scopes/shadowing and symbol/file ownership. Dynamic/receiver/unsupported forms retain diagnostics; targets remain unresolved. |
-| Fingerprints | Separate structural signature/body SHA-256 hashes. Ordinary comments/spacing are stable while ASI and meaningful literal/TSX changes remain observable. Supported method body edits do not change the class shape fingerprint. Unsupported export shapes withhold complete signatures. |
-| Inspect CLI | Captures a selected root and displays one discovered TS/TSX file as deterministic human or versioned JSON facts, with source spans, ownership and explicit diagnostics/incompleteness. No index or Git state is written. |
-| Initial resolution library | M2-T01 matches captured relative source paths, retains positive/negative lookup evidence and links supported direct exports/import aliases. Types, ambiguity and deferred barrels stay explicit; no call graph or compiler-mode agreement is claimed. |
-| Configuration/alias library | Bounded captured JSONC/local inheritance, declaration-relative baseUrl/paths, deterministic input fingerprints and conditional alias lookup with ordered probe evidence. Unsupported modes/forms stay explicit; binding/CLI composition remains upcoming. |
-| Configured export library | Named/star/default re-export chains and unique imported-alias forwarding reach original declarations, retaining type-only flags, ambiguity/unknown surfaces, transfer witnesses and serializable dependency/fingerprint evidence. No call edges or CLI integration yet. |
-| Storage library | Versioned SQLite generations retain captured bytes, syntax facts, typed nodes/edges and uncertainty. Publication is atomic, reads are generation-consistent, compatibility/corruption checks are explicit and derived metadata is recoverable. This does not implement the index CLI or live manifest verification. |
-| Reverse-query library | Reusable in-memory adjacency, deterministic shortest witnesses, weakest-hop confidence, independent symbol/fallback evidence, test-file partitions, depth/display limits and hub summaries. No impact CLI or freshness/revision binding is supplied by this library. |
-| Shared contracts | Validated source, syntax, graph/evidence, revision, index and canonical-state data structures. These are boundaries for later implementations; core contracts alone do not establish resolver correctness or end-to-end indexing. |
+| Capture | Supported TS/TSX, repository ignores, finite local config inheritance, package policy and recognized root lockfiles; anchored reads, explicit exclusions/symlink rules and content/path verification. |
+| Syntax | Bounded Tree-sitter parsing, source spans, stable supported symbols, signature/body fingerprints, import/export/scope/reference facts and explicit unsupported diagnostics. |
+| Semantics | Configured source lookup, aliases, named/star/default re-export fixed points and supported lexical local/imported calls/reads; shadowing, type-only and ambiguity stay explicit. |
+| Storage | Immutable typed SQLite generations, captured bytes/facts, atomic publication, integrity/version checks, concurrent reader/writer behavior and derived-summary recovery. |
+| Queries | Deterministic reverse witnesses with confidence/provenance, independent symbol-backed/module-fallback tracks, potentially-related test partitions, depth/display limits and hubs. |
+| CLI | index, inspect, status and impact in human/versioned JSON. Persistent queries verify freshness and reject stale/incompatible state; ambiguous symbols need qualified choices. |
+| Verification | Fixture/adversarial tests, installed capability smoke and Linux/macOS/Windows CI; see milestone reports for actual gate outcomes. |
 
-For example, changing `function f() { return 1; }` to `function f() { return 2; }` preserves its identity and syntactic signature hash but changes its body hash. Adding blank lines preserves identity and hashes. These library-level facts will feed future change/impact analysis; they do not establish semantic API equality or safe test skipping.
+From a supported Git project root, `ripple index .` builds a cold generation; `ripple status` verifies it and `ripple impact path/to/file.ts::symbol` explains potentially affected code/tests. `inspect` remains a syntax-only debugging view. Use `--format json` for typed complete evidence. No Node runtime, database server, hosted service or project-script execution is required.
 
-## Available CLI
+The reproducible repository demo is `python3 scripts/m2-smoke.py --binary target/debug/ripple`, after a locked workspace build; the installed form takes `--install-root`. It uses a disposable Git root with spaces/Unicode, checks a two-hop semantic witness and distinguishes one exact test from one conservative fallback addition. It also verifies stale-content rejection and unchanged Git-index bytes.
 
-```sh
-cargo run --locked -p ripple-cli -- --help
-cargo run --locked -p ripple-cli -- --version
-cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
-cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json
-```
+Index builds always cold-recompute. Worktree verification reads/hashes contents and is not an OS-atomic snapshot. Supported package/module policy is narrow and diagnosed; external Git filters, submodules and nested Git projects are unsupported. Test sets are potentially related, never sufficient. No compiler-oracle accuracy, latency, incremental-equality or mutation-safety measurements are claimed.
 
-The binary reports `ripple 0.1.0-dev`. `inspect` now exposes source facts without resolving dependency targets. It cannot yet build a persistent index, analyze a Git diff, traverse affected symbols or select related tests. See [CLI usage](cli.md). No Node runtime or hosted service is required by the binary.
-
-## Progress and next steps
-
-M0 contracts/bootstrap and the revalidated M1 source-understanding gate are complete. M1 discovery, parsing, supported symbols/hashes, import/export/reference extraction and the inspect CLI are integrated and verified. See the [M1 gate report](task-reports/M1.md) for evidence. Extraction keeps opaque syntax, type-only imports, lexical shadowing and uncertainty explicit.
-
-M2-T01 adds relative module/direct binding evidence. M2-T03 adds validated atomic SQLite generations; M2-T04 adds deterministic in-memory reverse queries. M2-T06 adds captured effective configuration and local alias lookup. M2-T07 adds configured bindings and re-export fixed points. Next by ready dependency order is **M2-T02**, supported call/reference resolution with evidence. Later milestones add remaining semantic resolution and index building, compiler-oracle evaluation, Git base/head impact analysis, incremental/replay correctness, related-test evidence and measured release benchmarks.
-
-No resolver accuracy, latency, incremental-equality or test-sufficiency results are claimed. See [limitations](limitations.md), the [task ledger](planning/tasks.json), [implementation plan](implementation-plan.md), the [reference extraction report](task-reports/M1-T04.md) and [extraction review](reviews/extraction-recheck-2026-10-30.md) for the exact boundaries and evidence.
-
-The [inspect code/security review](reviews/inspect-review-2026-10-31.md) repaired human Unicode-control rendering while preserving exact JSON facts; its regression and platform checks passed.
-
-See [resolution scope](resolution.md) for the initial library policy. The CLI remains syntax-only until the owning integration tasks add semantic commands.
+See [M2 gate](task-reports/M2.md), [security/verification review](reviews/M2-security-verification-2026-11-02.md), [CLI usage](cli.md), [resolution policy](resolution.md), [storage](storage.md), [limitations](limitations.md) and the [task ledger](planning/tasks.json). The next scheduled work after M2 is M3-T01, the pinned compiler oracle; independent Git endpoint work is also dependency-ready.
