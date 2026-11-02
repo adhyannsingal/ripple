@@ -77,7 +77,16 @@ impl<'a> ConfiguredResolver<'a> {
                 reason: ModuleProblem::NonRelative
             }
         ) {
-            result.routes.push(ConfigRoute::Relative);
+            result.routes.push(
+                if matches!(specifier, "." | "..")
+                    || specifier.starts_with("./")
+                    || specifier.starts_with("../")
+                {
+                    ConfigRoute::Relative
+                } else {
+                    ConfigRoute::Unmapped
+                },
+            );
             result.append(relative);
             return result;
         }

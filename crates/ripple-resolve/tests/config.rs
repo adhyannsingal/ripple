@@ -324,6 +324,7 @@ fn supported_child_option_overrides_an_unsupported_inherited_value() {
 fn invalid_base_urls_alias_patterns_and_targets_are_not_silently_accepted() {
     for options in [
         json!({"baseUrl":"../outside"}),
+        json!({"baseUrl":"${configDir}/src"}),
         json!({"baseUrl":"/absolute"}),
         json!({"baseUrl":42}),
         json!({"baseUrl":"src\\nested"}),
@@ -496,4 +497,25 @@ fn deep_json_and_aggregate_or_path_inventory_exhaustion_are_bounded() {
         .is_err()
     );
     assert!(captured(&[]).evaluate(&p(&"a".repeat(4097))).is_err());
+}
+#[test]
+fn config_directory_macros_and_invalid_utf8_cannot_be_mistaken_for_literal_paths() {
+    let c = evaluate(&[(
+        "tsconfig.json",
+        r#"{"compilerOptions":{"baseUrl":"${configDir}/src"}}"#,
+    )]);
+    assert!(has_code(&c, "invalid_base_url"));
+    let c = evaluate(&[(
+        "tsconfig.json",
+        r#"{"compilerOptions":{"paths":{"@/*":["./${configDir}/*"]}}}"#,
+    )]);
+    assert!(has_code(&c, "invalid_paths_mapping"));
+    let c = CapturedConfigs::new([ConfigInput {
+        path: p("tsconfig.json"),
+        bytes: vec![255],
+    }])
+    .unwrap()
+    .evaluate(&p("tsconfig.json"))
+    .unwrap();
+    assert!(has_code(&c, "malformed_config"));
 }

@@ -81,7 +81,8 @@ pub(crate) fn directory(path: &RepoPath) -> &str {
 }
 /// A normalized repository directory, with the root represented by the empty string.
 pub(crate) fn join(base: &str, relative: &str) -> Result<String, &'static str> {
-    if relative.len() > 4096
+    if relative.contains("${")
+        || relative.len() > 4096
         || relative.starts_with('/')
         || relative.contains(['\\', ':', '?', '#'])
         || relative.chars().any(char::is_control)
