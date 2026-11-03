@@ -2110,19 +2110,30 @@
         "crates/ripple-impact/src/changes*",
         "fixtures/changes/"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M4-T02",
+      "started_at": "2026-11-03T20:30:15.975508+00:00",
+      "heartbeat_at": "2026-11-03T20:30:15.975508+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "1031e8729c067680f9792452c98a4a3ee7aab732",
+      "claimed_paths": [
+        "crates/ripple-impact/src/changes.rs",
+        "crates/ripple-impact/src/changes_tests.rs",
+        "crates/ripple-impact/src/lib.rs",
+        "crates/ripple-impact/Cargo.toml",
+        "Cargo.lock",
+        "fixtures/changes/",
+        "docs/adr/0022-change-classification.md",
+        "docs/task-reports/M4-T02.md",
+        "docs/limitations.md",
+        "docs/project-status.md"
+      ],
+      "checkpoint": "Dependencies integrated/verified; current branch synced. Designing pure two-endpoint fingerprint classification with conservative line ownership and explicit uncertainty. Preserve graphify-out/.",
+      "next_action": "Implement ChangeSet and byte/line mapping, add independent golden and Git-backed fixtures, integrate/review and verify required CI.",
       "report": "docs/task-reports/M4-T02.md"
     },
     {
@@ -2593,11 +2604,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M4-T02",
     "integration_branch": "main",
-    "checkpoint": "User-requested post-integration verification/security review complete on 91cb542; local suites, all platform/oracle CI, dependency audits and bounded credential-pattern scan passed. No new blocking finding in scope; implementation unchanged. Report: docs/reviews/M4-T01-security-verification-2026-11-03.md. Existing graphify-out/ preserved.",
-    "next_action": "Next scheduled implementation remains M4-T02 symbol change classification; select and claim before editing.",
-    "updated_at": "2026-11-03T20:00:35.178420+00:00"
+    "checkpoint": "Dependencies integrated/verified; current branch synced. Designing pure two-endpoint fingerprint classification with conservative line ownership and explicit uncertainty. Preserve graphify-out/.",
+    "next_action": "Implement ChangeSet and byte/line mapping, add independent golden and Git-backed fixtures, integrate/review and verify required CI.",
+    "updated_at": "2026-11-03T20:30:15.975508+00:00"
   }
 }
