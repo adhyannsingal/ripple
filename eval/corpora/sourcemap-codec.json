@@ -1,0 +1,38 @@
+{
+  "format_version": 1,
+  "id": "sourcemap-codec-src",
+  "repository": "https://github.com/jridgewell/sourcemap-codec",
+  "commit": "363fb9bea57909bd49748d522478bd42b20fd57e",
+  "license": {
+    "spdx": "MIT",
+    "path": "LICENSE"
+  },
+  "projection": "The four upstream src TS files, unmodified; upstream build config/package metadata/tests are excluded. Fixed evaluation compiler options apply; not a full-project compatibility claim.",
+  "files": [
+    {
+      "path": "src/scopes.ts",
+      "sha256": "1db13eedacbcb83d4c0ca6023379de51240be2b50cfe96b2d6513789a31ab9af",
+      "bytes": 9713
+    },
+    {
+      "path": "src/sourcemap-codec.ts",
+      "sha256": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e",
+      "bytes": 3203
+    },
+    {
+      "path": "src/strings.ts",
+      "sha256": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99",
+      "bytes": 1473
+    },
+    {
+      "path": "src/vlq.ts",
+      "sha256": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812",
+      "bytes": 1387
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b",
+      "bytes": 1072
+    }
+  ]
+}
