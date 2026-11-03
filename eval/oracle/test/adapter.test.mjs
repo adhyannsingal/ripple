@@ -21,7 +21,7 @@ test('mini corpus manually expected alias/barrel/overload/TSX edges and duplicat
  const a=analyze(root,files); const names=new Map(a.symbols.map(s=>[s.key,`${s.file}::${s.name}`]));
  assert.deepEqual(a.edges.map(e=>[names.get(e.source),names.get(e.target),e.kind]).sort(),[
  ['main.ts::caller','lib.ts::café','CALLS'],['main.ts::reference','lib.ts::café','REFERENCES'],['view.tsx::View','main.ts::caller','CALLS']].sort());
- assert.equal(a.coverage.eligible_occurrences,4);assert.equal(a.coverage.eligible_edges,3);assert.equal(a.edges.find(e=>e.kind==='CALLS'&&names.get(e.source)==='main.ts::caller').occurrences.length,2);
+ assert.deepEqual(a.symbols.find(s=>s.name==='café').span,{start:0,end:88});assert.equal(a.coverage.eligible_occurrences,4);assert.equal(a.coverage.eligible_edges,3);assert.equal(a.edges.find(e=>e.kind==='CALLS'&&names.get(e.source)==='main.ts::caller').occurrences.length,2);
  const text=fs.readFileSync(path.join(root,'main.ts'));for(const e of a.edges)for(const loc of e.occurrences)if(loc.file==='main.ts')assert.equal(text.subarray(loc.span.start,loc.span.end).toString(),'use');
  assert.ok(!a.edges.some(e=>names.get(e.source)==='main.ts::shadow'));assert.deepEqual(analyze(root,[...files].reverse()),a);
 });

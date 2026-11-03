@@ -74,7 +74,10 @@ export function analyze(root, files) {
     const visit=n=>{
       if(definition(n)) {
         const name=method(n)?`${n.parent.name.text}.${n.name.text}`:n.name.text;
-        const entry={file:relative(sf),name,kind:supportedClass(n)?'CLASS':method(n)?'METHOD':'FUNCTION',span:span(n),name_span:span(n.name)};
+        const implementationSpan=span(n);
+        const siblings=topFunction(n)?(checker.getSymbolAtLocation(n.name)?.getDeclarations()??[]).filter(d=>ts.isFunctionDeclaration(d)&&d.getSourceFile()===sf):[n];
+        const groupedSpan={start:Math.min(implementationSpan.start,...siblings.map(d=>span(d).start)),end:Math.max(implementationSpan.end,...siblings.map(d=>span(d).end))};
+        const entry={file:relative(sf),name,kind:supportedClass(n)?'CLASS':method(n)?'METHOD':'FUNCTION',span:groupedSpan,implementation_span:implementationSpan,name_span:span(n.name)};
         // Use path + declaration byte span, independent of Ripple extraction success/identity.
         entry.key=JSON.stringify([entry.file,entry.kind,entry.span.start,entry.span.end]);symbols.push(entry);defs.set(n,entry);
       }
