@@ -312,7 +312,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M4-T02 — Classify symbol changes across base and head
 
 - **Depends on:** M4-T01, M1-T04. **Lane:** impact.
-- **Own:** `crates/ripple-impact/src/changes*`; `fixtures/changes/`.
+- **Own:** `crates/ripple-impact/src/changes*`; `crates/ripple-impact/src/lib.rs`; `crates/ripple-impact/Cargo.toml`; `Cargo.lock`; `fixtures/changes/`; `docs/adr/0022-change-classification.md`; `docs/limitations.md`; `docs/project-status.md`; `docs/task-reports/M4-T02.md`.
 - **Implement:** Map old and new hunks to smallest supported enclosing symbols, compare stable IDs/hashes at both endpoints and classify added/deleted/body/signature/unchanged. Treat weak renames as delete+add. Emit file-level changes for import/config/top-level edits outside symbols; avoid reporting parent class for method-body-only changes.
 - **Acceptance:** Goldens cover empty insertion/deletion ranges, EOF edits, Unicode, comment-only changes, body/signature changes together, class/member changes, deleted functions, new functions, renamed files and import-only edits; nothing in a changed file disappears solely because no symbol contains a hunk.
 - **Handoff:** ChangeSet with base/head identities, ranges and reasons for traversal seeding.

@@ -2108,13 +2108,20 @@
       "lane": "impact",
       "owned_paths": [
         "crates/ripple-impact/src/changes*",
-        "fixtures/changes/"
+        "crates/ripple-impact/src/lib.rs",
+        "crates/ripple-impact/Cargo.toml",
+        "Cargo.lock",
+        "fixtures/changes/",
+        "docs/adr/0022-change-classification.md",
+        "docs/limitations.md",
+        "docs/project-status.md",
+        "docs/task-reports/M4-T02.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M4-T02",
       "started_at": "2026-11-03T20:30:15.975508+00:00",
-      "heartbeat_at": "2026-11-03T20:30:15.975508+00:00",
+      "heartbeat_at": "2026-11-03T20:45:21.550408+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2132,8 +2139,8 @@
         "docs/limitations.md",
         "docs/project-status.md"
       ],
-      "checkpoint": "Dependencies integrated/verified; current branch synced. Designing pure two-endpoint fingerprint classification with conservative line ownership and explicit uncertainty. Preserve graphify-out/.",
-      "next_action": "Implement ChangeSet and byte/line mapping, add independent golden and Git-backed fixtures, integrate/review and verify required CI.",
+      "checkpoint": "ChangeSet integrated; 25 real-Git goldens and 7 focused tests pass. Full local suite: 238 Rust, 6 Node, 4 metric, 18 planning tests; fmt/build/strict Clippy/CLI smoke pass. Review preserved analyzer provenance, checked record accounting and uncertainty without fabricated changed evidence.",
+      "next_action": "Push candidate and verify Linux/macOS Intel/Windows plus oracle CI; complete task/release claims after success.",
       "report": "docs/task-reports/M4-T02.md"
     },
     {
@@ -2607,8 +2614,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M4-T02",
     "integration_branch": "main",
-    "checkpoint": "Dependencies integrated/verified; current branch synced. Designing pure two-endpoint fingerprint classification with conservative line ownership and explicit uncertainty. Preserve graphify-out/.",
-    "next_action": "Implement ChangeSet and byte/line mapping, add independent golden and Git-backed fixtures, integrate/review and verify required CI.",
-    "updated_at": "2026-11-03T20:30:15.975508+00:00"
+    "checkpoint": "ChangeSet integrated; 25 real-Git goldens and 7 focused tests pass. Full local suite: 238 Rust, 6 Node, 4 metric, 18 planning tests; fmt/build/strict Clippy/CLI smoke pass. Review preserved analyzer provenance, checked record accounting and uncertainty without fabricated changed evidence.",
+    "next_action": "Push candidate and verify Linux/macOS Intel/Windows plus oracle CI; complete task/release claims after success.",
+    "updated_at": "2026-11-03T20:45:21.550408+00:00"
   }
 }
