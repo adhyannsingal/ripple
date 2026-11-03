@@ -93,6 +93,7 @@ pub struct SymbolChange {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ChangeSet {
     policy: &'static str,
+    analyzer_version: String,
     revisions: RevisionPair,
     files: Vec<FileDelta>,
     symbols: Vec<SymbolChange>,
@@ -100,6 +101,9 @@ pub struct ChangeSet {
     global_invalidation: bool,
 }
 impl ChangeSet {
+    pub fn analyzer_version(&self) -> &str {
+        &self.analyzer_version
+    }
     pub fn revisions(&self) -> &RevisionPair {
         &self.revisions
     }
@@ -336,16 +340,18 @@ pub fn classify(
         .facts
         .iter()
         .chain(head.facts)
-        .map(|f| 1 + f.symbols.len())
-        .sum::<usize>()
-        + changes
-            .files()
-            .iter()
-            .map(|f| 1 + f.hunks.len())
-            .sum::<usize>();
-    if records > MAX_RECORDS {
+        .try_fold(0usize, |n, f| {
+            n.checked_add(1)?.checked_add(f.symbols.len())
+        })
+        .and_then(|n| {
+            changes
+                .files()
+                .iter()
+                .try_fold(n, |n, f| n.checked_add(1)?.checked_add(f.hunks.len()))
+        });
+    if records.is_none_or(|n| n > MAX_RECORDS) {
         return Err(err(
-            "change classification exceeds one million input records",
+            "change classification exceeds one million file/symbol/hunk input records",
         ));
     }
     let projects = base
@@ -368,6 +374,7 @@ pub fn classify(
     }
     let mut result = ChangeSet {
         policy: CHANGE_POLICY,
+        analyzer_version: base.analyzer_version.to_owned(),
         revisions: changes.revisions().clone(),
         files: vec![],
         symbols: vec![],

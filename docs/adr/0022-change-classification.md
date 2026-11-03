@@ -6,7 +6,7 @@ Status: implemented by M4-T02; integration/CI evidence is recorded separately.
 
 `ripple_impact::changes::classify` consumes validated `RevisionChanges` and two declared immutable endpoints: commit IDs, analyzer token, captured supported sources, FileFacts and captured global-input paths. It performs no parsing, Git processes, SQL or filesystem reads. Production dependencies remain core/serde; Git/parser dependencies are test-only. The caller must bind bytes/facts to actual commits; this API validates declared IDs, analyzer compatibility, source/fact membership, unique project/file identities and source spans, not Git cryptographic provenance. M4-T03 supplies these inputs from complete immutable revision builds.
 
-No CLI diff wiring, cross-revision traversal or incremental cutoff is introduced. ChangeSet retains immutable revision labels, complete per-file records and per-symbol base/head facts with source spans/fingerprints. Its version token is `ripple-changes-v1`.
+No CLI diff wiring, cross-revision traversal or incremental cutoff is introduced. ChangeSet retains the analyzer token, immutable revision labels, complete per-file records and per-symbol base/head facts with source spans/fingerprints. Its version token is `ripple-changes-v1`.
 
 ## Attribution versus classification
 
@@ -26,7 +26,7 @@ Unowned/ambiguous hunk portions, unsupported/unindexed/diagnosed endpoints, no-t
 
 Captured global inputs (including arbitrary inherited config names) plus recognized tsconfig/package/lock/ignore files request global invalidation. Both base/head input sets participate so removed config inputs remain observable. Unindexed inputs are not silently ignored or presented as complete symbol analysis. Interpretation/traversal belongs to M4-T03.
 
-File/fact/hunk input records are capped at one million; this is not a hard total-process memory or end-to-end deadline guarantee. Intervals are built once per file and mapped using ordered lookup. Performance is not measured; no optimization claim or benchmark harness is introduced. These classifications must not enable incremental early cutoff or test skipping without the later equality/safety gates.
+File/symbol/hunk input records are capped at one million; this is not a hard total-process memory or end-to-end deadline guarantee. Intervals are built once per file and mapped using ordered lookup. Performance is not measured; no optimization claim or benchmark harness is introduced. These classifications must not enable incremental early cutoff or test skipping without the later equality/safety gates.
 
 ## Evidence
 
