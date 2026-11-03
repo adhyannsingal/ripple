@@ -77,12 +77,15 @@ struct Object {
 #[derive(Debug, Clone)]
 pub struct RevisionTree {
     root: PathBuf,
-    pub revision: CommitId,
+    revision: CommitId,
     objects: BTreeMap<RepoPath, Object>,
     directories: BTreeMap<Option<RepoPath>, Vec<TreeEntry>>,
     bytes_read: Cell<usize>,
 }
 impl RevisionTree {
+    pub fn revision(&self) -> &CommitId {
+        &self.revision
+    }
     fn load(root: &Path, revision: CommitId) -> Result<Self, GitError> {
         let raw = command(
             root,
@@ -185,15 +188,11 @@ impl SourceTree for RevisionTree {
         directory: Option<&RepoPath>,
         max_entries: usize,
     ) -> Result<Vec<TreeEntry>, ScanError> {
-        let list = self
-            .directories
-            .get(&directory.cloned())
-            .cloned()
-            .unwrap_or_default();
-        if list.len() > max_entries {
+        let list = self.directories.get(&directory.cloned());
+        if list.map_or(0, Vec::len) > max_entries {
             return Err(ScanError("revision directory entry budget exceeded".into()));
         }
-        Ok(list)
+        Ok(list.cloned().unwrap_or_default())
     }
     fn read(&self, path: &RepoPath) -> Result<Vec<u8>, ScanError> {
         let object = self

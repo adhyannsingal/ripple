@@ -298,3 +298,44 @@ fn symlinks_never_read_targets_and_external_diff_drivers_never_run() {
     assert_eq!(scan.files.len(), 1);
     assert!(!scan.diagnostics.is_empty());
 }
+
+#[test]
+fn edited_rename_hunks_and_disappearing_objects_are_explicit() {
+    let d = repo();
+    let r = d.path();
+    write(
+        r,
+        "before.ts",
+        "one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n",
+    );
+    let a = commit(r);
+    fs::rename(r.join("before.ts"), r.join("after.ts")).unwrap();
+    write(
+        r,
+        "after.ts",
+        "one\ntwo\nchanged\nfour\nfive\nsix\nseven\neight\nnine\nten\n",
+    );
+    let b = commit(r);
+    let result = compare(r, &a, &b);
+    let file = &result.changes.files()[0];
+    assert_eq!(file.kind, FileChangeKind::Renamed);
+    assert_eq!(file.hunks[0].old, LineRange { start: 3, count: 1 });
+    assert_eq!(file.hunks[0].new, LineRange { start: 3, count: 1 });
+    assert_eq!(result.base.revision().as_str(), a);
+    let id = git(r, &["rev-parse", "HEAD:after.ts"]);
+    let id = id.trim();
+    let object = r.join(".git/objects").join(&id[..2]).join(&id[2..]);
+    #[cfg(windows)]
+    {
+        let mut permissions = fs::metadata(&object).unwrap().permissions();
+        permissions.set_readonly(false);
+        fs::set_permissions(&object, permissions).unwrap();
+    }
+    fs::remove_file(object).unwrap();
+    assert!(
+        result
+            .head
+            .read(&RepoPath::new("after.ts").unwrap())
+            .is_err()
+    );
+}
