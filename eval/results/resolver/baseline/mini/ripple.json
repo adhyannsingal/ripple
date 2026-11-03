@@ -1,0 +1,2064 @@
+{
+  "edges": [
+    {
+      "confidence": "RESOLVED",
+      "kind": "REEXPORTS",
+      "provenance": {
+        "file": "barrel.ts",
+        "span": {
+          "end": {
+            "byte": 23,
+            "column": 24,
+            "line": 1
+          },
+          "start": {
+            "byte": 9,
+            "column": 10,
+            "line": 1
+          }
+        }
+      },
+      "resolution_rule": "configured_module_lookup",
+      "source": {
+        "identity": {
+          "path": "barrel.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "path": "lib.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "DEFINES",
+      "provenance": {
+        "file": "lib.ts",
+        "span": {
+          "end": {
+            "byte": 88,
+            "column": 47,
+            "line": 2
+          },
+          "start": {
+            "byte": 0,
+            "column": 1,
+            "line": 1
+          }
+        }
+      },
+      "resolution_rule": "syntax_defines",
+      "source": {
+        "identity": {
+          "path": "lib.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "lib.ts",
+          "project": "default",
+          "qualified_name": [
+            "café"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "DEFINES",
+      "provenance": {
+        "file": "lib.ts",
+        "span": {
+          "end": {
+            "byte": 126,
+            "column": 38,
+            "line": 3
+          },
+          "start": {
+            "byte": 89,
+            "column": 1,
+            "line": 3
+          }
+        }
+      },
+      "resolution_rule": "syntax_defines",
+      "source": {
+        "identity": {
+          "path": "lib.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "lib.ts",
+          "project": "default",
+          "qualified_name": [
+            "spare"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "IMPORTS",
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 40,
+            "column": 41,
+            "line": 1
+          },
+          "start": {
+            "byte": 0,
+            "column": 1,
+            "line": 1
+          }
+        }
+      },
+      "resolution_rule": "configured_module_lookup",
+      "source": {
+        "identity": {
+          "path": "main.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "path": "barrel.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "DEFINES",
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 142,
+            "column": 61,
+            "line": 3
+          },
+          "start": {
+            "byte": 82,
+            "column": 1,
+            "line": 3
+          }
+        }
+      },
+      "resolution_rule": "syntax_defines",
+      "source": {
+        "identity": {
+          "path": "main.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "caller"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "DEFINES",
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 186,
+            "column": 44,
+            "line": 4
+          },
+          "start": {
+            "byte": 143,
+            "column": 1,
+            "line": 4
+          }
+        }
+      },
+      "resolution_rule": "syntax_defines",
+      "source": {
+        "identity": {
+          "path": "main.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "reference"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "DEFINES",
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 246,
+            "column": 60,
+            "line": 5
+          },
+          "start": {
+            "byte": 187,
+            "column": 1,
+            "line": 5
+          }
+        }
+      },
+      "resolution_rule": "syntax_defines",
+      "source": {
+        "identity": {
+          "path": "main.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "shadow"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "IMPORTS",
+      "provenance": {
+        "file": "view.tsx",
+        "span": {
+          "end": {
+            "byte": 32,
+            "column": 33,
+            "line": 1
+          },
+          "start": {
+            "byte": 0,
+            "column": 1,
+            "line": 1
+          }
+        }
+      },
+      "resolution_rule": "configured_module_lookup",
+      "source": {
+        "identity": {
+          "path": "view.tsx",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "path": "main.ts",
+          "project": "default"
+        },
+        "kind": "FILE"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "DEFINES",
+      "provenance": {
+        "file": "view.tsx",
+        "span": {
+          "end": {
+            "byte": 89,
+            "column": 57,
+            "line": 2
+          },
+          "start": {
+            "byte": 33,
+            "column": 1,
+            "line": 2
+          }
+        }
+      },
+      "resolution_rule": "syntax_defines",
+      "source": {
+        "identity": {
+          "path": "view.tsx",
+          "project": "default"
+        },
+        "kind": "FILE"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "view.tsx",
+          "project": "default",
+          "qualified_name": [
+            "View"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "CALLS",
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 119,
+            "column": 38,
+            "line": 3
+          },
+          "start": {
+            "byte": 116,
+            "column": 35,
+            "line": 3
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "caller"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "lib.ts",
+          "project": "default",
+          "qualified_name": [
+            "café"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "CALLS",
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 133,
+            "column": 52,
+            "line": 3
+          },
+          "start": {
+            "byte": 130,
+            "column": 49,
+            "line": 3
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "caller"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "lib.ts",
+          "project": "default",
+          "qualified_name": [
+            "café"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "REFERENCES",
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 183,
+            "column": 41,
+            "line": 4
+          },
+          "start": {
+            "byte": 180,
+            "column": 38,
+            "line": 4
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "reference"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "lib.ts",
+          "project": "default",
+          "qualified_name": [
+            "café"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "CALLS",
+      "provenance": {
+        "file": "view.tsx",
+        "span": {
+          "end": {
+            "byte": 77,
+            "column": 45,
+            "line": 2
+          },
+          "start": {
+            "byte": 71,
+            "column": 39,
+            "line": 2
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "view.tsx",
+          "project": "default",
+          "qualified_name": [
+            "View"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "caller"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    }
+  ],
+  "files": [
+    {
+      "diagnostics": [],
+      "exports": [
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "alias"
+            },
+            "imported": {
+              "kind": "NAMED",
+              "name": "café"
+            },
+            "kind": "RE_EXPORT",
+            "specifier": "./lib",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 23,
+              "column": 24,
+              "line": 1
+            },
+            "start": {
+              "byte": 9,
+              "column": 10,
+              "line": 1
+            }
+          }
+        }
+      ],
+      "imports": [],
+      "language": "TYPE_SCRIPT",
+      "parse_status": "CLEAN",
+      "path": "barrel.ts",
+      "references": [],
+      "scopes": [
+        {
+          "bindings": [],
+          "id": 0,
+          "parent": null,
+          "span": {
+            "end": {
+              "byte": 40,
+              "column": 1,
+              "line": 2
+            },
+            "start": {
+              "byte": 0,
+              "column": 1,
+              "line": 1
+            }
+          }
+        }
+      ],
+      "symbols": []
+    },
+    {
+      "diagnostics": [],
+      "exports": [
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "café"
+            },
+            "kind": "LOCAL",
+            "local": "café",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 21,
+              "column": 22,
+              "line": 1
+            },
+            "start": {
+              "byte": 16,
+              "column": 17,
+              "line": 1
+            }
+          }
+        },
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "café"
+            },
+            "kind": "LOCAL",
+            "local": "café",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 63,
+              "column": 22,
+              "line": 2
+            },
+            "start": {
+              "byte": 58,
+              "column": 17,
+              "line": 2
+            }
+          }
+        },
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "spare"
+            },
+            "kind": "LOCAL",
+            "local": "spare",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 110,
+              "column": 22,
+              "line": 3
+            },
+            "start": {
+              "byte": 105,
+              "column": 17,
+              "line": 3
+            }
+          }
+        }
+      ],
+      "imports": [],
+      "language": "TYPE_SCRIPT",
+      "parse_status": "CLEAN",
+      "path": "lib.ts",
+      "references": [
+        {
+          "kind": "READ",
+          "owner": {
+            "kind": "SYMBOL",
+            "symbol": {
+              "disambiguator": "",
+              "kind": "FUNCTION",
+              "path": "lib.ts",
+              "project": "default",
+              "qualified_name": [
+                "café"
+              ]
+            }
+          },
+          "scope": 2,
+          "span": {
+            "end": {
+              "byte": 85,
+              "column": 44,
+              "line": 2
+            },
+            "start": {
+              "byte": 84,
+              "column": 43,
+              "line": 2
+            }
+          },
+          "text": "x"
+        }
+      ],
+      "scopes": [
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "café",
+              "span": {
+                "end": {
+                  "byte": 63,
+                  "column": 22,
+                  "line": 2
+                },
+                "start": {
+                  "byte": 58,
+                  "column": 17,
+                  "line": 2
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "spare",
+              "span": {
+                "end": {
+                  "byte": 110,
+                  "column": 22,
+                  "line": 3
+                },
+                "start": {
+                  "byte": 105,
+                  "column": 17,
+                  "line": 3
+                }
+              }
+            }
+          ],
+          "id": 0,
+          "parent": null,
+          "span": {
+            "end": {
+              "byte": 127,
+              "column": 1,
+              "line": 4
+            },
+            "start": {
+              "byte": 0,
+              "column": 1,
+              "line": 1
+            }
+          }
+        },
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "arguments",
+              "span": {
+                "end": {
+                  "byte": 88,
+                  "column": 47,
+                  "line": 2
+                },
+                "start": {
+                  "byte": 49,
+                  "column": 8,
+                  "line": 2
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "café",
+              "span": {
+                "end": {
+                  "byte": 63,
+                  "column": 22,
+                  "line": 2
+                },
+                "start": {
+                  "byte": 58,
+                  "column": 17,
+                  "line": 2
+                }
+              }
+            },
+            {
+              "kind": "PARAMETER",
+              "name": "x",
+              "span": {
+                "end": {
+                  "byte": 65,
+                  "column": 24,
+                  "line": 2
+                },
+                "start": {
+                  "byte": 64,
+                  "column": 23,
+                  "line": 2
+                }
+              }
+            }
+          ],
+          "id": 1,
+          "parent": 0,
+          "span": {
+            "end": {
+              "byte": 88,
+              "column": 47,
+              "line": 2
+            },
+            "start": {
+              "byte": 49,
+              "column": 8,
+              "line": 2
+            }
+          }
+        },
+        {
+          "bindings": [],
+          "id": 2,
+          "parent": 1,
+          "span": {
+            "end": {
+              "byte": 88,
+              "column": 47,
+              "line": 2
+            },
+            "start": {
+              "byte": 75,
+              "column": 34,
+              "line": 2
+            }
+          }
+        },
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "arguments",
+              "span": {
+                "end": {
+                  "byte": 126,
+                  "column": 38,
+                  "line": 3
+                },
+                "start": {
+                  "byte": 96,
+                  "column": 8,
+                  "line": 3
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "spare",
+              "span": {
+                "end": {
+                  "byte": 110,
+                  "column": 22,
+                  "line": 3
+                },
+                "start": {
+                  "byte": 105,
+                  "column": 17,
+                  "line": 3
+                }
+              }
+            }
+          ],
+          "id": 3,
+          "parent": 0,
+          "span": {
+            "end": {
+              "byte": 126,
+              "column": 38,
+              "line": 3
+            },
+            "start": {
+              "byte": 96,
+              "column": 8,
+              "line": 3
+            }
+          }
+        },
+        {
+          "bindings": [],
+          "id": 4,
+          "parent": 3,
+          "span": {
+            "end": {
+              "byte": 126,
+              "column": 38,
+              "line": 3
+            },
+            "start": {
+              "byte": 113,
+              "column": 25,
+              "line": 3
+            }
+          }
+        }
+      ],
+      "symbols": []
+    },
+    {
+      "diagnostics": [],
+      "exports": [
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "caller"
+            },
+            "kind": "LOCAL",
+            "local": "caller",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 104,
+              "column": 23,
+              "line": 3
+            },
+            "start": {
+              "byte": 98,
+              "column": 17,
+              "line": 3
+            }
+          }
+        },
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "reference"
+            },
+            "kind": "LOCAL",
+            "local": "reference",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 168,
+              "column": 26,
+              "line": 4
+            },
+            "start": {
+              "byte": 159,
+              "column": 17,
+              "line": 4
+            }
+          }
+        },
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "shadow"
+            },
+            "kind": "LOCAL",
+            "local": "shadow",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 209,
+              "column": 23,
+              "line": 5
+            },
+            "start": {
+              "byte": 203,
+              "column": 17,
+              "line": 5
+            }
+          }
+        }
+      ],
+      "imports": [
+        {
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "alias"
+              },
+              "local": "use",
+              "span": {
+                "end": {
+                  "byte": 21,
+                  "column": 22,
+                  "line": 1
+                },
+                "start": {
+                  "byte": 9,
+                  "column": 10,
+                  "line": 1
+                }
+              },
+              "type_only": false
+            }
+          ],
+          "span": {
+            "end": {
+              "byte": 40,
+              "column": 41,
+              "line": 1
+            },
+            "start": {
+              "byte": 0,
+              "column": 1,
+              "line": 1
+            }
+          },
+          "specifier": "./barrel"
+        }
+      ],
+      "language": "TYPE_SCRIPT",
+      "parse_status": "CLEAN",
+      "path": "main.ts",
+      "references": [
+        {
+          "kind": "CALL",
+          "owner": {
+            "kind": "SYMBOL",
+            "symbol": {
+              "disambiguator": "",
+              "kind": "FUNCTION",
+              "path": "main.ts",
+              "project": "default",
+              "qualified_name": [
+                "caller"
+              ]
+            }
+          },
+          "scope": 2,
+          "span": {
+            "end": {
+              "byte": 119,
+              "column": 38,
+              "line": 3
+            },
+            "start": {
+              "byte": 116,
+              "column": 35,
+              "line": 3
+            }
+          },
+          "text": "use"
+        },
+        {
+          "kind": "CALL",
+          "owner": {
+            "kind": "SYMBOL",
+            "symbol": {
+              "disambiguator": "",
+              "kind": "FUNCTION",
+              "path": "main.ts",
+              "project": "default",
+              "qualified_name": [
+                "caller"
+              ]
+            }
+          },
+          "scope": 2,
+          "span": {
+            "end": {
+              "byte": 133,
+              "column": 52,
+              "line": 3
+            },
+            "start": {
+              "byte": 130,
+              "column": 49,
+              "line": 3
+            }
+          },
+          "text": "use"
+        },
+        {
+          "kind": "CALL",
+          "owner": {
+            "kind": "SYMBOL",
+            "symbol": {
+              "disambiguator": "",
+              "kind": "FUNCTION",
+              "path": "main.ts",
+              "project": "default",
+              "qualified_name": [
+                "shadow"
+              ]
+            }
+          },
+          "scope": 6,
+          "span": {
+            "end": {
+              "byte": 241,
+              "column": 55,
+              "line": 5
+            },
+            "start": {
+              "byte": 238,
+              "column": 52,
+              "line": 5
+            }
+          },
+          "text": "use"
+        },
+        {
+          "kind": "READ",
+          "owner": {
+            "kind": "SYMBOL",
+            "symbol": {
+              "disambiguator": "",
+              "kind": "FUNCTION",
+              "path": "main.ts",
+              "project": "default",
+              "qualified_name": [
+                "reference"
+              ]
+            }
+          },
+          "scope": 4,
+          "span": {
+            "end": {
+              "byte": 183,
+              "column": 41,
+              "line": 4
+            },
+            "start": {
+              "byte": 180,
+              "column": 38,
+              "line": 4
+            }
+          },
+          "text": "use"
+        }
+      ],
+      "scopes": [
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "caller",
+              "span": {
+                "end": {
+                  "byte": 104,
+                  "column": 23,
+                  "line": 3
+                },
+                "start": {
+                  "byte": 98,
+                  "column": 17,
+                  "line": 3
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "reference",
+              "span": {
+                "end": {
+                  "byte": 168,
+                  "column": 26,
+                  "line": 4
+                },
+                "start": {
+                  "byte": 159,
+                  "column": 17,
+                  "line": 4
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "shadow",
+              "span": {
+                "end": {
+                  "byte": 209,
+                  "column": 23,
+                  "line": 5
+                },
+                "start": {
+                  "byte": 203,
+                  "column": 17,
+                  "line": 5
+                }
+              }
+            },
+            {
+              "kind": "IMPORT",
+              "name": "use",
+              "span": {
+                "end": {
+                  "byte": 21,
+                  "column": 22,
+                  "line": 1
+                },
+                "start": {
+                  "byte": 18,
+                  "column": 19,
+                  "line": 1
+                }
+              }
+            }
+          ],
+          "id": 0,
+          "parent": null,
+          "span": {
+            "end": {
+              "byte": 247,
+              "column": 1,
+              "line": 6
+            },
+            "start": {
+              "byte": 0,
+              "column": 1,
+              "line": 1
+            }
+          }
+        },
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "arguments",
+              "span": {
+                "end": {
+                  "byte": 142,
+                  "column": 61,
+                  "line": 3
+                },
+                "start": {
+                  "byte": 89,
+                  "column": 8,
+                  "line": 3
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "caller",
+              "span": {
+                "end": {
+                  "byte": 104,
+                  "column": 23,
+                  "line": 3
+                },
+                "start": {
+                  "byte": 98,
+                  "column": 17,
+                  "line": 3
+                }
+              }
+            }
+          ],
+          "id": 1,
+          "parent": 0,
+          "span": {
+            "end": {
+              "byte": 142,
+              "column": 61,
+              "line": 3
+            },
+            "start": {
+              "byte": 89,
+              "column": 8,
+              "line": 3
+            }
+          }
+        },
+        {
+          "bindings": [],
+          "id": 2,
+          "parent": 1,
+          "span": {
+            "end": {
+              "byte": 142,
+              "column": 61,
+              "line": 3
+            },
+            "start": {
+              "byte": 107,
+              "column": 26,
+              "line": 3
+            }
+          }
+        },
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "arguments",
+              "span": {
+                "end": {
+                  "byte": 186,
+                  "column": 44,
+                  "line": 4
+                },
+                "start": {
+                  "byte": 150,
+                  "column": 8,
+                  "line": 4
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "reference",
+              "span": {
+                "end": {
+                  "byte": 168,
+                  "column": 26,
+                  "line": 4
+                },
+                "start": {
+                  "byte": 159,
+                  "column": 17,
+                  "line": 4
+                }
+              }
+            }
+          ],
+          "id": 3,
+          "parent": 0,
+          "span": {
+            "end": {
+              "byte": 186,
+              "column": 44,
+              "line": 4
+            },
+            "start": {
+              "byte": 150,
+              "column": 8,
+              "line": 4
+            }
+          }
+        },
+        {
+          "bindings": [],
+          "id": 4,
+          "parent": 3,
+          "span": {
+            "end": {
+              "byte": 186,
+              "column": 44,
+              "line": 4
+            },
+            "start": {
+              "byte": 171,
+              "column": 29,
+              "line": 4
+            }
+          }
+        },
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "arguments",
+              "span": {
+                "end": {
+                  "byte": 246,
+                  "column": 60,
+                  "line": 5
+                },
+                "start": {
+                  "byte": 194,
+                  "column": 8,
+                  "line": 5
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "shadow",
+              "span": {
+                "end": {
+                  "byte": 209,
+                  "column": 23,
+                  "line": 5
+                },
+                "start": {
+                  "byte": 203,
+                  "column": 17,
+                  "line": 5
+                }
+              }
+            },
+            {
+              "kind": "PARAMETER",
+              "name": "use",
+              "span": {
+                "end": {
+                  "byte": 213,
+                  "column": 27,
+                  "line": 5
+                },
+                "start": {
+                  "byte": 210,
+                  "column": 24,
+                  "line": 5
+                }
+              }
+            }
+          ],
+          "id": 5,
+          "parent": 0,
+          "span": {
+            "end": {
+              "byte": 246,
+              "column": 60,
+              "line": 5
+            },
+            "start": {
+              "byte": 194,
+              "column": 8,
+              "line": 5
+            }
+          }
+        },
+        {
+          "bindings": [],
+          "id": 6,
+          "parent": 5,
+          "span": {
+            "end": {
+              "byte": 246,
+              "column": 60,
+              "line": 5
+            },
+            "start": {
+              "byte": 229,
+              "column": 43,
+              "line": 5
+            }
+          }
+        }
+      ],
+      "symbols": []
+    },
+    {
+      "diagnostics": [],
+      "exports": [
+        {
+          "kind": {
+            "exported": {
+              "kind": "NAMED",
+              "name": "View"
+            },
+            "kind": "LOCAL",
+            "local": "View",
+            "type_only": false
+          },
+          "span": {
+            "end": {
+              "byte": 53,
+              "column": 21,
+              "line": 2
+            },
+            "start": {
+              "byte": 49,
+              "column": 17,
+              "line": 2
+            }
+          }
+        }
+      ],
+      "imports": [
+        {
+          "bindings": [
+            {
+              "imported": {
+                "kind": "NAMED",
+                "name": "caller"
+              },
+              "local": "caller",
+              "span": {
+                "end": {
+                  "byte": 15,
+                  "column": 16,
+                  "line": 1
+                },
+                "start": {
+                  "byte": 9,
+                  "column": 10,
+                  "line": 1
+                }
+              },
+              "type_only": false
+            }
+          ],
+          "span": {
+            "end": {
+              "byte": 32,
+              "column": 33,
+              "line": 1
+            },
+            "start": {
+              "byte": 0,
+              "column": 1,
+              "line": 1
+            }
+          },
+          "specifier": "./main"
+        }
+      ],
+      "language": "TSX",
+      "parse_status": "CLEAN",
+      "path": "view.tsx",
+      "references": [
+        {
+          "kind": "CALL",
+          "owner": {
+            "kind": "SYMBOL",
+            "symbol": {
+              "disambiguator": "",
+              "kind": "FUNCTION",
+              "path": "view.tsx",
+              "project": "default",
+              "qualified_name": [
+                "View"
+              ]
+            }
+          },
+          "scope": 2,
+          "span": {
+            "end": {
+              "byte": 77,
+              "column": 45,
+              "line": 2
+            },
+            "start": {
+              "byte": 71,
+              "column": 39,
+              "line": 2
+            }
+          },
+          "text": "caller"
+        }
+      ],
+      "scopes": [
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "View",
+              "span": {
+                "end": {
+                  "byte": 53,
+                  "column": 21,
+                  "line": 2
+                },
+                "start": {
+                  "byte": 49,
+                  "column": 17,
+                  "line": 2
+                }
+              }
+            },
+            {
+              "kind": "IMPORT",
+              "name": "caller",
+              "span": {
+                "end": {
+                  "byte": 15,
+                  "column": 16,
+                  "line": 1
+                },
+                "start": {
+                  "byte": 9,
+                  "column": 10,
+                  "line": 1
+                }
+              }
+            }
+          ],
+          "id": 0,
+          "parent": null,
+          "span": {
+            "end": {
+              "byte": 90,
+              "column": 1,
+              "line": 3
+            },
+            "start": {
+              "byte": 0,
+              "column": 1,
+              "line": 1
+            }
+          }
+        },
+        {
+          "bindings": [
+            {
+              "kind": "LOCAL",
+              "name": "View",
+              "span": {
+                "end": {
+                  "byte": 53,
+                  "column": 21,
+                  "line": 2
+                },
+                "start": {
+                  "byte": 49,
+                  "column": 17,
+                  "line": 2
+                }
+              }
+            },
+            {
+              "kind": "LOCAL",
+              "name": "arguments",
+              "span": {
+                "end": {
+                  "byte": 89,
+                  "column": 57,
+                  "line": 2
+                },
+                "start": {
+                  "byte": 40,
+                  "column": 8,
+                  "line": 2
+                }
+              }
+            }
+          ],
+          "id": 1,
+          "parent": 0,
+          "span": {
+            "end": {
+              "byte": 89,
+              "column": 57,
+              "line": 2
+            },
+            "start": {
+              "byte": 40,
+              "column": 8,
+              "line": 2
+            }
+          }
+        },
+        {
+          "bindings": [],
+          "id": 2,
+          "parent": 1,
+          "span": {
+            "end": {
+              "byte": 89,
+              "column": 57,
+              "line": 2
+            },
+            "start": {
+              "byte": 56,
+              "column": 24,
+              "line": 2
+            }
+          }
+        }
+      ],
+      "symbols": []
+    }
+  ],
+  "symbols": [
+    {
+      "body_hash": {
+        "digest": "939dc0b74dcec036a8a449f3692b4b43f80a7a527ced30a1dede3cfd411e4db2",
+        "version": 1
+      },
+      "body_span": {
+        "end": {
+          "byte": 88,
+          "column": 47,
+          "line": 2
+        },
+        "start": {
+          "byte": 75,
+          "column": 34,
+          "line": 2
+        }
+      },
+      "exported": true,
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "lib.ts",
+        "project": "default",
+        "qualified_name": [
+          "café"
+        ]
+      },
+      "signature_hash": {
+        "digest": "9350b8117b6d90145f2243d443f8ae80f9131f6f6d67d96a14f8c4c895d3d7cb",
+        "version": 1
+      },
+      "signature_span": {
+        "end": {
+          "byte": 75,
+          "column": 34,
+          "line": 2
+        },
+        "start": {
+          "byte": 0,
+          "column": 1,
+          "line": 1
+        }
+      },
+      "span": {
+        "end": {
+          "byte": 88,
+          "column": 47,
+          "line": 2
+        },
+        "start": {
+          "byte": 0,
+          "column": 1,
+          "line": 1
+        }
+      }
+    },
+    {
+      "body_hash": {
+        "digest": "cdf5e788964f3bf5ab0d79a41bc4195765fe89b1757e21af0be62ccfdc70cb52",
+        "version": 1
+      },
+      "body_span": {
+        "end": {
+          "byte": 126,
+          "column": 38,
+          "line": 3
+        },
+        "start": {
+          "byte": 113,
+          "column": 25,
+          "line": 3
+        }
+      },
+      "exported": true,
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "lib.ts",
+        "project": "default",
+        "qualified_name": [
+          "spare"
+        ]
+      },
+      "signature_hash": {
+        "digest": "586044c75373f6f248f31229a1157b46b436b08e7b385371676d5d554174214f",
+        "version": 1
+      },
+      "signature_span": {
+        "end": {
+          "byte": 113,
+          "column": 25,
+          "line": 3
+        },
+        "start": {
+          "byte": 89,
+          "column": 1,
+          "line": 3
+        }
+      },
+      "span": {
+        "end": {
+          "byte": 126,
+          "column": 38,
+          "line": 3
+        },
+        "start": {
+          "byte": 89,
+          "column": 1,
+          "line": 3
+        }
+      }
+    },
+    {
+      "body_hash": {
+        "digest": "3d2b28b3103143ea8e9ee0bedbac15c65b230ab881668b6c77ce4d18a60e1bfb",
+        "version": 1
+      },
+      "body_span": {
+        "end": {
+          "byte": 142,
+          "column": 61,
+          "line": 3
+        },
+        "start": {
+          "byte": 107,
+          "column": 26,
+          "line": 3
+        }
+      },
+      "exported": true,
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "main.ts",
+        "project": "default",
+        "qualified_name": [
+          "caller"
+        ]
+      },
+      "signature_hash": {
+        "digest": "98a354969d9a304db6d39b87df3db30ae847efcfe1dd5e5969d95f2d1ac1c2b8",
+        "version": 1
+      },
+      "signature_span": {
+        "end": {
+          "byte": 107,
+          "column": 26,
+          "line": 3
+        },
+        "start": {
+          "byte": 82,
+          "column": 1,
+          "line": 3
+        }
+      },
+      "span": {
+        "end": {
+          "byte": 142,
+          "column": 61,
+          "line": 3
+        },
+        "start": {
+          "byte": 82,
+          "column": 1,
+          "line": 3
+        }
+      }
+    },
+    {
+      "body_hash": {
+        "digest": "19029350fd0cc199ca36ef80e67cfa858d30a8ae15cfdb8332e17418449b434d",
+        "version": 1
+      },
+      "body_span": {
+        "end": {
+          "byte": 186,
+          "column": 44,
+          "line": 4
+        },
+        "start": {
+          "byte": 171,
+          "column": 29,
+          "line": 4
+        }
+      },
+      "exported": true,
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "main.ts",
+        "project": "default",
+        "qualified_name": [
+          "reference"
+        ]
+      },
+      "signature_hash": {
+        "digest": "707f02344c8778feea717d66d5f53676cc129e1e69be9115c83a4e354d1e09d3",
+        "version": 1
+      },
+      "signature_span": {
+        "end": {
+          "byte": 171,
+          "column": 29,
+          "line": 4
+        },
+        "start": {
+          "byte": 143,
+          "column": 1,
+          "line": 4
+        }
+      },
+      "span": {
+        "end": {
+          "byte": 186,
+          "column": 44,
+          "line": 4
+        },
+        "start": {
+          "byte": 143,
+          "column": 1,
+          "line": 4
+        }
+      }
+    },
+    {
+      "body_hash": {
+        "digest": "0ed026206cde4394663a1f81e0f5defd0e8c8db2ea295aeb31d9b3b6464cc4b3",
+        "version": 1
+      },
+      "body_span": {
+        "end": {
+          "byte": 246,
+          "column": 60,
+          "line": 5
+        },
+        "start": {
+          "byte": 229,
+          "column": 43,
+          "line": 5
+        }
+      },
+      "exported": true,
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "main.ts",
+        "project": "default",
+        "qualified_name": [
+          "shadow"
+        ]
+      },
+      "signature_hash": {
+        "digest": "1864e8bd2df591d4c60f4b4f6d733e389fec5afd35cdd475be88febffc3f37ac",
+        "version": 1
+      },
+      "signature_span": {
+        "end": {
+          "byte": 229,
+          "column": 43,
+          "line": 5
+        },
+        "start": {
+          "byte": 187,
+          "column": 1,
+          "line": 5
+        }
+      },
+      "span": {
+        "end": {
+          "byte": 246,
+          "column": 60,
+          "line": 5
+        },
+        "start": {
+          "byte": 187,
+          "column": 1,
+          "line": 5
+        }
+      }
+    },
+    {
+      "body_hash": {
+        "digest": "72bb709625e6de7b03d16a9d258b4ce406a622a8fc1fced555e2fe2ec84bb01a",
+        "version": 1
+      },
+      "body_span": {
+        "end": {
+          "byte": 89,
+          "column": 57,
+          "line": 2
+        },
+        "start": {
+          "byte": 56,
+          "column": 24,
+          "line": 2
+        }
+      },
+      "exported": true,
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "view.tsx",
+        "project": "default",
+        "qualified_name": [
+          "View"
+        ]
+      },
+      "signature_hash": {
+        "digest": "e3b95c5c5a7782e86de11b8ca9179a230bfc09794ca8b192bbe9f239042cdf17",
+        "version": 1
+      },
+      "signature_span": {
+        "end": {
+          "byte": 56,
+          "column": 24,
+          "line": 2
+        },
+        "start": {
+          "byte": 33,
+          "column": 1,
+          "line": 2
+        }
+      },
+      "span": {
+        "end": {
+          "byte": 89,
+          "column": 57,
+          "line": 2
+        },
+        "start": {
+          "byte": 33,
+          "column": 1,
+          "line": 2
+        }
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "boundary": {
+        "identity": {
+          "path": "lib.ts",
+          "project": "default",
+          "reference_key": "reference:0:84:85"
+        },
+        "kind": "OPAQUE"
+      },
+      "provenance": {
+        "file": "lib.ts",
+        "span": {
+          "end": {
+            "byte": 85,
+            "column": 44,
+            "line": 2
+          },
+          "start": {
+            "byte": 84,
+            "column": 43,
+            "line": 2
+          }
+        }
+      },
+      "reason": "parameter shadows supported target",
+      "reference_kind": "READ",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "lib.ts",
+          "project": "default",
+          "qualified_name": [
+            "café"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "text": "x"
+    },
+    {
+      "boundary": {
+        "identity": {
+          "path": "main.ts",
+          "project": "default",
+          "reference_key": "reference:2:238:241"
+        },
+        "kind": "OPAQUE"
+      },
+      "provenance": {
+        "file": "main.ts",
+        "span": {
+          "end": {
+            "byte": 241,
+            "column": 55,
+            "line": 5
+          },
+          "start": {
+            "byte": 238,
+            "column": 52,
+            "line": 5
+          }
+        }
+      },
+      "reason": "parameter shadows supported target",
+      "reference_kind": "CALL",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "main.ts",
+          "project": "default",
+          "qualified_name": [
+            "shadow"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "text": "use"
+    }
+  ]
+}
