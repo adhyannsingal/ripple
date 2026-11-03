@@ -2036,19 +2036,28 @@
         "fixtures/git/",
         "docs/adr/0009*.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M4-T01",
+      "started_at": "2026-11-03T19:24:27.036660+00:00",
+      "heartbeat_at": "2026-11-03T19:24:27.036660+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "eac7cdc151af9189420d9df7d49fbcc66b1e48b2",
+      "claimed_paths": [
+        "crates/ripple-git/",
+        "crates/ripple-core/src/source.rs",
+        "crates/ripple-parse/src/scanner.rs",
+        "Cargo.lock",
+        "fixtures/git/",
+        "docs/adr/0009-git-and-output-policy.md",
+        "docs/task-reports/M4-T01.md",
+        "docs/limitations.md"
+      ],
+      "checkpoint": "Post-M3 checks pass; M3 final CI green. Implement immutable Git tree adapter and bounded raw diffs; relocate shared SourceTree contract to core and preserve parse reexports.",
+      "next_action": "Implement pinned endpoint snapshots, reuse scanner policy, add read-only security/hunk fixtures and verify all platform checks.",
       "report": "docs/task-reports/M4-T01.md"
     },
     {
@@ -2547,11 +2556,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M4-T01",
     "integration_branch": "main",
-    "checkpoint": "M3 complete: all cards integrated, measured evidence/regression, platform install CI and oracle CI passed. Existing untracked graphify-out/ preserved. No retained claims.",
-    "next_action": "Next scheduled task: M4-T01 immutable Git endpoint adapter; select and claim before editing.",
-    "updated_at": "2026-11-03T18:51:32.460945+00:00"
+    "checkpoint": "Post-M3 checks pass; M3 final CI green. Implement immutable Git tree adapter and bounded raw diffs; relocate shared SourceTree contract to core and preserve parse reexports.",
+    "next_action": "Implement pinned endpoint snapshots, reuse scanner policy, add read-only security/hunk fixtures and verify all platform checks.",
+    "updated_at": "2026-11-03T19:24:27.036660+00:00"
   }
 }
