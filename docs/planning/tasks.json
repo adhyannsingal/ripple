@@ -1866,26 +1866,38 @@
         "docs/adr/0008-oracle-selection.md",
         "docs/evaluation.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M3-T01",
       "started_at": "2026-11-03T18:29:11.537881+00:00",
       "heartbeat_at": "2026-11-03T18:32:44.614789+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "completed_at": "2026-11-03T18:33:56.531537+00:00",
+      "integrated_commit": "17484909ac6dc4ad51ea5305e46c3ae6362a525b",
+      "validation": [
+        {
+          "command": "npm ci --prefix eval/oracle --ignore-scripts; npm test --prefix eval/oracle",
+          "outcome": "passed",
+          "detail": "Node 24.22.1 / TypeScript 6.0.3; 6 tests; integrated main."
+        },
+        {
+          "command": "python3 eval/oracle/fetch.py eval/corpora/sourcemap-codec.json /tmp/ripple-M3-fetch-verified",
+          "outcome": "passed",
+          "detail": "Five upstream files (four TS + MIT license), exact SHA256/length verified."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41694895185",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/plan.py validate; git diff --check",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "86f74a6594ac7cf1ac381a632e0678ecb8756b53",
-      "claimed_paths": [
-        "eval/oracle/",
-        "eval/corpora/",
-        "docs/adr/0008-oracle-selection.md",
-        "docs/evaluation.md",
-        "docs/task-reports/M3-T01.md",
-        ".github/workflows/oracle.yml"
-      ],
-      "checkpoint": "Six pinned Node tests and verified external fetch pass; hand-checked overload family mapping repaired. Integrating adapter and CI fixture job.",
-      "next_action": "Merge task, run installed harness/planning checks on main, push and verify CI.",
+      "claimed_paths": [],
+      "checkpoint": "Adapter integrated and dedicated oracle CI passed. No production Rust changes; workspace CI independently running. Claims released.",
+      "next_action": "M3-T02 measured comparisons.",
       "report": "docs/task-reports/M3-T01.md"
     },
     {
@@ -1901,19 +1913,28 @@
         "eval/results/resolver/",
         "docs/evaluation.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M3-T02",
+      "started_at": "2026-11-03T18:33:56.531537+00:00",
+      "heartbeat_at": "2026-11-03T18:33:56.531537+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "17484909ac6dc4ad51ea5305e46c3ae6362a525b",
+      "claimed_paths": [
+        "eval/oracle/compare.py",
+        "eval/oracle/compare_run.py",
+        "eval/oracle/test/test_compare.py",
+        "eval/results/resolver/",
+        "docs/evaluation.md",
+        "docs/task-reports/M3-T02.md",
+        ".github/workflows/oracle.yml",
+        "eval/oracle/README.md"
+      ],
+      "checkpoint": "T01 integrated/pinned oracle job passed; implement independent mapped-edge precision/recall and provenance.",
+      "next_action": "Build read-only SQLite export after verified CLI index, compare synthetic metrics, measure pinned corpus twice.",
       "report": "docs/task-reports/M3-T02.md"
     },
     {
@@ -2472,8 +2493,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M3",
     "integration_branch": "main",
-    "checkpoint": "Six pinned Node tests and verified external fetch pass; hand-checked overload family mapping repaired. Integrating adapter and CI fixture job.",
-    "next_action": "Merge task, run installed harness/planning checks on main, push and verify CI.",
-    "updated_at": "2026-11-03T18:32:44.614789+00:00"
+    "checkpoint": "T01 integrated/pinned oracle job passed; implement independent mapped-edge precision/recall and provenance.",
+    "next_action": "Build read-only SQLite export after verified CLI index, compare synthetic metrics, measure pinned corpus twice.",
+    "updated_at": "2026-11-03T18:33:56.531537+00:00"
   }
 }
