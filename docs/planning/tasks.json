@@ -4,8 +4,8 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-02",
-  "notes": "41 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
+  "updated_at": "2026-11-03",
+  "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
       "id": "M0",
@@ -97,9 +97,19 @@
       "id": "M3",
       "title": "Resolver oracle",
       "target": "Week 3",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M3-T01/T02/T03 integrated and verified; earlier M0-M2 gates passed.",
+        "Pinned Node 24.22.1 / TypeScript 6.0.3 compiler API, independent edge eligibility, byte-span/overload/TSX tests, immutable licensed corpus manifest and raw comparison artifacts.",
+        "223 Rust, 6 Node, 4 Python metric and 18 planning tests; fmt/locked build/strict Clippy/CLI smoke and docs checks passed.",
+        "Mini 3/3 precision/recall; pinned four-source external sample 16/16. No supported gap observed; regression strengthened without expanding resolver scope. Raw exclusions and unknowns retained.",
+        "Repeated initial artifacts byte-identical; final raw semantic artifacts and metrics equal baseline. No general accuracy/performance/test-safety claim.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41696465110",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41696465210",
+        "docs/task-reports/M3.md",
+        "eval/results/resolver/final/README.md"
+      ],
+      "completed_at": "2026-11-03T18:51:32.460945+00:00"
     },
     {
       "id": "M4",
@@ -1963,29 +1973,54 @@
         "eval/results/resolver/",
         "docs/limitations.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M3-T03",
       "started_at": "2026-11-03T18:39:39.756500+00:00",
-      "heartbeat_at": "2026-11-03T18:42:53.347353+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-03T18:51:32.460945+00:00",
+      "completed_at": "2026-11-03T18:51:32.460945+00:00",
+      "integrated_commit": "8ac8dc49500eec64b6e52e58c4ea54cad4aa4288",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "Integrated main: 223 Rust tests; exact oracle composition regression passed."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate",
+          "outcome": "passed",
+          "detail": "6 Node, 4 Python metric, 18 planning tests; ledger consistent."
+        },
+        {
+          "command": "compare_run.py final mini/external projections; compare raw artifacts, metrics, counts and exclusions with baseline",
+          "outcome": "passed",
+          "detail": "3/3 and 16/16 precision/recall unchanged; all raw semantic artifacts byte-identical. No supported bug observed; regression fallback used."
+        },
+        {
+          "command": "python3 scripts/m2-smoke.py --binary target/debug/ripple; report documentation link check; git diff --check",
+          "outcome": "passed"
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41696465110",
+          "outcome": "passed",
+          "detail": "Linux/macOS Intel/Windows full workspace and clean-install capability smoke."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41696465210",
+          "outcome": "passed",
+          "detail": "Pinned Node/compiler tests, synthetic metrics and real CLI mini-corpus comparison."
+        },
+        {
+          "command": "npm audit --prefix eval/oracle --json",
+          "outcome": "passed",
+          "detail": "Zero known vulnerabilities."
+        }
+      ],
       "blocker": null,
       "base_commit": "61475f76591b07cc1173cfa07cf1678628c68bcc",
-      "claimed_paths": [
-        "crates/ripple-resolve/tests/calls.rs",
-        "fixtures/resolution/oracle-mini/",
-        "eval/results/resolver/final/",
-        "docs/limitations.md",
-        "docs/evaluation.md",
-        "docs/task-reports/M3-T03.md",
-        "docs/task-reports/M3.md",
-        "docs/project-status.md",
-        "eval/corpora/mini/.gitattributes"
-      ],
-      "checkpoint": "Integrated regression and final same-corpus reports; 223 Rust tests, 6 Node, 4 metric, 18 planning tests, fmt/build/strict Clippy and CLI smoke passed. Semantic results identical to baseline; no production resolver change.",
-      "next_action": "Push final M3 candidate; verify Linux/macOS Intel/Windows workspace/install and oracle CI before passing gate.",
+      "claimed_paths": [],
+      "checkpoint": "No measured supported gap; stronger oracle composition regression integrated. Final same-corpus evidence and all platform/oracle checks passed. Claims released.",
+      "next_action": "M4-T01 immutable Git endpoints.",
       "report": "docs/task-reports/M3-T03.md"
     },
     {
@@ -2512,11 +2547,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M3",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Integrated regression and final same-corpus reports; 223 Rust tests, 6 Node, 4 metric, 18 planning tests, fmt/build/strict Clippy and CLI smoke passed. Semantic results identical to baseline; no production resolver change.",
-    "next_action": "Push final M3 candidate; verify Linux/macOS Intel/Windows workspace/install and oracle CI before passing gate.",
-    "updated_at": "2026-11-03T18:42:53.347353+00:00"
+    "checkpoint": "M3 complete: all cards integrated, measured evidence/regression, platform install CI and oracle CI passed. Existing untracked graphify-out/ preserved. No retained claims.",
+    "next_action": "Next scheduled task: M4-T01 immutable Git endpoint adapter; select and claim before editing.",
+    "updated_at": "2026-11-03T18:51:32.460945+00:00"
   }
 }
