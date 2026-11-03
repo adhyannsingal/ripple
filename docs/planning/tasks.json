@@ -2117,30 +2117,49 @@
         "docs/project-status.md",
         "docs/task-reports/M4-T02.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M4-T02",
       "started_at": "2026-11-03T20:30:15.975508+00:00",
-      "heartbeat_at": "2026-11-03T20:45:21.550408+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-03T20:57:23.840344+00:00",
+      "completed_at": "2026-11-03T20:57:23.840344+00:00",
+      "integrated_commit": "d3fdcadcad0cc872760bcaebdafb35c0f09ca803",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "238 local Rust tests, including 7 new focused tests with 25 manually expected Git-backed cases."
+        },
+        {
+          "command": "cargo test --locked -p ripple-impact changes_tests",
+          "outcome": "passed",
+          "detail": "Body/signature/both, class/member, comments/ASI, Unicode/CRLF, zero ranges/EOF, add/delete/rename, import/config/global changes, incomplete/missing hashes and deterministic ownership/provenance cases."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate",
+          "outcome": "passed",
+          "detail": "6 Node, 4 Python metric, 18 planning tests; 43 tasks/9 milestones consistent."
+        },
+        {
+          "command": "python3 scripts/m2-smoke.py --binary target/debug/ripple; cargo tree -p ripple-impact --edges normal --depth 1; documentation link check; git diff --check",
+          "outcome": "passed",
+          "detail": "Existing CLI smoke passed; production impact dependencies remain core/serde only."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41715528487",
+          "outcome": "passed",
+          "detail": "Linux/macOS Intel/Windows full workspace and installed capability smoke passed."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41715528562",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "1031e8729c067680f9792452c98a4a3ee7aab732",
-      "claimed_paths": [
-        "crates/ripple-impact/src/changes.rs",
-        "crates/ripple-impact/src/changes_tests.rs",
-        "crates/ripple-impact/src/lib.rs",
-        "crates/ripple-impact/Cargo.toml",
-        "Cargo.lock",
-        "fixtures/changes/",
-        "docs/adr/0022-change-classification.md",
-        "docs/task-reports/M4-T02.md",
-        "docs/limitations.md",
-        "docs/project-status.md"
-      ],
-      "checkpoint": "ChangeSet integrated; 25 real-Git goldens and 7 focused tests pass. Full local suite: 238 Rust, 6 Node, 4 metric, 18 planning tests; fmt/build/strict Clippy/CLI smoke pass. Review preserved analyzer provenance, checked record accounting and uncertainty without fabricated changed evidence.",
-      "next_action": "Push candidate and verify Linux/macOS Intel/Windows plus oracle CI; complete task/release claims after success.",
+      "claimed_paths": [],
+      "checkpoint": "Pure ChangeSet integrated/reviewed; 25 independent Git-backed golden cases, 7 focused tests and all final platform/oracle checks passed. Claims released.",
+      "next_action": "M4-T03 \u2014 combine base/head graphs and preserve removed relationships.",
       "report": "docs/task-reports/M4-T02.md"
     },
     {
@@ -2611,11 +2630,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M4-T02",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "ChangeSet integrated; 25 real-Git goldens and 7 focused tests pass. Full local suite: 238 Rust, 6 Node, 4 metric, 18 planning tests; fmt/build/strict Clippy/CLI smoke pass. Review preserved analyzer provenance, checked record accounting and uncertainty without fabricated changed evidence.",
-    "next_action": "Push candidate and verify Linux/macOS Intel/Windows plus oracle CI; complete task/release claims after success.",
-    "updated_at": "2026-11-03T20:45:21.550408+00:00"
+    "checkpoint": "M4-T02 complete: classifier, independent goldens and reviewed uncertainty/provenance contract integrated; all final platform/oracle checks passed. No retained claims. Existing graphify-out/ preserved.",
+    "next_action": "Next scheduled: M4-T03 combined base/head impact. Select and claim before editing.",
+    "updated_at": "2026-11-03T20:57:23.840344+00:00"
   }
 }
