@@ -182,3 +182,83 @@ fn whitespace_only_module_requests_also_retain_a_valid_boundary() {
     assert_eq!(a.graph.unresolved().len(), 1);
     assert_eq!(a.modules.dependencies[0].lookup.specifier, " ");
 }
+
+#[test]
+fn oracle_mini_composition_preserves_origins_occurrences_and_shadow_boundaries() {
+    use ripple_core::graph::NodeId;
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../");
+    let fixture = root.join("fixtures/resolution/oracle-mini");
+    let names = ["barrel.ts", "lib.ts", "main.ts", "view.tsx"];
+    let texts = names
+        .iter()
+        .map(|name| {
+            let text = std::fs::read_to_string(fixture.join(name)).unwrap();
+            assert_eq!(
+                text.as_bytes(),
+                std::fs::read(root.join("eval/corpora/mini").join(name)).unwrap()
+            );
+            text
+        })
+        .collect::<Vec<_>>();
+    let inputs = names
+        .iter()
+        .zip(&texts)
+        .map(|(name, text)| (*name, text.as_str()))
+        .collect::<Vec<_>>();
+    let analysis = graph(&inputs);
+    let semantic = analysis
+        .graph
+        .edges()
+        .iter()
+        .filter(|e| matches!(e.kind, EdgeKind::Calls | EdgeKind::References))
+        .collect::<Vec<_>>();
+    let label = |node: &NodeId| match node {
+        NodeId::Symbol(id) => format!("{}::{}", id.path(), id.qualified_name().display_name()),
+        _ => panic!("mini corpus expects symbol-owned semantic edges"),
+    };
+    let actual = semantic
+        .iter()
+        .map(|e| (label(&e.source), label(&e.target), e.kind))
+        .collect::<BTreeSet<_>>();
+    let expected = [
+        ("main.ts::caller", "lib.ts::café", EdgeKind::Calls),
+        ("main.ts::reference", "lib.ts::café", EdgeKind::References),
+        ("view.tsx::View", "main.ts::caller", EdgeKind::Calls),
+    ]
+    .map(|(s, t, k)| (s.into(), t.into(), k))
+    .into_iter()
+    .collect();
+    assert_eq!(actual, expected);
+    assert_eq!(semantic.len(), 4, "keep both distinct caller occurrences");
+    for edge in semantic {
+        assert_eq!(edge.confidence, Confidence::Resolved);
+        assert_eq!(edge.resolution_rule, "configured_import_binding");
+        let source = inputs
+            .iter()
+            .find(|(name, _)| *name == edge.provenance.file.as_str())
+            .unwrap()
+            .1;
+        let span = edge.provenance.span;
+        let token = &source[span.start().byte..span.end().byte];
+        assert_eq!(
+            token,
+            if edge.source.path() == &p("view.tsx") {
+                "caller"
+            } else {
+                "use"
+            }
+        );
+    }
+    assert!(
+        analysis
+            .graph
+            .unresolved()
+            .iter()
+            .any(|u| { u.text == "use" && u.reason.contains("parameter shadows") })
+    );
+    let overload = analysis.graph.nodes().iter().find(|n| {
+        matches!(&n.id, NodeId::Symbol(id) if id.path()==&p("lib.ts") && id.qualified_name().display_name()=="café")
+    }).unwrap();
+    let span = overload.span.unwrap();
+    assert_eq!((span.start().byte, span.end().byte), (0, 88));
+}
