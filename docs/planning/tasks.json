@@ -1913,28 +1913,40 @@
         "eval/results/resolver/",
         "docs/evaluation.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M3-T02",
       "started_at": "2026-11-03T18:33:56.531537+00:00",
       "heartbeat_at": "2026-11-03T18:37:51.651356+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "completed_at": "2026-11-03T18:39:39.756500+00:00",
+      "integrated_commit": "61475f76591b07cc1173cfa07cf1678628c68bcc",
+      "validation": [
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v",
+          "outcome": "passed",
+          "detail": "6 Node + 4 synthetic Python tests; integrated main."
+        },
+        {
+          "command": "compare_run.py owned mini and pinned sourcemap-codec projection; same-environment repeat",
+          "outcome": "passed",
+          "detail": "3/3 and 16/16 precision/recall; all four external artifacts byte-identical on repeat. Raw exclusions retained."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41695697993",
+          "outcome": "passed",
+          "detail": "Compiler tests, Python metrics and real CLI mini comparison."
+        },
+        {
+          "command": "python3 scripts/plan.py validate; python3 -m unittest discover -s scripts/tests -v; git diff --check",
+          "outcome": "passed",
+          "detail": "18 planning tests."
+        }
+      ],
       "blocker": null,
       "base_commit": "17484909ac6dc4ad51ea5305e46c3ae6362a525b",
-      "claimed_paths": [
-        "eval/oracle/compare.py",
-        "eval/oracle/compare_run.py",
-        "eval/oracle/test/test_compare.py",
-        "eval/results/resolver/",
-        "docs/evaluation.md",
-        "docs/task-reports/M3-T02.md",
-        ".github/workflows/oracle.yml",
-        "eval/oracle/README.md"
-      ],
-      "checkpoint": "Integrated independent comparator, four synthetic tests and pinned raw baseline. External 16/16 precision and recall; 3/3 mini; repeated artifacts byte-identical.",
-      "next_action": "Run integrated oracle/metric and planning checks; push and verify scoped CI before M3-T03.",
+      "claimed_paths": [],
+      "checkpoint": "Independent comparison integrated; synthetic/unit/end-to-end oracle CI passed. Baseline raw artifacts retained and byte-identical on repeated same-environment runs. Claims released.",
+      "next_action": "M3-T03 no-measured-gap regression branch.",
       "report": "docs/task-reports/M3-T02.md"
     },
     {
@@ -1951,19 +1963,28 @@
         "eval/results/resolver/",
         "docs/limitations.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M3-T03",
+      "started_at": "2026-11-03T18:39:39.756500+00:00",
+      "heartbeat_at": "2026-11-03T18:39:39.756500+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "61475f76591b07cc1173cfa07cf1678628c68bcc",
+      "claimed_paths": [
+        "crates/ripple-resolve/tests/calls.rs",
+        "fixtures/resolution/oracle-mini/",
+        "eval/results/resolver/final/",
+        "docs/limitations.md",
+        "docs/evaluation.md",
+        "docs/task-reports/M3-T03.md",
+        "docs/task-reports/M3.md",
+        "docs/project-status.md"
+      ],
+      "checkpoint": "No supported bug measured in baseline. Strengthen alias/barrel/overload/TSX/Unicode/shadowing composition as direct Rust regression; no resolver scope expansion.",
+      "next_action": "Add oracle-mini Rust fixture, verify exact edges/provenance, regenerate same-corpus results, run full milestone checks and platform CI.",
       "report": "docs/task-reports/M3-T03.md"
     },
     {
@@ -2493,8 +2514,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M3",
     "integration_branch": "main",
-    "checkpoint": "Integrated independent comparator, four synthetic tests and pinned raw baseline. External 16/16 precision and recall; 3/3 mini; repeated artifacts byte-identical.",
-    "next_action": "Run integrated oracle/metric and planning checks; push and verify scoped CI before M3-T03.",
-    "updated_at": "2026-11-03T18:37:51.651356+00:00"
+    "checkpoint": "No supported bug measured in baseline. Strengthen alias/barrel/overload/TSX/Unicode/shadowing composition as direct Rust regression; no resolver scope expansion.",
+    "next_action": "Add oracle-mini Rust fixture, verify exact edges/provenance, regenerate same-corpus results, run full milestone checks and platform CI.",
+    "updated_at": "2026-11-03T18:39:39.756500+00:00"
   }
 }
