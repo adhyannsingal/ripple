@@ -166,6 +166,8 @@ fn add_delete_rename_empty_commit_and_line_ranges_are_explicit() {
     let h = &find(FileChangeKind::Modified).hunks[0];
     assert_eq!(h.old, LineRange { start: 1, count: 0 });
     assert_eq!(h.new, LineRange { start: 2, count: 1 });
+    git(r, &["config", "color.diff", "always"]);
+    git(r, &["config", "diff.orderFile", "unavailable-order-file"]);
     let reverse = compare(r, &b, &a);
     let h = &reverse
         .changes

@@ -260,6 +260,9 @@ impl Repository {
             &[
                 "diff-tree",
                 "--raw",
+                "--no-color",
+                "-O",
+                if cfg!(windows) { "NUL" } else { "/dev/null" },
                 "-z",
                 "-r",
                 "--no-commit-id",
@@ -315,6 +318,8 @@ impl Repository {
                         &self.root,
                         &[
                             "diff",
+                            "-O",
+                            if cfg!(windows) { "NUL" } else { "/dev/null" },
                             "--no-ext-diff",
                             "--no-textconv",
                             "--no-color",
@@ -340,6 +345,7 @@ impl Repository {
                 _ => Vec::new(),
             };
         }
+        diagnostics.sort_by(|a, b| a.path.cmp(&b.path).then(a.reason.cmp(b.reason)));
         let changes = RevisionChanges::new(pair, files).map_err(|e| err(e.to_string()))?;
         Ok(RevisionSnapshots {
             base,
