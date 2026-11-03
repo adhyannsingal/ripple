@@ -12,3 +12,9 @@ workspace = true
 [dependencies]
 ripple-core.workspace = true
 serde.workspace = true
+
+[dev-dependencies]
+ripple-parse.workspace = true
+ripple-git.workspace = true
+tempfile.workspace = true
+serde_json.workspace = true

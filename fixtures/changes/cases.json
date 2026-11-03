@@ -1,0 +1,397 @@
+[
+  {
+    "name": "body",
+    "before": {
+      "main.ts": "export function f() { return 1; }\n"
+    },
+    "after": {
+      "main.ts": "export function f() { return 2; }\n"
+    },
+    "expected": [
+      [
+        "f",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "signature_and_body",
+    "before": {
+      "main.ts": "export function f(x: number) { return x; }\n"
+    },
+    "after": {
+      "main.ts": "export function f(x: string) { return x + \"!\"; }\n"
+    },
+    "expected": [
+      [
+        "f",
+        "SIGNATURE_MODIFIED"
+      ]
+    ],
+    "both_changed": true
+  },
+  {
+    "name": "ordinary_comment",
+    "before": {
+      "main.ts": "export function f() { return 1; }\n"
+    },
+    "after": {
+      "main.ts": "export function f() { /* ordinary */ return 1; }\n"
+    },
+    "expected": [
+      [
+        "f",
+        "UNCHANGED"
+      ]
+    ]
+  },
+  {
+    "name": "rename_symbol",
+    "before": {
+      "main.ts": "function f() { return 1; }\n"
+    },
+    "after": {
+      "main.ts": "function g() { return 1; }\n"
+    },
+    "expected": [
+      [
+        "f",
+        "DELETED"
+      ],
+      [
+        "g",
+        "ADDED"
+      ]
+    ]
+  },
+  {
+    "name": "added",
+    "before": {},
+    "after": {
+      "main.ts": "export function f() {}\n"
+    },
+    "expected": [
+      [
+        "f",
+        "ADDED"
+      ]
+    ]
+  },
+  {
+    "name": "deleted",
+    "before": {
+      "main.ts": "export function f() {}\n"
+    },
+    "after": {},
+    "expected": [
+      [
+        "f",
+        "DELETED"
+      ]
+    ]
+  },
+  {
+    "name": "imports_only",
+    "before": {
+      "main.ts": "import { f } from './one';\nexport function unchanged() { return 0; }\n"
+    },
+    "after": {
+      "main.ts": "import { f } from './two';\nexport function unchanged() { return 0; }\n"
+    },
+    "expected": [],
+    "outside": true
+  },
+  {
+    "name": "method_body",
+    "before": {
+      "main.ts": "export class C {\n m() {\n return 1;\n }\n}\n"
+    },
+    "after": {
+      "main.ts": "export class C {\n m() {\n return 2;\n }\n}\n"
+    },
+    "expected": [
+      [
+        "C.m",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "class_member_added",
+    "before": {
+      "main.ts": "class C {\n m() {}\n}\n"
+    },
+    "after": {
+      "main.ts": "class C {\n m() {}\n n() {}\n}\n"
+    },
+    "expected": [
+      [
+        "C",
+        "SIGNATURE_MODIFIED"
+      ],
+      [
+        "C.n",
+        "ADDED"
+      ]
+    ]
+  },
+  {
+    "name": "class_member_deleted",
+    "before": {
+      "main.ts": "class C {\n m() {}\n n() {}\n}\n"
+    },
+    "after": {
+      "main.ts": "class C {\n m() {}\n}\n"
+    },
+    "expected": [
+      [
+        "C",
+        "SIGNATURE_MODIFIED"
+      ],
+      [
+        "C.n",
+        "DELETED"
+      ]
+    ]
+  },
+  {
+    "name": "class_header",
+    "before": {
+      "main.ts": "class C {\n m() {}\n}\n"
+    },
+    "after": {
+      "main.ts": "export class C {\n m() {}\n}\n"
+    },
+    "expected": [
+      [
+        "C",
+        "SIGNATURE_MODIFIED"
+      ],
+      [
+        "C.m",
+        "SIGNATURE_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "eof_insert",
+    "before": {
+      "main.ts": "function f() {}\n"
+    },
+    "after": {
+      "main.ts": "function f() {}\nfunction g() {}"
+    },
+    "expected": [
+      [
+        "g",
+        "ADDED"
+      ]
+    ]
+  },
+  {
+    "name": "delete_statement",
+    "before": {
+      "main.ts": "function f() {\n const x = 1;\n return x;\n}\n"
+    },
+    "after": {
+      "main.ts": "function f() {\n return 0;\n}\n"
+    },
+    "expected": [
+      [
+        "f",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "unicode_crlf",
+    "before": {
+      "main.ts": "export function café() {\r\n return \"😀\";\r\n}\r\n"
+    },
+    "after": {
+      "main.ts": "export function café() {\r\n return \"é\";\r\n}\r\n"
+    },
+    "expected": [
+      [
+        "café",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "top_level_comment",
+    "before": {
+      "main.ts": "function f() {}\n"
+    },
+    "after": {
+      "main.ts": "// outside supported declarations\nfunction f() {}\n"
+    },
+    "expected": [],
+    "outside": true
+  },
+  {
+    "name": "class_field",
+    "before": {
+      "main.ts": "class C { value = 1; }\n"
+    },
+    "after": {
+      "main.ts": "class C { value = 2; }\n"
+    },
+    "expected": [
+      [
+        "C",
+        "SIGNATURE_MODIFIED"
+      ]
+    ],
+    "incomplete": true
+  },
+  {
+    "name": "missing_signature",
+    "before": {
+      "main.ts": "function f() { return 1; }\nexport = f;\n"
+    },
+    "after": {
+      "main.ts": "function f() { return 2; }\nexport = f;\n"
+    },
+    "expected": [
+      [
+        "f",
+        "UNCERTAIN"
+      ]
+    ],
+    "incomplete": true
+  },
+  {
+    "name": "asi",
+    "before": {
+      "main.ts": "function f(x: number) { return /* a */ x; }\n"
+    },
+    "after": {
+      "main.ts": "function f(x: number) { return /* a\n*/ x; }\n"
+    },
+    "expected": [
+      [
+        "f",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "config",
+    "before": {
+      "base.json": "{\"strict\":false}\n"
+    },
+    "after": {
+      "base.json": "{\"strict\":true}\n"
+    },
+    "expected": [],
+    "global_inputs": [
+      "base.json"
+    ],
+    "global_invalidation": true,
+    "incomplete": true
+  },
+  {
+    "name": "file_rename",
+    "before": {
+      "old.ts": "export function f() { return 1234567890; }\n"
+    },
+    "after": {
+      "new.ts": "export function f() { return 1234567890; }\n"
+    },
+    "expected": [
+      [
+        "f",
+        "ADDED"
+      ],
+      [
+        "f",
+        "DELETED"
+      ]
+    ],
+    "rename": true
+  },
+  {
+    "name": "one_line_method_body",
+    "before": {
+      "main.ts": "class C { m() { return 1; } }\n"
+    },
+    "after": {
+      "main.ts": "class C { m() { return 2; } }\n"
+    },
+    "expected": [
+      [
+        "C.m",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "one_line_multiple_symbols",
+    "before": {
+      "main.ts": "function a(){return 1;} function b(){return 2;}\n"
+    },
+    "after": {
+      "main.ts": "function a(){return 1;} function b(){return 3;}\n"
+    },
+    "expected": [
+      [
+        "a",
+        "UNCHANGED"
+      ],
+      [
+        "b",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "multiple_sources",
+    "before": {
+      "a.ts": "function a(){return 1;}\n",
+      "b.ts": "function b(){return 2;}\n"
+    },
+    "after": {
+      "a.ts": "function a(){return 3;}\n",
+      "b.ts": "function b(){return 4;}\n"
+    },
+    "expected": [
+      [
+        "a",
+        "BODY_MODIFIED"
+      ],
+      [
+        "b",
+        "BODY_MODIFIED"
+      ]
+    ]
+  },
+  {
+    "name": "recovered_opposite",
+    "before": {
+      "main.ts": "function f() {}\n"
+    },
+    "after": {
+      "main.ts": "function f( {"
+    },
+    "expected": [
+      [
+        "f",
+        "UNCERTAIN"
+      ]
+    ],
+    "incomplete": true
+  },
+  {
+    "name": "lockfile",
+    "before": {
+      "pnpm-lock.yaml": "lockfileVersion: 1\n"
+    },
+    "after": {
+      "pnpm-lock.yaml": "lockfileVersion: 2\n"
+    },
+    "expected": [],
+    "global_invalidation": true,
+    "incomplete": true
+  }
+]
