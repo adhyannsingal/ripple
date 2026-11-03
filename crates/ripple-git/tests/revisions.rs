@@ -338,6 +338,10 @@ fn edited_rename_hunks_and_disappearing_objects_are_explicit() {
     let id = id.trim();
     let object = r.join(".git/objects").join(&id[..2]).join(&id[2..]);
     #[cfg(windows)]
+    #[allow(
+        clippy::permissions_set_readonly_false,
+        reason = "Windows-only clearing of the DOS read-only bit on a disposable fixture object"
+    )]
     {
         let mut permissions = fs::metadata(&object).unwrap().permissions();
         permissions.set_readonly(false);
