@@ -4,7 +4,7 @@ M3-T01 supplies the pinned compiler API adapter and independent comparable-edge 
 
 The external corpus manifest pins the sourcemap-codec repository URL, immutable SHA, individual raw source hashes and MIT license. It is an explicit four-source projection with fixed evaluation options, not an upstream build or entire-repository compatibility claim. Network fetches are explicit and no corpus scripts execute. Corpus/compiler/options/policy/analyzer versions belong in every result.
 
-M3-T02 will add measured resolved precision/recall, candidate coverage, mapping exclusions and categorized mismatches. No accuracy numbers are claimed yet. Denominators must be independent of Ripple success; raw misses and mapping failures cannot disappear into supported-scope filtering. Dedicated test-safety/selection and performance measurements belong to later milestones.
+M3-T02 supplies measured resolved precision/recall, candidate coverage, mapping exclusions and categorized mismatches below. Denominators must be independent of Ripple success; raw misses and mapping failures cannot disappear into supported-scope filtering. Dedicated test-safety/selection and performance measurements belong to later milestones.
 
 ## First measured baseline
 
@@ -12,4 +12,6 @@ M3-T02 adds `compare_run.py` and metric tests: synthetic true/false/missed pairs
 
 The owned mini corpus measures 3/3 precision and 3/3 recall. The four-source sourcemap-codec projection measures 16/16 precision and 16/16 recall on eligible edges, no comparable candidate edges, 567 unresolved occurrences, one unmatched constructor definition and six out-of-scope constructor-related class reads. The oracle excludes 524 runtime-identifier occurrences. These exclusions are visible, independent of Ripple success and not included in the eligible-edge denominator. No supported missed/false-resolved edge was observed on this sample; broader accuracy is not established.
 
-M3-T03 must use the no-measured-gap branch: strengthen a supported regression without expanding resolver scope, then regenerate the same-corpus comparison and report unchanged counts if confirmed. Performance, selection safety and incremental correctness remain unmeasured here.
+M3-T03 follows the no-measured-gap branch: the direct Rust composition regression passes, and regenerated same-corpus comparisons retain identical raw semantic artifacts, precision/recall counts, exclusions and mismatches. Performance, selection safety and incremental correctness remain unmeasured here.
+
+Final scoped reports: [mini](../eval/results/resolver/final/mini/report.md), [external](../eval/results/resolver/final/sourcemap-codec/report.md), [baseline](../eval/results/resolver/baseline/README.md). See [M3 gate](task-reports/M3.md) for actual integrated/CI status.

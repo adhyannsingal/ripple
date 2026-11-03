@@ -1963,11 +1963,11 @@
         "eval/results/resolver/",
         "docs/limitations.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M3-T03",
       "started_at": "2026-11-03T18:39:39.756500+00:00",
-      "heartbeat_at": "2026-11-03T18:39:39.756500+00:00",
+      "heartbeat_at": "2026-11-03T18:42:53.347353+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1981,10 +1981,11 @@
         "docs/evaluation.md",
         "docs/task-reports/M3-T03.md",
         "docs/task-reports/M3.md",
-        "docs/project-status.md"
+        "docs/project-status.md",
+        "eval/corpora/mini/.gitattributes"
       ],
-      "checkpoint": "No supported bug measured in baseline. Strengthen alias/barrel/overload/TSX/Unicode/shadowing composition as direct Rust regression; no resolver scope expansion.",
-      "next_action": "Add oracle-mini Rust fixture, verify exact edges/provenance, regenerate same-corpus results, run full milestone checks and platform CI.",
+      "checkpoint": "Integrated regression and final same-corpus reports; 223 Rust tests, 6 Node, 4 metric, 18 planning tests, fmt/build/strict Clippy and CLI smoke passed. Semantic results identical to baseline; no production resolver change.",
+      "next_action": "Push final M3 candidate; verify Linux/macOS Intel/Windows workspace/install and oracle CI before passing gate.",
       "report": "docs/task-reports/M3-T03.md"
     },
     {
@@ -2514,8 +2515,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M3",
     "integration_branch": "main",
-    "checkpoint": "No supported bug measured in baseline. Strengthen alias/barrel/overload/TSX/Unicode/shadowing composition as direct Rust regression; no resolver scope expansion.",
-    "next_action": "Add oracle-mini Rust fixture, verify exact edges/provenance, regenerate same-corpus results, run full milestone checks and platform CI.",
-    "updated_at": "2026-11-03T18:39:39.756500+00:00"
+    "checkpoint": "Integrated regression and final same-corpus reports; 223 Rust tests, 6 Node, 4 metric, 18 planning tests, fmt/build/strict Clippy and CLI smoke passed. Semantic results identical to baseline; no production resolver change.",
+    "next_action": "Push final M3 candidate; verify Linux/macOS Intel/Windows workspace/install and oracle CI before passing gate.",
+    "updated_at": "2026-11-03T18:42:53.347353+00:00"
   }
 }

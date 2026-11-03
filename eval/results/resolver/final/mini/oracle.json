@@ -1,0 +1,324 @@
+{
+  "coverage": {
+    "eligible_edges": 3,
+    "eligible_occurrences": 4,
+    "excluded_occurrences": 4,
+    "runtime_identifiers": 8
+  },
+  "diagnostics": [
+    {
+      "code": 7026,
+      "file": "view.tsx",
+      "message": "JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.",
+      "start": 65
+    },
+    {
+      "code": 7026,
+      "file": "view.tsx",
+      "message": "JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.",
+      "start": 80
+    }
+  ],
+  "edges": [
+    {
+      "kind": "REFERENCES",
+      "location": {
+        "file": "main.ts",
+        "span": {
+          "end": 183,
+          "start": 180
+        }
+      },
+      "occurrences": [
+        {
+          "file": "main.ts",
+          "span": {
+            "end": 183,
+            "start": 180
+          }
+        }
+      ],
+      "source": "[\"main.ts\",\"FUNCTION\",143,186]",
+      "target": "[\"lib.ts\",\"FUNCTION\",0,88]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "main.ts",
+        "span": {
+          "end": 119,
+          "start": 116
+        }
+      },
+      "occurrences": [
+        {
+          "file": "main.ts",
+          "span": {
+            "end": 119,
+            "start": 116
+          }
+        },
+        {
+          "file": "main.ts",
+          "span": {
+            "end": 133,
+            "start": 130
+          }
+        }
+      ],
+      "source": "[\"main.ts\",\"FUNCTION\",82,142]",
+      "target": "[\"lib.ts\",\"FUNCTION\",0,88]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "view.tsx",
+        "span": {
+          "end": 77,
+          "start": 71
+        }
+      },
+      "occurrences": [
+        {
+          "file": "view.tsx",
+          "span": {
+            "end": 77,
+            "start": 71
+          }
+        }
+      ],
+      "source": "[\"view.tsx\",\"FUNCTION\",33,89]",
+      "target": "[\"main.ts\",\"FUNCTION\",82,142]"
+    }
+  ],
+  "exclusions": [
+    {
+      "location": {
+        "file": "lib.ts",
+        "span": {
+          "end": 85,
+          "start": 84
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "x"
+    },
+    {
+      "location": {
+        "file": "main.ts",
+        "span": {
+          "end": 241,
+          "start": 238
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "use"
+    },
+    {
+      "location": {
+        "file": "view.tsx",
+        "span": {
+          "end": 69,
+          "start": 66
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "div"
+    },
+    {
+      "location": {
+        "file": "view.tsx",
+        "span": {
+          "end": 85,
+          "start": 82
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "div"
+    }
+  ],
+  "format_version": 1,
+  "input_hashes": {
+    "barrel.ts": "4e8e33e93166b62a7d68455f01557f6b39bc4a788a393058d45c749001b93fe0",
+    "lib.ts": "9620c1b919f606c0e53cb4a9f0ed06bfb72e8d03b590fd9019c83d05f53c4ad2",
+    "main.ts": "64340c485b28df1b26523b0bdc033d38ead332e3f7663fe4e5e4c68e74819d5e",
+    "view.tsx": "826f28c13e981cbdae0731e193448011a633543242d93bbaf45c559fa598df60"
+  },
+  "node": "v24.22.1",
+  "occurrences": [
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "main.ts",
+        "span": {
+          "end": 119,
+          "start": 116
+        }
+      },
+      "source": "[\"main.ts\",\"FUNCTION\",82,142]",
+      "target": "[\"lib.ts\",\"FUNCTION\",0,88]",
+      "text": "use"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "main.ts",
+        "span": {
+          "end": 133,
+          "start": 130
+        }
+      },
+      "source": "[\"main.ts\",\"FUNCTION\",82,142]",
+      "target": "[\"lib.ts\",\"FUNCTION\",0,88]",
+      "text": "use"
+    },
+    {
+      "kind": "REFERENCES",
+      "location": {
+        "file": "main.ts",
+        "span": {
+          "end": 183,
+          "start": 180
+        }
+      },
+      "source": "[\"main.ts\",\"FUNCTION\",143,186]",
+      "target": "[\"lib.ts\",\"FUNCTION\",0,88]",
+      "text": "use"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "view.tsx",
+        "span": {
+          "end": 77,
+          "start": 71
+        }
+      },
+      "source": "[\"view.tsx\",\"FUNCTION\",33,89]",
+      "target": "[\"main.ts\",\"FUNCTION\",82,142]",
+      "text": "caller"
+    }
+  ],
+  "options": {
+    "jsx": 1,
+    "module": 1,
+    "moduleResolution": 2,
+    "noEmit": true,
+    "noLib": true,
+    "skipLibCheck": true,
+    "target": 9,
+    "types": []
+  },
+  "policy": "ripple-oracle-v1",
+  "symbols": [
+    {
+      "file": "lib.ts",
+      "implementation_span": {
+        "end": 88,
+        "start": 42
+      },
+      "key": "[\"lib.ts\",\"FUNCTION\",0,88]",
+      "kind": "FUNCTION",
+      "name": "café",
+      "name_span": {
+        "end": 63,
+        "start": 58
+      },
+      "span": {
+        "end": 88,
+        "start": 0
+      }
+    },
+    {
+      "file": "lib.ts",
+      "implementation_span": {
+        "end": 126,
+        "start": 89
+      },
+      "key": "[\"lib.ts\",\"FUNCTION\",89,126]",
+      "kind": "FUNCTION",
+      "name": "spare",
+      "name_span": {
+        "end": 110,
+        "start": 105
+      },
+      "span": {
+        "end": 126,
+        "start": 89
+      }
+    },
+    {
+      "file": "main.ts",
+      "implementation_span": {
+        "end": 186,
+        "start": 143
+      },
+      "key": "[\"main.ts\",\"FUNCTION\",143,186]",
+      "kind": "FUNCTION",
+      "name": "reference",
+      "name_span": {
+        "end": 168,
+        "start": 159
+      },
+      "span": {
+        "end": 186,
+        "start": 143
+      }
+    },
+    {
+      "file": "main.ts",
+      "implementation_span": {
+        "end": 246,
+        "start": 187
+      },
+      "key": "[\"main.ts\",\"FUNCTION\",187,246]",
+      "kind": "FUNCTION",
+      "name": "shadow",
+      "name_span": {
+        "end": 209,
+        "start": 203
+      },
+      "span": {
+        "end": 246,
+        "start": 187
+      }
+    },
+    {
+      "file": "main.ts",
+      "implementation_span": {
+        "end": 142,
+        "start": 82
+      },
+      "key": "[\"main.ts\",\"FUNCTION\",82,142]",
+      "kind": "FUNCTION",
+      "name": "caller",
+      "name_span": {
+        "end": 104,
+        "start": 98
+      },
+      "span": {
+        "end": 142,
+        "start": 82
+      }
+    },
+    {
+      "file": "view.tsx",
+      "implementation_span": {
+        "end": 89,
+        "start": 33
+      },
+      "key": "[\"view.tsx\",\"FUNCTION\",33,89]",
+      "kind": "FUNCTION",
+      "name": "View",
+      "name_span": {
+        "end": 53,
+        "start": 49
+      },
+      "span": {
+        "end": 89,
+        "start": 33
+      }
+    }
+  ],
+  "typescript": "6.0.3"
+}

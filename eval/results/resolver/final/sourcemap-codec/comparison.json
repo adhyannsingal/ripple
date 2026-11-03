@@ -1,0 +1,401 @@
+{
+  "counts": {
+    "candidate_comparable_edges": 0,
+    "oracle_edges": 16,
+    "oracle_excluded_occurrences": 524,
+    "out_of_scope_ripple_edges": 6,
+    "resolved_comparable_edges": 16,
+    "unmapped_eligible_ripple_edges": 0,
+    "unmapped_ripple_definitions": 1,
+    "unresolved_occurrences": 567
+  },
+  "format_version": 1,
+  "mapping_exclusions": [
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "METHOD",
+        "path": "src/strings.ts",
+        "project": "default",
+        "qualified_name": [
+          "StringReader",
+          "constructor"
+        ]
+      },
+      "reason": "unmatched_definition"
+    }
+  ],
+  "metadata": {
+    "analyzer_commit": "02c9cbad22656014577aa9a0ded4e274adbaa587",
+    "analyzer_versions": {
+      "analyzer_version": "cold-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v1",
+      "hash_version": 1,
+      "schema_version": 1
+    },
+    "binary_sha256": "8e638842b5e95b40ed2d3fe3deb597fcbe710f8e1724acfe6c3d81ed0a167dbb",
+    "compiler_options": {
+      "jsx": 1,
+      "module": 1,
+      "moduleResolution": 2,
+      "noEmit": true,
+      "noLib": true,
+      "skipLibCheck": true,
+      "target": 9,
+      "types": []
+    },
+    "corpus": {
+      "commit": "363fb9bea57909bd49748d522478bd42b20fd57e",
+      "files": [
+        {
+          "bytes": 9713,
+          "path": "src/scopes.ts",
+          "sha256": "1db13eedacbcb83d4c0ca6023379de51240be2b50cfe96b2d6513789a31ab9af"
+        },
+        {
+          "bytes": 3203,
+          "path": "src/sourcemap-codec.ts",
+          "sha256": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e"
+        },
+        {
+          "bytes": 1473,
+          "path": "src/strings.ts",
+          "sha256": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99"
+        },
+        {
+          "bytes": 1387,
+          "path": "src/vlq.ts",
+          "sha256": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+        },
+        {
+          "bytes": 1072,
+          "path": "LICENSE",
+          "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b"
+        }
+      ],
+      "format_version": 1,
+      "id": "sourcemap-codec-src",
+      "license": {
+        "path": "LICENSE",
+        "spdx": "MIT"
+      },
+      "projection": "The four upstream src TS files, unmodified; upstream build config/package metadata/tests are excluded. Fixed evaluation compiler options apply; not a full-project compatibility claim.",
+      "repository": "https://github.com/jridgewell/sourcemap-codec"
+    },
+    "input_hashes": {
+      "src/scopes.ts": "1db13eedacbcb83d4c0ca6023379de51240be2b50cfe96b2d6513789a31ab9af",
+      "src/sourcemap-codec.ts": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e",
+      "src/strings.ts": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99",
+      "src/vlq.ts": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+    },
+    "node": "v24.22.1",
+    "rust_source_tree": "87ea3f1e13217b36c7afeb9b4491c59781cb52fe",
+    "typescript": "6.0.3"
+  },
+  "metrics": {
+    "candidate_coverage": {
+      "denominator": 16,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "false_negative": [],
+    "false_positive": [],
+    "precision": {
+      "denominator": 16,
+      "numerator": 16,
+      "value": 1.0
+    },
+    "recall": {
+      "denominator": 16,
+      "numerator": 16,
+      "value": 1.0
+    },
+    "true_positive": [
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",1991,2228]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",3285,6596]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",3285,6596]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6598,6895]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",9567,9712]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",878,1989]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+      "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",878,1989]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]",
+      "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",1947,2019]\",\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",2021,2120]\",\"REFERENCES\"]",
+      "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",2122,3202]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+      "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",1947,2019]\",\"CALLS\"]",
+      "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+      "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]"
+    ]
+  },
+  "mismatches": [],
+  "out_of_scope_edges": [
+    {
+      "confidence": "RESOLVED",
+      "kind": "REFERENCES",
+      "provenance": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": {
+            "byte": 3419,
+            "column": 34,
+            "line": 131
+          },
+          "start": {
+            "byte": 3407,
+            "column": 22,
+            "line": 131
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "src/scopes.ts",
+          "project": "default",
+          "qualified_name": [
+            "decodeGeneratedRanges"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "CLASS",
+          "path": "src/strings.ts",
+          "project": "default",
+          "qualified_name": [
+            "StringReader"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "REFERENCES",
+      "provenance": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": {
+            "byte": 1010,
+            "column": 34,
+            "line": 37
+          },
+          "start": {
+            "byte": 998,
+            "column": 22,
+            "line": 37
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "src/scopes.ts",
+          "project": "default",
+          "qualified_name": [
+            "decodeOriginalScopes"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "CLASS",
+          "path": "src/strings.ts",
+          "project": "default",
+          "qualified_name": [
+            "StringReader"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "REFERENCES",
+      "provenance": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": {
+            "byte": 6744,
+            "column": 34,
+            "line": 234
+          },
+          "start": {
+            "byte": 6732,
+            "column": 22,
+            "line": 234
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "src/scopes.ts",
+          "project": "default",
+          "qualified_name": [
+            "encodeGeneratedRanges"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "CLASS",
+          "path": "src/strings.ts",
+          "project": "default",
+          "qualified_name": [
+            "StringWriter"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "REFERENCES",
+      "provenance": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": {
+            "byte": 2096,
+            "column": 34,
+            "line": 79
+          },
+          "start": {
+            "byte": 2084,
+            "column": 22,
+            "line": 79
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "src/scopes.ts",
+          "project": "default",
+          "qualified_name": [
+            "encodeOriginalScopes"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "CLASS",
+          "path": "src/strings.ts",
+          "project": "default",
+          "qualified_name": [
+            "StringWriter"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "REFERENCES",
+      "provenance": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": {
+            "byte": 716,
+            "column": 34,
+            "line": 21
+          },
+          "start": {
+            "byte": 704,
+            "column": 22,
+            "line": 21
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "src/sourcemap-codec.ts",
+          "project": "default",
+          "qualified_name": [
+            "decode"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "CLASS",
+          "path": "src/strings.ts",
+          "project": "default",
+          "qualified_name": [
+            "StringReader"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    },
+    {
+      "confidence": "RESOLVED",
+      "kind": "REFERENCES",
+      "provenance": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": {
+            "byte": 2356,
+            "column": 34,
+            "line": 81
+          },
+          "start": {
+            "byte": 2344,
+            "column": 22,
+            "line": 81
+          }
+        }
+      },
+      "resolution_rule": "configured_import_binding",
+      "source": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "FUNCTION",
+          "path": "src/sourcemap-codec.ts",
+          "project": "default",
+          "qualified_name": [
+            "encode"
+          ]
+        },
+        "kind": "SYMBOL"
+      },
+      "target": {
+        "identity": {
+          "disambiguator": "",
+          "kind": "CLASS",
+          "path": "src/strings.ts",
+          "project": "default",
+          "qualified_name": [
+            "StringWriter"
+          ]
+        },
+        "kind": "SYMBOL"
+      }
+    }
+  ],
+  "policy": "ripple-oracle-v1",
+  "ranked_categories": [],
+  "unmapped_edges": []
+}
