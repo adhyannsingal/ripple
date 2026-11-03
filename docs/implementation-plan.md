@@ -304,7 +304,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M4-T01 — Read immutable Git endpoints and structured diffs
 
 - **Depends on:** M0-T05. **Lane:** git.
-- **Own:** `crates/ripple-git/`; `fixtures/git/`; `docs/adr/0009*.md`.
+- **Own:** `crates/ripple-git/`; `fixtures/git/`; `docs/adr/0009*.md`; `crates/ripple-core/src/source.rs`; `crates/ripple-parse/src/scanner.rs`; `Cargo.lock`; `docs/limitations.md`; `docs/task-reports/M4-T01.md`.
 - **Implement:** Implement Git process adapter using argument arrays, revision resolution to SHAs, tree/blob source snapshots, NUL-safe path handling and hunk/rename/add/delete extraction. Reuse scanner policy on revision trees. Restrict to documented two-dot endpoint comparison and never mutate worktree.
 - **Acceptance:** Temp repos cover spaces/Unicode paths, invalid refs, empty commits, add/delete/rename, no newline/CRLF, symlinks, binary/unreadable inputs and insertion/deletion hunks; malicious-looking refs cannot become options/shell commands; dirty worktree stays byte-for-byte untouched.
 - **Handoff:** RevisionSnapshots and RevisionChanges contracts without dependency on storage or CLI.

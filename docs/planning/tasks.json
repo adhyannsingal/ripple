@@ -2034,13 +2034,18 @@
       "owned_paths": [
         "crates/ripple-git/",
         "fixtures/git/",
-        "docs/adr/0009*.md"
+        "docs/adr/0009*.md",
+        "crates/ripple-core/src/source.rs",
+        "crates/ripple-parse/src/scanner.rs",
+        "Cargo.lock",
+        "docs/limitations.md",
+        "docs/task-reports/M4-T01.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M4-T01",
       "started_at": "2026-11-03T19:24:27.036660+00:00",
-      "heartbeat_at": "2026-11-03T19:24:27.036660+00:00",
+      "heartbeat_at": "2026-11-03T19:32:57.935865+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2056,8 +2061,8 @@
         "docs/task-reports/M4-T01.md",
         "docs/limitations.md"
       ],
-      "checkpoint": "Post-M3 checks pass; M3 final CI green. Implement immutable Git tree adapter and bounded raw diffs; relocate shared SourceTree contract to core and preserve parse reexports.",
-      "next_action": "Implement pinned endpoint snapshots, reuse scanner policy, add read-only security/hunk fixtures and verify all platform checks.",
+      "checkpoint": "Integrated immutable Git adapter; review repaired mutable revision labels and skipped empty NUL records. 231 Rust tests, strict checks, 6 Node/4 metric/18 planning tests and CLI smoke passed. Eight new Git tests.",
+      "next_action": "Push candidate, verify all platform and oracle CI; then mark M4-T01 done and release claims.",
       "report": "docs/task-reports/M4-T01.md"
     },
     {
@@ -2559,8 +2564,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M4-T01",
     "integration_branch": "main",
-    "checkpoint": "Post-M3 checks pass; M3 final CI green. Implement immutable Git tree adapter and bounded raw diffs; relocate shared SourceTree contract to core and preserve parse reexports.",
-    "next_action": "Implement pinned endpoint snapshots, reuse scanner policy, add read-only security/hunk fixtures and verify all platform checks.",
-    "updated_at": "2026-11-03T19:24:27.036660+00:00"
+    "checkpoint": "Integrated immutable Git adapter; review repaired mutable revision labels and skipped empty NUL records. 231 Rust tests, strict checks, 6 Node/4 metric/18 planning tests and CLI smoke passed. Eight new Git tests.",
+    "next_action": "Push candidate, verify all platform and oracle CI; then mark M4-T01 done and release claims.",
+    "updated_at": "2026-11-03T19:32:57.935865+00:00"
   }
 }
