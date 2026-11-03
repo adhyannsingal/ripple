@@ -18,3 +18,12 @@ jobs:
           node-version: '24.22.1'
       - run: npm ci --prefix eval/oracle --ignore-scripts
       - run: npm test --prefix eval/oracle
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.14'
+      - run: python -m unittest discover -s eval/oracle/test -v
+      - run: cargo build --locked -p ripple-cli
+      - name: Compare owned mini corpus and verify exact expected metrics
+        run: |
+          python eval/oracle/compare_run.py --source eval/corpora/mini --binary target/debug/ripple --output /tmp/ripple-mini-ci
+          python -c "import json; x=json.load(open('/tmp/ripple-mini-ci/comparison.json')); assert x['metrics']['precision']['numerator']==3; assert x['metrics']['recall']['numerator']==3; assert not x['metrics']['false_positive']; assert not x['metrics']['false_negative']; assert x['counts']['unmapped_eligible_ripple_edges']==0"
