@@ -87,6 +87,9 @@ impl RevisionTree {
         &self.revision
     }
     fn load(root: &Path, revision: CommitId) -> Result<Self, GitError> {
+        if command(root, &["cat-file", "-t", revision.as_str()])? != b"commit\n" {
+            return Err(err("revision endpoint must be a commit object"));
+        }
         let raw = command(
             root,
             &[

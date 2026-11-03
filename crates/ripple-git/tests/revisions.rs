@@ -242,6 +242,16 @@ fn malicious_refs_and_missing_objects_fail_without_shell_or_options() {
         })
         .is_err()
     );
+    let tree = git(r, &["rev-parse", "HEAD^{tree}"]);
+    let tree = ripple_core::revision::CommitId::new(tree.trim().to_owned()).unwrap();
+    let commit = ripple_core::revision::CommitId::new(a.clone()).unwrap();
+    assert!(
+        repo.compare_pair(ripple_core::revision::RevisionPair {
+            base: tree,
+            head: commit
+        })
+        .is_err()
+    );
     assert!(!r.join("ripple-pwned").exists());
     assert!(compare(r, &a, &a).changes.files().is_empty());
     let zeros = ripple_core::revision::CommitId::new("0".repeat(40)).unwrap();
