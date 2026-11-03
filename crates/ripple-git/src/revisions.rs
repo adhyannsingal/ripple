@@ -58,7 +58,16 @@ fn fields(bytes: &[u8]) -> Result<Vec<&[u8]>, GitError> {
     if !bytes.is_empty() && !bytes.ends_with(&[0]) {
         return Err(err("unterminated NUL Git record"));
     }
-    Ok(bytes.split(|b| *b == 0).filter(|s| !s.is_empty()).collect())
+    if bytes.is_empty() {
+        return Ok(Vec::new());
+    }
+    let rows = bytes[..bytes.len() - 1]
+        .split(|b| *b == 0)
+        .collect::<Vec<_>>();
+    if rows.iter().any(|row| row.is_empty()) {
+        return Err(err("empty NUL Git record"));
+    }
+    Ok(rows)
 }
 #[derive(Debug, Clone)]
 struct Object {
@@ -447,6 +456,7 @@ mod tests {
     #[test]
     fn malformed_records_and_overflow_fail_instead_of_partial_output() {
         assert!(fields(b"record without terminator").is_err());
+        assert!(fields(b"first\0\0second\0").is_err());
         assert!(parse_raw(b"bad\0path\0").is_err());
         assert!(parse_raw(b":100644 100644 deadbeef deadbeef M\0p.ts\0").is_err());
         assert!(parse_hunks(b"@@ -4294967296 +1 @@\n").is_err());
