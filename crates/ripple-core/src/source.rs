@@ -138,3 +138,29 @@ pub trait SourceProvider {
     type Error: std::error::Error + Send + Sync + 'static;
     fn capture(&self) -> Result<SourceSnapshot, Self::Error>;
 }
+
+#[derive(Debug, thiserror::Error)]
+#[error("source discovery: {0}")]
+pub struct ScanError(pub String);
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EntryKind {
+    File,
+    Directory,
+    Symlink,
+}
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct TreeEntry {
+    pub path: RepoPath,
+    pub kind: EntryKind,
+}
+/// Directory listings must contain only immediate children, with portable paths.
+/// Implementations read immutable bytes or captured worktree bytes, never execute scripts.
+/// Abort listing when max_entries is exceeded, rather than collecting an unbounded directory.
+pub trait SourceTree {
+    fn entries(
+        &self,
+        directory: Option<&RepoPath>,
+        max_entries: usize,
+    ) -> Result<Vec<TreeEntry>, ScanError>;
+    fn read(&self, path: &RepoPath) -> Result<Vec<u8>, ScanError>;
+}

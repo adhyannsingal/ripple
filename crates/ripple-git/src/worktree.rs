@@ -7,7 +7,7 @@ use std::{
     thread,
     time::{Duration, Instant},
 };
-fn run(root: &Path, args: &[&str]) -> Result<(bool, Vec<u8>), String> {
+pub(crate) fn run(root: &Path, args: &[&str]) -> Result<(bool, Vec<u8>), String> {
     let mut cmd = Command::new("git");
     for (name, _) in std::env::vars_os() {
         if name
@@ -20,6 +20,7 @@ fn run(root: &Path, args: &[&str]) -> Result<(bool, Vec<u8>), String> {
     }
     cmd.args([
         "--no-optional-locks",
+        "--no-lazy-fetch",
         "--no-pager",
         "-c",
         "core.fsmonitor=false",
@@ -30,6 +31,8 @@ fn run(root: &Path, args: &[&str]) -> Result<(bool, Vec<u8>), String> {
     .arg(root)
     .args(args)
     .env("GIT_CONFIG_NOSYSTEM", "1")
+    .env("GIT_NO_REPLACE_OBJECTS", "1")
+    .env("GIT_NO_LAZY_FETCH", "1")
     .env(
         "GIT_CONFIG_GLOBAL",
         if cfg!(windows) { "NUL" } else { "/dev/null" },

@@ -1,4 +1,3 @@
-//! Immutable Git revision and change providers.
-//! Read-only worktree provenance is implemented; immutable endpoint/diff adapters remain later work.
-
+//! Read-only worktree provenance and immutable Git endpoint/tree/diff adapters.
+pub mod revisions;
 pub mod worktree;

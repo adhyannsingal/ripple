@@ -25,31 +25,7 @@ const EXCLUDED: &[&str] = &[
     "generated",
 ];
 
-#[derive(Debug, thiserror::Error)]
-#[error("source discovery: {0}")]
-pub struct ScanError(pub String);
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum EntryKind {
-    File,
-    Directory,
-    Symlink,
-}
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct TreeEntry {
-    pub path: RepoPath,
-    pub kind: EntryKind,
-}
-/// Directory listings must contain only immediate children, with portable paths.
-/// Implementations read immutable bytes or captured worktree bytes, never execute scripts.
-/// Abort listing when max_entries is exceeded, rather than collecting an unbounded directory.
-pub trait SourceTree {
-    fn entries(
-        &self,
-        directory: Option<&RepoPath>,
-        max_entries: usize,
-    ) -> Result<Vec<TreeEntry>, ScanError>;
-    fn read(&self, path: &RepoPath) -> Result<Vec<u8>, ScanError>;
-}
+pub use ripple_core::source::{EntryKind, ScanError, SourceTree, TreeEntry};
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DiscoveredFile {
     pub path: RepoPath,
