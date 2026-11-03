@@ -1913,11 +1913,11 @@
         "eval/results/resolver/",
         "docs/evaluation.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M3-T02",
       "started_at": "2026-11-03T18:33:56.531537+00:00",
-      "heartbeat_at": "2026-11-03T18:33:56.531537+00:00",
+      "heartbeat_at": "2026-11-03T18:37:51.651356+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1933,8 +1933,8 @@
         ".github/workflows/oracle.yml",
         "eval/oracle/README.md"
       ],
-      "checkpoint": "T01 integrated/pinned oracle job passed; implement independent mapped-edge precision/recall and provenance.",
-      "next_action": "Build read-only SQLite export after verified CLI index, compare synthetic metrics, measure pinned corpus twice.",
+      "checkpoint": "Integrated independent comparator, four synthetic tests and pinned raw baseline. External 16/16 precision and recall; 3/3 mini; repeated artifacts byte-identical.",
+      "next_action": "Run integrated oracle/metric and planning checks; push and verify scoped CI before M3-T03.",
       "report": "docs/task-reports/M3-T02.md"
     },
     {
@@ -2493,8 +2493,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M3",
     "integration_branch": "main",
-    "checkpoint": "T01 integrated/pinned oracle job passed; implement independent mapped-edge precision/recall and provenance.",
-    "next_action": "Build read-only SQLite export after verified CLI index, compare synthetic metrics, measure pinned corpus twice.",
-    "updated_at": "2026-11-03T18:33:56.531537+00:00"
+    "checkpoint": "Integrated independent comparator, four synthetic tests and pinned raw baseline. External 16/16 precision and recall; 3/3 mini; repeated artifacts byte-identical.",
+    "next_action": "Run integrated oracle/metric and planning checks; push and verify scoped CI before M3-T03.",
+    "updated_at": "2026-11-03T18:37:51.651356+00:00"
   }
 }
