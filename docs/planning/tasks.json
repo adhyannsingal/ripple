@@ -1866,19 +1866,26 @@
         "docs/adr/0008-oracle-selection.md",
         "docs/evaluation.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M3-T01",
+      "started_at": "2026-11-03T18:29:11.537881+00:00",
+      "heartbeat_at": "2026-11-03T18:29:11.537881+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "86f74a6594ac7cf1ac381a632e0678ecb8756b53",
+      "claimed_paths": [
+        "eval/oracle/",
+        "eval/corpora/",
+        "docs/adr/0008-oracle-selection.md",
+        "docs/evaluation.md",
+        "docs/task-reports/M3-T01.md",
+        ".github/workflows/oracle.yml"
+      ],
+      "checkpoint": "M2 verified; designing independent edge eligibility and byte-coordinate mapping. Preserve untracked graphify-out/.",
+      "next_action": "Implement pinned compiler adapter, mini fixtures and explicit external source projection manifest.",
       "report": "docs/task-reports/M3-T01.md"
     },
     {
@@ -2462,11 +2469,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M3",
     "integration_branch": "main",
-    "checkpoint": "M2 complete: all cards integrated, code/security review and Linux/macOS Intel/Windows CI/install gate passed. No retained M2 claims.",
-    "next_action": "Next authorized milestone: M3-T01 compiler oracle; select and claim before editing.",
-    "updated_at": "2026-11-02T21:46:19.305057+00:00"
+    "checkpoint": "M2 verified; designing independent edge eligibility and byte-coordinate mapping. Preserve untracked graphify-out/.",
+    "next_action": "Implement pinned compiler adapter, mini fixtures and explicit external source projection manifest.",
+    "updated_at": "2026-11-03T18:29:11.537881+00:00"
   }
 }
