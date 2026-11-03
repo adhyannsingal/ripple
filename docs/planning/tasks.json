@@ -1866,11 +1866,11 @@
         "docs/adr/0008-oracle-selection.md",
         "docs/evaluation.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M3-T01",
       "started_at": "2026-11-03T18:29:11.537881+00:00",
-      "heartbeat_at": "2026-11-03T18:29:11.537881+00:00",
+      "heartbeat_at": "2026-11-03T18:32:44.614789+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -1884,8 +1884,8 @@
         "docs/task-reports/M3-T01.md",
         ".github/workflows/oracle.yml"
       ],
-      "checkpoint": "M2 verified; designing independent edge eligibility and byte-coordinate mapping. Preserve untracked graphify-out/.",
-      "next_action": "Implement pinned compiler adapter, mini fixtures and explicit external source projection manifest.",
+      "checkpoint": "Six pinned Node tests and verified external fetch pass; hand-checked overload family mapping repaired. Integrating adapter and CI fixture job.",
+      "next_action": "Merge task, run installed harness/planning checks on main, push and verify CI.",
       "report": "docs/task-reports/M3-T01.md"
     },
     {
@@ -2472,8 +2472,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M3",
     "integration_branch": "main",
-    "checkpoint": "M2 verified; designing independent edge eligibility and byte-coordinate mapping. Preserve untracked graphify-out/.",
-    "next_action": "Implement pinned compiler adapter, mini fixtures and explicit external source projection manifest.",
-    "updated_at": "2026-11-03T18:29:11.537881+00:00"
+    "checkpoint": "Six pinned Node tests and verified external fetch pass; hand-checked overload family mapping repaired. Integrating adapter and CI fixture job.",
+    "next_action": "Merge task, run installed harness/planning checks on main, push and verify CI.",
+    "updated_at": "2026-11-03T18:32:44.614789+00:00"
   }
 }
