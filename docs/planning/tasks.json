@@ -2039,30 +2039,52 @@
         "crates/ripple-parse/src/scanner.rs",
         "Cargo.lock",
         "docs/limitations.md",
-        "docs/task-reports/M4-T01.md"
+        "docs/task-reports/M4-T01.md",
+        "docs/project-status.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M4-T01",
       "started_at": "2026-11-03T19:24:27.036660+00:00",
-      "heartbeat_at": "2026-11-03T19:32:57.935865+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-03T19:46:20.176979+00:00",
+      "completed_at": "2026-11-03T19:46:20.176979+00:00",
+      "integrated_commit": "bbfd729dce4d3c101594fb0a161cf8b5d0a11248",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "231 Rust tests locally; eight Git tests including parser, scanner reuse, hunks, read-only preservation and security boundaries."
+        },
+        {
+          "command": "cargo test -p ripple-git --locked; direct non-commit endpoint regression",
+          "outcome": "passed",
+          "detail": "Tree ID incorrectly accepted before repair; rejected after commit-type validation. Edited rename/missing-blob and configured color/order cases passed."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate",
+          "outcome": "passed",
+          "detail": "6 Node, 4 Python metric and 18 planning tests."
+        },
+        {
+          "command": "python3 scripts/m2-smoke.py --binary target/debug/ripple; cargo tree -p ripple-git --edges normal --depth 1; documentation link check; git diff --check",
+          "outcome": "passed",
+          "detail": "Existing CLI behavior preserved; Git production depends only on core."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41705423268",
+          "outcome": "passed",
+          "detail": "Windows/macOS Intel/Linux formatting/build/strict Clippy/workspace tests and clean-installed CLI smoke all passed; earlier Windows-only fixture lint repaired."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41705423256",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "eac7cdc151af9189420d9df7d49fbcc66b1e48b2",
-      "claimed_paths": [
-        "crates/ripple-git/",
-        "crates/ripple-core/src/source.rs",
-        "crates/ripple-parse/src/scanner.rs",
-        "Cargo.lock",
-        "fixtures/git/",
-        "docs/adr/0009-git-and-output-policy.md",
-        "docs/task-reports/M4-T01.md",
-        "docs/limitations.md"
-      ],
-      "checkpoint": "Integrated immutable Git adapter; review repaired mutable revision labels and skipped empty NUL records. 231 Rust tests, strict checks, 6 Node/4 metric/18 planning tests and CLI smoke passed. Eight new Git tests.",
-      "next_action": "Push candidate, verify all platform and oracle CI; then mark M4-T01 done and release claims.",
+      "claimed_paths": [],
+      "checkpoint": "Immutable Git adapter integrated and all final platform/oracle checks passed. Direct tree-ID endpoint reproduced failing-before/fixed-after; Windows-only fixture lint fixed and CI verified. Claims released.",
+      "next_action": "M4-T02 \u2014 classify symbol changes across immutable base/head.",
       "report": "docs/task-reports/M4-T01.md"
     },
     {
@@ -2561,11 +2583,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M4-T01",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Integrated immutable Git adapter; review repaired mutable revision labels and skipped empty NUL records. 231 Rust tests, strict checks, 6 Node/4 metric/18 planning tests and CLI smoke passed. Eight new Git tests.",
-    "next_action": "Push candidate, verify all platform and oracle CI; then mark M4-T01 done and release claims.",
-    "updated_at": "2026-11-03T19:32:57.935865+00:00"
+    "checkpoint": "Post-M3 checks and M4-T01 implementation/review complete; all final platform/oracle checks passed. M4 milestone remains open for T02-T04. Existing graphify-out/ preserved.",
+    "next_action": "Next scheduled: M4-T02 symbol change classification; select and claim before editing.",
+    "updated_at": "2026-11-03T19:46:20.176979+00:00"
   }
 }
