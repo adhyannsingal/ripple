@@ -38,6 +38,7 @@ pub struct IndexOutcome {
     pub incomplete: bool,
     pub metadata: String,
     pub module_cache: String,
+    pub update: crate::incremental::UpdateStats,
 }
 #[derive(Debug)]
 pub struct CurrentIndex {
@@ -52,7 +53,8 @@ pub fn versions() -> IndexVersions {
         schema_version: SCHEMA_VERSION,
         hash_version: HASH_VERSION,
         analyzer_version: format!(
-            "cold-v1|{PACKAGE_POLICY_VERSION}|{}|{}|{MODULES_VERSION}|{CONFIG_VERSION}|{GRAPH_VERSION}",
+            "cold-v1|{}|{PACKAGE_POLICY_VERSION}|{}|{}|{MODULES_VERSION}|{CONFIG_VERSION}|{GRAPH_VERSION}",
+            crate::fingerprints::CACHE_POLICY,
             ripple_parse::hashes::EXTRACTOR_VERSION,
             ripple_resolve::RESOLVER_VERSION
         ),
@@ -66,22 +68,25 @@ pub fn counts(snapshot: &ripple_core::index::IndexSnapshot) -> Counts {
         unresolved: snapshot.graph().unresolved().len(),
     }
 }
+pub(crate) fn parse(source: &ripple_core::source::SourceFile) -> Result<FileFacts, String> {
+    let parsed = ripple_parse::parser::parse(source.path().clone(), source.text().as_bytes())
+        .map_err(|e| e.to_string())?;
+    ripple_parse::extract(&parsed, ProjectKey::single_project()).map_err(|e| e.to_string())
+}
 fn facts(c: &Capture) -> Result<Vec<FileFacts>, String> {
-    c.discovery
-        .sources
-        .files()
-        .map(|source| {
-            let parsed =
-                ripple_parse::parser::parse(source.path().clone(), source.text().as_bytes())
-                    .map_err(|e| e.to_string())?;
-            ripple_parse::extract(&parsed, ProjectKey::single_project()).map_err(|e| e.to_string())
-        })
-        .collect()
+    c.discovery.sources.files().map(parse).collect()
 }
 pub(crate) fn analyze(
     captured: &Capture,
 ) -> Result<(Vec<FileFacts>, ripple_resolve::symbols::GraphAnalysis), String> {
     let files = facts(captured)?;
+    let analysis = resolve(captured, &files)?;
+    Ok((files, analysis))
+}
+pub(crate) fn resolve(
+    captured: &Capture,
+    files: &[FileFacts],
+) -> Result<ripple_resolve::symbols::GraphAnalysis, String> {
     let tests = captured
         .discovery
         .files
@@ -92,15 +97,15 @@ pub(crate) fn analyze(
     let analysis = resolve_graph(
         &ProjectKey::single_project(),
         &captured.discovery.sources,
-        &files,
+        files,
         &captured.config,
         &tests,
     )
     .map_err(|e| e.to_string())?;
-    Ok((files, analysis))
+    Ok(analysis)
 }
 #[derive(Clone, Copy)]
-enum Phase {
+pub(crate) enum Phase {
     BeforeVerification,
     AfterVerification,
 }
@@ -113,10 +118,41 @@ fn cold_inner(
     provenance: Provenance,
     mut hook: impl FnMut(usize, Phase),
 ) -> Result<IndexOutcome, String> {
+    build_inner(root, provenance, false, &mut hook)
+}
+pub(crate) fn refresh_inner(
+    root: &Path,
+    provenance: Provenance,
+    mut hook: impl FnMut(usize, Phase),
+) -> Result<IndexOutcome, String> {
+    build_inner(root, provenance, true, &mut hook)
+}
+fn build_inner(
+    root: &Path,
+    provenance: Provenance,
+    incremental: bool,
+    hook: &mut impl FnMut(usize, Phase),
+) -> Result<IndexOutcome, String> {
     let root = fs::canonicalize(root).map_err(|e| e.to_string())?;
     // Validate provenance before creating local state.
     provenance(&root)?;
-    let mut store = Store::open(root.join(".ripple"), versions()).map_err(|e| e.to_string())?;
+    let mut store = Store::open(root.join(".ripple"), versions()).map_err(|e| match e {
+        crate::storage::StorageError::Incompatible(_) => format!("{e}; full rebuild required: safely archive incompatible .ripple state while no writer uses it, then ripple index ."),
+        _ => e.to_string(),
+    })?;
+    let (previous, initial_reason) = if incremental {
+        match store.load() {
+            Ok(old) => (old, None),
+            Err(crate::storage::StorageError::Incompatible(_)) => (
+                None,
+                Some(crate::incremental::RebuildReason::IncompatibleVersions),
+            ),
+            Err(e) => return Err(e.to_string()),
+        }
+    } else {
+        (None, Some(crate::incremental::RebuildReason::ExplicitFull))
+    };
+    let mut total_parsed = 0;
     let mut failure = String::new();
     for attempt in 1..=3 {
         let captured = match capture(&root, provenance) {
@@ -126,7 +162,11 @@ fn cold_inner(
                 continue;
             }
         };
-        let (files, analysis) = analyze(&captured)?;
+        let (files, mut update) =
+            crate::incremental::prepare(&captured, previous.as_ref(), initial_reason, parse)?;
+        total_parsed += update.parsed_files;
+        update.total_parsed_files = total_parsed;
+        let analysis = resolve(&captured, &files)?;
         hook(attempt, Phase::BeforeVerification);
         let fresh = match capture(&root, provenance) {
             Ok(c) => c,
@@ -205,6 +245,7 @@ fn cold_inner(
                 .collect(),
             config_diagnostics: captured.config.diagnostics().to_vec(),
             generation,
+            update,
             attempts: attempt,
             counts: counts(&snapshot),
             incomplete: analysis.incomplete || !captured.discovery.diagnostics.is_empty(),

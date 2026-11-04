@@ -23,3 +23,7 @@ mod snapshots_tests;
 pub mod fingerprints;
 #[cfg(test)]
 mod fingerprints_tests;
+
+pub mod incremental;
+#[cfg(test)]
+mod incremental_tests;
