@@ -2471,11 +2471,11 @@
         "docs/task-reports/M5-T03.md",
         "eval/results/resolver/m5/"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M5-T03",
       "started_at": "2026-11-04T19:53:37.802941+00:00",
-      "heartbeat_at": "2026-11-04T19:53:37.802941+00:00",
+      "heartbeat_at": "2026-11-04T20:07:31.010618+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2498,8 +2498,8 @@
         "docs/task-reports/M5-T03.md",
         "eval/results/resolver/m5/"
       ],
-      "checkpoint": "T05 generated guard integrated/verified. Add fully resolved body family on conservative baseline before changing production; then prove module/reference cache eligibility and retain full fallback.",
-      "next_action": "Guard module-input-equivalent edits, propagate lookup/export invalidation and reuse only reference-input-equivalent files; compare all cases to cold and rerun oracle.",
+      "checkpoint": "Selective resolver integrated/reviewed; 265 Rust tests,120 generated cold comparisons, supporting checks and v0.2 smoke pass. Fresh oracle projections3/3 and16/16 retain exclusions/unknowns.",
+      "next_action": "Verify candidate platform/oracle CI, close T03 and claim T04 CLI integration.",
       "report": "docs/task-reports/M5-T03.md"
     },
     {
@@ -2855,8 +2855,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "T05 generated guard integrated/verified. Add fully resolved body family on conservative baseline before changing production; then prove module/reference cache eligibility and retain full fallback.",
-    "next_action": "Guard module-input-equivalent edits, propagate lookup/export invalidation and reuse only reference-input-equivalent files; compare all cases to cold and rerun oracle.",
-    "updated_at": "2026-11-04T19:53:37.802941+00:00"
+    "checkpoint": "Selective resolver integrated/reviewed; 265 Rust tests,120 generated cold comparisons, supporting checks and v0.2 smoke pass. Fresh oracle projections3/3 and16/16 retain exclusions/unknowns.",
+    "next_action": "Verify candidate platform/oracle CI, close T03 and claim T04 CLI integration.",
+    "updated_at": "2026-11-04T20:07:31.010618+00:00"
   }
 }
