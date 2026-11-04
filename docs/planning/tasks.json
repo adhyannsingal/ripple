@@ -2732,19 +2732,24 @@
         "crates/ripple-index/",
         "fixtures/incremental/regressions/"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "coordinator",
+      "branch": "agent/M6-T02",
+      "started_at": "2026-11-04T23:58:36.996484+00:00",
+      "heartbeat_at": "2026-11-04T23:58:36.996484+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "b5a49cb62bc684b879ef40b4946b54f68d0af121",
+      "claimed_paths": [
+        "eval/commit-replay/",
+        "eval/corpora/sourcemap-codec-history.json",
+        "eval/results/replay/",
+        "crates/ripple-index/examples/incremental_evaluate.rs"
+      ],
+      "checkpoint": "M6-T01 prerequisite integrated and verified; pin finite licensed upstream source history.",
+      "next_action": "Implement immutable snapshot replay with full canonical cold comparison and repeatability evidence.",
       "report": "docs/task-reports/M6-T02.md"
     },
     {
@@ -2958,8 +2963,8 @@
     "owner": "coordinator",
     "session_id": "M6-batches-2026-11-04",
     "integration_branch": "main",
-    "checkpoint": "M6-T01 integrated and verified; claim released.",
-    "next_action": "Claim M6-T02.",
-    "updated_at": "2026-11-04T23:58:36.898670+00:00"
+    "checkpoint": "M6-T02 claimed.",
+    "next_action": "Implement immutable snapshot replay with full canonical cold comparison and repeatability evidence.",
+    "updated_at": "2026-11-04T23:58:36.996484+00:00"
   }
 }
