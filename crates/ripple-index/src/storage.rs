@@ -26,6 +26,7 @@ use std::{
 
 const APPLICATION_ID: i64 = 0x5249504c;
 const MIGRATION: &str = include_str!("../migrations/0001-generations.sql");
+const ANALYSIS_MIGRATION: &str = include_str!("../migrations/0002-analysis.sql");
 const MAX_INPUT_BYTES: usize = 16 * 1024 * 1024;
 const MAX_TOTAL_INPUT_BYTES: usize = 256 * 1024 * 1024;
 const MAX_RECORD_BYTES: usize = 64 * 1024 * 1024;
@@ -87,6 +88,7 @@ pub struct InputBytes {
 }
 #[derive(Debug)]
 pub struct LoadedGeneration {
+    pub analysis: Option<crate::fingerprints::AnalysisCache>,
     pub snapshot: IndexSnapshot,
     pub inputs: Vec<InputBytes>,
     pub sources: SourceSnapshot,
@@ -237,9 +239,13 @@ fn captured(
         .map_err(|e| invalid(e.to_string()))?;
     Ok(sources)
 }
-fn seal(snapshot: &IndexSnapshot) -> Result<String, StorageError> {
+fn seal(
+    snapshot: &IndexSnapshot,
+    analysis: Option<&crate::fingerprints::AnalysisCache>,
+) -> Result<String, StorageError> {
     let data = serde_json::to_vec(&(
-        "ripple.storage.seal.v1",
+        "ripple.storage.seal.v2",
+        analysis,
         snapshot.metadata(),
         CanonicalState::from_snapshot(snapshot),
     ))?;
@@ -332,6 +338,11 @@ impl Store {
                 "INSERT INTO schema_migrations(version,checksum) VALUES(1,?1)",
                 [digest(MIGRATION.as_bytes())],
             )?;
+            tx.execute_batch(ANALYSIS_MIGRATION)?;
+            tx.execute(
+                "INSERT INTO schema_migrations(version,checksum) VALUES(2,?1)",
+                [digest(ANALYSIS_MIGRATION.as_bytes())],
+            )?;
             tx.pragma_update(None, "application_id", APPLICATION_ID)?;
             tx.pragma_update(None, "user_version", SCHEMA_VERSION)?;
             tx.commit()?;
@@ -347,7 +358,15 @@ impl Store {
         )?;
         let count: i64 =
             connection.query_row("SELECT count(*) FROM schema_migrations", [], |r| r.get(0))?;
-        if checksum != digest(MIGRATION.as_bytes()) || count != 1 {
+        let analysis_checksum: String = connection.query_row(
+            "SELECT checksum FROM schema_migrations WHERE version=2",
+            [],
+            |r| r.get(0),
+        )?;
+        if checksum != digest(MIGRATION.as_bytes())
+            || count != 2
+            || analysis_checksum != digest(ANALYSIS_MIGRATION.as_bytes())
+        {
             return Err(StorageError::Incompatible(
                 "migration history/checksum mismatch".into(),
             ));
@@ -377,12 +396,23 @@ impl Store {
         snapshot: &IndexSnapshot,
         inputs: &[InputBytes],
     ) -> Result<PublishReceipt, StorageError> {
+        self.publish_analysis(snapshot, inputs, None)
+    }
+    pub fn publish_analysis(
+        &mut self,
+        snapshot: &IndexSnapshot,
+        inputs: &[InputBytes],
+        analysis: Option<&crate::fingerprints::AnalysisCache>,
+    ) -> Result<PublishReceipt, StorageError> {
+        if let Some(analysis) = analysis {
+            analysis.validate(snapshot).map_err(invalid)?;
+        }
         snapshot
             .ensure_compatible(&self.expected)
             .map_err(|e| StorageError::Incompatible(e.to_string()))?;
         captured(snapshot, inputs)?;
         let id = integer(snapshot.metadata().generation)?;
-        let checksum = seal(snapshot)?;
+        let checksum = seal(snapshot, analysis)?;
         let metadata = json(snapshot.metadata())?;
         let count = snapshot.inputs().entries().len()
             + snapshot.files().len()
@@ -487,6 +517,12 @@ impl Store {
                     item.boundary.semantic_key(),
                     json(item)?
                 ],
+            )?;
+        }
+        if let Some(analysis) = analysis {
+            tx.execute(
+                "INSERT INTO analysis_artifacts VALUES(?1,?2)",
+                params![id, json(analysis)?],
             )?;
         }
         // Never commit a generation that the bounded loader would reject.
@@ -611,6 +647,7 @@ fn check_stored_budget(c: &Connection, id: i64) -> Result<(), StorageError> {
         ("nodes", "record_json"),
         ("edges", "record_json"),
         ("unresolved_references", "record_json"),
+        ("analysis_artifacts", "record_json"),
     ] {
         let (rows,max,sum):(i64,i64,i64)=c.query_row(&format!("SELECT count(*),COALESCE(max(length(CAST({column} AS BLOB))),0),COALESCE(sum(length(CAST({column} AS BLOB))),0) FROM {table} WHERE generation_id=?1"),[id],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?)))?;
         count = count.saturating_add(rows as usize);
@@ -809,12 +846,29 @@ fn load(
     snapshot
         .ensure_compatible(expected)
         .map_err(|e| StorageError::Incompatible(e.to_string()))?;
-    if seal(&snapshot)? != checksum {
+    let size: Option<i64> = c.query_row("SELECT length(CAST(record_json AS BLOB)) FROM analysis_artifacts WHERE generation_id=?1", [id], |r|r.get(0)).optional()?;
+    if size.is_some_and(|n| n < 0 || n as usize > MAX_RECORD_BYTES) {
+        return Err(invalid("analysis artifact exceeds 64 MiB"));
+    }
+    let text: Option<String> = c
+        .query_row(
+            "SELECT record_json FROM analysis_artifacts WHERE generation_id=?1",
+            [id],
+            |r| r.get(0),
+        )
+        .optional()?;
+    let analysis: Option<crate::fingerprints::AnalysisCache> =
+        text.as_deref().map(decode).transpose()?;
+    if let Some(analysis) = &analysis {
+        analysis.validate(&snapshot).map_err(invalid)?;
+    }
+    if seal(&snapshot, analysis.as_ref())? != checksum {
         return Err(invalid(
             "generation integrity seal mismatch; rebuild required",
         ));
     }
     Ok(Some(LoadedGeneration {
+        analysis,
         snapshot,
         inputs,
         sources,

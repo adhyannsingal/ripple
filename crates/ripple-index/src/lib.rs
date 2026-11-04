@@ -19,3 +19,7 @@ mod build_capture;
 pub mod snapshots;
 #[cfg(test)]
 mod snapshots_tests;
+
+pub mod fingerprints;
+#[cfg(test)]
+mod fingerprints_tests;

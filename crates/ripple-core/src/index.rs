@@ -10,7 +10,7 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-pub const SCHEMA_VERSION: u32 = 1;
+pub const SCHEMA_VERSION: u32 = 2;
 pub const HASH_VERSION: u32 = 1;
 pub const MAX_CAPTURE_ATTEMPTS: usize = 3;
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]

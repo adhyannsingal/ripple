@@ -162,8 +162,19 @@ fn cold_inner(
         }
         .validate(&captured.discovery.sources)
         .map_err(|e| e.to_string())?;
+        let cache = crate::fingerprints::AnalysisCache::new(
+            &snapshot,
+            analysis.modules.clone(),
+            captured
+                .discovery
+                .diagnostics
+                .iter()
+                .map(|d| format!("{}: {}: {}", d.path, d.code, d.message))
+                .collect(),
+            captured.missing.iter().cloned().collect(),
+        )?;
         let PublishReceipt { metadata, .. } = store
-            .publish(&snapshot, &captured.inputs)
+            .publish_analysis(&snapshot, &captured.inputs, Some(&cache))
             .map_err(|e| e.to_string())?;
         let module_cache = (|| -> Result<(), String> {
             let bytes = serde_json::to_vec(&analysis.modules).map_err(|e| e.to_string())?;

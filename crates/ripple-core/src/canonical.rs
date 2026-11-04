@@ -79,3 +79,32 @@ impl CanonicalState {
         }
     }
 }
+
+impl CanonicalState {
+    /// Semantic sections that differ, useful for replay/property failure reports.
+    pub fn differences(&self, other: &Self) -> Vec<&'static str> {
+        let mut differences = Vec::new();
+        if self.format_version != other.format_version {
+            differences.push("format");
+        }
+        if self.project != other.project {
+            differences.push("project");
+        }
+        if self.versions != other.versions {
+            differences.push("versions");
+        }
+        if self.effective_config_hash != other.effective_config_hash {
+            differences.push("config");
+        }
+        if self.inputs != other.inputs {
+            differences.push("inputs");
+        }
+        if self.files != other.files {
+            differences.push("facts");
+        }
+        if self.graph != other.graph {
+            differences.push("graph");
+        }
+        differences
+    }
+}

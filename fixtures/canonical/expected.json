@@ -1,0 +1,23 @@
+{
+  "paths": [
+    "app.test.ts",
+    "lib.ts"
+  ],
+  "symbols": [
+    "Box",
+    "Box.method",
+    "f"
+  ],
+  "lookups": [
+    "./lib",
+    "./missing"
+  ],
+  "missing_candidates": [
+    "missing.ts",
+    "missing.tsx",
+    "missing.d.ts",
+    "missing/index.ts",
+    "missing/index.tsx",
+    "missing/index.d.ts"
+  ]
+}
