@@ -2676,23 +2676,44 @@
         ".github/workflows/ci.yml",
         "crates/ripple-index/src/incremental_tests.rs"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M6-T01",
       "started_at": "2026-11-04T23:45:24.341286+00:00",
-      "heartbeat_at": "2026-11-04T23:48:14.696394+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-04T23:58:36.898670+00:00",
+      "completed_at": "2026-11-04T23:58:36.898670+00:00",
+      "integrated_commit": "19d0b290e094dff33b2e9b741a29d164b1207982",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --workspace --locked (271 Rust tests; 248 cold comparisons)",
+          "outcome": "passed"
+        },
+        {
+          "command": "RIPPLE_ADVERSARIAL_STEPS=256 cargo test --locked -p ripple-index --test properties_basic adversarial_sequences -- --nocapture (1024 comparisons)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (18); python3 scripts/plan.py validate; python3 scripts/m5-smoke.py --binary target/debug/ripple",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41936572352 (Linux/macOS/Windows)",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41936572003 (oracle)",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "d96ba90da90b1fdf1f8482150b4c5360befec9a1",
-      "claimed_paths": [
-        "crates/ripple-index/tests/properties_basic.rs",
-        "fixtures/incremental/regressions/",
-        "crates/ripple-index/src/incremental_tests.rs"
-      ],
-      "checkpoint": "Expanded index tests passed including 248 cold comparisons; integrated for full checks; extended campaign running.",
-      "next_action": "Complete long campaign, workspace checks and three-platform CI before marking done.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated and verified; 248 default + 1024 extended comparisons and three-platform CI passed.",
+      "next_action": "M6-T02",
       "report": "docs/task-reports/M6-T01.md"
     },
     {
@@ -2937,8 +2958,8 @@
     "owner": "coordinator",
     "session_id": "M6-batches-2026-11-04",
     "integration_branch": "main",
-    "checkpoint": "M6-T01 claimed; audit complete.",
-    "next_action": "Implement seeded adversarial transitions and deterministic concurrent-capture cases.",
-    "updated_at": "2026-11-04T23:45:24.341286+00:00"
+    "checkpoint": "M6-T01 integrated and verified; claim released.",
+    "next_action": "Claim M6-T02.",
+    "updated_at": "2026-11-04T23:58:36.898670+00:00"
   }
 }
