@@ -133,9 +133,23 @@
       "id": "M5",
       "title": "Incremental updates",
       "target": "Week 5",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M5-T01/T02/T05/T03/T04 integrated and verified in dependency order; generated guard preceded selective cutoff.",
+        "Full canonical snapshot+module/config/discovery equality; atomic schema-v2 content/external/module fingerprint and invalidation evidence cache.",
+        "Digest/version-bound parse reuse, global/full fallback, verified capture/retry/transactional publication, guarded module/reference reuse and default CLI with --full.",
+        "269 local Rust tests;120 generated edit/cold comparisons plus reload/no-op/fault guards;6 Node,4 metric,18 planning tests and fmt/build/strict Clippy/code-security review passed.",
+        "Clean release install and expanded prior/incremental capabilities passed on Linux/macOS/Windows. Supported body fixture parses1/module0/reference1; failed refresh/Git-index preservation and explicit schema repair verified.",
+        "Initial Windows installed-smoke cleanup leak fixed with explicit SQLite connection close and success emitted after cleanup; replacement final gate passed.",
+        "Fresh oracle projections3/3 and16/16 with exclusions/unknowns retained; final CLI raw artifacts byte-equal to T03. No general accuracy, latency or test-safety claim.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41908953716",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41908953754",
+        "docs/incremental.md",
+        "docs/task-reports/M5.md",
+        "eval/results/resolver/m5/cli-verification.json",
+        "Version remains0.2.0-dev; M6 owns expanded properties/real replay/measured v0.3 readiness. No public release implied; performance not measured."
+      ],
+      "completed_at": "2026-11-04T20:53:12.195953+00:00"
     },
     {
       "id": "M6",
@@ -2542,47 +2556,55 @@
         "eval/results/resolver/m5/cli-verification.json",
         "crates/ripple-index/src/lib.rs"
       ],
-      "status": "blocked",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M5-T04",
       "started_at": "2026-11-04T20:19:23.217895+00:00",
-      "heartbeat_at": "2026-11-04T20:40:44.495663+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
+      "heartbeat_at": "2026-11-04T20:53:12.195953+00:00",
+      "completed_at": "2026-11-04T20:53:12.195953+00:00",
+      "integrated_commit": "ee4f2a7590cdb727468550ff9b401c6f16a50bee",
       "validation": [
         {
-          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41907201032",
-          "outcome": "failed",
-          "detail": "Windows capability assertions passed but TemporaryDirectory cleanup failed with an open Python SQLite handle; explicit close fix pending verification."
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "269 local Rust tests, including four new CLI sequences and the120-comparison generated guard. Final source also passes all platform workspace checks."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate",
+          "outcome": "passed",
+          "detail": "6 Node,4 metric,18 planning tests; ledger/plan consistent."
+        },
+        {
+          "command": "cargo install --path crates/ripple-cli --locked --root /tmp/ripple-M5-install; python3 scripts/m5-smoke.py --binary target/debug/ripple; python3 scripts/m5-smoke.py --install-root /tmp/ripple-M5-install",
+          "outcome": "passed",
+          "detail": "Clean release installation and expanded prior+incremental capabilities pass. No-op parses0; supported body parses1/module0/reference1; failed generation and Git index preserved. Explicit reader-close fix rerun locally on debug/release."
+        },
+        {
+          "command": "Final CLI mini and external projections via eval/oracle/compare_run.py; compare raw artifact SHA-256 with M5-T03",
+          "outcome": "passed",
+          "detail": "3/3 and16/16 supported precision/recall; full raw compiler/analyzer artifacts byte-identical. Full metadata/metrics/SHA comparisons recorded eval/results/resolver/m5/cli-verification.json; no general accuracy claim."
+        },
+        {
+          "command": "Code/security review, changed product-document links and git diff --check",
+          "outcome": "passed",
+          "detail": "Default/full controls, truthful counters, safe format handling, atomic failure/freshness and terminal output reviewed. Initial Windows smoke cleanup leak was diagnosed and fixed with deterministic SQLite close and success-after-cleanup; historical failure remains in report/Git history."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41908953716",
+          "outcome": "passed",
+          "detail": "Final source ee4f2a7: Linux/macOS Intel/Windows full workspace/generated checks, clean installation, expanded incremental smoke and cleanup passed. Supersedes initial smoke-cleanup failure in41907201032."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41908953754",
+          "outcome": "passed",
+          "detail": "Final source ee4f2a7 pinned oracle tests and exact mini metrics passed."
         }
       ],
-      "blocker": {
-        "cause": "Windows installed smoke cleanup WinError32: Python SQLite reader remained open after transaction context exit.",
-        "attempted": "Inspected completed Windows job126844946140 logs; all capability assertions printed passed before TemporaryDirectory cleanup failed on index.db.",
-        "next_action": "Close the reader deterministically and verify replacement platform CI before task/gate completion.",
-        "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41907201032"
-      },
+      "blocker": null,
       "base_commit": "3ee9523cf87fd77e37536980737bbde628c9cba2",
-      "claimed_paths": [
-        "crates/ripple-cli/src/main.rs",
-        "crates/ripple-cli/src/commands/index.rs",
-        "crates/ripple-cli/tests/incremental.rs",
-        "scripts/m5-smoke.py",
-        ".github/workflows/ci.yml",
-        "docs/incremental.md",
-        "docs/adr/0029-incremental-cli.md",
-        "docs/cli.md",
-        "docs/storage.md",
-        "docs/project-status.md",
-        "docs/limitations.md",
-        "README.md",
-        "docs/task-reports/M5-T04.md",
-        "docs/task-reports/M5.md",
-        "eval/results/resolver/m5/cli-verification.json",
-        "crates/ripple-index/src/lib.rs"
-      ],
-      "checkpoint": "Final Windows installed smoke assertions passed, but cleanup failed because Python SQLite transaction context did not close its reader handle. Rust workspace/CLI checks passed; fix reader lifetime then revalidate.",
-      "next_action": "Explicitly close smoke reader and emit success only after temporary cleanup; rerun local smoke and all platform CI.",
+      "claimed_paths": [],
+      "checkpoint": "Verified incremental CLI integrated; all final workspace/generated/oracle/three-platform clean-install gates passed after smoke cleanup repair. Claims released; M5 gate passed.",
+      "next_action": "M6-T01 \u2014 expand generated/adversarial equality tests.",
       "report": "docs/task-reports/M5-T04.md"
     },
     {
@@ -2907,11 +2929,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M5",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Final Windows installed smoke assertions passed, but cleanup failed because Python SQLite transaction context did not close its reader handle. Rust workspace/CLI checks passed; fix reader lifetime then revalidate.",
-    "next_action": "Explicitly close smoke reader and emit success only after temporary cleanup; rerun local smoke and all platform CI.",
-    "updated_at": "2026-11-04T20:40:44.495663+00:00"
+    "checkpoint": "Verified incremental CLI integrated; all final workspace/generated/oracle/three-platform clean-install gates passed after smoke cleanup repair. Claims released; M5 gate passed.",
+    "next_action": "M6-T01 \u2014 expand generated/adversarial equality tests.",
+    "updated_at": "2026-11-04T20:53:12.195953+00:00"
   }
 }
