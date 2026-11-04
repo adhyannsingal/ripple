@@ -362,7 +362,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M5-T04 — Wire incremental CLI behavior and document the algorithm
 
 - **Depends on:** M5-T03. **Lane:** integration.
-- **Own:** `crates/ripple-cli/src/commands/index*`; `crates/ripple-cli/tests/incremental*`; `docs/incremental.md`.
+- **Own:** `crates/ripple-cli/src/commands/index*`; `crates/ripple-cli/tests/incremental*`; `docs/incremental.md`; `crates/ripple-cli/src/main.rs`; `scripts/m5-smoke.py`; `.github/workflows/ci.yml`; `docs/adr/0029-incremental-cli.md`; `docs/cli.md`; `docs/storage.md`; `docs/project-status.md`; `docs/limitations.md`; `README.md`; `docs/task-reports/M5-T04.md`; `docs/task-reports/M5.md`; `eval/results/resolver/m5/cli-verification.json`.
 - **Implement:** Default repeated index to safe incremental refresh with an explicit full rebuild control. Report parsed/reused/re-resolved counts, fallback/global rebuild reasons and generation status. Document invalidation, fixed point, external fingerprints and crash behavior.
 - **Acceptance:** Fresh/cached/no-op/edit/config CLI sequences match cold and report truthful counters; interrupted update retains a valid generation; status identifies stale input correctly; one-file fixture avoids full parse; full workspace checks pass.
 - **Handoff:** M5 gate evidence and reproducible update commands for the property/replay suites.
