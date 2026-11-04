@@ -2347,33 +2347,44 @@
         "docs/limitations.md",
         "docs/task-reports/M5-T01.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M5-T01",
       "started_at": "2026-11-04T18:24:52.155707+00:00",
-      "heartbeat_at": "2026-11-04T18:31:47.716804+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-04T18:42:45.633911+00:00",
+      "completed_at": "2026-11-04T18:42:45.633911+00:00",
+      "integrated_commit": "51ad1aa00c0d214b063a79af2ff13b11372a18b1",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "253 local Rust tests, including four new full-analysis/fingerprint/round-trip/corruption tests and independently expected records."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate; python3 scripts/m4-smoke.py --binary target/debug/ripple",
+          "outcome": "passed",
+          "detail": "6 Node, 4 metric, 18 planning tests; installed-capability smoke including immutable diff passed."
+        },
+        {
+          "command": "Code/security review, updated document links, git diff --check; inspect fixture signature hashes",
+          "outcome": "passed",
+          "detail": "Atomic snapshot/cache seal and storage budgets reviewed; actual function/class/method external hashes available; no remaining scoped finding. Performance not measured."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41888061297",
+          "outcome": "passed",
+          "detail": "Linux/macOS Intel/Windows full checks and clean-install capability smoke passed on 51ad1aa."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41888061443",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "058461bd9d44f8409c1ad4c13f24d8b4ea64bc77",
-      "claimed_paths": [
-        "crates/ripple-core/src/canonical.rs",
-        "crates/ripple-core/src/index.rs",
-        "crates/ripple-index/src/fingerprints.rs",
-        "crates/ripple-index/src/fingerprints_tests.rs",
-        "crates/ripple-index/src/storage.rs",
-        "crates/ripple-index/src/build.rs",
-        "crates/ripple-index/src/lib.rs",
-        "crates/ripple-index/migrations/0002-analysis.sql",
-        "fixtures/canonical/",
-        "docs/adr/0025-incremental-cache.md",
-        "docs/storage.md",
-        "docs/limitations.md",
-        "docs/task-reports/M5-T01.md"
-      ],
-      "checkpoint": "Integrated full analysis cache/equality reviewed; 253 Rust tests, supporting checks and v0.2 smoke pass locally.",
-      "next_action": "Verify pushed source platform/oracle CI, close T01 and claim T02.",
+      "claimed_paths": [],
+      "checkpoint": "Full analysis equality/cache integrated and reviewed; all local/platform/oracle checks pass. Claims released.",
+      "next_action": "M5-T02 \u2014 verified parse reuse with atomic full-semantic refresh.",
       "report": "docs/task-reports/M5-T01.md"
     },
     {
@@ -2759,8 +2770,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Integrated full analysis cache/equality reviewed; 253 Rust tests, supporting checks and v0.2 smoke pass locally.",
-    "next_action": "Verify pushed source platform/oracle CI, close T01 and claim T02.",
-    "updated_at": "2026-11-04T18:31:47.716804+00:00"
+    "checkpoint": "Full analysis equality/cache integrated and reviewed; all local/platform/oracle checks pass. Claims released.",
+    "next_action": "M5-T02 \u2014 verified parse reuse with atomic full-semantic refresh.",
+    "updated_at": "2026-11-04T18:42:45.633911+00:00"
   }
 }
