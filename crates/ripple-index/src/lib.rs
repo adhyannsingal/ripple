@@ -27,3 +27,7 @@ mod fingerprints_tests;
 pub mod incremental;
 #[cfg(test)]
 mod incremental_tests;
+
+mod invalidation;
+#[cfg(test)]
+mod invalidation_tests;

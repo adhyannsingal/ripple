@@ -14,7 +14,7 @@ use ripple_core::{
 };
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
-pub const GRAPH_VERSION: &str = "ripple-graph-v1";
+pub const GRAPH_VERSION: &str = "ripple-graph-v2-reuse";
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GraphAnalysis {
     pub graph: GraphSnapshot,
@@ -127,12 +127,38 @@ pub fn resolve_graph(
     config: &EffectiveConfig,
     test_files: &BTreeSet<RepoPath>,
 ) -> Result<GraphAnalysis, ResolutionError> {
+    let modules = resolve_modules(project, sources, files, config)?;
+    graph_with_modules(project, sources, files, config, test_files, modules, None)
+}
+pub(crate) fn graph_with_modules(
+    project: &ProjectKey,
+    sources: &SourceSnapshot,
+    files: &[FileFacts],
+    config: &EffectiveConfig,
+    test_files: &BTreeSet<RepoPath>,
+    modules: ModuleAnalysis,
+    previous: Option<(&GraphSnapshot, &BTreeSet<RepoPath>)>,
+) -> Result<GraphAnalysis, ResolutionError> {
     if test_files.iter().any(|p| sources.get(p).is_none()) {
         return Err(ResolutionError(
             "Test classification outside captured source inventory".into(),
         ));
     }
-    let modules = resolve_modules(project, sources, files, config)?;
+    let mut cached_edges = BTreeMap::<&RepoPath, Vec<&Edge>>::new();
+    let mut cached_unknowns = BTreeMap::<&RepoPath, Vec<&UnresolvedReference>>::new();
+    if let Some((graph, _)) = previous {
+        for edge in graph
+            .edges()
+            .iter()
+            .filter(|e| matches!(e.kind, EdgeKind::Calls | EdgeKind::References))
+        {
+            cached_edges
+                .entry(edge.source.path())
+                .or_default()
+                .push(edge);
+        }
+        for unknown in graph.unresolved().iter().filter(|u|matches!(&u.boundary,NodeId::Opaque{reference_key,..} if reference_key.starts_with("reference:"))) {cached_unknowns.entry(unknown.source.path()).or_default().push(unknown);}
+    }
     let mut nodes = Vec::new();
     let mut edges = Vec::new();
     let mut unresolved = Vec::new();
@@ -153,6 +179,38 @@ pub fn resolve_graph(
     let mut sorted = files.iter().collect::<Vec<_>>();
     sorted.sort_by_key(|f| &f.path);
     for f in sorted {
+        let file = NodeId::file(project.clone(), f.path.clone());
+        for s in &f.symbols {
+            nodes.push(GraphNode::symbol(s.identity.clone(), s.span));
+            edges.push(edge(
+                file.clone(),
+                NodeId::Symbol(s.identity.clone()),
+                EdgeKind::Defines,
+                loc(&f.path, s.span),
+                "syntax_defines",
+            ));
+        }
+        if let Some((graph, eligible)) = previous
+            && eligible.contains(&f.path)
+        {
+            edges.extend(
+                cached_edges
+                    .get(&f.path)
+                    .into_iter()
+                    .flatten()
+                    .map(|e| (*e).clone()),
+            );
+            for unknown in cached_unknowns.get(&f.path).into_iter().flatten() {
+                nodes.push(
+                    graph
+                        .node(&unknown.boundary)
+                        .ok_or_else(|| ResolutionError("cached reference boundary missing".into()))?
+                        .clone(),
+                );
+                unresolved.push((*unknown).clone());
+            }
+            continue;
+        }
         let scopes = f
             .scopes
             .iter()
@@ -185,17 +243,6 @@ pub fn resolve_graph(
             }
         }
 
-        let file = NodeId::file(project.clone(), f.path.clone());
-        for s in &f.symbols {
-            nodes.push(GraphNode::symbol(s.identity.clone(), s.span));
-            edges.push(edge(
-                file.clone(),
-                NodeId::Symbol(s.identity.clone()),
-                EdgeKind::Defines,
-                loc(&f.path, s.span),
-                "syntax_defines",
-            ));
-        }
         let mut refs = f.references.clone();
         refs.sort();
         refs.dedup();

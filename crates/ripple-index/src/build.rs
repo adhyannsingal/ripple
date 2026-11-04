@@ -166,7 +166,8 @@ fn build_inner(
             crate::incremental::prepare(&captured, previous.as_ref(), initial_reason, parse)?;
         total_parsed += update.parsed_files;
         update.total_parsed_files = total_parsed;
-        let analysis = resolve(&captured, &files)?;
+        let analysis =
+            crate::invalidation::resolve(&captured, &files, previous.as_ref(), &mut update)?;
         hook(attempt, Phase::BeforeVerification);
         let fresh = match capture(&root, provenance) {
             Ok(c) => c,

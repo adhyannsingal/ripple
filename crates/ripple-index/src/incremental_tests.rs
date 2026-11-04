@@ -71,7 +71,7 @@ fn no_op_body_add_delete_and_recovery_reuse_parse_facts_and_equal_cold() {
     let out = incremental::refresh(d.path(), origin).unwrap();
     assert_eq!(out.update.parsed_files, 0);
     assert_eq!(out.update.reused_files, 3);
-    assert_eq!(out.update.reference_files_resolved, 3);
+    assert_eq!(out.update.reference_files_resolved, 0);
     equals_cold(d.path());
     fs::write(
         d.path().join("lib.ts"),
