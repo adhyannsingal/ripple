@@ -2406,11 +2406,11 @@
         "docs/limitations.md",
         "docs/task-reports/M5-T02.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M5-T02",
       "started_at": "2026-11-04T18:43:00.332415+00:00",
-      "heartbeat_at": "2026-11-04T18:43:00.332415+00:00",
+      "heartbeat_at": "2026-11-04T18:48:43.281396+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2426,8 +2426,8 @@
         "docs/limitations.md",
         "docs/task-reports/M5-T02.md"
       ],
-      "checkpoint": "T01 integrated/verified on all platforms. Add manifest-based parse reuse with full semantic resolution and shared atomic capture/publication.",
-      "next_action": "Implement conservative refresh, truthful counters and global rebuild reasons; compare every scenario with independent cold state.",
+      "checkpoint": "Integrated conservative refresh reviewed; 258 Rust tests, supporting checks and v0.2 smoke pass locally.",
+      "next_action": "Verify candidate platform/oracle CI, close T02 and claim T05 generated equality guard.",
       "report": "docs/task-reports/M5-T02.md"
     },
     {
@@ -2785,8 +2785,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "T01 integrated/verified on all platforms. Add manifest-based parse reuse with full semantic resolution and shared atomic capture/publication.",
-    "next_action": "Implement conservative refresh, truthful counters and global rebuild reasons; compare every scenario with independent cold state.",
-    "updated_at": "2026-11-04T18:43:00.332415+00:00"
+    "checkpoint": "Integrated conservative refresh reviewed; 258 Rust tests, supporting checks and v0.2 smoke pass locally.",
+    "next_action": "Verify candidate platform/oracle CI, close T02 and claim T05 generated equality guard.",
+    "updated_at": "2026-11-04T18:48:43.281396+00:00"
   }
 }
