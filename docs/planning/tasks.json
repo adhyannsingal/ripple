@@ -2518,24 +2518,44 @@
         "docs/adr/0027-generated-equality.md",
         "docs/task-reports/M5-T05.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M5-T05",
       "started_at": "2026-11-04T19:35:26.094875+00:00",
-      "heartbeat_at": "2026-11-04T19:44:57.647414+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-04T19:53:19.669305+00:00",
+      "completed_at": "2026-11-04T19:53:19.669305+00:00",
+      "integrated_commit": "92949fee4900d6db33c3236b1e875482c53abffb",
+      "validation": [
+        {
+          "command": "cargo test --locked -p ripple-index --test properties_basic -- --nocapture; RIPPLE_PROPERTY_SEED=42 cargo test --locked -p ripple-index --test properties_basic generated_edit_sequences_equal_cold_after_every_step -- --nocapture",
+          "outcome": "passed",
+          "detail": "Default eight seeds x twelve edits = 96 independent cold comparisons plus reload/no-op equality. Three deliberate fault classes detected; seed replay passed. No real mismatch found."
+        },
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "260 local Rust tests."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate; python3 scripts/m4-smoke.py --binary target/debug/ripple",
+          "outcome": "passed",
+          "detail": "6 Node,4 metric,18 planning tests plus v0.2 smoke. Deterministic bounds/comparison/failure replay reviewed."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41899941111",
+          "outcome": "passed",
+          "detail": "Linux/macOS Intel/Windows full checks, generated guard and clean-install capability smoke passed on 92949fe."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41899941109",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "2910e63a9489a7ea64c0130c61ee4ee585d13377",
-      "claimed_paths": [
-        "crates/ripple-index/tests/properties_basic.rs",
-        "fixtures/incremental/regressions/",
-        "docs/adr/0027-generated-equality.md",
-        "docs/task-reports/M5-T05.md"
-      ],
-      "checkpoint": "Generated guard integrated/reviewed; 96 edit comparisons plus reload/idempotence/fault detection, 260 Rust tests and all supporting local checks pass.",
-      "next_action": "Verify platform/oracle CI, close T05 and claim T03 selective invalidation.",
+      "claimed_paths": [],
+      "checkpoint": "Generated equality/idempotence/round-trip guard integrated/reviewed; all local/platform/oracle checks passed. Claims released.",
+      "next_action": "M5-T03 \u2014 guarded selective invalidation and early cutoff.",
       "report": "docs/task-reports/M5-T05.md"
     },
     {
@@ -2808,8 +2828,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Generated guard integrated/reviewed; 96 edit comparisons plus reload/idempotence/fault detection, 260 Rust tests and all supporting local checks pass.",
-    "next_action": "Verify platform/oracle CI, close T05 and claim T03 selective invalidation.",
-    "updated_at": "2026-11-04T19:44:57.647414+00:00"
+    "checkpoint": "Generated equality/idempotence/round-trip guard integrated/reviewed; all local/platform/oracle checks passed. Claims released.",
+    "next_action": "M5-T03 \u2014 guarded selective invalidation and early cutoff.",
+    "updated_at": "2026-11-04T19:53:19.669305+00:00"
   }
 }
