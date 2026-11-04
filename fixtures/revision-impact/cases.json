@@ -1,0 +1,155 @@
+[
+  {
+    "name": "deleted_export",
+    "before": {
+      "lib.ts": "export function f() { return 1; }\nexport function g() { return 7; }\n",
+      "caller.ts": "import { f } from './lib';\nexport function caller() { return f(); }\n",
+      "smoke.test.ts": "import { caller } from './caller';\ncaller();\n"
+    },
+    "after": {
+      "lib.ts": "export function g() { return 7; }\n",
+      "caller.ts": "import { f } from './lib';\nexport function caller() { return f(); }\n",
+      "smoke.test.ts": "import { caller } from './caller';\ncaller();\n"
+    },
+    "base_f_test": true,
+    "head_f_test": false
+  },
+  {
+    "name": "removed_call",
+    "before": {
+      "lib.ts": "export function f() { return 1; }\nexport function g() { return 7; }\n",
+      "caller.ts": "import { f } from './lib';\nexport function caller() { return f(); }\n",
+      "smoke.test.ts": "import { caller } from './caller';\ncaller();\n"
+    },
+    "after": {
+      "lib.ts": "export function f() { return 2; }\nexport function g() { return 7; }\n",
+      "caller.ts": "import { f } from './lib';\nexport function caller() { return 0; }\n",
+      "smoke.test.ts": "import { caller } from './caller';\ncaller();\n"
+    },
+    "base_f_test": true,
+    "head_f_test": false
+  },
+  {
+    "name": "removed_import",
+    "before": {
+      "lib.ts": "export function f() { return 1; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nf();\n"
+    },
+    "after": {
+      "lib.ts": "export function f() { return 2; }\n",
+      "smoke.test.ts": "export const marker = 0;\n"
+    },
+    "base_f_test": true,
+    "head_f_test": false
+  },
+  {
+    "name": "added_symbol",
+    "before": {
+      "lib.ts": "export function g() {}\n"
+    },
+    "after": {
+      "lib.ts": "export function f() {}\nexport function g() {}\n",
+      "smoke.test.ts": "import { f } from './lib';\nf();\n"
+    },
+    "base_f_test": false,
+    "head_f_test": true
+  },
+  {
+    "name": "deleted_test",
+    "before": {
+      "lib.ts": "export function f() { return 1; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nf();\n"
+    },
+    "after": {
+      "lib.ts": "export function f() { return 2; }\n"
+    },
+    "base_f_test": true,
+    "head_f_test": false,
+    "base_only": true
+  },
+  {
+    "name": "ignored_test",
+    "before": {
+      "lib.ts": "export function f() { return 1; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nf();\n"
+    },
+    "after": {
+      "lib.ts": "export function f() { return 2; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nf();\n",
+      ".gitignore": "smoke.test.ts\n"
+    },
+    "base_f_test": true,
+    "head_f_test": false,
+    "present_unindexed": true
+  },
+  {
+    "name": "inherited_config",
+    "before": {
+      "tsconfig.json": "{\"extends\":\"./settings/base.json\"}\n",
+      "settings/base.json": "{\"compilerOptions\":{\"baseUrl\":\"..\",\"paths\":{\"@lib\":[\"./one\"]}}}\n",
+      "one.ts": "export function f() { return 1; }\n",
+      "two.ts": "export function f() { return 2; }\n",
+      "caller.ts": "import { f } from '@lib';\nexport function caller() { return f(); }\n",
+      "smoke.test.ts": "import { caller } from './caller';\ncaller();\n"
+    },
+    "after": {
+      "tsconfig.json": "{\"extends\":\"./settings/base.json\"}\n",
+      "settings/base.json": "{\"compilerOptions\":{\"baseUrl\":\"..\",\"paths\":{\"@lib\":[\"./two\"]}}}\n",
+      "one.ts": "export function f() { return 1; }\n",
+      "two.ts": "export function f() { return 2; }\n",
+      "caller.ts": "import { f } from '@lib';\nexport function caller() { return f(); }\n",
+      "smoke.test.ts": "import { caller } from './caller';\ncaller();\n"
+    },
+    "global_invalidation": true
+  },
+  {
+    "name": "unchanged",
+    "before": {
+      "lib.ts": "export function f() { return 1; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nf();\n"
+    },
+    "after": {
+      "lib.ts": "export function f() { return 1; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nf();\n"
+    },
+    "empty": true
+  },
+  {
+    "name": "unknown_boundary",
+    "before": {
+      "lib.ts": "export function f() { return 1; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nimport { unknown } from 'external';\nf(); unknown();\n"
+    },
+    "after": {
+      "lib.ts": "export function f() { return 2; }\n",
+      "smoke.test.ts": "import { f } from './lib';\nimport { unknown } from 'external';\nf(); unknown();\n"
+    },
+    "base_f_test": true,
+    "head_f_test": true,
+    "incomplete": true
+  },
+  {
+    "name": "file_only",
+    "before": {
+      "top.ts": "const value = 1;\n",
+      "smoke.test.ts": "import './top';\n"
+    },
+    "after": {
+      "top.ts": "const value = 2;\n",
+      "smoke.test.ts": "import './top';\n"
+    },
+    "file_only": true
+  },
+  {
+    "name": "unsupported_config",
+    "before": {
+      "tsconfig.json": "{\"compilerOptions\":{\"moduleResolution\":\"nodenext\"}}",
+      "lib.ts": "export function f() { return 1; }\n"
+    },
+    "after": {
+      "tsconfig.json": "{\"compilerOptions\":{\"moduleResolution\":\"nodenext\"}}",
+      "lib.ts": "export function f() { return 2; }\n"
+    },
+    "config_diagnostic": true
+  }
+]

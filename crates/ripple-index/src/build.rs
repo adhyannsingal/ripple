@@ -78,6 +78,27 @@ fn facts(c: &Capture) -> Result<Vec<FileFacts>, String> {
         })
         .collect()
 }
+pub(crate) fn analyze(
+    captured: &Capture,
+) -> Result<(Vec<FileFacts>, ripple_resolve::symbols::GraphAnalysis), String> {
+    let files = facts(captured)?;
+    let tests = captured
+        .discovery
+        .files
+        .iter()
+        .filter(|f| f.is_test)
+        .map(|f| f.path.clone())
+        .collect::<BTreeSet<_>>();
+    let analysis = resolve_graph(
+        &ProjectKey::single_project(),
+        &captured.discovery.sources,
+        &files,
+        &captured.config,
+        &tests,
+    )
+    .map_err(|e| e.to_string())?;
+    Ok((files, analysis))
+}
 #[derive(Clone, Copy)]
 enum Phase {
     BeforeVerification,
@@ -105,22 +126,7 @@ fn cold_inner(
                 continue;
             }
         };
-        let files = facts(&captured)?;
-        let tests = captured
-            .discovery
-            .files
-            .iter()
-            .filter(|f| f.is_test)
-            .map(|f| f.path.clone())
-            .collect::<BTreeSet<_>>();
-        let analysis = resolve_graph(
-            &ProjectKey::single_project(),
-            &captured.discovery.sources,
-            &files,
-            &captured.config,
-            &tests,
-        )
-        .map_err(|e| e.to_string())?;
+        let (files, analysis) = analyze(&captured)?;
         hook(attempt, Phase::BeforeVerification);
         let fresh = match capture(&root, provenance) {
             Ok(c) => c,

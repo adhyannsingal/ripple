@@ -19,13 +19,13 @@ const LOCKS: &[&str] = &[
     "bun.lock",
     "bun.lockb",
 ];
-struct BudgetTree {
-    tree: Worktree,
+struct BudgetTree<'a, T> {
+    tree: &'a T,
     total: Cell<usize>,
     listed: Cell<usize>,
     listings: RefCell<BTreeMap<Option<RepoPath>, BTreeMap<String, TreeEntry>>>,
 }
-impl SourceTree for BudgetTree {
+impl<T: SourceTree> SourceTree for BudgetTree<'_, T> {
     fn entries(
         &self,
         dir: Option<&RepoPath>,
@@ -79,7 +79,10 @@ impl SourceTree for BudgetTree {
         Ok(bytes)
     }
 }
-fn optional(tree: &BudgetTree, path: &RepoPath) -> Result<Option<Vec<u8>>, String> {
+fn optional(
+    tree: &BudgetTree<'_, impl SourceTree>,
+    path: &RepoPath,
+) -> Result<Option<Vec<u8>>, String> {
     let parts = path.as_str().split('/').collect::<Vec<_>>();
     let mut parent = None;
     for (i, part) in parts.iter().enumerate() {
@@ -144,8 +147,20 @@ pub(crate) fn capture(
     provenance: crate::build::Provenance,
 ) -> Result<Capture, String> {
     let origin = provenance(root)?;
+    let tree = Worktree::new(root).map_err(|e| e.to_string())?;
+    let captured = capture_tree(&tree, origin.clone())?;
+    if origin != provenance(root)? {
+        return Err("Git provenance changed during capture".into());
+    }
+    Ok(captured)
+}
+/// The caller supplies an immutable provider/origin; worktree callers verify separately.
+pub(crate) fn capture_tree(
+    provider: &impl SourceTree,
+    origin: SnapshotOrigin,
+) -> Result<Capture, String> {
     let tree = BudgetTree {
-        tree: Worktree::new(root).map_err(|e| e.to_string())?,
+        tree: provider,
         total: Cell::new(0),
         listed: Cell::new(0),
         listings: RefCell::new(BTreeMap::new()),
@@ -274,9 +289,6 @@ pub(crate) fn capture(
             .collect(),
     )
     .map_err(|e| e.to_string())?;
-    if origin != provenance(root)? {
-        return Err("Git provenance changed during capture".into());
-    }
     Ok(Capture {
         discovery,
         inputs: bytes

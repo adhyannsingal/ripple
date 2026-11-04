@@ -15,3 +15,7 @@ mod bootstrap {
 
 pub mod build;
 mod build_capture;
+
+pub mod snapshots;
+#[cfg(test)]
+mod snapshots_tests;

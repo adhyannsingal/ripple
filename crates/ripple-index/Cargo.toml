@@ -21,3 +21,4 @@ tempfile.workspace = true
 
 [dev-dependencies]
 ripple-git.workspace = true
+ripple-impact.workspace = true

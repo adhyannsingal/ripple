@@ -588,6 +588,7 @@ version = "0.1.0-dev"
 dependencies = [
  "ripple-core",
  "ripple-git",
+ "ripple-impact",
  "ripple-parse",
  "ripple-resolve",
  "rusqlite",

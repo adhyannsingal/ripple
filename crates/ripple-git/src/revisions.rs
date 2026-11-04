@@ -458,6 +458,12 @@ fn parse_hunks(patch: &[u8]) -> Result<Vec<DiffHunk>, GitError> {
     Ok(result)
 }
 
+impl ripple_core::revision::RevisionSource for RevisionTree {
+    fn revision(&self) -> &CommitId {
+        &self.revision
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

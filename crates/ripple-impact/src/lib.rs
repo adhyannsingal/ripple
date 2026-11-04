@@ -7,3 +7,5 @@ pub mod changes;
 mod changes_tests;
 #[cfg(test)]
 mod traversal_tests;
+
+pub mod revision_impact;

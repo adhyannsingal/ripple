@@ -213,6 +213,12 @@ impl RevisionChanges {
     }
 }
 
+/// Provider contract: all paths/bytes belong to one immutable commit. Implementations
+/// must never derive revision identity from a mutable ref after construction.
+pub trait RevisionSource: crate::source::SourceTree {
+    fn revision(&self) -> &CommitId;
+}
+
 /// Binds witness side labels to the two actual immutable snapshots, including deletions.
 #[derive(Debug)]
 pub struct RevisionGraphs<'a> {
