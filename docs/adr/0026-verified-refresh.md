@@ -1,0 +1,13 @@
+# ADR 0026 — Conservative verified incremental refresh
+
+Status: accepted for M5-T02
+
+`incremental::refresh` shares the cold builder's capture, verification, retry and atomic generation publication. Reuse source facts only when the previous validated captured-input digest and length match, and analyzer/hash/schema/cache policy is compatible. All module and lexical-reference resolution still runs over the complete captured source inventory. Deleted symbols, edges, candidates and unresolved records disappear through complete replacement in a new immutable generation, without mutating archived generations.
+
+Non-source manifest changes (config, inherited config, package, supported lockfile and ignore bytes/membership), effective config changes, missing auxiliary probes, discovery policy changes, unavailable cache or incompatible analyzer/hash metadata force a reported full parse/rebuild. Unsupported on-disk schema formats require explicit safe archive/rebuild; they are never silently migrated or deleted. Other invalid/corrupt cached state fails without publishing. Explicit cold builds can repair a supported-format generation by publishing fresh verified inputs, without reusing its cache.
+
+`IndexOutcome.update` records strategy, rebuild reason, accepted-attempt parsed/reused files and actual full module/reference resolution file counts. `total_parsed_files` additionally includes rejected capture attempts; `attempts` remains the capture-attempt count. Source deltas are reported only when the previous source manifest is available (or a known empty index); version-incompatible/explicit cold state does not invent added/deleted paths. Generation publication remains transactional, including analysis cache and captured bytes; sidecars remain derived. Publication races/busy errors fail safely rather than overwriting a generation.
+
+Three capture attempts bound concurrent-change retries. A hard parser error aborts before publication; recovered parsing retains diagnosed facts/incompleteness. Verification is not OS-atomic: edits after verification can make the published view stale, detected by the next verified query. Tests compare full canonical analysis with independent cold copies and cover all captured global input classes, version/cache fallback, hard parser/capture failure, actual SQLite trigger rollback, retries and stale post-verification edits.
+
+This is a library handoff; CLI defaults remain cold until T04. T05 must establish generated equality/idempotence/round-trip guards before T03 selective invalidation. No early-cutoff or latency improvement is claimed; performance is not measured.
