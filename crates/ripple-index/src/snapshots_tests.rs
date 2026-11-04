@@ -380,6 +380,12 @@ fn view_provenance_global_inputs_and_presence_cannot_be_silently_mislabelled() {
     assert!(
         revision_impact::analyze(&trees.changes, bad, view(&new), QueryLimits::default()).is_err()
     );
+    let only_sources = old.index().files().iter().map(|f| f.path.clone()).collect();
+    let mut bad = view(&old);
+    bad.existing_paths = &only_sources;
+    assert!(
+        revision_impact::analyze(&trees.changes, bad, view(&new), QueryLimits::default()).is_err()
+    );
     let mut bad = view(&old);
     bad.existing_paths = &empty;
     assert!(

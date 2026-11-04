@@ -130,14 +130,11 @@ fn endpoint<'a>(view: &'a RevisionView<'a>) -> Result<Endpoint<'a>, String> {
     })
 }
 fn validate_view(view: &RevisionView<'_>) -> Result<(), String> {
-    for input in view
-        .index
-        .inputs()
-        .entries()
-        .iter()
-        .filter(|i| i.role != InputRole::Source)
-    {
-        if !view.global_inputs.contains(&input.path) {
+    for input in view.index.inputs().entries() {
+        if !view.existing_paths.contains(&input.path) {
+            return Err("captured input missing from revision path presence".into());
+        }
+        if input.role != InputRole::Source && !view.global_inputs.contains(&input.path) {
             return Err("revision view omitted captured global inputs".into());
         }
     }
@@ -148,6 +145,7 @@ fn validate_view(view: &RevisionView<'_>) -> Result<(), String> {
     }
     Ok(())
 }
+
 fn side(
     view: &RevisionView<'_>,
     changes: &ChangeSet,
