@@ -2518,11 +2518,11 @@
         "docs/adr/0027-generated-equality.md",
         "docs/task-reports/M5-T05.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M5-T05",
       "started_at": "2026-11-04T19:35:26.094875+00:00",
-      "heartbeat_at": "2026-11-04T19:35:26.094875+00:00",
+      "heartbeat_at": "2026-11-04T19:44:57.647414+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2534,8 +2534,8 @@
         "docs/adr/0027-generated-equality.md",
         "docs/task-reports/M5-T05.md"
       ],
-      "checkpoint": "T02 integrated/verified. Establish deterministic generated equality, idempotence and round-trip tests before selective invalidation.",
-      "next_action": "Generate bounded supported projects/edit sequences; compare independent cold state after every edit and verify fault detection/reproducible seeds.",
+      "checkpoint": "Generated guard integrated/reviewed; 96 edit comparisons plus reload/idempotence/fault detection, 260 Rust tests and all supporting local checks pass.",
+      "next_action": "Verify platform/oracle CI, close T05 and claim T03 selective invalidation.",
       "report": "docs/task-reports/M5-T05.md"
     },
     {
@@ -2808,8 +2808,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "T02 integrated/verified. Establish deterministic generated equality, idempotence and round-trip tests before selective invalidation.",
-    "next_action": "Generate bounded supported projects/edit sequences; compare independent cold state after every edit and verify fault detection/reproducible seeds.",
-    "updated_at": "2026-11-04T19:35:26.094875+00:00"
+    "checkpoint": "Generated guard integrated/reviewed; 96 edit comparisons plus reload/idempotence/fault detection, 260 Rust tests and all supporting local checks pass.",
+    "next_action": "Verify platform/oracle CI, close T05 and claim T03 selective invalidation.",
+    "updated_at": "2026-11-04T19:44:57.647414+00:00"
   }
 }
