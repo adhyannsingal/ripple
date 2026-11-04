@@ -338,7 +338,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M5-T01 — Implement canonical full-state equality and cache fingerprints
 
 - **Depends on:** M2-T05, M0-T05. **Lane:** storage.
-- **Own:** `crates/ripple-core/src/canonical*`; `crates/ripple-index/src/fingerprints*`; `fixtures/canonical/`.
+- **Own:** `crates/ripple-core/src/canonical*`; `crates/ripple-index/src/fingerprints*`; `fixtures/canonical/`; `crates/ripple-core/src/index.rs`; `crates/ripple-index/src/storage.rs`; `crates/ripple-index/src/build.rs`; `crates/ripple-index/src/lib.rs`; `crates/ripple-index/migrations/0002-analysis.sql`; `docs/adr/0025-incremental-cache.md`; `docs/storage.md`; `docs/limitations.md`; `docs/task-reports/M5-T01.md`.
 - **Implement:** Canonicalize normalized files, symbol facts/hashes/spans, typed nodes/edges, provenance, confidence, unresolved records, parse diagnostics and effective config semantics. Exclude DB IDs, timings, timestamps, generation counters, per-file last-indexed revision bookkeeping and irrelevant absolute paths. Persist content and versioned external export/class/module fingerprints plus invalidation dependencies.
 - **Acceptance:** Numeric ID/insertion-order differences compare equal; missing edge/unresolved entry/confidence/span/config/parse-state differences compare unequal; unchanged content/fingerprints are stable across reloads. Expected canonical records are independently reviewed.
 - **Handoff:** Equality comparator and change fingerprint API; wider than the spec minimum to detect stale diagnostics/facts.

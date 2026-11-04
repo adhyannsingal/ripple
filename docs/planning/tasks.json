@@ -2336,21 +2336,44 @@
       "owned_paths": [
         "crates/ripple-core/src/canonical*",
         "crates/ripple-index/src/fingerprints*",
-        "fixtures/canonical/"
+        "fixtures/canonical/",
+        "crates/ripple-core/src/index.rs",
+        "crates/ripple-index/src/storage.rs",
+        "crates/ripple-index/src/build.rs",
+        "crates/ripple-index/src/lib.rs",
+        "crates/ripple-index/migrations/0002-analysis.sql",
+        "docs/adr/0025-incremental-cache.md",
+        "docs/storage.md",
+        "docs/limitations.md",
+        "docs/task-reports/M5-T01.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M5-T01",
+      "started_at": "2026-11-04T18:24:52.155707+00:00",
+      "heartbeat_at": "2026-11-04T18:24:52.155707+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "058461bd9d44f8409c1ad4c13f24d8b4ea64bc77",
+      "claimed_paths": [
+        "crates/ripple-core/src/canonical.rs",
+        "crates/ripple-core/src/index.rs",
+        "crates/ripple-index/src/fingerprints.rs",
+        "crates/ripple-index/src/fingerprints_tests.rs",
+        "crates/ripple-index/src/storage.rs",
+        "crates/ripple-index/src/build.rs",
+        "crates/ripple-index/src/lib.rs",
+        "crates/ripple-index/migrations/0002-analysis.sql",
+        "fixtures/canonical/",
+        "docs/adr/0025-incremental-cache.md",
+        "docs/storage.md",
+        "docs/limitations.md",
+        "docs/task-reports/M5-T01.md"
+      ],
+      "checkpoint": "M4 integrated and synced; existing canonical snapshot and module sidecar inspected. Add full analysis equality and versioned generation-bound cache with explicit schema-v2 compatibility.",
+      "next_action": "Persist fingerprints/module lookup evidence atomically, add golden/corruption/round-trip equality tests; integrate and verify before T02.",
       "report": "docs/task-reports/M5-T01.md"
     },
     {
@@ -2733,11 +2756,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Diff CLI integrated/reviewed; all local checks, fresh/local pinned branch reproduction, Linux/macOS/Windows installed v0.2 gates and resolver oracle CI passed. Claims released; M4 gate passed.",
-    "next_action": "M5-T01 \u2014 canonical full-state equality and cache fingerprints.",
-    "updated_at": "2026-11-04T05:44:07.401320+00:00"
+    "checkpoint": "M4 integrated and synced; existing canonical snapshot and module sidecar inspected. Add full analysis equality and versioned generation-bound cache with explicit schema-v2 compatibility.",
+    "next_action": "Persist fingerprints/module lookup evidence atomically, add golden/corruption/round-trip equality tests; integrate and verify before T02.",
+    "updated_at": "2026-11-04T18:24:52.155707+00:00"
   }
 }
