@@ -2398,21 +2398,36 @@
       "lane": "storage",
       "owned_paths": [
         "crates/ripple-index/src/incremental*",
-        "crates/ripple-index/tests/incremental_files*"
+        "crates/ripple-index/tests/incremental_files*",
+        "crates/ripple-index/src/build.rs",
+        "crates/ripple-index/src/lib.rs",
+        "fixtures/incremental/files/",
+        "docs/adr/0026-verified-refresh.md",
+        "docs/limitations.md",
+        "docs/task-reports/M5-T02.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M5-T02",
+      "started_at": "2026-11-04T18:43:00.332415+00:00",
+      "heartbeat_at": "2026-11-04T18:43:00.332415+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "acf3d47e1f6c4629e2fdb02000e78c20ddca7530",
+      "claimed_paths": [
+        "crates/ripple-index/src/incremental.rs",
+        "crates/ripple-index/src/incremental_tests.rs",
+        "crates/ripple-index/src/build.rs",
+        "crates/ripple-index/src/lib.rs",
+        "fixtures/incremental/files/",
+        "docs/adr/0026-verified-refresh.md",
+        "docs/limitations.md",
+        "docs/task-reports/M5-T02.md"
+      ],
+      "checkpoint": "T01 integrated/verified on all platforms. Add manifest-based parse reuse with full semantic resolution and shared atomic capture/publication.",
+      "next_action": "Implement conservative refresh, truthful counters and global rebuild reasons; compare every scenario with independent cold state.",
       "report": "docs/task-reports/M5-T02.md"
     },
     {
@@ -2770,8 +2785,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Full analysis equality/cache integrated and reviewed; all local/platform/oracle checks pass. Claims released.",
-    "next_action": "M5-T02 \u2014 verified parse reuse with atomic full-semantic refresh.",
-    "updated_at": "2026-11-04T18:42:45.633911+00:00"
+    "checkpoint": "T01 integrated/verified on all platforms. Add manifest-based parse reuse with full semantic resolution and shared atomic capture/publication.",
+    "next_action": "Implement conservative refresh, truthful counters and global rebuild reasons; compare every scenario with independent cold state.",
+    "updated_at": "2026-11-04T18:43:00.332415+00:00"
   }
 }
