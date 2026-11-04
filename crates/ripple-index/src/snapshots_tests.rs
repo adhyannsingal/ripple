@@ -330,6 +330,7 @@ fn revision_builds_and_queries_never_publish_or_change_existing_worktree_state()
     fs::write(r.join("lib.ts"), "export function f() { return 2; }\n").unwrap();
     let b = commit(r);
     build::cold_index(r, ripple_git::worktree::observe).unwrap();
+    let current = build::load_current(r, ripple_git::worktree::observe).unwrap();
     let local = file_bytes(&r.join(".ripple"));
     fs::write(r.join("lib.ts"), "STAGED").unwrap();
     git(r, &["add", "lib.ts"]);
@@ -340,6 +341,10 @@ fn revision_builds_and_queries_never_publish_or_change_existing_worktree_state()
     let refs = git(r, &["show-ref"]);
     let status = git(r, &["status", "--porcelain=v1", "-z"]);
     let (trees, old, new) = snapshots(r, &a, &b);
+    assert_eq!(
+        CanonicalState::from_snapshot(&current.loaded.snapshot),
+        CanonicalState::from_snapshot(new.index())
+    );
     revision_impact::analyze(
         &trees.changes,
         view(&old),
