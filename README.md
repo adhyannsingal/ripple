@@ -4,7 +4,7 @@ A local Rust CLI in development that maps TypeScript Git changes to symbols and 
 
 M0 (contracts and bootstrap) is complete and reviewed: the workspace, CLI bootstrap, source/syntax/graph/evidence and index/revision/canonical contracts are implemented and tested. Run `cargo run --locked -p ripple-cli -- --help` or try `inspect` below. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks. The product is named Ripple; the repository and CLI use `ripple`.
 
-M1 source understanding and the M2 cold-index pipeline are implemented. Ripple captures TS/TSX and supported configuration inputs, resolves supported lexical/imported calls and re-export chains, stores atomic SQLite generations, verifies freshness and explains reverse paths with separate symbol-backed/module-fallback evidence. Unsupported syntax/configuration and incomplete analysis remain explicit. Git diff/test commands and incremental indexing are upcoming.
+M1 source understanding and the M2 cold-index pipeline are implemented. Ripple captures TS/TSX and supported configuration inputs, resolves supported lexical/imported calls and re-export chains, stores atomic SQLite generations, verifies freshness and explains reverse paths with separate symbol-backed/module-fallback evidence. Unsupported syntax/configuration and incomplete analysis remain explicit. M4 adds immutable `diff A..B` with base/head witnesses, explicit change/uncertainty records and test-presence partitions. The dedicated test command and incremental indexing remain upcoming.
 
 ```sh
 cargo install --path crates/ripple-cli --locked --root /path/to/install
@@ -13,6 +13,7 @@ ripple index .
 ripple status
 ripple impact src/auth.ts::authenticate --format json
 ripple inspect src/auth.ts
+ripple diff main..HEAD --format json
 ```
 
 See [CLI usage](docs/cli.md) for paths, output and exit codes.

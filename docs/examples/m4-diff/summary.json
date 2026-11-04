@@ -1,0 +1,157 @@
+{
+  "format_version": 1,
+  "repository": "https://github.com/jridgewell/sourcemap-codec",
+  "upstream_branch": "main",
+  "base": "154656b1be82e3104620a05c4bf3430e1db9507d",
+  "head": "b3bb7f01c1c0dc8a5fa95c071e468f261d9e328c",
+  "upstream_change": "Push to scopes after setting fields to avoid deopt",
+  "scope": "Complete committed repository inputs under Ripple scanner/config policy; no projection or config rewriting",
+  "counts": {
+    "changed_files": 1,
+    "changed_symbols": 7,
+    "classified_symbols": 7
+  },
+  "incomplete_analysis": true,
+  "rows": 8,
+  "classifications": [
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "src/scopes.ts",
+        "project": "default",
+        "qualified_name": [
+          "_encodeGeneratedRanges"
+        ]
+      },
+      "kind": "UNCERTAIN",
+      "reasons": [
+        "UNCERTAIN_FINGERPRINT"
+      ]
+    },
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "src/scopes.ts",
+        "project": "default",
+        "qualified_name": [
+          "_encodeOriginalScopes"
+        ]
+      },
+      "kind": "UNCERTAIN",
+      "reasons": [
+        "UNCERTAIN_FINGERPRINT"
+      ]
+    },
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "src/scopes.ts",
+        "project": "default",
+        "qualified_name": [
+          "catchupLine"
+        ]
+      },
+      "kind": "UNCERTAIN",
+      "reasons": [
+        "UNCERTAIN_FINGERPRINT"
+      ]
+    },
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "src/scopes.ts",
+        "project": "default",
+        "qualified_name": [
+          "decodeGeneratedRanges"
+        ]
+      },
+      "kind": "UNCERTAIN",
+      "reasons": [
+        "UNCERTAIN_FINGERPRINT",
+        "FINGERPRINT_CHANGED"
+      ]
+    },
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "src/scopes.ts",
+        "project": "default",
+        "qualified_name": [
+          "decodeOriginalScopes"
+        ]
+      },
+      "kind": "UNCERTAIN",
+      "reasons": [
+        "UNCERTAIN_FINGERPRINT",
+        "FINGERPRINT_CHANGED"
+      ]
+    },
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "src/scopes.ts",
+        "project": "default",
+        "qualified_name": [
+          "encodeGeneratedRanges"
+        ]
+      },
+      "kind": "UNCERTAIN",
+      "reasons": [
+        "UNCERTAIN_FINGERPRINT"
+      ]
+    },
+    {
+      "identity": {
+        "disambiguator": "",
+        "kind": "FUNCTION",
+        "path": "src/scopes.ts",
+        "project": "default",
+        "qualified_name": [
+          "encodeOriginalScopes"
+        ]
+      },
+      "kind": "UNCERTAIN",
+      "reasons": [
+        "UNCERTAIN_FINGERPRINT"
+      ]
+    }
+  ],
+  "evidence_counts": {
+    "module_fallback": 16,
+    "symbol_backed": 14
+  },
+  "test_counts": {
+    "active_head": 0,
+    "base_only": 0,
+    "combined": 0,
+    "fallback_only": 0,
+    "module_fallback": 0,
+    "present_unindexed_head": 0,
+    "symbol_backed": 0,
+    "total_head_indexed_test_files": 2
+  },
+  "endpoint_context": {
+    "base": {
+      "unresolved": 849,
+      "snapshot_diagnostics": 21
+    },
+    "head": {
+      "unresolved": 849,
+      "snapshot_diagnostics": 21
+    }
+  },
+  "repeatable_json": true,
+  "report_sha256": "9bf1af507b060af964a4b57f7c7d7c29f0c21e4e7e4134da1da9d6c14195387f",
+  "analyzer_versions": {
+    "analyzer_version": "cold-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v1",
+    "hash_version": 1,
+    "schema_version": 1
+  },
+  "limits": "Unsupported package entries/config options and syntax remain explicit; empty selection is not a test sufficiency or accuracy claim. Performance not measured."
+}

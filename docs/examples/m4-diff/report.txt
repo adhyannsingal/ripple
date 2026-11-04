@@ -1,0 +1,215 @@
+Diff: 154656b1be82e3104620a05c4bf3430e1db9507d..b3bb7f01c1c0dc8a5fa95c071e468f261d9e328c
+Changed files: 1
+Classified symbols: 7 (including unchanged hunk owners)
+Global input invalidation: false
+Incomplete analysis: true
+"src/scopes.ts::_encodeGeneratedRanges" "UNCERTAIN"
+"src/scopes.ts::_encodeOriginalScopes" "UNCERTAIN"
+"src/scopes.ts::catchupLine" "UNCERTAIN"
+"src/scopes.ts::decodeGeneratedRanges" "UNCERTAIN"
+"src/scopes.ts::decodeOriginalScopes" "UNCERTAIN"
+"src/scopes.ts::encodeGeneratedRanges" "UNCERTAIN"
+"src/scopes.ts::encodeOriginalScopes" "UNCERTAIN"
+Classifications omitted from human display: 0
+File Modified: "src/scopes.ts" -> "src/scopes.ts"; fallback reasons: ["ENDPOINT_DIAGNOSTICS"]
+File records omitted from human display: 0
+Symbol-backed targets: 7
+Module-fallback targets: 1
+Combined targets: 8
+Displayed targets: 8 / 8
+Potentially related test files: 0 symbol-backed, 0 fallback-only, 0 combined
+Head indexed test files: 2
+Selected tests: 0 active at head, 0 absent at head, 0 present but unindexed at head
+Test sets are potentially related; they are not a sufficiency guarantee.
+base: 8 seeds, 849 graph-wide unresolved records, 0 depth boundary nodes, 0 unindexed changes, 0 global policy file candidates
+  diagnostic: "module/export analysis incomplete; detailed boundaries retained in the module artifact"
+  diagnostic: "package.json: unsupported_package_policy: package entry points, conditions or module mode are outside the source-inventory policy"
+  diagnostic: "src/scopes.ts: unhashable_declaration: Unsupported export shape, tree input or traversal limit prevents a complete fingerprint"
+  diagnostic: "src/scopes.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "src/scopes.ts: unsupported_declaration: Ambient, namespace, enum and type-only declarations are not executable symbol targets"
+  diagnostic: "src/sourcemap-codec.ts: unhashable_declaration: Unsupported export shape, tree input or traversal limit prevents a complete fingerprint"
+  diagnostic: "src/sourcemap-codec.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "src/sourcemap-codec.ts: unsupported_declaration: Ambient, namespace, enum and type-only declarations are not executable symbol targets"
+  diagnostic: "src/strings.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "src/strings.ts: unsupported_field_initializer: Field initializers are retained in class fingerprints; separate field/function targets are unsupported"
+  diagnostic: "src/vlq.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "test/codec.test.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "test/codec.test.ts: unsupported_namespace_import: Namespace imports are recorded; receiver/member resolution remains unsupported"
+  diagnostic: "test/scopes.test.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: declaration"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: declarationDir"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: inlineSources"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: sourceMap"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: typeRoots"
+  diagnostic: "tsconfig.json: unsupported_config_field: exclude"
+  diagnostic: "tsconfig.json: unsupported_config_field: include"
+  Snapshot diagnostics: 21 (0 omitted from human display)
+  Base ModuleFallback seed "src/scopes.ts": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base SymbolBacked seed "src/scopes.ts::_encodeGeneratedRanges": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base ModuleFallback seed "src/scopes.ts::_encodeGeneratedRanges": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base SymbolBacked seed "src/scopes.ts::_encodeOriginalScopes": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base ModuleFallback seed "src/scopes.ts::_encodeOriginalScopes": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base SymbolBacked seed "src/scopes.ts::catchupLine": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base ModuleFallback seed "src/scopes.ts::catchupLine": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base SymbolBacked seed "src/scopes.ts::decodeGeneratedRanges": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base ModuleFallback seed "src/scopes.ts::decodeGeneratedRanges": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base SymbolBacked seed "src/scopes.ts::decodeOriginalScopes": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base ModuleFallback seed "src/scopes.ts::decodeOriginalScopes": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base SymbolBacked seed "src/scopes.ts::encodeGeneratedRanges": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base ModuleFallback seed "src/scopes.ts::encodeGeneratedRanges": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base SymbolBacked seed "src/scopes.ts::encodeOriginalScopes": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Base ModuleFallback seed "src/scopes.ts::encodeOriginalScopes": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Traversal summaries omitted from human display: 0
+head: 8 seeds, 849 graph-wide unresolved records, 0 depth boundary nodes, 0 unindexed changes, 0 global policy file candidates
+  diagnostic: "module/export analysis incomplete; detailed boundaries retained in the module artifact"
+  diagnostic: "package.json: unsupported_package_policy: package entry points, conditions or module mode are outside the source-inventory policy"
+  diagnostic: "src/scopes.ts: unhashable_declaration: Unsupported export shape, tree input or traversal limit prevents a complete fingerprint"
+  diagnostic: "src/scopes.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "src/scopes.ts: unsupported_declaration: Ambient, namespace, enum and type-only declarations are not executable symbol targets"
+  diagnostic: "src/sourcemap-codec.ts: unhashable_declaration: Unsupported export shape, tree input or traversal limit prevents a complete fingerprint"
+  diagnostic: "src/sourcemap-codec.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "src/sourcemap-codec.ts: unsupported_declaration: Ambient, namespace, enum and type-only declarations are not executable symbol targets"
+  diagnostic: "src/strings.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "src/strings.ts: unsupported_field_initializer: Field initializers are retained in class fingerprints; separate field/function targets are unsupported"
+  diagnostic: "src/vlq.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "test/codec.test.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "test/codec.test.ts: unsupported_namespace_import: Namespace imports are recorded; receiver/member resolution remains unsupported"
+  diagnostic: "test/scopes.test.ts: unsupported_call_target: Receiver, constructor, optional, computed, eval/require or wrapped calls are not direct identifier calls"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: declaration"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: declarationDir"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: inlineSources"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: sourceMap"
+  diagnostic: "tsconfig.json: unsupported_compiler_option: typeRoots"
+  diagnostic: "tsconfig.json: unsupported_config_field: exclude"
+  diagnostic: "tsconfig.json: unsupported_config_field: include"
+  Snapshot diagnostics: 21 (0 omitted from human display)
+  Head ModuleFallback seed "src/scopes.ts": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head SymbolBacked seed "src/scopes.ts::_encodeGeneratedRanges": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head ModuleFallback seed "src/scopes.ts::_encodeGeneratedRanges": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head SymbolBacked seed "src/scopes.ts::_encodeOriginalScopes": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head ModuleFallback seed "src/scopes.ts::_encodeOriginalScopes": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head SymbolBacked seed "src/scopes.ts::catchupLine": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head ModuleFallback seed "src/scopes.ts::catchupLine": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head SymbolBacked seed "src/scopes.ts::decodeGeneratedRanges": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head ModuleFallback seed "src/scopes.ts::decodeGeneratedRanges": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head SymbolBacked seed "src/scopes.ts::decodeOriginalScopes": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head ModuleFallback seed "src/scopes.ts::decodeOriginalScopes": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head SymbolBacked seed "src/scopes.ts::encodeGeneratedRanges": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head ModuleFallback seed "src/scopes.ts::encodeGeneratedRanges": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head SymbolBacked seed "src/scopes.ts::encodeOriginalScopes": 1 visited nodes; nodes by depth {"0":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Head ModuleFallback seed "src/scopes.ts::encodeOriginalScopes": 2 visited nodes; nodes by depth {"0":1,"1":1}
+    High fan-out nodes (threshold 50 distinct direct dependents): 0
+    Hubs omitted from human display: 0
+  Traversal summaries omitted from human display: 0
+Target "src/scopes.ts" distance=0 confidence=Resolved
+  Base ModuleFallback witness: "src/scopes.ts" -> "src/scopes.ts" distance=0 confidence=Resolved
+  Head ModuleFallback witness: "src/scopes.ts" -> "src/scopes.ts" distance=0 confidence=Resolved
+  Base ModuleFallback witness: "src/scopes.ts::_encodeGeneratedRanges" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":241 ("syntax_defines")
+  Head ModuleFallback witness: "src/scopes.ts::_encodeGeneratedRanges" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":243 ("syntax_defines")
+  Base ModuleFallback witness: "src/scopes.ts::_encodeOriginalScopes" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":86 ("syntax_defines")
+  Head ModuleFallback witness: "src/scopes.ts::_encodeOriginalScopes" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":88 ("syntax_defines")
+  Base ModuleFallback witness: "src/scopes.ts::catchupLine" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":339 ("syntax_defines")
+  Head ModuleFallback witness: "src/scopes.ts::catchupLine" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":341 ("syntax_defines")
+  Base ModuleFallback witness: "src/scopes.ts::decodeGeneratedRanges" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":127 ("syntax_defines")
+  Head ModuleFallback witness: "src/scopes.ts::decodeGeneratedRanges" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":129 ("syntax_defines")
+  Base ModuleFallback witness: "src/scopes.ts::decodeOriginalScopes" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":35 ("syntax_defines")
+  Head ModuleFallback witness: "src/scopes.ts::decodeOriginalScopes" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":35 ("syntax_defines")
+  Base ModuleFallback witness: "src/scopes.ts::encodeGeneratedRanges" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":229 ("syntax_defines")
+  Head ModuleFallback witness: "src/scopes.ts::encodeGeneratedRanges" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":231 ("syntax_defines")
+  Base ModuleFallback witness: "src/scopes.ts::encodeOriginalScopes" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":76 ("syntax_defines")
+  Head ModuleFallback witness: "src/scopes.ts::encodeOriginalScopes" -> "src/scopes.ts" distance=1 confidence=Resolved
+    <- [Resolved Defines] "src/scopes.ts" at "src/scopes.ts":78 ("syntax_defines")
+Target "src/scopes.ts::_encodeGeneratedRanges" distance=0 confidence=Resolved
+  Base SymbolBacked witness: "src/scopes.ts::_encodeGeneratedRanges" -> "src/scopes.ts::_encodeGeneratedRanges" distance=0 confidence=Resolved
+  Head SymbolBacked witness: "src/scopes.ts::_encodeGeneratedRanges" -> "src/scopes.ts::_encodeGeneratedRanges" distance=0 confidence=Resolved
+Target "src/scopes.ts::_encodeOriginalScopes" distance=0 confidence=Resolved
+  Base SymbolBacked witness: "src/scopes.ts::_encodeOriginalScopes" -> "src/scopes.ts::_encodeOriginalScopes" distance=0 confidence=Resolved
+  Head SymbolBacked witness: "src/scopes.ts::_encodeOriginalScopes" -> "src/scopes.ts::_encodeOriginalScopes" distance=0 confidence=Resolved
+Target "src/scopes.ts::catchupLine" distance=0 confidence=Resolved
+  Base SymbolBacked witness: "src/scopes.ts::catchupLine" -> "src/scopes.ts::catchupLine" distance=0 confidence=Resolved
+  Head SymbolBacked witness: "src/scopes.ts::catchupLine" -> "src/scopes.ts::catchupLine" distance=0 confidence=Resolved
+Target "src/scopes.ts::decodeGeneratedRanges" distance=0 confidence=Resolved
+  Base SymbolBacked witness: "src/scopes.ts::decodeGeneratedRanges" -> "src/scopes.ts::decodeGeneratedRanges" distance=0 confidence=Resolved
+  Head SymbolBacked witness: "src/scopes.ts::decodeGeneratedRanges" -> "src/scopes.ts::decodeGeneratedRanges" distance=0 confidence=Resolved
+Target "src/scopes.ts::decodeOriginalScopes" distance=0 confidence=Resolved
+  Base SymbolBacked witness: "src/scopes.ts::decodeOriginalScopes" -> "src/scopes.ts::decodeOriginalScopes" distance=0 confidence=Resolved
+  Head SymbolBacked witness: "src/scopes.ts::decodeOriginalScopes" -> "src/scopes.ts::decodeOriginalScopes" distance=0 confidence=Resolved
+Target "src/scopes.ts::encodeGeneratedRanges" distance=0 confidence=Resolved
+  Base SymbolBacked witness: "src/scopes.ts::encodeGeneratedRanges" -> "src/scopes.ts::encodeGeneratedRanges" distance=0 confidence=Resolved
+  Head SymbolBacked witness: "src/scopes.ts::encodeGeneratedRanges" -> "src/scopes.ts::encodeGeneratedRanges" distance=0 confidence=Resolved
+Target "src/scopes.ts::encodeOriginalScopes" distance=0 confidence=Resolved
+  Base SymbolBacked witness: "src/scopes.ts::encodeOriginalScopes" -> "src/scopes.ts::encodeOriginalScopes" distance=0 confidence=Resolved
+  Head SymbolBacked witness: "src/scopes.ts::encodeOriginalScopes" -> "src/scopes.ts::encodeOriginalScopes" distance=0 confidence=Resolved
+Target rows omitted from human display: 0. JSON retains complete evidence, classifications and test sets within the requested depth.
+Git diagnostics: 0 (0 omitted from human display)

@@ -1,6 +1,6 @@
 # Using Ripple
 
-Implemented commands are `index`, `inspect`, `status` and `impact`. The binary is `ripple 0.1.0-dev`; Git is required for persistent commands, and SQLite is bundled. Node, a database server and project-script execution are not required.
+Implemented commands are `index`, `inspect`, `status`, `impact` and `diff`. The binary is `ripple 0.2.0-dev`; Git is required for persistent commands and diff, and SQLite is bundled. Node, a database server and project-script execution are not required.
 
 From a supported single-project Git root:
 
@@ -11,6 +11,7 @@ ripple impact authenticate
 ripple impact src/auth.ts::authenticate --format json
 ripple impact authenticate --depth 2 --limit 100
 ripple inspect src/auth.ts
+ripple diff main..HEAD --depth 3 --limit 100
 ```
 
 Install locally with `cargo install --path crates/ripple-cli --locked --root /path/to/install`; the executable is under its bin directory. To run without installation, prefix commands with `cargo run --locked -p ripple-cli --`. `index ROOT` accepts a positional Git root. The other commands accept `--root ROOT` and default to the current directory. Inspect can operate on an explicit non-Git root; persistent commands require the Git repository root and reject submodules/nested Git projects.
@@ -31,6 +32,18 @@ Choose a unique symbol by qualified name (`Class.method` where supported), path 
 
 Human output shows separate `SymbolBacked` and `ModuleFallback` witnesses, original hop rules/spans, confidence, counts and potentially related tests. Imports alone never prove a particular symbol dependency. JSON retains all evidence and symbol-backed/fallback-only/combined test-file sets within the requested depth. `--limit` only limits human display rows; `--depth` limits traversal, reports frontier nodes and marks the report incomplete. Zero-hop seed evidence is retained. No selected set is claimed sufficient to skip other tests.
 
+## Git diff
+
+`ripple diff A..B --root ROOT` compares those explicit committed tree endpoints, preserving both resolved SHAs in output. `A...B` merge-base semantics and omitted endpoints are rejected; a shell-sensitive expression should be quoted. Ref resolution occurs once. No existing index or clean worktree is required. Staged/dirty/untracked work is excluded from the comparison, and `.ripple/`, Git index and refs remain unchanged. Ripple does not fetch missing objects, checkout files or execute project scripts.
+
+Each endpoint is cold-built in memory using its own captured configuration. JSON includes `data.comparison`, analyzer/hash/schema versions, endpoint config hashes, all Git diagnostics and `data.result`: complete change classifications/file reasons, base/head uncertainty and depth boundaries, actual revision-labelled evidence, rows and test partitions. Same-endpoint comparisons have no changes/impact targets, although existing snapshot uncertainty can still mark them incomplete. Unsupported/binary changes stay explicit rather than disappearing.
+
+Human output reports symbol-backed/fallback-only/combined potentially related test counts and the indexed-head test-file denominator. Selected tests are partitioned into active/indexed at head, absent at head and present but unindexed at head. It reports counts rather than claiming a safe skip set. JSON preserves complete sets and witnesses. Global config invalidation selects all indexed files through explicit module-fallback policy witnesses, without fabricating config edges.
+
+`--depth N` limits actual graph hops and marks frontier truncation incomplete; the default is unlimited. `--limit N` defaults to 100 rows per human section and lists omitted counts. It does not reduce JSON evidence, classifications, rows or test sets. Depth summaries include zero-hop seeds and, for symbol-seeded file fallback, the initial defining-file bridge. Hubs have at least 50 distinct direct dependents in the applicable evidence track; they are summarized without pruning traversal. Impact now displays the same traversal/hub summaries. Full JSON stays available with `--format json` even at `--limit 0`.
+
+See the [pinned upstream history demo](examples/m4-diff/README.md), [output decision](adr/0024-diff-cli.md), and [installed v0.2 smoke](../scripts/m4-smoke.py). Historical cold builds and complete evidence may be expensive; performance is not measured.
+
 ## Inspect
 
 ```sh
@@ -50,4 +63,4 @@ Inspect remains syntax-only (`resolution_available: false`), with supported symb
 | 1 | Operational failure, missing/stale/incompatible index, unknown/ambiguous symbol or unimplemented command. No success report. |
 | 2 | Invalid/missing arguments or format. |
 
-`diff` and `test` remain explicit unimplemented placeholders. Supported config/language limitations and bounds are in [limitations](limitations.md), [resolution](resolution.md) and [cold-index ADR](adr/0021-cold-index.md). Reproduce the installed capability gate with `python3 scripts/m2-smoke.py --install-root /path/to/install`.
+`test` remains an explicit unimplemented placeholder. Supported config/language limitations and bounds are in [limitations](limitations.md), [resolution](resolution.md) and [cold-index ADR](adr/0021-cold-index.md). Reproduce the installed capability gate with `python3 scripts/m4-smoke.py --install-root /path/to/install`.
