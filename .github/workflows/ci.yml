@@ -44,7 +44,7 @@ jobs:
           cargo run --locked -p ripple-cli -- --version
           cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
           cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect/project --format json
-      - name: Clean install M2 candidate
-        run: cargo install --path crates/ripple-cli --locked --root target/m2-install
-      - name: Verify installed M2 commands
-        run: python scripts/m2-smoke.py --install-root target/m2-install
+      - name: Clean install v0.2 candidate
+        run: cargo install --path crates/ripple-cli --locked --root target/m4-install
+      - name: Verify installed v0.2 commands
+        run: python scripts/m4-smoke.py --install-root target/m4-install
