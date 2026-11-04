@@ -2406,28 +2406,44 @@
         "docs/limitations.md",
         "docs/task-reports/M5-T02.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M5-T02",
       "started_at": "2026-11-04T18:43:00.332415+00:00",
-      "heartbeat_at": "2026-11-04T18:48:43.281396+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-04T19:35:11.468475+00:00",
+      "completed_at": "2026-11-04T19:35:11.468475+00:00",
+      "integrated_commit": "ffdc7a6d179126f4cd334b52685c93cce91ce37a",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "258 local Rust tests; five new tests cover independent cold equality, ten global input classes plus inheritance, version/cache/schema handling, parser/capture/SQL failures, retries and staleness."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate; python3 scripts/m4-smoke.py --binary target/debug/ripple",
+          "outcome": "passed",
+          "detail": "6 Node, 4 metric and 18 planning tests; v0.2 capability smoke passed."
+        },
+        {
+          "command": "Code/security review; git diff --check",
+          "outcome": "passed",
+          "detail": "Version/digest bound parse reuse, full semantic replacement, counter availability, atomic rollback and safe explicit format repair reviewed. No remaining scoped finding; performance not measured."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41890801810",
+          "outcome": "passed",
+          "detail": "Linux/macOS Intel/Windows full checks and clean-install v0.2 smoke passed on ffdc7a6."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41890801716",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "acf3d47e1f6c4629e2fdb02000e78c20ddca7530",
-      "claimed_paths": [
-        "crates/ripple-index/src/incremental.rs",
-        "crates/ripple-index/src/incremental_tests.rs",
-        "crates/ripple-index/src/build.rs",
-        "crates/ripple-index/src/lib.rs",
-        "fixtures/incremental/files/",
-        "docs/adr/0026-verified-refresh.md",
-        "docs/limitations.md",
-        "docs/task-reports/M5-T02.md"
-      ],
-      "checkpoint": "Integrated conservative refresh reviewed; 258 Rust tests, supporting checks and v0.2 smoke pass locally.",
-      "next_action": "Verify candidate platform/oracle CI, close T02 and claim T05 generated equality guard.",
+      "claimed_paths": [],
+      "checkpoint": "Conservative refresh integrated/reviewed; full local and platform/oracle gates pass. Claims released.",
+      "next_action": "M5-T05 \u2014 generated equality/idempotence/round-trip guard before T03.",
       "report": "docs/task-reports/M5-T02.md"
     },
     {
@@ -2785,8 +2801,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Integrated conservative refresh reviewed; 258 Rust tests, supporting checks and v0.2 smoke pass locally.",
-    "next_action": "Verify candidate platform/oracle CI, close T02 and claim T05 generated equality guard.",
-    "updated_at": "2026-11-04T18:48:43.281396+00:00"
+    "checkpoint": "Conservative refresh integrated/reviewed; full local and platform/oracle gates pass. Claims released.",
+    "next_action": "M5-T05 \u2014 generated equality/idempotence/round-trip guard before T03.",
+    "updated_at": "2026-11-04T19:35:11.468475+00:00"
   }
 }
