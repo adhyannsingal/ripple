@@ -18,7 +18,7 @@ use std::{
     name = "ripple",
     version,
     arg_required_else_help = true,
-    after_help = "Index builds a cold graph; status/impact verify it. Diff compares immutable A..B endpoints; test is not implemented yet."
+    after_help = "Index refreshes verified inputs (--full rebuilds); status/impact verify freshness. Diff compares immutable A..B endpoints; test is not implemented yet."
 )]
 struct Cli {
     /// Output style for implemented commands.
@@ -38,10 +38,13 @@ enum Command {
         #[arg(long, default_value = ".")]
         root: PathBuf,
     },
-    /// Build a cold persistent index from verified captured inputs.
+    /// Refresh a verified persistent index, reusing unchanged analysis where proven.
     Index {
         #[arg(default_value = ".")]
         root: PathBuf,
+        /// Force cold parsing and resolution; does not silently migrate incompatible formats.
+        #[arg(long)]
+        full: bool,
     },
     /// Query explainable downstream paths from a fresh index.
     Impact {
@@ -81,7 +84,7 @@ struct FutureArgs {
 }
 fn run(cli: Cli) -> Result<(), CommandError> {
     let report = match cli.command {
-        Command::Index { root } => return commands::index::run(&root, cli.format),
+        Command::Index { root, full } => return commands::index::run(&root, full, cli.format),
         Command::Status { root } => return commands::status::run(&root, cli.format),
         Command::Impact {
             symbol,
