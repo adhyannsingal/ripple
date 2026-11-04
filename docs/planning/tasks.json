@@ -2471,35 +2471,49 @@
         "docs/task-reports/M5-T03.md",
         "eval/results/resolver/m5/"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M5-T03",
       "started_at": "2026-11-04T19:53:37.802941+00:00",
-      "heartbeat_at": "2026-11-04T20:07:31.010618+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-04T20:19:05.751416+00:00",
+      "completed_at": "2026-11-04T20:19:05.751416+00:00",
+      "integrated_commit": "4613c73d791618cca417c919c7b0dc531a1d5f91",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "265 local Rust tests, including four targeted selective/fallback tests. Supported body fixture: one parse, zero module resolution, one reference-file resolution and two reused importer files."
+        },
+        {
+          "command": "cargo test --locked -p ripple-index --test properties_basic -- --nocapture",
+          "outcome": "passed",
+          "detail": "120 cold comparisons across basic96/resolved-body24 cases, reload/idempotence and fault guards. Resolved-body guard passed/committed on conservative updater before optimization."
+        },
+        {
+          "command": "Pinned mini and external compiler comparisons via eval/oracle/compare_run.py",
+          "outcome": "passed",
+          "detail": "Fresh evidence eval/results/resolver/m5/ from implementation6e98f1d: precision/recall3/3 and16/16, no supported mismatch/unmapped eligible edge.567 unresolved/524 exclusions/one unsupported definition/six out-of-scope reads retained."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate; python3 scripts/m4-smoke.py --binary target/debug/ripple; code/security review; evidence links; git diff --check",
+          "outcome": "passed",
+          "detail": "6 Node,4 metric,18 planning tests plus CLI smoke. Input/provenance/cache/closure/surface/candidate/module-boundary rules reviewed; no remaining scoped finding. Performance not measured."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41903572994",
+          "outcome": "passed",
+          "detail": "Linux/macOS Intel/Windows full workspace, generated guard and clean-install capability smoke passed on4613c73."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41903572964",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "0b4d6fd686700a9a6e85d28d0e89c1f4d1f3ef35",
-      "claimed_paths": [
-        "crates/ripple-index/src/invalidation.rs",
-        "crates/ripple-index/src/invalidation_tests.rs",
-        "crates/ripple-index/src/incremental.rs",
-        "crates/ripple-index/src/incremental_tests.rs",
-        "crates/ripple-index/src/build.rs",
-        "crates/ripple-index/src/lib.rs",
-        "crates/ripple-index/tests/properties_basic.rs",
-        "crates/ripple-resolve/src/dependencies.rs",
-        "crates/ripple-resolve/src/symbols.rs",
-        "crates/ripple-resolve/src/lib.rs",
-        "fixtures/incremental/",
-        "docs/adr/0028-selective-resolution.md",
-        "docs/limitations.md",
-        "docs/task-reports/M5-T03.md",
-        "eval/results/resolver/m5/"
-      ],
-      "checkpoint": "Selective resolver integrated/reviewed; 265 Rust tests,120 generated cold comparisons, supporting checks and v0.2 smoke pass. Fresh oracle projections3/3 and16/16 retain exclusions/unknowns.",
-      "next_action": "Verify candidate platform/oracle CI, close T03 and claim T04 CLI integration.",
+      "claimed_paths": [],
+      "checkpoint": "Selective resolver integrated/reviewed; all local/platform/oracle checks pass,120 generated comparisons and targeted counter/equality matrix pass. Claims released.",
+      "next_action": "M5-T04 \u2014 default incremental index CLI and algorithm/gate documentation.",
       "report": "docs/task-reports/M5-T03.md"
     },
     {
@@ -2855,8 +2869,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Selective resolver integrated/reviewed; 265 Rust tests,120 generated cold comparisons, supporting checks and v0.2 smoke pass. Fresh oracle projections3/3 and16/16 retain exclusions/unknowns.",
-    "next_action": "Verify candidate platform/oracle CI, close T03 and claim T04 CLI integration.",
-    "updated_at": "2026-11-04T20:07:31.010618+00:00"
+    "checkpoint": "Selective resolver integrated/reviewed; all local/platform/oracle checks pass,120 generated comparisons and targeted counter/equality matrix pass. Claims released.",
+    "next_action": "M5-T04 \u2014 default incremental index CLI and algorithm/gate documentation.",
+    "updated_at": "2026-11-04T20:19:05.751416+00:00"
   }
 }
