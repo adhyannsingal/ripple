@@ -2542,15 +2542,26 @@
         "eval/results/resolver/m5/cli-verification.json",
         "crates/ripple-index/src/lib.rs"
       ],
-      "status": "review",
+      "status": "blocked",
       "owner": "local-agent",
       "branch": "agent/M5-T04",
       "started_at": "2026-11-04T20:19:23.217895+00:00",
-      "heartbeat_at": "2026-11-04T20:30:07.881419+00:00",
+      "heartbeat_at": "2026-11-04T20:40:44.495663+00:00",
       "completed_at": null,
       "integrated_commit": null,
-      "validation": [],
-      "blocker": null,
+      "validation": [
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41907201032",
+          "outcome": "failed",
+          "detail": "Windows capability assertions passed but TemporaryDirectory cleanup failed with an open Python SQLite handle; explicit close fix pending verification."
+        }
+      ],
+      "blocker": {
+        "cause": "Windows installed smoke cleanup WinError32: Python SQLite reader remained open after transaction context exit.",
+        "attempted": "Inspected completed Windows job126844946140 logs; all capability assertions printed passed before TemporaryDirectory cleanup failed on index.db.",
+        "next_action": "Close the reader deterministically and verify replacement platform CI before task/gate completion.",
+        "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41907201032"
+      },
       "base_commit": "3ee9523cf87fd77e37536980737bbde628c9cba2",
       "claimed_paths": [
         "crates/ripple-cli/src/main.rs",
@@ -2570,8 +2581,8 @@
         "eval/results/resolver/m5/cli-verification.json",
         "crates/ripple-index/src/lib.rs"
       ],
-      "checkpoint": "Final CLI and M5 local gate reviewed:269 Rust tests,120 generated comparisons,supporting checks,clean release install and expanded smoke pass. Oracle artifacts byte-equal to T03; docs coherent.",
-      "next_action": "Push and verify expanded three-platform install/workspace and oracle CI; then close T04 and M5.",
+      "checkpoint": "Final Windows installed smoke assertions passed, but cleanup failed because Python SQLite transaction context did not close its reader handle. Rust workspace/CLI checks passed; fix reader lifetime then revalidate.",
+      "next_action": "Explicitly close smoke reader and emit success only after temporary cleanup; rerun local smoke and all platform CI.",
       "report": "docs/task-reports/M5-T04.md"
     },
     {
@@ -2899,8 +2910,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Final CLI and M5 local gate reviewed:269 Rust tests,120 generated comparisons,supporting checks,clean release install and expanded smoke pass. Oracle artifacts byte-equal to T03; docs coherent.",
-    "next_action": "Push and verify expanded three-platform install/workspace and oracle CI; then close T04 and M5.",
-    "updated_at": "2026-11-04T20:30:07.881419+00:00"
+    "checkpoint": "Final Windows installed smoke assertions passed, but cleanup failed because Python SQLite transaction context did not close its reader handle. Rust workspace/CLI checks passed; fix reader lifetime then revalidate.",
+    "next_action": "Explicitly close smoke reader and emit success only after temporary cleanup; rerun local smoke and all platform CI.",
+    "updated_at": "2026-11-04T20:40:44.495663+00:00"
   }
 }

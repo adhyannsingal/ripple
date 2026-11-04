@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Installed incremental capability gate, including every prior implemented command."""
 import argparse
+from contextlib import closing
 import json
 import os
 from pathlib import Path
@@ -38,7 +39,7 @@ with tempfile.TemporaryDirectory(prefix="ripple-m5-") as temp:
     def command(*argv):
         return json.loads(run([binary, *argv, "--format", "json"], root).stdout)
     def generation():
-        with sqlite3.connect((root / ".ripple/index.db").as_uri() + "?mode=ro", uri=True) as db:
+        with closing(sqlite3.connect((root / ".ripple/index.db").as_uri() + "?mode=ro", uri=True)) as db:
             return db.execute("SELECT generation_id FROM current_generation WHERE singleton=1").fetchone()[0]
     write(".gitignore", ".ripple/\n")
     write("lib.ts", "export function f() { return 1; }\n")
@@ -77,4 +78,5 @@ with tempfile.TemporaryDirectory(prefix="ripple-m5-") as temp:
     assert b"0 files parsed, 3 parse facts reused" in human
     assert b"Module analysis:" in human and b"Reference analysis:" in human
     assert (root / ".git/index").read_bytes() == original_index
-    print(json.dumps({"m5_smoke": "passed", "prior_capabilities": json.loads(prior.stdout), "no_op_parsed": 0, "body_edit_parsed": 1, "body_module_files_resolved": 0, "body_reference_files_resolved": 1, "failed_generation_preserved": True, "git_index_preserved": True}))
+    summary = {"m5_smoke": "passed", "prior_capabilities": json.loads(prior.stdout), "no_op_parsed": 0, "body_edit_parsed": 1, "body_module_files_resolved": 0, "body_reference_files_resolved": 1, "failed_generation_preserved": True, "git_index_preserved": True}
+print(json.dumps(summary))
