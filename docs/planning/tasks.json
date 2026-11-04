@@ -2258,11 +2258,11 @@
         "docs/task-reports/M4.md",
         "docs/adr/0024-diff-cli.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M4-T04",
       "started_at": "2026-11-04T05:26:31.920482+00:00",
-      "heartbeat_at": "2026-11-04T05:26:31.920482+00:00",
+      "heartbeat_at": "2026-11-04T05:36:08.313245+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2289,8 +2289,8 @@
         "docs/task-reports/M4.md",
         "docs/adr/0024-diff-cli.md"
       ],
-      "checkpoint": "Dependencies integrated and verified; main synced. Implement CLI composition using M4-T03 APIs, retain graph provenance and complete machine output.",
-      "next_action": "Wire diff, add bounded human summaries and end-to-end fixtures; run real-history demo and installed capability gate.",
+      "checkpoint": "Integrated code/security review and all local gates passed: 249 Rust tests, oracle mini 3/3, supporting tests, release install and v0.2 smoke. Pinned full-repo example reproduces from fresh/local objects.",
+      "next_action": "Push candidate, verify platform/oracle CI, then record M4-T04 done and M4/v0.2 gate.",
       "report": "docs/task-reports/M4-T04.md"
     },
     {
@@ -2705,8 +2705,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M4-T04",
     "integration_branch": "main",
-    "checkpoint": "Dependencies integrated and verified; main synced. Implement CLI composition using M4-T03 APIs, retain graph provenance and complete machine output.",
-    "next_action": "Wire diff, add bounded human summaries and end-to-end fixtures; run real-history demo and installed capability gate.",
-    "updated_at": "2026-11-04T05:26:31.920482+00:00"
+    "checkpoint": "Integrated code/security review and all local gates passed: 249 Rust tests, oracle mini 3/3, supporting tests, release install and v0.2 smoke. Pinned full-repo example reproduces from fresh/local objects.",
+    "next_action": "Push candidate, verify platform/oracle CI, then record M4-T04 done and M4/v0.2 gate.",
+    "updated_at": "2026-11-04T05:36:08.313245+00:00"
   }
 }
