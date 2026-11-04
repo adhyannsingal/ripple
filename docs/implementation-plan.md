@@ -328,7 +328,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M4-T04 — Ship diff and query controls with real-branch evidence
 
 - **Depends on:** M4-T03, M3-T03. **Lane:** cli.
-- **Own:** `crates/ripple-cli/src/commands/diff*`; `crates/ripple-cli/tests/diff*`; `docs/examples/`; `.github/workflows/ci.yml`.
+- **Own:** `crates/ripple-cli/src/commands/diff*`; `crates/ripple-cli/tests/diff*`; `docs/examples/`; `.github/workflows/ci.yml`; `crates/ripple-cli/src/main.rs`; `crates/ripple-cli/src/commands/mod.rs`; `crates/ripple-cli/src/commands/impact.rs`; `crates/ripple-cli/tests/cli.rs`; `scripts/m4-smoke.py`; `Cargo.toml`; `Cargo.lock`; `docs/cli.md`; `docs/project-status.md`; `docs/limitations.md`; `README.md`; `docs/task-reports/M4-T04.md`; `docs/task-reports/M4.md`; `docs/adr/0024-diff-cli.md`.
 - **Implement:** Wire diff A..B to changed symbols, impact, hub/depth/display controls, test-file counts using defined file connectivity and versioned JSON. Add end-to-end examples on a pinned real branch/commit pair. Document explicit endpoint semantics and three-dot rejection. Use M1-T01 test classification and M2-T04 basic reachability; report symbol-backed, fallback-only and union test counts independently. The test CLI itself remains M7 scope.
 - **Acceptance:** CLI snapshots cover all change categories and revisions, limits, conservative uncertainty and errors; A..A is empty; output ordering is repeatable; run the pinned branch demo, oracle smoke and full workspace checks. Record M4 gate and v0.2 candidate. Add/extend clean-install smoke in CI on declared supported platforms for every command implemented at this version candidate.
 - **Handoff:** Working Git → symbols → impact → witness demo and stable machine interface.
