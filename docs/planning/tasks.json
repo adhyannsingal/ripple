@@ -2347,11 +2347,11 @@
         "docs/limitations.md",
         "docs/task-reports/M5-T01.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M5-T01",
       "started_at": "2026-11-04T18:24:52.155707+00:00",
-      "heartbeat_at": "2026-11-04T18:24:52.155707+00:00",
+      "heartbeat_at": "2026-11-04T18:31:47.716804+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2372,8 +2372,8 @@
         "docs/limitations.md",
         "docs/task-reports/M5-T01.md"
       ],
-      "checkpoint": "M4 integrated and synced; existing canonical snapshot and module sidecar inspected. Add full analysis equality and versioned generation-bound cache with explicit schema-v2 compatibility.",
-      "next_action": "Persist fingerprints/module lookup evidence atomically, add golden/corruption/round-trip equality tests; integrate and verify before T02.",
+      "checkpoint": "Integrated full analysis cache/equality reviewed; 253 Rust tests, supporting checks and v0.2 smoke pass locally.",
+      "next_action": "Verify pushed source platform/oracle CI, close T01 and claim T02.",
       "report": "docs/task-reports/M5-T01.md"
     },
     {
@@ -2759,8 +2759,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "M4 integrated and synced; existing canonical snapshot and module sidecar inspected. Add full analysis equality and versioned generation-bound cache with explicit schema-v2 compatibility.",
-    "next_action": "Persist fingerprints/module lookup evidence atomically, add golden/corruption/round-trip equality tests; integrate and verify before T02.",
-    "updated_at": "2026-11-04T18:24:52.155707+00:00"
+    "checkpoint": "Integrated full analysis cache/equality reviewed; 253 Rust tests, supporting checks and v0.2 smoke pass locally.",
+    "next_action": "Verify pushed source platform/oracle CI, close T01 and claim T02.",
+    "updated_at": "2026-11-04T18:31:47.716804+00:00"
   }
 }
