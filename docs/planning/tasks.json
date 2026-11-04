@@ -115,9 +115,19 @@
       "id": "M4",
       "title": "Git-aware impact",
       "target": "Week 4",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M4-T01/T02/T03/T04 integrated and verified; M0-M3 prerequisite gates passed.",
+        "v0.2.0-dev candidate: immutable explicit A..B diff, classification, deleted relationships, revision/evidence tracks, depth/display/hub and test-presence reporting.",
+        "249 local Rust tests, 6 Node, 4 metric, 18 planning tests; formatting/locked build/strict Clippy/code and security review passed.",
+        "Local clean release installation plus installed capabilities on Linux/macOS/Windows passed; mini oracle remains 3/3 precision/recall.",
+        "Pinned full upstream branch demo reproduces identical JSON from fresh/local objects. Seven UNCERTAIN classifications and graph-wide unknowns remain visible; no test sufficiency, full-project accuracy or performance claim.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41780258364",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41780258333",
+        "docs/task-reports/M4.md",
+        "docs/examples/m4-diff/README.md"
+      ],
+      "completed_at": "2026-11-04T05:44:07.401320+00:00"
     },
     {
       "id": "M5",
@@ -2258,39 +2268,60 @@
         "docs/task-reports/M4.md",
         "docs/adr/0024-diff-cli.md"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M4-T04",
       "started_at": "2026-11-04T05:26:31.920482+00:00",
-      "heartbeat_at": "2026-11-04T05:36:08.313245+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-04T05:44:07.401320+00:00",
+      "completed_at": "2026-11-04T05:44:07.401320+00:00",
+      "integrated_commit": "c9cefaf234c504a5a44577166ba43839a18cc574",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "249 local Rust tests; seven new CLI tests include 25 independent expected classification cases, eleven revision cases, hub/limits, error/binary/escaping and unchanged worktree/index state."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate",
+          "outcome": "passed",
+          "detail": "6 Node, 4 Python metric, 18 planning tests; plan/ledger consistency passed."
+        },
+        {
+          "command": "python3 eval/oracle/compare_run.py --source eval/corpora/mini --binary target/debug/ripple --output /tmp/ripple-M4-T04-mini",
+          "outcome": "passed",
+          "detail": "Pinned Node 24.22.1; precision/recall 3/3, no false positives/negatives or unmapped eligible edges."
+        },
+        {
+          "command": "cargo install --path crates/ripple-cli --locked --root /tmp/ripple-M4-T04-install; python3 scripts/m4-smoke.py --install-root /tmp/ripple-M4-T04-install",
+          "outcome": "passed",
+          "detail": "Release install v0.2.0-dev; prior capabilities plus immutable base/head/deletion/test presence/limits and read-only preservation passed."
+        },
+        {
+          "command": "python3 docs/examples/m4-diff/reproduce.py --binary target/debug/ripple --output /tmp/ripple-M4-T04-demo-fresh; repeat using --repository /tmp/ripple-M4-T04-upstream",
+          "outcome": "passed",
+          "detail": "Fresh and local pinned objects yield identical full JSON SHA-256 9bf1af507b060af964a4b57f7c7d7c29f0c21e4e7e4134da1da9d6c14195387f. Seven uncertain symbols/eight targets; incomplete upstream scope retained."
+        },
+        {
+          "command": "Code/security review; normal crate dependency trees; changed product-document links; git diff --check",
+          "outcome": "passed",
+          "detail": "No remaining scoped finding. No registry dependency change; production dependency direction preserved. Read-only endpoint/provenance, terminal escaping and complete machine evidence checked."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41780258364",
+          "outcome": "passed",
+          "detail": "Source c9cefaf: Linux/macOS Intel/Windows full workspace and installed v0.2 capability gates passed."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41780258333",
+          "outcome": "passed",
+          "detail": "Source c9cefaf: pinned oracle unit tests and exact mini metrics passed."
+        }
+      ],
       "blocker": null,
       "base_commit": "46eec07b82d919644c7d8d0a96caf547c7490ad7",
-      "claimed_paths": [
-        "crates/ripple-cli/src/commands/diff.rs",
-        "crates/ripple-cli/src/commands/diff_render.rs",
-        "crates/ripple-cli/src/main.rs",
-        "crates/ripple-cli/src/commands/mod.rs",
-        "crates/ripple-cli/src/commands/impact.rs",
-        "crates/ripple-cli/tests/diff.rs",
-        "crates/ripple-cli/tests/cli.rs",
-        "docs/examples/",
-        "scripts/m4-smoke.py",
-        ".github/workflows/ci.yml",
-        "Cargo.toml",
-        "Cargo.lock",
-        "docs/cli.md",
-        "docs/project-status.md",
-        "docs/limitations.md",
-        "README.md",
-        "docs/task-reports/M4-T04.md",
-        "docs/task-reports/M4.md",
-        "docs/adr/0024-diff-cli.md"
-      ],
-      "checkpoint": "Integrated code/security review and all local gates passed: 249 Rust tests, oracle mini 3/3, supporting tests, release install and v0.2 smoke. Pinned full-repo example reproduces from fresh/local objects.",
-      "next_action": "Push candidate, verify platform/oracle CI, then record M4-T04 done and M4/v0.2 gate.",
+      "claimed_paths": [],
+      "checkpoint": "Diff CLI integrated/reviewed; all local checks, fresh/local pinned branch reproduction, Linux/macOS/Windows installed v0.2 gates and resolver oracle CI passed. Claims released; M4 gate passed.",
+      "next_action": "M5-T01 \u2014 canonical full-state equality and cache fingerprints.",
       "report": "docs/task-reports/M4-T04.md"
     },
     {
@@ -2702,11 +2733,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M4-T04",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Integrated code/security review and all local gates passed: 249 Rust tests, oracle mini 3/3, supporting tests, release install and v0.2 smoke. Pinned full-repo example reproduces from fresh/local objects.",
-    "next_action": "Push candidate, verify platform/oracle CI, then record M4-T04 done and M4/v0.2 gate.",
-    "updated_at": "2026-11-04T05:36:08.313245+00:00"
+    "checkpoint": "Diff CLI integrated/reviewed; all local checks, fresh/local pinned branch reproduction, Linux/macOS/Windows installed v0.2 gates and resolver oracle CI passed. Claims released; M4 gate passed.",
+    "next_action": "M5-T01 \u2014 canonical full-state equality and cache fingerprints.",
+    "updated_at": "2026-11-04T05:44:07.401320+00:00"
   }
 }
