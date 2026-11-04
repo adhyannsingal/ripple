@@ -370,7 +370,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M5-T05 — Establish generated equality tests before early cutoff
 
 - **Depends on:** M5-T02. **Lane:** quality.
-- **Own:** `crates/ripple-index/tests/properties_basic*`; `fixtures/incremental/regressions/`; `.github/workflows/ci.yml`.
+- **Own:** `crates/ripple-index/tests/properties_basic*`; `fixtures/incremental/regressions/`; `.github/workflows/ci.yml`; `docs/adr/0027-generated-equality.md`; `docs/task-reports/M5-T05.md`.
 - **Implement:** Before importer-selective optimization, generate bounded supported TS projects and deterministic edit sequences over file add/delete, body/signature changes, missing imports and re-exports. Compare incremental with independent cold builds after each step; verify no-op idempotence and persistence round trips. Store shrunk failures/seeds and document fast CI/local commands.
 - **Acceptance:** The small generated suite passes on the conservative updater, detects deliberately injected stale-edge/diagnostic/confidence faults, and emits a repeatable failure seed. No early-cutoff optimization is integrated before this harness is passing.
 - **Handoff:** Mandatory baseline correctness guard for M5-T03; M6 expands workloads and real history rather than introducing the first property tests.

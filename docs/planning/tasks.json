@@ -2514,21 +2514,28 @@
       "owned_paths": [
         "crates/ripple-index/tests/properties_basic*",
         "fixtures/incremental/regressions/",
-        ".github/workflows/ci.yml"
+        ".github/workflows/ci.yml",
+        "docs/adr/0027-generated-equality.md",
+        "docs/task-reports/M5-T05.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M5-T05",
+      "started_at": "2026-11-04T19:35:26.094875+00:00",
+      "heartbeat_at": "2026-11-04T19:35:26.094875+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "2910e63a9489a7ea64c0130c61ee4ee585d13377",
+      "claimed_paths": [
+        "crates/ripple-index/tests/properties_basic.rs",
+        "fixtures/incremental/regressions/",
+        "docs/adr/0027-generated-equality.md",
+        "docs/task-reports/M5-T05.md"
+      ],
+      "checkpoint": "T02 integrated/verified. Establish deterministic generated equality, idempotence and round-trip tests before selective invalidation.",
+      "next_action": "Generate bounded supported projects/edit sequences; compare independent cold state after every edit and verify fault detection/reproducible seeds.",
       "report": "docs/task-reports/M5-T05.md"
     },
     {
@@ -2801,8 +2808,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "Conservative refresh integrated/reviewed; full local and platform/oracle gates pass. Claims released.",
-    "next_action": "M5-T05 \u2014 generated equality/idempotence/round-trip guard before T03.",
-    "updated_at": "2026-11-04T19:35:11.468475+00:00"
+    "checkpoint": "T02 integrated/verified. Establish deterministic generated equality, idempotence and round-trip tests before selective invalidation.",
+    "next_action": "Generate bounded supported projects/edit sequences; compare independent cold state after every edit and verify fault detection/reproducible seeds.",
+    "updated_at": "2026-11-04T19:35:26.094875+00:00"
   }
 }
