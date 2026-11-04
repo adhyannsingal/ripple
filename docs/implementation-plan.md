@@ -354,7 +354,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M5-T03 — Propagate importer invalidation with safe early cutoff
 
 - **Depends on:** M5-T05, M2-T07. **Lane:** semantics.
-- **Own:** `crates/ripple-index/src/invalidation*`; `crates/ripple-resolve/src/dependencies*`; `fixtures/incremental/`.
+- **Own:** `crates/ripple-index/src/invalidation*`; `crates/ripple-resolve/src/dependencies*`; `fixtures/incremental/`; `crates/ripple-index/src/incremental.rs`; `crates/ripple-index/src/incremental_tests.rs`; `crates/ripple-index/src/build.rs`; `crates/ripple-index/src/lib.rs`; `crates/ripple-index/tests/properties_basic.rs`; `crates/ripple-resolve/src/symbols.rs`; `crates/ripple-resolve/src/lib.rs`; `docs/adr/0028-selective-resolution.md`; `docs/limitations.md`; `docs/task-reports/M5-T03.md`; `eval/results/resolver/m5/`.
 - **Implement:** Use persisted resolution dependencies and export fingerprints to re-resolve affected importers/re-exporters to a fixed point. Include deleted targets, cyclic barrels, failed lookups, candidates and previously unresolved references. Stop only when all externally visible relevant facts are unchanged; use full resolution fallback for unproven cases.
 - **Acceptance:** Mutation matrix covers body-only cutoff, signature/export change, alias/config edit, renamed/deleted provider, new file satisfying a missing import, candidate target change and circular re-exports; every case equals cold; instrumentation proves supported body-only case avoids importer re-resolution. The generated equality/idempotence/round-trip suite introduced by M5-T05 passes on every cutoff change.
 - **Handoff:** Invalidation algorithm, evidence for each cutoff rule and explicit fallback conditions.
