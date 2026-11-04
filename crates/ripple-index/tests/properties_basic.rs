@@ -286,3 +286,40 @@ fn deliberately_stale_edges_confidence_and_diagnostics_are_detected_with_reprodu
         assert!(error.contains("RIPPLE_PROPERTY_SEED=42"));
     }
 }
+
+#[test]
+fn resolved_body_sequences_equal_cold_before_and_after_cutoff() {
+    let seeds: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../fixtures/incremental/regressions/basic-seeds.json"
+    ))
+    .unwrap();
+    for seed in seeds["seeds"].as_array().unwrap() {
+        let seed = seed.as_u64().unwrap();
+        let root = tempfile::tempdir().unwrap();
+        project(root.path(), seed);
+        write(
+            root.path(),
+            "late.ts",
+            "export function late() { return 1; }\n",
+        );
+        incremental::refresh(root.path(), origin).unwrap();
+        for body in 1..=3 {
+            write(
+                root.path(),
+                "m0.ts",
+                &format!("export function f0() {{ return {body}; }}\n"),
+            );
+            incremental::refresh(root.path(), origin).unwrap();
+            let actual = load(root.path());
+            let (_copy, cold) = independent(root.path());
+            mismatch(seed, body, &actual, &cold).unwrap();
+            assert_eq!(canonical(&actual), canonical(&load(root.path())));
+            let outcome = incremental::refresh(root.path(), origin).unwrap();
+            assert_eq!(outcome.update.parsed_files, 0);
+            assert_eq!(canonical(&actual), canonical(&load(root.path())));
+        }
+    }
+    println!(
+        "resolved-body-v1: 8 seeds x 3 edits = 24 cold comparisons, plus reload/idempotence checks"
+    );
+}
