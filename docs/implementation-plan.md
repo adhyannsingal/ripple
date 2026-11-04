@@ -320,7 +320,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M4-T03 — Combine base and head impact without losing old paths
 
 - **Depends on:** M4-T02, M2-T05. **Lane:** integration.
-- **Own:** `crates/ripple-index/src/snapshots*`; `crates/ripple-impact/src/revision_impact*`; `fixtures/revision-impact/`.
+- **Own:** `crates/ripple-index/src/snapshots*`; `crates/ripple-impact/src/revision_impact*`; `fixtures/revision-impact/`; `crates/ripple-index/src/build_capture.rs`; `crates/ripple-index/src/build.rs`; `crates/ripple-index/src/lib.rs`; `crates/ripple-index/Cargo.toml`; `crates/ripple-impact/src/lib.rs`; `Cargo.lock`; `docs/adr/0023-revision-impact.md`; `docs/task-reports/M4-T03.md`; `docs/limitations.md`; `docs/project-status.md`; `crates/ripple-core/src/revision.rs`; `crates/ripple-git/src/revisions.rs`.
 - **Implement:** Build isolated complete base/head snapshots using the cold pipeline; query both graphs per changed seed and union semantic results while retaining witness revision. Handle removed calls, deleted symbols, base-only tests, file-level/config changes and unknown regions explicitly. Do not overwrite worktree index metadata. Keep evidence_kind separate in each base/head witness and union. Module/file/config seeds use labelled fallback results unless a concrete symbol-backed relationship exists.
 - **Acceptance:** A deleted export still reaches old callers; removal of a call/import preserves the base witness; added symbols use head; unchanged revisions are empty; worktree status/index remains unchanged; both revision labels and unresolved/truncated state are retained.
 - **Handoff:** Two-revision impact API; conservative correctness baseline before caching historical snapshots.
