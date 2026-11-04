@@ -2176,19 +2176,34 @@
         "crates/ripple-impact/src/revision_impact*",
         "fixtures/revision-impact/"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "local-agent",
+      "branch": "agent/M4-T03",
+      "started_at": "2026-11-04T03:26:10.478354+00:00",
+      "heartbeat_at": "2026-11-04T03:26:10.478354+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "07df0f9b3e54174948be757cd020c53f6c4ece32",
+      "claimed_paths": [
+        "crates/ripple-index/src/snapshots.rs",
+        "crates/ripple-index/src/snapshots_tests.rs",
+        "crates/ripple-index/src/build_capture.rs",
+        "crates/ripple-index/src/build.rs",
+        "crates/ripple-index/src/lib.rs",
+        "crates/ripple-index/Cargo.toml",
+        "crates/ripple-impact/src/revision_impact.rs",
+        "crates/ripple-impact/src/lib.rs",
+        "Cargo.lock",
+        "fixtures/revision-impact/",
+        "docs/adr/0023-revision-impact.md",
+        "docs/task-reports/M4-T03.md",
+        "docs/limitations.md",
+        "docs/project-status.md"
+      ],
+      "checkpoint": "Dependencies verified and Git synced. Implement provider-generic cold capture and independent in-memory immutable snapshots, then pure revision-labelled graph union. Preserve graphify-out/.",
+      "next_action": "Build base/head capture without worktree persistence; seed classified symbols/file fallback, retain revision uncertainty and actual path presence; add Git-backed acceptance fixtures.",
       "report": "docs/task-reports/M4-T03.md"
     },
     {
@@ -2630,11 +2645,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "local-agent",
+    "session_id": "ripple-M4-T03",
     "integration_branch": "main",
-    "checkpoint": "M4-T02 complete: classifier, independent goldens and reviewed uncertainty/provenance contract integrated; all final platform/oracle checks passed. No retained claims. Existing graphify-out/ preserved.",
-    "next_action": "Next scheduled: M4-T03 combined base/head impact. Select and claim before editing.",
-    "updated_at": "2026-11-03T20:57:23.840344+00:00"
+    "checkpoint": "Dependencies verified and Git synced. Implement provider-generic cold capture and independent in-memory immutable snapshots, then pure revision-labelled graph union. Preserve graphify-out/.",
+    "next_action": "Build base/head capture without worktree persistence; seed classified symbols/file fallback, retain revision uncertainty and actual path presence; add Git-backed acceptance fixtures.",
+    "updated_at": "2026-11-04T03:26:10.478354+00:00"
   }
 }
