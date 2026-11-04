@@ -137,15 +137,6 @@ pub fn resolve_with_reuse(
         .map(|p| (*p).clone())
         .collect::<BTreeSet<_>>();
     for (path, file) in &new {
-        if compatible
-            && !candidate_files.contains(path)
-            && old
-                .get(path)
-                .is_some_and(|old| normalized(old, false) == normalized(file, false))
-            && old_bindings.get(path) == new_bindings.get(path)
-        {
-            reusable.insert((*path).clone());
-        }
         if old
             .get(path)
             .is_none_or(|old| normalized(old, false) != normalized(file, false))
@@ -180,9 +171,21 @@ pub fn resolve_with_reuse(
         }
     }
     unchanged_external_surfaces.sort();
-    let invalidation_candidates = affected_files(&changed, &previous.modules, &modules)
-        .into_iter()
-        .collect();
+    let invalidated = affected_files(&changed, &previous.modules, &modules);
+    let unchanged_surfaces = unchanged_external_surfaces.iter().collect::<BTreeSet<_>>();
+    for (path, file) in &new {
+        if compatible
+            && !candidate_files.contains(path)
+            && (!invalidated.contains(*path) || unchanged_surfaces.contains(path))
+            && old
+                .get(path)
+                .is_some_and(|old| normalized(old, false) == normalized(file, false))
+            && old_bindings.get(path) == new_bindings.get(path)
+        {
+            reusable.insert((*path).clone());
+        }
+    }
+    let invalidation_candidates = invalidated.into_iter().collect();
     let stats = ReuseStats {
         modules_reused,
         module_files_resolved: if modules_reused { 0 } else { files.len() },
