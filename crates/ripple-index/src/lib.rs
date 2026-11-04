@@ -1,4 +1,4 @@
-//! Atomic storage and cold captured-input indexing; incremental updates are later work.
+//! Atomic generation storage and verified cold/incremental captured-input indexing.
 pub mod storage;
 
 #[cfg(test)]

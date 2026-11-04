@@ -2539,13 +2539,14 @@
         "README.md",
         "docs/task-reports/M5-T04.md",
         "docs/task-reports/M5.md",
-        "eval/results/resolver/m5/cli-verification.json"
+        "eval/results/resolver/m5/cli-verification.json",
+        "crates/ripple-index/src/lib.rs"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "local-agent",
       "branch": "agent/M5-T04",
       "started_at": "2026-11-04T20:19:23.217895+00:00",
-      "heartbeat_at": "2026-11-04T20:19:23.217895+00:00",
+      "heartbeat_at": "2026-11-04T20:30:07.881419+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2566,10 +2567,11 @@
         "README.md",
         "docs/task-reports/M5-T04.md",
         "docs/task-reports/M5.md",
-        "eval/results/resolver/m5/cli-verification.json"
+        "eval/results/resolver/m5/cli-verification.json",
+        "crates/ripple-index/src/lib.rs"
       ],
-      "checkpoint": "T01/T02/T05/T03 integrated and verified. Wire default refresh and explicit full rebuild, report truthful counters and verify installed sequences.",
-      "next_action": "Add CLI/gate tests and docs, run complete local/clean-install/platform/oracle checks, then finish M5.",
+      "checkpoint": "Final CLI and M5 local gate reviewed:269 Rust tests,120 generated comparisons,supporting checks,clean release install and expanded smoke pass. Oracle artifacts byte-equal to T03; docs coherent.",
+      "next_action": "Push and verify expanded three-platform install/workspace and oracle CI; then close T04 and M5.",
       "report": "docs/task-reports/M5-T04.md"
     },
     {
@@ -2897,8 +2899,8 @@
     "owner": "local-agent",
     "session_id": "ripple-M5",
     "integration_branch": "main",
-    "checkpoint": "T01/T02/T05/T03 integrated and verified. Wire default refresh and explicit full rebuild, report truthful counters and verify installed sequences.",
-    "next_action": "Add CLI/gate tests and docs, run complete local/clean-install/platform/oracle checks, then finish M5.",
-    "updated_at": "2026-11-04T20:19:23.217895+00:00"
+    "checkpoint": "Final CLI and M5 local gate reviewed:269 Rust tests,120 generated comparisons,supporting checks,clean release install and expanded smoke pass. Oracle artifacts byte-equal to T03; docs coherent.",
+    "next_action": "Push and verify expanded three-platform install/workspace and oracle CI; then close T04 and M5.",
+    "updated_at": "2026-11-04T20:30:07.881419+00:00"
   }
 }
