@@ -2188,36 +2188,45 @@
         "crates/ripple-core/src/revision.rs",
         "crates/ripple-git/src/revisions.rs"
       ],
-      "status": "review",
-      "owner": "local-agent",
+      "status": "done",
+      "owner": null,
       "branch": "agent/M4-T03",
       "started_at": "2026-11-04T03:26:10.478354+00:00",
-      "heartbeat_at": "2026-11-04T03:48:39.194755+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-04T03:57:07.596535+00:00",
+      "completed_at": "2026-11-04T03:57:07.596535+00:00",
+      "integrated_commit": "9c2c066cf8c8d359253f8b0cefd1795c02163069",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "detail": "242 local Rust tests; four focused tests include eleven real-Git scenarios, canonical parity/repeatability, invalid endpoint views, symlinks and read-only state preservation."
+        },
+        {
+          "command": "npm test --prefix eval/oracle; python3 -m unittest discover -s eval/oracle/test -v; python3 -m unittest discover -s scripts/tests -v; python3 scripts/plan.py validate",
+          "outcome": "passed",
+          "detail": "6 Node, 4 metric, 18 planning tests; 43 tasks and 9 milestones consistent."
+        },
+        {
+          "command": "python3 scripts/m2-smoke.py --binary target/debug/ripple; cargo tree -p ripple-index --edges normal --depth 1; cargo tree -p ripple-impact --edges normal --depth 1; git diff --check",
+          "outcome": "passed",
+          "detail": "CLI smoke and Git-index preservation pass; production dependency direction preserved. Code/security review found no remaining scoped issue."
+        },
+        {
+          "command": "GitHub CI https://github.com/adhyannsingal/ripple/actions/runs/41769473630",
+          "outcome": "passed",
+          "detail": "Linux, macOS Intel and Windows workspace checks, clean installation and installed CLI smoke passed on 9c2c066."
+        },
+        {
+          "command": "GitHub Resolver oracle https://github.com/adhyannsingal/ripple/actions/runs/41769473654",
+          "outcome": "passed",
+          "detail": "Pinned oracle tests and exact mini-corpus metrics passed on 9c2c066."
+        }
+      ],
       "blocker": null,
       "base_commit": "07df0f9b3e54174948be757cd020c53f6c4ece32",
-      "claimed_paths": [
-        "crates/ripple-index/src/snapshots.rs",
-        "crates/ripple-index/src/snapshots_tests.rs",
-        "crates/ripple-index/src/build_capture.rs",
-        "crates/ripple-index/src/build.rs",
-        "crates/ripple-index/src/lib.rs",
-        "crates/ripple-index/Cargo.toml",
-        "crates/ripple-impact/src/revision_impact.rs",
-        "crates/ripple-impact/src/lib.rs",
-        "Cargo.lock",
-        "fixtures/revision-impact/",
-        "docs/adr/0023-revision-impact.md",
-        "docs/task-reports/M4-T03.md",
-        "docs/limitations.md",
-        "docs/project-status.md",
-        "crates/ripple-core/src/revision.rs",
-        "crates/ripple-git/src/revisions.rs"
-      ],
-      "checkpoint": "Integrated worker commits through 0b4faee; four acceptance tests/eleven scenarios and strict Clippy pass. Review and full integration checks pending.",
-      "next_action": "Run full integrated checks, push and verify platform/oracle CI, then close task.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated and reviewed; 11 real-Git scenarios, canonical cold parity, read-only state checks and full platform/oracle CI passed. Claims released.",
+      "next_action": "M4-T04 \u2014 wire diff CLI, query controls and real-branch evidence.",
       "report": "docs/task-reports/M4-T03.md"
     },
     {
@@ -2659,11 +2668,11 @@
     }
   ],
   "coordinator": {
-    "owner": "local-agent",
-    "session_id": "ripple-M4-T03",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Integrated worker commits through 0b4faee; four acceptance tests/eleven scenarios and strict Clippy pass. Review and full integration checks pending.",
-    "next_action": "Run full integrated checks, push and verify platform/oracle CI, then close task.",
-    "updated_at": "2026-11-04T03:48:39.194755+00:00"
+    "checkpoint": "Integrated and reviewed; 11 real-Git scenarios, canonical cold parity, read-only state checks and full platform/oracle CI passed. Claims released.",
+    "next_action": "M4-T04 \u2014 wire diff CLI, query controls and real-branch evidence.",
+    "updated_at": "2026-11-04T03:57:07.596535+00:00"
   }
 }
