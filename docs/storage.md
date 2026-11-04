@@ -17,3 +17,9 @@ Inputs are capped at 16 MiB each and 256 MiB total; JSON records/summary at 64 M
 Run `cargo test --locked -p ripple-index` for the fixture, rollback, corruption, concurrency and recovery tests. See [ADR 0016](adr/0016-storage-generations.md) and [storage fixtures](../fixtures/storage/README.md).
 
 The cold builder additionally writes `modules-N.json` as a derived per-generation module-evidence cache after publication. Missing/corrupt/pending cache files do not override SQLite; current queries reconstruct module completeness from captured facts/config. Future cache reuse must run module artifact validation and index freshness checks. See [cold-index policy](adr/0021-cold-index.md).
+
+## Generation analysis cache (schema v2)
+
+Cold publication now uses `publish_analysis` to commit a generation-bound `AnalysisCache` in the same transaction and integrity seal as captured inputs/facts/graph. `LoadedGeneration.analysis` exposes content/symbol/class/module fingerprints, complete module/config/lookup evidence, diagnostics and missing probes. Low-level `publish` can still store generic snapshots without this optional cache; future incremental indexing must report a full fallback in that case. Missing/corrupt authoritative artifacts fail integrity checks. They are distinct from optional `modules-N.json` sidecars.
+
+Schema v2 verifies migrations 1 and 2. Old schema-v1 state is incompatible: safely archive it while no writer uses it, then run `ripple index .`. There is no silent migration or automatic deletion. `CanonicalState` compares full snapshot semantics and `CanonicalAnalysis` additionally compares module/config/discovery evidence; ordered lookup precedence and witness hops remain observable. See [ADR 0025](adr/0025-incremental-cache.md). T01 does not yet enable incremental updates; performance is not measured.
