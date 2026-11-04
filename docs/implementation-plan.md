@@ -380,7 +380,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M6-T01 — Expand generated equality tests and adversarial edit sequences
 
 - **Depends on:** M5-T04. **Lane:** quality.
-- **Own:** `crates/ripple-index/tests/properties*`; `fixtures/incremental/regressions/`; `.github/workflows/ci.yml`.
+- **Own:** `crates/ripple-index/tests/properties*`; `fixtures/incremental/regressions/`; `.github/workflows/ci.yml`; `crates/ripple-index/src/incremental_tests.rs`.
 - **Implement:** Extend the M5-T05 suite with longer edit sequences, cyclic barrels, ambiguity transitions, parse recovery, Unicode/CRLF span shifts, config/ignore changes and concurrent capture changes. Keep deterministic bounded CI seeds and a documented longer campaign; persist shrunk regressions. Repair discovered defects within this task or explicit prerequisites before marking it done.
 - **Acceptance:** Expanded properties and all baseline seeds pass; intentionally stale edge/confidence/provenance/diagnostic states are detected; regressions have minimized fixtures and replay commands. Report tested seed counts and campaign bounds, not an unbounded correctness guarantee.
 - **Handoff:** Continuous correctness gate protecting invalidation and future optimizations.

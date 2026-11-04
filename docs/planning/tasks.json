@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-03",
+  "updated_at": "2026-11-04",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -2673,21 +2673,26 @@
       "owned_paths": [
         "crates/ripple-index/tests/properties*",
         "fixtures/incremental/regressions/",
-        ".github/workflows/ci.yml"
+        ".github/workflows/ci.yml",
+        "crates/ripple-index/src/incremental_tests.rs"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "coordinator",
+      "branch": "agent/M6-T01",
+      "started_at": "2026-11-04T23:45:24.341286+00:00",
+      "heartbeat_at": "2026-11-04T23:45:24.341286+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "d96ba90da90b1fdf1f8482150b4c5360befec9a1",
+      "claimed_paths": [
+        "crates/ripple-index/tests/properties_basic.rs",
+        "fixtures/incremental/regressions/",
+        "crates/ripple-index/src/incremental_tests.rs"
+      ],
+      "checkpoint": "Preflight audit passed; expand bounded generated equality adversaries.",
+      "next_action": "Implement seeded adversarial transitions and deterministic concurrent-capture cases.",
       "report": "docs/task-reports/M6-T01.md"
     },
     {
@@ -2929,11 +2934,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "coordinator",
+    "session_id": "M6-batches-2026-11-04",
     "integration_branch": "main",
-    "checkpoint": "Verified incremental CLI integrated; all final workspace/generated/oracle/three-platform clean-install gates passed after smoke cleanup repair. Claims released; M5 gate passed.",
-    "next_action": "M6-T01 \u2014 expand generated/adversarial equality tests.",
-    "updated_at": "2026-11-04T20:53:12.195953+00:00"
+    "checkpoint": "M6-T01 claimed; audit complete.",
+    "next_action": "Implement seeded adversarial transitions and deterministic concurrent-capture cases.",
+    "updated_at": "2026-11-04T23:45:24.341286+00:00"
   }
 }
