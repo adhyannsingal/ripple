@@ -1,0 +1,176 @@
+{
+  "format_version": 1,
+  "scope": "Final incremental CLI initial-build path; raw compiler/analyzer artifacts byte-equal to M5-T03. Incremental reuse equivalence is tested separately by the generated/targeted guard.",
+  "corpora": {
+    "mini": {
+      "metadata": {
+        "analyzer_commit": "e20c1e14975cb644cccc5528877c99bfedbf31ef",
+        "analyzer_versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "binary_sha256": "1970b25cfb62a1b6bfc37391aad5f61d5d399cbf633c89fb598a2b5062cd2e9d",
+        "compiler_options": {
+          "jsx": 1,
+          "module": 1,
+          "moduleResolution": 2,
+          "noEmit": true,
+          "noLib": true,
+          "skipLibCheck": true,
+          "target": 9,
+          "types": []
+        },
+        "corpus": {
+          "id": "mini",
+          "projection": "owned hand-checked mini corpus"
+        },
+        "input_hashes": {
+          "barrel.ts": "4e8e33e93166b62a7d68455f01557f6b39bc4a788a393058d45c749001b93fe0",
+          "lib.ts": "9620c1b919f606c0e53cb4a9f0ed06bfb72e8d03b590fd9019c83d05f53c4ad2",
+          "main.ts": "64340c485b28df1b26523b0bdc033d38ead332e3f7663fe4e5e4c68e74819d5e",
+          "view.tsx": "826f28c13e981cbdae0731e193448011a633543242d93bbaf45c559fa598df60"
+        },
+        "node": "v24.22.1",
+        "rust_source_tree": "b278bb582fbd9e6e44e2cef0f17f8574a1cb6b66",
+        "typescript": "6.0.3"
+      },
+      "metrics": {
+        "precision": {
+          "denominator": 3,
+          "numerator": 3,
+          "value": 1.0
+        },
+        "recall": {
+          "denominator": 3,
+          "numerator": 3,
+          "value": 1.0
+        }
+      },
+      "counts": {
+        "candidate_comparable_edges": 0,
+        "oracle_edges": 3,
+        "oracle_excluded_occurrences": 4,
+        "out_of_scope_ripple_edges": 0,
+        "resolved_comparable_edges": 3,
+        "unmapped_eligible_ripple_edges": 0,
+        "unmapped_ripple_definitions": 0,
+        "unresolved_occurrences": 2
+      },
+      "raw_artifacts": {
+        "oracle.json": {
+          "matches_m5_t03_bytes": true,
+          "sha256": "26f1465a00b36b2c13a0327b5e21a8fe2a3d1fb9198b7f0ff9a8ac158892ec59",
+          "reference": "mini/oracle.json"
+        },
+        "ripple.json": {
+          "matches_m5_t03_bytes": true,
+          "sha256": "8ad8bdefce283f66bd845224e85b51376666580cc2588ca65a8777810370c34b",
+          "reference": "mini/ripple.json"
+        }
+      }
+    },
+    "sourcemap-codec": {
+      "metadata": {
+        "analyzer_commit": "e20c1e14975cb644cccc5528877c99bfedbf31ef",
+        "analyzer_versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "binary_sha256": "1970b25cfb62a1b6bfc37391aad5f61d5d399cbf633c89fb598a2b5062cd2e9d",
+        "compiler_options": {
+          "jsx": 1,
+          "module": 1,
+          "moduleResolution": 2,
+          "noEmit": true,
+          "noLib": true,
+          "skipLibCheck": true,
+          "target": 9,
+          "types": []
+        },
+        "corpus": {
+          "commit": "363fb9bea57909bd49748d522478bd42b20fd57e",
+          "files": [
+            {
+              "bytes": 9713,
+              "path": "src/scopes.ts",
+              "sha256": "1db13eedacbcb83d4c0ca6023379de51240be2b50cfe96b2d6513789a31ab9af"
+            },
+            {
+              "bytes": 3203,
+              "path": "src/sourcemap-codec.ts",
+              "sha256": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e"
+            },
+            {
+              "bytes": 1473,
+              "path": "src/strings.ts",
+              "sha256": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99"
+            },
+            {
+              "bytes": 1387,
+              "path": "src/vlq.ts",
+              "sha256": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+            },
+            {
+              "bytes": 1072,
+              "path": "LICENSE",
+              "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b"
+            }
+          ],
+          "format_version": 1,
+          "id": "sourcemap-codec-src",
+          "license": {
+            "path": "LICENSE",
+            "spdx": "MIT"
+          },
+          "projection": "The four upstream src TS files, unmodified; upstream build config/package metadata/tests are excluded. Fixed evaluation compiler options apply; not a full-project compatibility claim.",
+          "repository": "https://github.com/jridgewell/sourcemap-codec"
+        },
+        "input_hashes": {
+          "src/scopes.ts": "1db13eedacbcb83d4c0ca6023379de51240be2b50cfe96b2d6513789a31ab9af",
+          "src/sourcemap-codec.ts": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e",
+          "src/strings.ts": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99",
+          "src/vlq.ts": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+        },
+        "node": "v24.22.1",
+        "rust_source_tree": "b278bb582fbd9e6e44e2cef0f17f8574a1cb6b66",
+        "typescript": "6.0.3"
+      },
+      "metrics": {
+        "precision": {
+          "denominator": 16,
+          "numerator": 16,
+          "value": 1.0
+        },
+        "recall": {
+          "denominator": 16,
+          "numerator": 16,
+          "value": 1.0
+        }
+      },
+      "counts": {
+        "candidate_comparable_edges": 0,
+        "oracle_edges": 16,
+        "oracle_excluded_occurrences": 524,
+        "out_of_scope_ripple_edges": 6,
+        "resolved_comparable_edges": 16,
+        "unmapped_eligible_ripple_edges": 0,
+        "unmapped_ripple_definitions": 1,
+        "unresolved_occurrences": 567
+      },
+      "raw_artifacts": {
+        "oracle.json": {
+          "matches_m5_t03_bytes": true,
+          "sha256": "5307aee77303a220083cd14690bf2d80e4ba321dda41b95ece1a224e4b8c2074",
+          "reference": "sourcemap-codec/oracle.json"
+        },
+        "ripple.json": {
+          "matches_m5_t03_bytes": true,
+          "sha256": "ec257cb5e9319571e74bb6e9700571d4c1c48a7f894f0406882996f123fe6d82",
+          "reference": "sourcemap-codec/ripple.json"
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ From a supported single-project Git root:
 
 ```sh
 ripple index .
+ripple index . --full
 ripple status
 ripple impact authenticate
 ripple impact src/auth.ts::authenticate --format json
@@ -18,13 +19,15 @@ Install locally with `cargo install --path crates/ripple-cli --locked --root /pa
 
 ## Index and freshness
 
-Index always performs a cold build. It captures supported `.ts`/`.tsx`, config/inheritance, ignore, package and lock inputs, analyzes captured bytes, verifies a fresh manifest and HEAD/dirty observation, then atomically publishes a complete `.ripple/index.db` generation. Concurrent changes cause at most two retries; continued changes/failures preserve the previous generation. Repeated unchanged cold builds have equal canonical semantic state, despite different generation/time metadata.
+Index refreshes verified inputs and reuses unchanged analysis where proven; `--full` forces cold parsing/resolution. It captures supported `.ts`/`.tsx`, config/inheritance, ignore, package and lock inputs, analyzes captured bytes, verifies a fresh manifest and HEAD/dirty observation, then atomically publishes a complete `.ripple/index.db` generation. Concurrent changes cause at most two retries; continued changes/failures preserve the previous generation. Repeated unchanged refreshes/cold builds have equal canonical semantic state, despite different generation/time metadata. Successful no-op refreshes still publish complete generations.
 
 Status reports stored origin/analyzer/schema/config metadata and factual file/symbol/edge/unresolved counts only after content/path/config/HEAD verification. Impact applies the same verification before querying. Stale/changing inputs fail with a refresh instruction; neither command silently updates an index. Edits after the final verification can make it stale immediately, so this is a verified captured-input view, not an OS-wide atomic snapshot. Queries read/hash inputs and recompute module completeness; no graph-only latency is claimed.
 
 `metadata.json` and `modules-N.json` are derived summaries/evidence caches. If a derived write is pending after DB commit, index reports the committed generation and pending state. SQLite remains authoritative. Incompatible database formats are rejected; safely archive incompatible local `.ripple` state while no writer uses it, then build again. No destructive automatic migration or cache deletion is performed.
 
 Git provenance uses repository-local settings with system/global configuration isolated, filesystem monitor commands disabled and optional index writes disabled. External clean/process filters and submodules are unsupported and rejected. Git dirty status follows that declared policy, not arbitrary user-global conversion/ignore settings. The user worktree and Git index are not modified.
+
+The index report includes `data.update`: accepted-attempt parsed/reused/module/reference file counts, parse work across attempts, rebuild reasons, source-delta availability and invalidation candidates. Known stable-coordinate body changes can skip importer resolution; uncertain contexts use full module analysis. These are work counters, not performance guarantees. See [incremental indexing](incremental.md) for exact rules, failure behavior and reproducible equality checks. Unsupported on-disk formats require explicit archive/rebuild; `--full` does not bypass compatibility checks.
 
 ## Impact evidence
 
@@ -63,4 +66,4 @@ Inspect remains syntax-only (`resolution_available: false`), with supported symb
 | 1 | Operational failure, missing/stale/incompatible index, unknown/ambiguous symbol or unimplemented command. No success report. |
 | 2 | Invalid/missing arguments or format. |
 
-`test` remains an explicit unimplemented placeholder. Supported config/language limitations and bounds are in [limitations](limitations.md), [resolution](resolution.md) and [cold-index ADR](adr/0021-cold-index.md). Reproduce the installed capability gate with `python3 scripts/m4-smoke.py --install-root /path/to/install`.
+`test` remains an explicit unimplemented placeholder. Supported config/language limitations and bounds are in [limitations](limitations.md), [resolution](resolution.md) and [cold-index ADR](adr/0021-cold-index.md). Reproduce the installed capability gate with `python3 scripts/m5-smoke.py --install-root /path/to/install`.
