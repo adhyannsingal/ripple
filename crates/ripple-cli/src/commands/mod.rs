@@ -18,3 +18,6 @@ pub mod impact;
 pub mod index;
 mod persistent;
 pub mod status;
+
+pub mod diff;
+mod diff_render;

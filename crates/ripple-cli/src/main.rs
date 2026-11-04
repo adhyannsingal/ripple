@@ -18,7 +18,7 @@ use std::{
     name = "ripple",
     version,
     arg_required_else_help = true,
-    after_help = "Index builds a cold graph; status/impact verify it. Diff and test are not implemented yet."
+    after_help = "Index builds a cold graph; status/impact verify it. Diff compares immutable A..B endpoints; test is not implemented yet."
 )]
 struct Cli {
     /// Output style for implemented commands.
@@ -53,8 +53,19 @@ enum Command {
         #[arg(long, default_value_t = 100)]
         limit: usize,
     },
-    /// Not implemented yet: analyze Git base/head changes.
-    Diff(FutureArgs),
+    /// Compare explicit immutable Git endpoints and explain downstream impact.
+    Diff {
+        /// Explicit A..B tree endpoints; three-dot merge-base semantics are unsupported.
+        comparison: String,
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+        /// Maximum traversal depth; the default is unlimited.
+        #[arg(long)]
+        depth: Option<usize>,
+        /// Maximum human display rows per section; JSON retains complete results.
+        #[arg(long, default_value_t = 100)]
+        limit: usize,
+    },
     /// Not implemented yet: report potentially related test files.
     Test(FutureArgs),
     /// Verify index freshness and show provenance/counts.
@@ -78,10 +89,15 @@ fn run(cli: Cli) -> Result<(), CommandError> {
             depth,
             limit,
         } => return commands::impact::run(&root, &symbol, depth, limit, cli.format),
+        Command::Diff {
+            comparison,
+            root,
+            depth,
+            limit,
+        } => return commands::diff::run(&root, &comparison, depth, limit, cli.format),
         Command::Inspect { root, file } => commands::inspect::run(&root, file)?,
         other => {
             let name = match other {
-                Command::Diff(_) => "diff",
                 Command::Test(_) => "test",
                 _ => unreachable!(),
             };

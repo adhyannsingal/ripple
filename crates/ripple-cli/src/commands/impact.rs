@@ -113,6 +113,8 @@ pub fn run(
             }
         }
     }
+    super::diff_render::summaries(&mut human, &result.summaries, limit)
+        .map_err(|e| persistent::error(e.to_string()))?;
     let incomplete =
         current.incomplete || !result.impact.truncation.depth_boundary_nodes.is_empty();
     persistent::emit(

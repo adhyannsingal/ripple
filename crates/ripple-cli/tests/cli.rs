@@ -22,12 +22,10 @@ fn version_matches_the_package() {
 }
 #[test]
 fn registered_future_commands_fail_without_success_output() {
-    for args in [&["diff", "main..HEAD"][..], &["test", "main..HEAD"][..]] {
-        let output = ripple(args);
-        assert_eq!(output.status.code(), Some(1), "{args:?}");
-        assert!(output.stdout.is_empty());
-        assert!(String::from_utf8_lossy(&output.stderr).contains("command_not_implemented"));
-    }
+    let output = ripple(&["test", "main..HEAD"]);
+    assert_eq!(output.status.code(), Some(1));
+    assert!(output.stdout.is_empty());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("command_not_implemented"));
 }
 #[test]
 fn missing_unknown_commands_and_bad_usage_exit_two() {
@@ -35,6 +33,8 @@ fn missing_unknown_commands_and_bad_usage_exit_two() {
         &[][..],
         &["unknown"][..],
         &["inspect"][..],
+        &["diff"][..],
+        &["diff", "A..B", "--depth", "-1"][..],
         &["inspect", "file.ts", "--format", "xml"][..],
     ] {
         let output = ripple(args);
