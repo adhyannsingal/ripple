@@ -2676,11 +2676,11 @@
         ".github/workflows/ci.yml",
         "crates/ripple-index/src/incremental_tests.rs"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M6-T01",
       "started_at": "2026-11-04T23:45:24.341286+00:00",
-      "heartbeat_at": "2026-11-04T23:45:24.341286+00:00",
+      "heartbeat_at": "2026-11-04T23:48:14.696394+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2691,8 +2691,8 @@
         "fixtures/incremental/regressions/",
         "crates/ripple-index/src/incremental_tests.rs"
       ],
-      "checkpoint": "Preflight audit passed; expand bounded generated equality adversaries.",
-      "next_action": "Implement seeded adversarial transitions and deterministic concurrent-capture cases.",
+      "checkpoint": "Expanded index tests passed including 248 cold comparisons; integrated for full checks; extended campaign running.",
+      "next_action": "Complete long campaign, workspace checks and three-platform CI before marking done.",
       "report": "docs/task-reports/M6-T01.md"
     },
     {
