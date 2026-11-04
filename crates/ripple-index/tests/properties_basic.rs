@@ -241,7 +241,7 @@ fn deliberately_stale_edges_confidence_and_diagnostics_are_detected_with_reprodu
     project(root.path(), 42);
     incremental::refresh(root.path(), origin).unwrap();
     let expected = load(root.path());
-    for fault in 0..3 {
+    for fault in 0..4 {
         let mut actual = load(root.path());
         let mut data: SnapshotData =
             serde_json::from_value(serde_json::to_value(&actual.snapshot).unwrap()).unwrap();
@@ -266,6 +266,25 @@ fn deliberately_stale_edges_confidence_and_diagnostics_are_detected_with_reprodu
                     .find(|e| e.kind == EdgeKind::Calls)
                     .unwrap()
                     .confidence = Confidence::Candidate;
+                data.graph = GraphSnapshot::new(
+                    data.graph.nodes().to_vec(),
+                    edges,
+                    data.graph.unresolved().to_vec(),
+                )
+                .unwrap();
+            }
+            2 => {
+                let mut edges = data.graph.edges().to_vec();
+                let edge = edges
+                    .iter_mut()
+                    .find(|e| e.kind == EdgeKind::Calls)
+                    .unwrap();
+                edge.provenance.span = ripple_core::source::SourceSpan::from_offsets(
+                    actual.sources.get(&edge.provenance.file).unwrap().text(),
+                    0,
+                    1,
+                )
+                .unwrap();
                 data.graph = GraphSnapshot::new(
                     data.graph.nodes().to_vec(),
                     edges,
@@ -321,5 +340,147 @@ fn resolved_body_sequences_equal_cold_before_and_after_cutoff() {
     }
     println!(
         "resolved-body-v1: 8 seeds x 3 edits = 24 cold comparisons, plus reload/idempotence checks"
+    );
+}
+
+#[test]
+fn adversarial_sequences_equal_cold_after_every_transition() {
+    let bounds: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../fixtures/incremental/regressions/adversarial-seeds.json"
+    ))
+    .unwrap();
+    let seeds: Vec<u64> = match std::env::var("RIPPLE_ADVERSARIAL_SEED") {
+        Ok(seed) => vec![seed.parse().expect("decimal u64 seed")],
+        Err(_) => bounds["seeds"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|s| s.as_u64().unwrap())
+            .collect(),
+    };
+    let steps = std::env::var("RIPPLE_ADVERSARIAL_STEPS")
+        .map(|s| s.parse::<usize>().unwrap())
+        .unwrap_or(bounds["steps"].as_u64().unwrap() as usize);
+    assert!((1..=bounds["maximum_steps"].as_u64().unwrap() as usize).contains(&steps));
+    for seed in &seeds {
+        let root = tempfile::tempdir().unwrap();
+        project(root.path(), *seed);
+        write(
+            root.path(),
+            "a.ts",
+            "export * from './b'; export function shared(){return 1;}\n",
+        );
+        write(root.path(), "b.ts", "export * from './a';\n");
+        write(
+            root.path(),
+            "other.ts",
+            "export function shared(){return 2;}\n",
+        );
+        write(
+            root.path(),
+            "use.ts",
+            "import { shared } from './a'; export function use(){return shared();}\n",
+        );
+        write(
+            root.path(),
+            "alias.ts",
+            "import { f0 } from '@lib'; f0();\n",
+        );
+        incremental::refresh(root.path(), origin).unwrap();
+        for step in 0..steps {
+            match step % 16 {
+                0 => write(
+                    root.path(),
+                    "a.ts",
+                    "export * from './b'; export * from './other'; export * from './m0';\n",
+                ),
+                1 => write(
+                    root.path(),
+                    "b.ts",
+                    "export * from './a'; export function shared(){return 3;}\n",
+                ),
+                2 => write(
+                    root.path(),
+                    "a.ts",
+                    "export * from './b'; export {shared} from './other';\n",
+                ),
+                3 => write(root.path(), "use.ts", "export function broken( {\n"),
+                4 => write(
+                    root.path(),
+                    "use.ts",
+                    "// café 🦀\r\nimport {shared} from './a';\r\nexport function use(){return shared();}\r\n",
+                ),
+                5 => write(
+                    root.path(),
+                    "use.ts",
+                    "// λ\nimport {shared} from './a';\nexport function use(){return shared();}\n",
+                ),
+                6 => write(
+                    root.path(),
+                    "tsconfig.json",
+                    "{\"compilerOptions\":{\"baseUrl\":\".\",\"paths\":{\"@lib\":[\"m0\"]}}}",
+                ),
+                7 => write(
+                    root.path(),
+                    "tsconfig.json",
+                    "{\"compilerOptions\":{\"baseUrl\":\".\",\"paths\":{\"@lib\":[\"missing\"]}}}",
+                ),
+                8 => write(root.path(), ".ignore", "other.ts\n"),
+                9 => write(root.path(), ".ignore", "# restored\n"),
+                10 => fs::remove_file(root.path().join("other.ts")).unwrap(),
+                11 => write(
+                    root.path(),
+                    "other.ts",
+                    &format!(
+                        "export function shared(){{return {};}}\n",
+                        seed.wrapping_add(step as u64) % 100
+                    ),
+                ),
+                12 => write(root.path(), "b.ts", "export * from './a';\n"),
+                13 => write(
+                    root.path(),
+                    "a.ts",
+                    "export * from './b'; export * from './other';\n",
+                ),
+                14 => write(
+                    root.path(),
+                    "package.json",
+                    &format!("{{\"name\":\"case-{}\"}}", seed),
+                ),
+                _ => write(
+                    root.path(),
+                    "a.ts",
+                    "export * from './b'; export function shared(){return 1;}\n",
+                ),
+            }
+            incremental::refresh(root.path(), origin)
+                .unwrap_or_else(|e| panic!("adversarial seed={seed} step={step}: {e}"));
+            let updated = load(root.path());
+            let (_copy, cold) = independent(root.path());
+            if canonical(&updated) != canonical(&cold) {
+                if let Ok(dest) = std::env::var("RIPPLE_PROPERTY_FAILURE_DIR") {
+                    fs::create_dir_all(&dest).unwrap();
+                    fs::write(Path::new(&dest).join(format!("adversarial-{seed}-{step}.json")), serde_json::to_vec_pretty(&serde_json::json!({"seed":seed,"step":step,"inputs":inputs(root.path())})).unwrap()).unwrap();
+                }
+                panic!(
+                    "adversarial mismatch; reproduce RIPPLE_ADVERSARIAL_SEED={seed} RIPPLE_ADVERSARIAL_STEPS={} cargo test -p ripple-index --test properties_basic adversarial_sequences -- --nocapture",
+                    step + 1
+                );
+            }
+            assert_eq!(canonical(&updated), canonical(&load(root.path())));
+            assert_eq!(
+                incremental::refresh(root.path(), origin)
+                    .unwrap()
+                    .update
+                    .parsed_files,
+                0
+            );
+            assert_eq!(canonical(&updated), canonical(&load(root.path())));
+        }
+    }
+    println!(
+        "adversarial-v1: {} seeds x {steps} edits = {} cold comparisons plus reload/no-op",
+        seeds.len(),
+        seeds.len() * steps
     );
 }

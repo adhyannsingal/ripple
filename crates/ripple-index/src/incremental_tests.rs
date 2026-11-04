@@ -289,3 +289,33 @@ fn recapture_retries_account_for_actual_parse_work_and_never_publish_mixed_input
             .contains("stale")
     );
 }
+
+#[test]
+fn adversarial_recapture_membership_config_and_source_changes_equal_cold() {
+    for event in 0..4 {
+        let d = fixture();
+        let out = build::refresh_inner(d.path(), origin, |attempt, phase| {
+            if attempt == 1 && matches!(phase, Phase::BeforeVerification) {
+                match event {
+                    0 => {
+                        fs::write(d.path().join("late.ts"), "export function late() {}\n").unwrap()
+                    }
+                    1 => fs::remove_file(d.path().join("lib.ts")).unwrap(),
+                    2 => fs::write(
+                        d.path().join("tsconfig.json"),
+                        "{\"compilerOptions\":{\"baseUrl\":\".\"}}",
+                    )
+                    .unwrap(),
+                    _ => fs::write(
+                        d.path().join("caller.ts"),
+                        "// café\r\nexport function changed(){return 1;}\r\n",
+                    )
+                    .unwrap(),
+                }
+            }
+        })
+        .unwrap();
+        assert_eq!(out.attempts, 2, "event={event}");
+        equals_cold(d.path());
+    }
+}
