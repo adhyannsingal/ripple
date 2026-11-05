@@ -174,9 +174,21 @@
       "id": "M7",
       "title": "Test-file impact",
       "target": "Week 7",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M7-T01 and M7-T02 integrated and verified in dependency order; claims released.",
+        "Typed per-presence test selection with complete original base/head symbol/fallback witnesses, explicit depth/unknown/candidate uncertainty and conservative union.",
+        "Immutable test A..B human/JSON CLI; head-only recomputable ratios, null zero denominator, deleted/unindexed evidence separate; no test execution or sufficiency guarantee.",
+        "12 real-Git/graph-contract scenarios; 275 local Rust, 18 planning, 4 driver tests, strict fmt/build/Clippy and all-six-command clean installation passed.",
+        "Two pinned complete-repository comparisons repeated from fresh/local objects with byte-identical JSON; 0/2 and fallback-only1/2 selections remain incomplete, not precision/safety evidence.",
+        "RustSec zero vulnerabilities/warnings (122 dependencies); all-ref Gitleaks zero leaks (224 commits); targeted code/security review passed.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41975826479",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41975826487",
+        "docs/task-reports/M7.md",
+        "docs/examples/m7-test/README.md",
+        "docs/reviews/M7-security-verification-2026-11-05.md"
+      ],
+      "completed_at": "2026-11-05T05:58:40.209217+00:00"
     },
     {
       "id": "M8",
@@ -2931,34 +2943,56 @@
         "docs/limitations.md",
         "docs/adr/0031-test-cli.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M7-T02",
       "started_at": "2026-11-05T05:37:34.819708+00:00",
-      "heartbeat_at": "2026-11-05T05:43:42.083983+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-05T05:58:40.209217+00:00",
+      "completed_at": "2026-11-05T05:58:40.209217+00:00",
+      "integrated_commit": "de74d45adbfc6aa93735c63b6ecf6443c96cdc4b",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked (275 local Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo test --locked -p ripple-cli --test test_impact --test cli (3 end-to-end +5 CLI contracts)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (18); python3 -m unittest discover -s eval/commit-replay -v (4); python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo install --path crates/ripple-cli --locked --root /tmp/ripple-M7-install; python3 scripts/m7-smoke.py --install-root /tmp/ripple-M7-install (all six commands)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 docs/examples/m7-test/reproduce.py --binary target/debug/ripple --output NEW (two pinned comparisons; repeatable JSON; fresh/local object hashes equal)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo-audit 0.22.2 (122 dependencies; zero vulnerabilities/warnings); gitleaks 8.30.1 --all (224 commits; zero leaks)",
+          "outcome": "passed"
+        },
+        {
+          "command": "Targeted code/security review and changed-document link/diff checks; docs/reviews/M7-security-verification-2026-11-05.md",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41975826479 (Linux/macOS/Windows installed all-command smoke + replay)",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41975826487 (oracle)",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "686b3fb8a4bdd629a53246750a1cd43babbd33d9",
-      "claimed_paths": [
-        "crates/ripple-cli/src/commands/test.rs",
-        "crates/ripple-cli/tests/test_impact.rs",
-        "docs/examples/m7-test/",
-        "crates/ripple-cli/src/main.rs",
-        "crates/ripple-cli/src/commands/mod.rs",
-        "crates/ripple-cli/tests/cli.rs",
-        "scripts/m7-smoke.py",
-        ".github/workflows/ci.yml",
-        "README.md",
-        "CONTRIBUTING.md",
-        "docs/cli.md",
-        "docs/project-status.md",
-        "docs/limitations.md",
-        "docs/adr/0031-test-cli.md"
-      ],
-      "checkpoint": "CLI/evidence/docs integrated; focused tests, pinned fresh/local demos and local release smoke passed.",
-      "next_action": "Complete integrated workspace, code/security review and three-platform installed/replay/oracle CI, then close M7 gate.",
+      "claimed_paths": [],
+      "checkpoint": "Immutable test CLI integrated and verified; all local, external-demo, security, oracle and three-platform installed gates passed.",
+      "next_action": "M8-T01 / M8-T02 ready; not started (outside requested M7 assignment).",
       "report": "docs/task-reports/M7-T02.md"
     },
     {
@@ -3082,11 +3116,11 @@
     }
   ],
   "coordinator": {
-    "owner": "coordinator",
-    "session_id": "M7-first-two-2026-11-05",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "M7-T01 verified; implement immutable test CLI, recomputable head-only ratios and pinned upstream demo.",
-    "next_action": "Implement command/rendering, CLI safety/edge-case fixtures and installed smoke.",
-    "updated_at": "2026-11-05T05:37:34.819708+00:00"
+    "checkpoint": "Requested first two M7 tasks complete; M7 gate passed. All local/code-security/pinned demo/oracle/three-platform installed checks verified. Claims released; M8 not started.",
+    "next_action": "M8-T01 \u2014 evaluate fault-catching recall; M8-T02 workflow performance is independently ready.",
+    "updated_at": "2026-11-05T05:58:40.209217+00:00"
   }
 }
