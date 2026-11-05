@@ -3009,19 +3009,23 @@
         "eval/results/test-safety/",
         "docs/evaluation.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "coordinator",
+      "branch": "agent/M8-T01",
+      "started_at": "2026-11-05T19:37:40.244846+00:00",
+      "heartbeat_at": "2026-11-05T19:37:40.244846+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "5e996facb9ba33d6b649a700772c498b85625e93",
+      "claimed_paths": [
+        "eval/mutation/",
+        "eval/results/test-safety/",
+        "docs/evaluation.md"
+      ],
+      "checkpoint": "M7 final HEAD CI verified; owner selected MIT. Prepare isolated owned compiling mutation campaign.",
+      "next_action": "Implement per-file runtime failures, independent file-import/all-tests baselines and explicit exclusions.",
       "report": "docs/task-reports/M8-T01.md"
     },
     {
@@ -3116,11 +3120,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "coordinator",
+    "session_id": "M8-2026-11-05",
     "integration_branch": "main",
-    "checkpoint": "Requested first two M7 tasks complete; M7 gate passed. All local/code-security/pinned demo/oracle/three-platform installed checks verified. Claims released; M8 not started.",
-    "next_action": "M8-T01 \u2014 evaluate fault-catching recall; M8-T02 workflow performance is independently ready.",
-    "updated_at": "2026-11-05T05:58:40.209217+00:00"
+    "checkpoint": "M7 final HEAD CI verified; owner selected MIT. Prepare isolated owned compiling mutation campaign.",
+    "next_action": "Implement per-file runtime failures, independent file-import/all-tests baselines and explicit exclusions.",
+    "updated_at": "2026-11-05T19:37:40.244846+00:00"
   }
 }
