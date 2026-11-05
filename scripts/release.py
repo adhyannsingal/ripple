@@ -36,8 +36,17 @@ def prepare(binary,output,target):
     sqlite=next(p['id']for p in metadata['packages']if p['name']=='libsqlite3-sys')
     features=next(n['features']for n in metadata['resolve']['nodes']if n['id']==sqlite)
     if 'bundled' not in features:raise ValueError('bundled SQLite feature absent')
+    source_commit=command(['git','rev-parse','HEAD']).strip()
     payload={binary.name:binary.read_bytes()}
-    for name in ['LICENSE','README.md','CHANGELOG.md']:payload[name]=(ROOT/name).read_bytes()
+    for name in ['LICENSE','CHANGELOG.md']:payload[name]=(ROOT/name).read_bytes()
+    payload['SOURCE-README.md']=(ROOT/'README.md').read_bytes()
+    docs='https://github.com/adhyannsingal/ripple/blob/'+source_commit+'/docs/'
+    payload['README.md']=(f'Ripple {version} binary candidate for {target}\n\n'
+        'Unzip and run ./ripple --help (Windows: ripple.exe). Add the directory to PATH if desired. Git supporting --no-lazy-fetch is required. No Rust, Node, Python or database server is required to run Ripple. SQLite is bundled; system runtime dependencies are listed in DYNAMIC-DEPENDENCIES.txt.\n\n'
+        'In a supported TypeScript Git root: ripple index .; ripple status; ripple inspect FILE.ts; ripple impact FILE.ts::SYMBOL; ripple diff BASE..HEAD; ripple test BASE..HEAD. Use real existing refs/files/symbols. Test only reports potentially related files; no tests are executed and no set is sufficient. Unknown syntax/config/dynamic behavior remains incomplete; depth limits can omit tests.\n\n'
+        'Archives are unsigned/not notarized. SHA256SUMS and manifest.json verify integrity, not authorship. Read BUILD.json for exact source/host/tool versions and THIRD-PARTY.json for notice scope. Source-relative links in SOURCE-README.md assume a source checkout.\n\n'
+        'CLI documentation: '+docs+'cli.md\nLimitations: '+docs+'limitations.md\nEvaluation: '+docs+'evaluation.md\n'
+        'Project license: LICENSE (MIT); upstream notices retain their own terms. Public release/tag publication is separate from this candidate.\n').encode()
     vendor=json.loads((ROOT/'docs/third-party-notices/manifest.json').read_text())['notices']
     notices=[]
     lock_checks={}
@@ -82,7 +91,7 @@ def prepare(binary,output,target):
     dependencies=command(dependency_tool).replace(str(binary),'ripple')
     if any(s in dependencies.lower() for s in ['libsqlite','sqlite3.dll']):raise ValueError('unexpected dynamic SQLite dependency')
     payload['DYNAMIC-DEPENDENCIES.txt']=dependencies.encode()
-    build={'version':version,'target':target,'source_commit':command(['git','rev-parse','HEAD']).strip(),'cargo_lock_sha256':digest((ROOT/'Cargo.lock').read_bytes()),'rustc':command(['rustc','-vV']).strip(),'cargo':command(['cargo','--version']).strip(),'git':command(['git','--version']).strip(),'os':platform.platform(),'rustflags':os.environ.get('RUSTFLAGS',''),'sqlite':'bundled static C library; no separately installed SQLite library/server','unsigned':True,'public_release_created':False}
+    build={'version':version,'target':target,'source_commit':source_commit,'cargo_lock_sha256':digest((ROOT/'Cargo.lock').read_bytes()),'rustc':command(['rustc','-vV']).strip(),'cargo':command(['cargo','--version']).strip(),'git':command(['git','--version']).strip(),'os':platform.platform(),'rustflags':os.environ.get('RUSTFLAGS',''),'sqlite':'bundled static C library; no separately installed SQLite library/server','unsigned':True,'public_release_created':False}
     payload['BUILD.json']=(json.dumps(build,indent=2)+'\n').encode()
     name='ripple-'+version+'-'+target+'.zip'
     output.mkdir(parents=True)
