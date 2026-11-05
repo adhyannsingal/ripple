@@ -37,4 +37,4 @@ Scope: one Git root, TS/TSX and a [narrow documented config/resolution subset](d
 
 [Architecture](docs/architecture.md), [thesis](docs/thesis.md), [graph model](docs/graph-model.md), [incremental policy](docs/incremental.md), [ADRs](docs/adr/0001-rust-core.md), [task ledger](docs/planning/tasks.json) and [agent protocol](AGENTS.md) provide the contributor handoff. The ledger records verified progress; it is not a background scheduler.
 
-Licensed under [MIT](LICENSE). Upstream corpus notices remain separate. Versioned candidate packaging and final release checks are the remaining M8-T04 handoff; no public release is implied by this source checkout.
+Licensed under [MIT](LICENSE). Upstream corpus notices remain separate. The [release checklist](docs/release-checklist.md) records the exact candidate source, artifacts and final checks. Candidate preparation is separate from a public tag/release.

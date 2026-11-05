@@ -6,6 +6,8 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import platform
+import re
+import tarfile
 import shutil
 import stat
 import subprocess
@@ -38,16 +40,23 @@ def prepare(binary,output,target):
     for name in ['LICENSE','README.md','CHANGELOG.md']:payload[name]=(ROOT/name).read_bytes()
     vendor=json.loads((ROOT/'docs/third-party-notices/manifest.json').read_text())['notices']
     notices=[]
+    lock_checks={}
+    for block in (ROOT/'Cargo.lock').read_text().split('[[package]]')[1:]:
+        values={key:re.search(r'^'+key+r' = "([^"]+)"$',block,re.M) for key in ['name','version','checksum']}
+        if all(values.values()):lock_checks[(values['name'][1],values['version'][1])]=values['checksum'][1]
     for package in metadata['packages']:
         if not package['source']:continue
         source=Path(package['manifest_path']).parent
-        checks=json.loads((source/'.cargo-checksum.json').read_text())
+        expected_package=lock_checks[(package['name'],package['version'])]
+        cache=source.parents[2]/'cache'/source.parent.name/(package['name']+'-'+package['version']+'.crate')
+        if digest(cache.read_bytes())!=expected_package:raise ValueError('locked crate archive checksum mismatch')
         files=[p for p in source.iterdir()if p.is_file()and p.name.upper().startswith(('LICENSE','COPYING','NOTICE','UNLICENSE','AUTHORS'))]
-        entry={'name':package['name'],'version':package['version'],'license':package['license'],'cargo_checksum':checks['package'],'notice_files':[]}
+        entry={'name':package['name'],'version':package['version'],'license':package['license'],'cargo_checksum':expected_package,'notice_files':[]}
         for file in sorted(files):
             raw=file.read_bytes()
-            expected=checks['files'].get(file.name)
-            if expected and digest(raw)!=expected:raise ValueError('registry notice checksum mismatch')
+            with tarfile.open(cache,'r:gz')as archive:
+                member=archive.getmember(package['name']+'-'+package['version']+'/'+file.name)
+                if not member.isfile() or archive.extractfile(member).read()!=raw:raise ValueError('registry notice differs from locked archive')
             dest='third-party/'+package['name']+'-'+package['version']+'/'+file.name
             payload[dest]=raw;entry['notice_files'].append(dest)
         if not files:

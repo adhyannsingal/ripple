@@ -1,5 +1,7 @@
 [package]
 name = "ripple-cli"
+description = "Local explainable TypeScript Git change impact"
+readme = "../../README.md"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

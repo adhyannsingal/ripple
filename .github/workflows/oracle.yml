@@ -27,3 +27,8 @@ jobs:
         run: |
           python eval/oracle/compare_run.py --source eval/corpora/mini --binary target/debug/ripple --output /tmp/ripple-mini-ci
           python -c "import json; x=json.load(open('/tmp/ripple-mini-ci/comparison.json')); assert x['metrics']['precision']['numerator']==3; assert x['metrics']['recall']['numerator']==3; assert not x['metrics']['false_positive']; assert not x['metrics']['false_negative']; assert x['counts']['unmapped_eligible_ripple_edges']==0"
+
+      - name: Verify controlled mutation metric contracts
+        run: python -m unittest discover -s eval/mutation -v
+      - name: Run owned compiling fault campaign
+        run: python -c "import shutil,subprocess; subprocess.run(['python','eval/mutation/run.py','--binary','target/debug/ripple','--node',shutil.which('node'),'--typescript','eval/oracle/node_modules/typescript','--output','target/mutation-ci'],check=True)"
