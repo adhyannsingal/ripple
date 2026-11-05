@@ -2732,11 +2732,11 @@
         "crates/ripple-index/",
         "fixtures/incremental/regressions/"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M6-T02",
       "started_at": "2026-11-04T23:58:36.996484+00:00",
-      "heartbeat_at": "2026-11-04T23:58:36.996484+00:00",
+      "heartbeat_at": "2026-11-05T00:01:32.486894+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2748,8 +2748,8 @@
         "eval/results/replay/",
         "crates/ripple-index/examples/incremental_evaluate.rs"
       ],
-      "checkpoint": "M6-T01 prerequisite integrated and verified; pin finite licensed upstream source history.",
-      "next_action": "Implement immutable snapshot replay with full canonical cold comparison and repeatability evidence.",
+      "checkpoint": "16/16 full canonical history comparisons and exact clean-repeat semantic evidence passed; no production defect.",
+      "next_action": "Run integrated workspace/smoke/planning checks and applicable CI.",
       "report": "docs/task-reports/M6-T02.md"
     },
     {
