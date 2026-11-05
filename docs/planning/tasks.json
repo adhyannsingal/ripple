@@ -2732,24 +2732,44 @@
         "crates/ripple-index/",
         "fixtures/incremental/regressions/"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M6-T02",
       "started_at": "2026-11-04T23:58:36.996484+00:00",
-      "heartbeat_at": "2026-11-05T00:01:32.486894+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-05T00:13:34.680435+00:00",
+      "completed_at": "2026-11-05T00:13:34.680435+00:00",
+      "integrated_commit": "1c4c9011f086e8aa6ad949564d29344edc1f30ab",
+      "validation": [
+        {
+          "command": "python3 eval/commit-replay/run.py --helper target/debug/examples/incremental_evaluate --output NEW_DIRECTORY (2 clean repeats x 8 steps, zero mismatches)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s eval/commit-replay -v (4 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked (271 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/m5-smoke.py --binary target/debug/ripple; 18 planning tests; plan validation",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41938213058",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41938213043",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "b5a49cb62bc684b879ef40b4946b54f68d0af121",
-      "claimed_paths": [
-        "eval/commit-replay/",
-        "eval/corpora/sourcemap-codec-history.json",
-        "eval/results/replay/",
-        "crates/ripple-index/examples/incremental_evaluate.rs"
-      ],
-      "checkpoint": "16/16 full canonical history comparisons and exact clean-repeat semantic evidence passed; no production defect.",
-      "next_action": "Run integrated workspace/smoke/planning checks and applicable CI.",
+      "claimed_paths": [],
+      "checkpoint": "16/16 canonical comparisons, clean-repeat equivalence, integrated workspace and three-platform clean-install CI passed.",
+      "next_action": "M6-T03",
       "report": "docs/task-reports/M6-T02.md"
     },
     {
@@ -2963,8 +2983,8 @@
     "owner": "coordinator",
     "session_id": "M6-batches-2026-11-04",
     "integration_branch": "main",
-    "checkpoint": "M6-T02 claimed.",
-    "next_action": "Implement immutable snapshot replay with full canonical cold comparison and repeatability evidence.",
-    "updated_at": "2026-11-04T23:58:36.996484+00:00"
+    "checkpoint": "M6-T02 integrated and verified; claims released.",
+    "next_action": "Claim M6-T03.",
+    "updated_at": "2026-11-05T00:13:34.680435+00:00"
   }
 }
