@@ -1,12 +1,11 @@
 mod commands;
 mod output;
 
-use clap::{Args, Parser, Subcommand};
+use clap::{Parser, Subcommand};
 use commands::CommandError;
 use output::Format;
 use ripple_core::identity::RepoPath;
 use std::{
-    ffi::OsString,
     io::{self, Write},
     path::PathBuf,
     process::ExitCode,
@@ -18,7 +17,7 @@ use std::{
     name = "ripple",
     version,
     arg_required_else_help = true,
-    after_help = "Index refreshes verified inputs (--full rebuilds); status/impact verify freshness. Diff compares immutable A..B endpoints; test is not implemented yet."
+    after_help = "Index refreshes verified inputs (--full rebuilds); status/impact verify freshness. Diff and test compare immutable A..B endpoints; test reports potentially related files without running them."
 )]
 struct Cli {
     /// Output style for implemented commands.
@@ -69,18 +68,24 @@ enum Command {
         #[arg(long, default_value_t = 100)]
         limit: usize,
     },
-    /// Not implemented yet: report potentially related test files.
-    Test(FutureArgs),
+    /// Report potentially related test files without executing them.
+    Test {
+        /// Explicit A..B immutable tree endpoints.
+        comparison: String,
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+        /// Maximum traversal depth; omissions are explicitly reported.
+        #[arg(long)]
+        depth: Option<usize>,
+        /// Maximum human rows per section; JSON retains complete selection.
+        #[arg(long, default_value_t = 100)]
+        limit: usize,
+    },
     /// Verify index freshness and show provenance/counts.
     Status {
         #[arg(long, default_value = ".")]
         root: PathBuf,
     },
-}
-#[derive(Args)]
-struct FutureArgs {
-    #[arg(trailing_var_arg = true, allow_hyphen_values = true, hide = true)]
-    _args: Vec<OsString>,
 }
 fn run(cli: Cli) -> Result<(), CommandError> {
     let report = match cli.command {
@@ -99,16 +104,12 @@ fn run(cli: Cli) -> Result<(), CommandError> {
             limit,
         } => return commands::diff::run(&root, &comparison, depth, limit, cli.format),
         Command::Inspect { root, file } => commands::inspect::run(&root, file)?,
-        other => {
-            let name = match other {
-                Command::Test(_) => "test",
-                _ => unreachable!(),
-            };
-            return Err(CommandError::new(
-                "command_not_implemented",
-                format!("{name} is not implemented yet; use inspect for syntax facts"),
-            ));
-        }
+        Command::Test {
+            comparison,
+            root,
+            depth,
+            limit,
+        } => return commands::test::run(&root, &comparison, depth, limit, cli.format),
     };
     let bytes = report
         .render(cli.format)

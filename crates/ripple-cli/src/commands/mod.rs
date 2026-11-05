@@ -21,3 +21,5 @@ pub mod status;
 
 pub mod diff;
 mod diff_render;
+
+pub mod test;

@@ -2,13 +2,13 @@ mod support;
 use support::ripple;
 
 #[test]
-fn help_identifies_implemented_and_future_capabilities() {
+fn help_identifies_implemented_capabilities() {
     let output = ripple(&["--help"]);
     assert!(output.status.success());
     let text = String::from_utf8(output.stdout).unwrap();
     assert!(text.contains("Usage: ripple"));
     assert!(text.contains("inspect"));
-    assert!(text.contains("not implemented yet"));
+    assert!(text.contains("without running them"));
     assert!(output.stderr.is_empty());
 }
 #[test]
@@ -21,11 +21,11 @@ fn version_matches_the_package() {
     );
 }
 #[test]
-fn registered_future_commands_fail_without_success_output() {
-    let output = ripple(&["test", "main..HEAD"]);
+fn test_command_invalid_comparison_fails_without_success_output() {
+    let output = ripple(&["test", "A...B"]);
     assert_eq!(output.status.code(), Some(1));
     assert!(output.stdout.is_empty());
-    assert!(String::from_utf8_lossy(&output.stderr).contains("command_not_implemented"));
+    assert!(String::from_utf8_lossy(&output.stderr).contains("invalid_comparison"));
 }
 #[test]
 fn missing_unknown_commands_and_bad_usage_exit_two() {
@@ -44,7 +44,7 @@ fn missing_unknown_commands_and_bad_usage_exit_two() {
     }
 }
 #[test]
-fn command_help_is_available_for_inspect_and_future_placeholders() {
+fn command_help_is_available_for_all_implemented_commands() {
     for name in ["inspect", "index", "impact", "diff", "test", "status"] {
         let output = ripple(&[name, "--help"]);
         assert_eq!(output.status.code(), Some(0), "{name}");
