@@ -2871,26 +2871,40 @@
         "crates/ripple-index/tests/test_impact.rs",
         "docs/adr/0030-test-impact.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M7-T01",
       "started_at": "2026-11-05T05:23:07.493967+00:00",
-      "heartbeat_at": "2026-11-05T05:27:25.633923+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-05T05:37:34.718946+00:00",
+      "completed_at": "2026-11-05T05:37:34.718946+00:00",
+      "integrated_commit": "9f0edb4cd875982a01c50b0e771559ba681d615a",
+      "validation": [
+        {
+          "command": "cargo test --locked -p ripple-index --test test_impact (12 scenarios, all witnesses validated)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked (272 local tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 scripts/m6-smoke.py --binary target/debug/ripple; 18 planning tests; plan validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41974126057",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41974126058",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "6ba811d793ac11576bbb4f8366e481b70d7437d2",
-      "claimed_paths": [
-        "crates/ripple-impact/src/tests.rs",
-        "crates/ripple-impact/src/lib.rs",
-        "crates/ripple-index/tests/test_impact.rs",
-        "docs/adr/0030-test-impact.md",
-        "fixtures/test-impact/",
-        "docs/graph-model.md"
-      ],
-      "checkpoint": "12 real-Git/graph-contract scenarios and strict Clippy passed; projection integrated for workspace and CI verification.",
-      "next_action": "Verify integrated workspace and applicable three-platform CI before M7-T02.",
+      "claimed_paths": [],
+      "checkpoint": "Pure test selection integrated; 12 scenarios, full workspace and three-platform install/replay/oracle gates passed.",
+      "next_action": "M7-T02",
       "report": "docs/task-reports/M7-T01.md"
     },
     {
@@ -3045,8 +3059,8 @@
     "owner": "coordinator",
     "session_id": "M7-first-two-2026-11-05",
     "integration_branch": "main",
-    "checkpoint": "Verified prerequisites and clean tracked tree; introduce pure test selection projection over validated revision evidence.",
-    "next_action": "Implement typed per-file partitions/completeness and real Git acceptance fixtures.",
-    "updated_at": "2026-11-05T05:23:07.493967+00:00"
+    "checkpoint": "M7-T01 integrated and verified; claim released.",
+    "next_action": "Claim M7-T02.",
+    "updated_at": "2026-11-05T05:37:34.718946+00:00"
   }
 }
