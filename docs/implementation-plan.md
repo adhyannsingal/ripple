@@ -396,7 +396,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M6-T03 — Measure validated incremental performance
 
 - **Depends on:** M6-T02. **Lane:** quality.
-- **Own:** `bench/scripts/incremental*`; `bench/results/`; `docs/incremental.md`; `crates/ripple-index/`; `.github/workflows/ci.yml`.
+- **Own:** `bench/scripts/incremental*`; `bench/results/`; `docs/incremental.md`; `crates/ripple-index/`; `.github/workflows/ci.yml`; `scripts/m6-smoke.py`; `Cargo.toml`; `Cargo.lock`; `README.md`; `CONTRIBUTING.md`; `docs/cli.md`; `docs/project-status.md`; `eval/results/replay/m6-candidate/`.
 - **Implement:** Measure cold versus no-op/body/export/config updates on pinned workloads with repeated samples and parse/resolve counters. Replay defects are resolved in M6-T02 before this card starts. A new defect found while benchmarking reopens the appropriate correctness task and invalidates its gate; do not mask it with benchmark data. Record M6 gate evidence and v0.3 candidate; defer speculative tuning.
 - **Acceptance:** Incremental p50/p95, run count, state, hardware and cold baseline recorded; body-only case demonstrates parse reuse; equality suites and replay still pass after fixes; no unexplained supported behavior regressions. Add/extend clean-install smoke in CI on declared supported platforms for every command implemented at this version candidate.
 - **Handoff:** Validated incremental subsystem and reproducible update benchmark command.
