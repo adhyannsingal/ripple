@@ -2871,11 +2871,11 @@
         "crates/ripple-index/tests/test_impact.rs",
         "docs/adr/0030-test-impact.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M7-T01",
       "started_at": "2026-11-05T05:23:07.493967+00:00",
-      "heartbeat_at": "2026-11-05T05:23:07.493967+00:00",
+      "heartbeat_at": "2026-11-05T05:27:25.633923+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2889,8 +2889,8 @@
         "fixtures/test-impact/",
         "docs/graph-model.md"
       ],
-      "checkpoint": "Verified prerequisites and clean tracked tree; introduce pure test selection projection over validated revision evidence.",
-      "next_action": "Implement typed per-file partitions/completeness and real Git acceptance fixtures.",
+      "checkpoint": "12 real-Git/graph-contract scenarios and strict Clippy passed; projection integrated for workspace and CI verification.",
+      "next_action": "Verify integrated workspace and applicable three-platform CI before M7-T02.",
       "report": "docs/task-reports/M7-T01.md"
     },
     {
