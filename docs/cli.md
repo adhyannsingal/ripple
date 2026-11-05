@@ -1,6 +1,6 @@
 # Using Ripple
 
-Implemented commands are `index`, `inspect`, `status`, `impact`, `diff` and `test`. The binary is `ripple 0.3.0-dev`; Git is required for persistent commands and immutable diff/test, and SQLite is bundled. Node, a database server and project-script execution are not required.
+Implemented commands are `index`, `inspect`, `status`, `impact`, `diff` and `test`. The binary is `ripple 0.4.0`; Git is required for persistent commands and immutable diff/test, and SQLite is bundled. Node, a database server and project-script execution are not required.
 
 From a supported single-project Git root:
 

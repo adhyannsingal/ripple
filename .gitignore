@@ -8,3 +8,7 @@ __pycache__/
 # Rust build artifacts and local Ripple state
 /target/
 /.ripple/
+
+/dist/*
+!/dist/README.md
+!/dist/artifact-manifest.json
