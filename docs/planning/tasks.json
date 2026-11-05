@@ -2795,11 +2795,11 @@
         "docs/project-status.md",
         "eval/results/replay/m6-candidate/"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M6-T03",
       "started_at": "2026-11-05T00:13:34.778428+00:00",
-      "heartbeat_at": "2026-11-05T00:13:34.778428+00:00",
+      "heartbeat_at": "2026-11-05T00:17:56.676090+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2820,8 +2820,8 @@
         "docs/project-status.md",
         "eval/results/replay/m6-candidate/"
       ],
-      "checkpoint": "Replay prerequisite integrated and verified; prepare measured release workloads and v0.3 candidate.",
-      "next_action": "Implement repeated equality-checked benchmark, extend installed smoke/CI and record measurements.",
+      "checkpoint": "200 measured + 10 warm-up comparisons and repeated candidate replay passed; local release install/smoke passed; integrated for final checks.",
+      "next_action": "Complete integrated workspace and three-platform v0.3 smoke/replay CI, then close M6 gate.",
       "report": "docs/task-reports/M6-T03.md"
     },
     {
