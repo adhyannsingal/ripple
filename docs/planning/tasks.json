@@ -3043,11 +3043,11 @@
         "crates/<profiled-subsystem>/",
         "crates/ripple-index/examples/workflow_benchmark.rs"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M8-T02",
       "started_at": "2026-11-05T19:41:38.994246+00:00",
-      "heartbeat_at": "2026-11-05T19:41:38.994246+00:00",
+      "heartbeat_at": "2026-11-05T19:49:40.237864+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3058,8 +3058,8 @@
         "docs/benchmarks.md",
         "crates/ripple-index/examples/workflow_benchmark.rs"
       ],
-      "checkpoint": "M6/M7 verified; T01 review is independent. Measure library phases and actual CLI end-to-end resource cost.",
-      "next_action": "Build phase benchmark and profile/reject or validate one optimization using equivalent inputs.",
+      "checkpoint": "20-sample workflow/phase/resource profile and stale-metadata counterexample integrated; no production algorithm changed.",
+      "next_action": "Run integrated workspace and applicable CI; record rejected optimization outcome before T03.",
       "report": "docs/task-reports/M8-T02.md"
     },
     {
