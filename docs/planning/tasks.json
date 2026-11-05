@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-05",
+  "updated_at": "2026-11-05T21:01:04.480999+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -194,9 +194,13 @@
       "id": "M8",
       "title": "Safety evidence and release readiness",
       "target": "Week 8",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "All four M8 tasks integrated and verified; docs/task-reports/M8.md and docs/release-checklist.md retain final source/gates/limitations.",
+        "Candidate 16eaf563b9376d2c73fdc98c85eccdb37f82b235: workspace CI 42106022125, oracle/mutation 42106022065 and all six artifact jobs 42106021325 passed.",
+        "eval/final-candidate/results/summary.json; dist/artifact-manifest.json; docs/reviews/M8-release-security-2026-11-05.md."
+      ],
+      "completed_at": "2026-11-05T21:01:04.480999+00:00"
     }
   ],
   "tasks": [
@@ -3181,55 +3185,72 @@
         "crates/ripple-index/Cargo.toml",
         "crates/ripple-parse/Cargo.toml",
         "crates/ripple-core/Cargo.toml",
-        "docs/third-party-notices/.gitattributes"
+        "docs/third-party-notices/.gitattributes",
+        "docs/reviews/M8-release-security-2026-11-05.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M8-T04",
       "started_at": "2026-11-05T20:25:57.427458+00:00",
-      "heartbeat_at": "2026-11-05T20:40:39.393714+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-05T21:01:04.480999+00:00",
+      "completed_at": "2026-11-05T21:01:04.480999+00:00",
+      "integrated_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets -- -D warnings; cargo test --workspace --locked",
+          "outcome": "passed",
+          "details": "Passed locally (275 Rust tests) and on candidate source in three-platform CI 42106022125."
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v",
+          "outcome": "passed",
+          "details": "22 tests passed, including pinned notices and archive adversaries."
+        },
+        {
+          "command": "GitHub Actions oracle/mutation run 42106022065",
+          "outcome": "passed",
+          "details": "Passed on candidate 16eaf563b9376d2c73fdc98c85eccdb37f82b235."
+        },
+        {
+          "command": "GitHub Actions candidate artifacts run 42106021325",
+          "outcome": "passed",
+          "details": "All three build and three independent fresh-runner unpacked smoke jobs passed; local Apple Silicon archive smoke also passed."
+        },
+        {
+          "command": "eval/final-candidate/run.py (exact invocation in results/summary.json)",
+          "outcome": "passed",
+          "details": "Final-source oracle 3/3 and 16/16 eligible edges; replay zero mismatches in 16 comparisons; update zero in 200 measured plus 10 warm-up comparisons; mutation categories/recall and 20 workflow samples retained."
+        },
+        {
+          "command": "scripts/release.py verify --directory for dist/local and each dist/ci-* candidate",
+          "outcome": "passed",
+          "details": "All four archives passed inventory/member/outer hashes; source and target hashes recorded in dist/artifact-manifest.json."
+        },
+        {
+          "command": "cargo-audit; npm audit; gitleaks all refs and final evidence directory",
+          "outcome": "passed",
+          "details": "Zero vulnerability/warning or secret findings at recorded tool/database versions; scope in docs/reviews/M8-release-security-2026-11-05.md."
+        },
+        {
+          "command": "python3 scripts/plan.py validate; python3 scripts/plan.py ready",
+          "outcome": "passed",
+          "details": "43 tasks and 9 milestones consistent; no remaining ready tasks after completion."
+        }
+      ],
       "blocker": null,
       "base_commit": "32dadd19b13d8c8271fee122f312575d9b08e1ad",
-      "claimed_paths": [
-        ".github/workflows/release.yml",
-        "docs/release-checklist.md",
-        "dist/",
-        "Cargo.toml",
-        "Cargo.lock",
-        ".gitignore",
-        "scripts/release.py",
-        "scripts/tests/test_release.py",
-        "eval/final-candidate/",
-        "README.md",
-        "CHANGELOG.md",
-        "docs/cli.md",
-        "docs/project-status.md",
-        "docs/evaluation.md",
-        "docs/benchmarks.md",
-        ".github/workflows/oracle.yml",
-        "crates/ripple-git/Cargo.toml",
-        "crates/ripple-impact/Cargo.toml",
-        "crates/ripple-resolve/Cargo.toml",
-        "crates/ripple-index/Cargo.toml",
-        "crates/ripple-cli/Cargo.toml",
-        "crates/ripple-parse/Cargo.toml",
-        "crates/ripple-core/Cargo.toml",
-        "docs/third-party-notices/.gitattributes"
-      ],
-      "checkpoint": "Initial Windows package gate failed because Git converted pinned notice LF bytes to CRLF; product smoke passed. Repair byte-preserving notice checkout and repeat final gate.",
-      "next_action": "Add scoped notice attributes and regression, rerun candidate workflow and candidate evidence.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated candidate 16eaf56 verified; final evidence and four archive hashes retained. M8 release-ready; no public publication.",
+      "next_action": "No remaining implementation tasks. Public tag/release remains a separate owner-authorized action.",
       "report": "docs/task-reports/M8-T04.md"
     }
   ],
   "coordinator": {
-    "owner": "coordinator",
-    "session_id": "M8-2026-11-05",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "All prerequisite tasks verified, MIT authorized. Prepare 0.4.0 binaries/checksums/notices and fresh-runner smoke without public publication.",
-    "next_action": "Implement safe packaging verification, workflow, version/license metadata; rerun final candidate oracle/replay/safety/performance.",
-    "updated_at": "2026-11-05T20:25:57.427458+00:00"
+    "checkpoint": "All 43 tasks and M0\u2013M8 gates complete. Version 0.4.0/MIT candidate release-ready; source16eaf56, evidence and hashes retained.",
+    "next_action": "No pending implementation task; public publication, signing and broader future scope require a separate assignment.",
+    "updated_at": "2026-11-05T21:01:04.480999+00:00"
   }
 }

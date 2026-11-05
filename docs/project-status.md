@@ -9,6 +9,6 @@ Ripple implements all six local CLI commands: index, inspect, status, impact, di
 | Test impact | Per-file head/absent/unindexed partitions; symbol/fallback tracks, ratios and complete machine selection within requested depth |
 | Controlled faults | Five killed owned mutations: symbol 3/5, combined/import 4/5, all-tests 5/5; invalid/timeout/survivor exclusions and known dynamic/global-state misses |
 | Performance | Small warm-cache library and verified-CLI workloads; phase/resource/profile evidence; unsafe metadata shortcut rejected |
-| Installation | Six-command smoke on macOS/Linux/Windows; final checksummed artifact gate is M8-T04 |
+| Installation | Six-command smoke on macOS/Linux/Windows; four checksummed 0.4.0 candidates; three CI fresh-runner smokes plus local Apple Silicon smoke |
 
-M0–M7 gates and M8-T01/T02 are verified in the [ledger](planning/tasks.json). M8-T03 aligns documentation and applies the owner-approved MIT license. M8-T04 owns final candidate evidence/archives/fresh-runner smoke. Public publication is separate; this page does not assert a tag exists. No selected test set is sufficient by construction, and index archives have no GC.
+All M0–M8 gates and all 43 tasks are verified in the [ledger](planning/tasks.json). The owner-approved MIT license, final evidence, dependency notices and 0.4.0 archive handoff are complete; see the [release checklist](release-checklist.md) and [M8 report](task-reports/M8.md). Public publication is separate; this page does not assert a tag exists. No selected test set is sufficient by construction, and index archives have no GC.

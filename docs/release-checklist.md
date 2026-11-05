@@ -1,6 +1,6 @@
 # 0.4.0 candidate release checklist
 
-Status: candidate preparation / final verification in progress. No public tag, GitHub Release or crate publication has occurred.
+Status: **release-ready** for the tested 0.4.0 candidate, source `16eaf563b9376d2c73fdc98c85eccdb37f82b235`. No public tag, GitHub Release or crate publication has occurred.
 
 ## Candidate and distribution
 
@@ -18,17 +18,26 @@ Run the manual Candidate artifacts workflow from the chosen source. Locally buil
 
 ## Required final evidence
 
-- [ ] Full fmt/locked build/strict Clippy/Rust tests, planning/replay/mutation metric tests.
-- [ ] All six commands and quickstart from fresh local installation and unpacked archives.
-- [ ] Three-target candidate build plus separate fresh-runner archive smoke.
-- [ ] Final-source owned and external oracle projections; exclusions/unknowns preserved.
-- [ ] Final-source pinned history replay with zero canonical mismatches.
-- [ ] Final-source compiling mutation recall with explicit invalid/timeout/survivor/miss categories.
-- [ ] Final-source update and verified workflow samples, RSS/index-size and rejected optimization evidence.
-- [ ] Dependency/secret audit, package inventory/checksums/notices and migration/output compatibility review.
-- [ ] Artifact manifest linked and no known blocking candidate defect.
+- [x] Full fmt/locked build/strict Clippy/Rust tests, planning/replay/mutation metric tests.
+- [x] All six commands and quickstart from fresh local installation and unpacked archives.
+- [x] Three-target candidate build plus separate fresh-runner archive smoke.
+- [x] Final-source owned and external oracle projections; exclusions/unknowns preserved.
+- [x] Final-source pinned history replay with zero canonical mismatches.
+- [x] Final-source compiling mutation recall with explicit invalid/timeout/survivor/miss categories.
+- [x] Final-source update and verified workflow samples, RSS/index-size and rejected optimization evidence.
+- [x] Dependency/secret audit, package inventory/checksums/notices and migration/output compatibility review.
+- [x] Artifact manifest linked and no known blocking candidate defect.
 
-Historical methods: [evaluation](evaluation.md), [benchmarks](benchmarks.md), [mutation](../eval/mutation/README.md), [replay](../eval/commit-replay/README.md), [oracle](../eval/oracle/README.md). Final evidence will be linked below after checks actually complete.
+Historical methods: [evaluation](evaluation.md), [benchmarks](benchmarks.md), [mutation](../eval/mutation/README.md), [replay](../eval/commit-replay/README.md), [oracle](../eval/oracle/README.md). Final source evidence: [raw results and reproduction](../eval/final-candidate/README.md), [artifact hashes and targets](../dist/artifact-manifest.json), and [code/security review](reviews/M8-release-security-2026-11-05.md).
+
+- [Workspace CI](https://github.com/adhyannsingal/ripple/actions/runs/42106022125): Linux, Intel macOS and Windows passed locked build, fmt, strict Clippy, Rust tests, tooling contracts and installed-command smoke; Linux also passed history replay. Local checks passed 275 Rust tests and 22 planning/release contracts.
+- [Oracle/mutation CI](https://github.com/adhyannsingal/ripple/actions/runs/42106022065): passed pinned mini oracle, harness contracts and controlled mutation campaign.
+- [Candidate artifacts](https://github.com/adhyannsingal/ripple/actions/runs/42106021325): all three builds and three independent fresh-runner archive smokes passed. Local Apple Silicon archive also passed unpacked smoke/quickstart; all four archives passed integrity verification.
+- Final clean local campaign: owned/external eligible oracle projections 3/3 and 16/16; 16 replay comparisons and 200 measured incremental comparisons plus 10 warm-ups, zero canonical mismatches. Controlled killed-mutation recall: symbol 3/5, union/import 4/5, all-tests 5/5, with exclusions and misses retained.
+- Final small warm-cache verified impact: p50 364.27 ms, p99/max of 20 samples 382.58 ms; capture p50 303.81 ms, peak impact RSS 77,742,080 bytes, three-generation index 1,813,819 bytes. No shipped optimization or broad performance claim.
+- Security: RustSec zero vulnerabilities/warnings, npm audit zero vulnerabilities, all-ref and new-evidence Gitleaks scans zero findings. Scope and database versions are in the review.
+
+The initial Windows packaging gate rejected CRLF-converted upstream notices; scoped byte-preserving Git attributes and regression coverage repaired it. The replacement candidate gates above passed. Failed/superseded runs are preserved in the review. No blocking defect remains within the documented candidate scope.
 
 ## Compatibility and publication handoff
 
