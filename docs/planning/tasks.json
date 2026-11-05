@@ -2866,21 +2866,31 @@
       "owned_paths": [
         "crates/ripple-impact/src/tests*",
         "fixtures/test-impact/",
-        "docs/graph-model.md"
+        "docs/graph-model.md",
+        "crates/ripple-impact/src/lib.rs",
+        "crates/ripple-index/tests/test_impact.rs",
+        "docs/adr/0030-test-impact.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "coordinator",
+      "branch": "agent/M7-T01",
+      "started_at": "2026-11-05T05:23:07.493967+00:00",
+      "heartbeat_at": "2026-11-05T05:23:07.493967+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "6ba811d793ac11576bbb4f8366e481b70d7437d2",
+      "claimed_paths": [
+        "crates/ripple-impact/src/tests.rs",
+        "crates/ripple-impact/src/lib.rs",
+        "crates/ripple-index/tests/test_impact.rs",
+        "docs/adr/0030-test-impact.md",
+        "fixtures/test-impact/",
+        "docs/graph-model.md"
+      ],
+      "checkpoint": "Verified prerequisites and clean tracked tree; introduce pure test selection projection over validated revision evidence.",
+      "next_action": "Implement typed per-file partitions/completeness and real Git acceptance fixtures.",
       "report": "docs/task-reports/M7-T01.md"
     },
     {
@@ -3032,11 +3042,11 @@
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "coordinator",
+    "session_id": "M7-first-two-2026-11-05",
     "integration_branch": "main",
-    "checkpoint": "M6 complete: adversarial equality, reproducible pinned history, measured v0.3 candidate and all final security/workspace/oracle/three-platform installed gates passed. Claims released; authorized M6 scope finished.",
-    "next_action": "M7-T01 \u2014 finalize revision-aware test selection and evidence partitions.",
-    "updated_at": "2026-11-05T00:31:00.212277+00:00"
+    "checkpoint": "Verified prerequisites and clean tracked tree; introduce pure test selection projection over validated revision evidence.",
+    "next_action": "Implement typed per-file partitions/completeness and real Git acceptance fixtures.",
+    "updated_at": "2026-11-05T05:23:07.493967+00:00"
   }
 }

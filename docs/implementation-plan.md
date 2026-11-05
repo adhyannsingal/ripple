@@ -406,7 +406,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M7-T01 — Finalize revision-aware test selection and evidence partitions
 
 - **Depends on:** M4-T04, M6-T03. **Lane:** impact.
-- **Own:** `crates/ripple-impact/src/tests*`; `fixtures/test-impact/`; `docs/graph-model.md`.
+- **Own:** `crates/ripple-impact/src/tests*`; `fixtures/test-impact/`; `docs/graph-model.md`; `crates/ripple-impact/src/lib.rs`; `crates/ripple-index/tests/test_impact.rs`; `docs/adr/0030-test-impact.md`.
 - **Implement:** Build on test classification from M1-T01 and basic dual-track reachability from M2-T04. Finalize base/head active test selection, base-only deleted test evidence, side-effect imports, uncertainty and missing-head reporting. Publish separate symbol-backed, fallback-only and combined sets with per-file witnesses. Default the conservative potentially-related selection to the combined set; narrower evidence views never claim test sufficiency.
 - **Acceptance:** End-to-end fixtures cover helper → callers → tests, direct top-level imported calls inside test callbacks, two unrelated exports, side-effect imports, deleted tests, candidates, cycles and dynamic boundaries. Unrelated tests have no symbol-backed path in the two-export fixture; any conservative fallback inclusion is explicitly labelled. Limits do not silently drop selected paths.
 - **Handoff:** Typed TestImpact result with active-head set, base-only paths, witnesses and incompleteness reasons.
