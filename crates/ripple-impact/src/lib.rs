@@ -9,3 +9,5 @@ mod changes_tests;
 mod traversal_tests;
 
 pub mod revision_impact;
+
+pub mod tests;

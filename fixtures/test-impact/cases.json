@@ -1,0 +1,263 @@
+[
+  {
+    "name": "two-exports-chain",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "symbol_backed": [
+      "a.test.ts"
+    ],
+    "fallback_only": [
+      "b.test.ts"
+    ],
+    "base_only": [],
+    "present_unindexed": []
+  },
+  {
+    "name": "callback",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "a.test.ts": "import {f} from './lib'; test('f',()=>{f();});\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "a.test.ts": "import {f} from './lib'; test('f',()=>{f();});\n"
+    },
+    "symbol_backed": [
+      "a.test.ts"
+    ],
+    "fallback_only": [],
+    "base_only": [],
+    "present_unindexed": [],
+    "incomplete": true
+  },
+  {
+    "name": "side-effect",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "side.test.ts": "import './lib';\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "side.test.ts": "import './lib';\n"
+    },
+    "symbol_backed": [],
+    "fallback_only": [
+      "side.test.ts"
+    ],
+    "base_only": [],
+    "present_unindexed": []
+  },
+  {
+    "name": "deleted-test",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "symbol_backed": [],
+    "fallback_only": [
+      "b.test.ts"
+    ],
+    "base_only": [
+      "a.test.ts"
+    ],
+    "present_unindexed": []
+  },
+  {
+    "name": "present-unindexed",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n",
+      ".ignore": "a.test.ts\n"
+    },
+    "symbol_backed": [],
+    "fallback_only": [
+      "b.test.ts"
+    ],
+    "base_only": [],
+    "present_unindexed": [
+      "a.test.ts"
+    ],
+    "incomplete": true
+  },
+  {
+    "name": "cycle",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "a.ts": "export {f} from './lib'; export * from './b';\n",
+      "b.ts": "export * from './a';\n",
+      "a.test.ts": "import {f} from './b'; f();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "a.ts": "export {f} from './lib'; export * from './b';\n",
+      "b.ts": "export * from './a';\n",
+      "a.test.ts": "import {f} from './b'; f();\n"
+    },
+    "symbol_backed": [
+      "a.test.ts"
+    ],
+    "fallback_only": [],
+    "base_only": [],
+    "present_unindexed": []
+  },
+  {
+    "name": "ambiguous-star-boundary",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "other.ts": "export function f(){return 9;}\n",
+      "barrel.ts": "export * from './lib'; export * from './other';\n",
+      "a.test.ts": "import {f} from './barrel'; f();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "other.ts": "export function f(){return 9;}\n",
+      "barrel.ts": "export * from './lib'; export * from './other';\n",
+      "a.test.ts": "import {f} from './barrel'; f();\n"
+    },
+    "symbol_backed": [],
+    "fallback_only": [
+      "a.test.ts"
+    ],
+    "base_only": [],
+    "present_unindexed": [],
+    "incomplete": true
+  },
+  {
+    "name": "dynamic-boundary",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "a.test.ts": "export function exercise(){ import('./lib'); }\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "a.test.ts": "export function exercise(){ import('./lib'); }\n"
+    },
+    "symbol_backed": [],
+    "fallback_only": [],
+    "base_only": [],
+    "present_unindexed": [],
+    "incomplete": true
+  },
+  {
+    "name": "display-zero",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "symbol_backed": [
+      "a.test.ts"
+    ],
+    "fallback_only": [
+      "b.test.ts"
+    ],
+    "base_only": [],
+    "present_unindexed": [],
+    "limit": 0
+  },
+  {
+    "name": "depth-zero",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "symbol_backed": [],
+    "fallback_only": [],
+    "base_only": [],
+    "present_unindexed": [],
+    "depth": 0,
+    "incomplete": true,
+    "truncated": true
+  },
+  {
+    "name": "candidate-contract",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "symbol_backed": [
+      "a.test.ts"
+    ],
+    "fallback_only": [
+      "b.test.ts"
+    ],
+    "base_only": [],
+    "present_unindexed": [],
+    "candidate": true,
+    "incomplete": true
+  },
+  {
+    "name": "removed-relationship-surviving-test",
+    "before": {
+      "lib.ts": "export function f(){return 1;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "import {caller} from './caller'; caller();\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "after": {
+      "lib.ts": "export function f(){return 2;}\nexport function g(){return 1;}\n",
+      "caller.ts": "import {f} from './lib'; export function caller(){return f();}\n",
+      "a.test.ts": "export function unrelated(){return 0;}\n",
+      "b.test.ts": "import {g} from './lib'; g();\n"
+    },
+    "symbol_backed": [
+      "a.test.ts"
+    ],
+    "fallback_only": [
+      "b.test.ts"
+    ],
+    "base_only": [],
+    "present_unindexed": [],
+    "base_symbol_only": [
+      "a.test.ts"
+    ]
+  }
+]
