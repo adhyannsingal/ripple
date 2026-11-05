@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-04",
+  "updated_at": "2026-11-05",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -155,9 +155,20 @@
       "id": "M6",
       "title": "Incremental correctness",
       "target": "Week 6",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "All three M6 tasks integrated and verified in dependency order; claims released.",
+        "248 default generated comparisons plus 1024 extended adversarial comparisons; stale evidence/fault and bounded capture-race guards passed.",
+        "Five pinned MIT source snapshots + three curated edits, repeated cleanly: 16/16 full canonical matches; candidate release rerun semantic results equal M6-T02.",
+        "v0.3.0-dev development candidate; 200 release measurements +10 warm-ups with zero mismatches; p50/p95/counters/hardware/state recorded, no general speedup claim.",
+        "271 local Rust tests, 18 planning tests, 4 driver tests, strict fmt/build/Clippy, fresh release install, code/security checks passed; 6 Node/4 metric tests in oracle CI.",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41940291685",
+        "https://github.com/adhyannsingal/ripple/actions/runs/41940291684",
+        "docs/task-reports/M6.md",
+        "bench/results/README.md",
+        "eval/results/replay/m6-candidate/README.md"
+      ],
+      "completed_at": "2026-11-05T00:31:00.212277+00:00"
     },
     {
       "id": "M7",
@@ -2795,33 +2806,52 @@
         "docs/project-status.md",
         "eval/results/replay/m6-candidate/"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M6-T03",
       "started_at": "2026-11-05T00:13:34.778428+00:00",
-      "heartbeat_at": "2026-11-05T00:17:56.676090+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-05T00:31:00.212277+00:00",
+      "completed_at": "2026-11-05T00:31:00.212277+00:00",
+      "integrated_commit": "2e879aaccf8a61b691330b0b742c753c0396e0e1",
+      "validation": [
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked (271 local Rust tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v (18); python3 -m unittest discover -s eval/commit-replay -v (4); python3 scripts/plan.py validate",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo install --path crates/ripple-cli --locked --root /tmp/ripple-M6-install; python3 scripts/m6-smoke.py --install-root /tmp/ripple-M6-install",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 bench/scripts/incremental.py --helper target/release/examples/incremental_evaluate --output NEW --samples 20 (200 measured + 10 warm-up canonical comparisons)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 eval/commit-replay/run.py --helper target/release/examples/incremental_evaluate --output NEW (16/16; exact semantic equality with M6-T02)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo-audit 0.22.2 (122 dependencies, zero vulnerabilities/warnings); gitleaks 8.30.1 --all (215 commits, zero leaks)",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41940291685 (three-platform install/smoke + Linux replay)",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/41940291684 (oracle)",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "b444e66e01ebee8df6f7f1e7469245732ac289a0",
-      "claimed_paths": [
-        "bench/scripts/incremental.py",
-        "bench/results/",
-        "docs/incremental.md",
-        "crates/ripple-index/",
-        ".github/workflows/ci.yml",
-        "scripts/m6-smoke.py",
-        "Cargo.toml",
-        "Cargo.lock",
-        "README.md",
-        "CONTRIBUTING.md",
-        "docs/cli.md",
-        "docs/project-status.md",
-        "eval/results/replay/m6-candidate/"
-      ],
-      "checkpoint": "200 measured + 10 warm-up comparisons and repeated candidate replay passed; local release install/smoke passed; integrated for final checks.",
-      "next_action": "Complete integrated workspace and three-platform v0.3 smoke/replay CI, then close M6 gate.",
+      "claimed_paths": [],
+      "checkpoint": "Measured v0.3 candidate integrated and verified; all local, replay, security and three-platform installed gates passed.",
+      "next_action": "M7-T01 (outside completed M6 assignment).",
       "report": "docs/task-reports/M6-T03.md"
     },
     {
@@ -3002,11 +3032,11 @@
     }
   ],
   "coordinator": {
-    "owner": "coordinator",
-    "session_id": "M6-batches-2026-11-04",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "M6-T03 claimed.",
-    "next_action": "Implement repeated equality-checked benchmark, extend installed smoke/CI and record measurements.",
-    "updated_at": "2026-11-05T00:13:34.778428+00:00"
+    "checkpoint": "M6 complete: adversarial equality, reproducible pinned history, measured v0.3 candidate and all final security/workspace/oracle/three-platform installed gates passed. Claims released; authorized M6 scope finished.",
+    "next_action": "M7-T01 \u2014 finalize revision-aware test selection and evidence partitions.",
+    "updated_at": "2026-11-05T00:31:00.212277+00:00"
   }
 }
