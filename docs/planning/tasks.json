@@ -3009,23 +3009,40 @@
         "eval/results/test-safety/",
         "docs/evaluation.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M8-T01",
       "started_at": "2026-11-05T19:37:40.244846+00:00",
-      "heartbeat_at": "2026-11-05T19:41:38.994246+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-05T19:54:47.297608+00:00",
+      "completed_at": "2026-11-05T19:54:47.297608+00:00",
+      "integrated_commit": "9b5013639cde971191ba7523f41c446b0f2f7a10",
+      "validation": [
+        {
+          "command": "python3 -m unittest discover -s eval/mutation -v (3 tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "python3 eval/mutation/run.py --binary CANDIDATE --node NODE24 --typescript TS6 --output NEW (two clean campaigns plus integrated self-check; statuses and policies reproduce)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo fmt --all -- --check; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked (275 local tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/42096324937",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/42096324942",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "5e996facb9ba33d6b649a700772c498b85625e93",
-      "claimed_paths": [
-        "eval/mutation/",
-        "eval/results/test-safety/",
-        "docs/evaluation.md"
-      ],
-      "checkpoint": "Two clean campaigns and metric tests passed; integrated for final harness/workspace/CI verification.",
-      "next_action": "Verify integrated final campaign and CI.",
+      "claimed_paths": [],
+      "checkpoint": "Mutation campaign, independent metric tests, integrated 275-test workspace and three-platform/oracle CI verified.",
+      "next_action": "Rerun campaign at final M8-T04 candidate.",
       "report": "docs/task-reports/M8-T01.md"
     },
     {
@@ -3128,8 +3145,8 @@
     "owner": "coordinator",
     "session_id": "M8-2026-11-05",
     "integration_branch": "main",
-    "checkpoint": "T01 integrated in review; independent T02 claimed.",
+    "checkpoint": "T01 integrated and verified; T02 in review awaiting final CI.",
     "next_action": "Build phase benchmark and profile/reject or validate one optimization using equivalent inputs.",
-    "updated_at": "2026-11-05T19:41:38.994246+00:00"
+    "updated_at": "2026-11-05T19:54:47.297608+00:00"
   }
 }
