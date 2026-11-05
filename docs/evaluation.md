@@ -1,17 +1,18 @@
-# Resolver evaluation
+# Evaluation evidence and limits
 
-M3-T01 supplies the pinned compiler API adapter and independent comparable-edge policy in [eval/oracle](../eval/oracle/README.md); [ADR 0008](adr/0008-oracle-selection.md) records the choice. The Node harness is evaluation-only. The mini corpus has three hand-checked semantic edges/four occurrences covering aliases, re-export origins, overload implementation mapping and TSX. Separate tests check UTF-16/UTF-8 coordinates including astral/CRLF text, unmatched/ambiguous mapping and deduplication.
+Resolver agreement is measured only within [the documented oracle projections](../eval/results/resolver/final/README.md); historical test-impact examples are [explicitly incomplete](examples/m7-test/README.md). These are different scopes and do not establish full TypeScript correctness.
 
-The external corpus manifest pins the sourcemap-codec repository URL, immutable SHA, individual raw source hashes and MIT license. It is an explicit four-source projection with fixed evaluation options, not an upstream build or entire-repository compatibility claim. Network fetches are explicit and no corpus scripts execute. Corpus/compiler/options/policy/analyzer versions belong in every result.
+## Controlled fault-catching evaluation
 
-M3-T02 supplies measured resolved precision/recall, candidate coverage, mapping exclusions and categorized mismatches below. Denominators must be independent of Ripple success; raw misses and mapping failures cannot disappear into supported-scope filtering. Dedicated test-safety/selection and performance measurements belong to later milestones.
+The [owned mutation harness](../eval/mutation/README.md) uses pinned Node/TypeScript, five individually executed test files and eight deterministic compiling/invalid/timeout controls. Two clean campaigns reproduced semantic results. [Raw results](../eval/results/test-safety/mutations.json) record analyzer source/binary/fixture hashes, fixed base/head commits, actual compile/runtime results, exclusions and per-policy misses.
 
-## First measured baseline
+| Selection | Selected failing / all failing | Selected / possible files (same killed cases) |
+|---|---:|---:|
+| Symbol-backed | 3/5 | 3/25 |
+| Conservative combined | 4/5 | 6/25 |
+| Independent static file-import | 4/5 | 6/25 |
+| All-tests | 5/5 | 25/25 |
 
-M3-T02 adds `compare_run.py` and metric tests: synthetic true/false/missed pairs, candidate evidence, duplicate predictions, ambiguous mappings and undefined zero-denominator cases. An unmatched expected endpoint stays a recall miss. Precision is scoped to independently eligible occurrences with mapped predicted endpoints; mapping losses/out-of-scope predictions are separately retained. See the reproduction commands and exact rules in the [harness README](../eval/oracle/README.md).
+Micro recall includes only five compiling, completed, killed mutations. One survivor has undefined recall; one compile-invalid and one timeout mutant are excluded, never credited as caught faults. All baseline suites passed. Three supported direct failures were selected. The dynamic-import failure is missed by both static policies; the global-state side-effect failure is missed by symbol-only selection but caught through file-import fallback. Miss categories and exact paths remain in raw rows. Combined equals the file-import baseline in this corpus, so no precision advantage is claimed.
 
-The owned mini corpus measures 3/3 precision and 3/3 recall. The four-source sourcemap-codec projection measures 16/16 precision and 16/16 recall on eligible edges, no comparable candidate edges, 567 unresolved occurrences, one unmatched constructor definition and six out-of-scope constructor-related class reads. The oracle excludes 524 runtime-identifier occurrences. These exclusions are visible, independent of Ripple success and not included in the eligible-edge denominator. No supported missed/false-resolved edge was observed on this sample; broader accuracy is not established.
-
-M3-T03 follows the no-measured-gap branch: the direct Rust composition regression passes, and regenerated same-corpus comparisons retain identical raw semantic artifacts, precision/recall counts, exclusions and mismatches. Performance, selection safety and incremental correctness remain unmeasured here.
-
-Final scoped reports: [mini](../eval/results/resolver/final/mini/report.md), [external](../eval/results/resolver/final/sourcemap-codec/report.md), [baseline](../eval/results/resolver/baseline/README.md). See [M3 gate](task-reports/M3.md) for actual integrated/CI status.
+This is a small deliberately constructed fixture campaign, not an unbiased safety estimate, coverage analysis or a safe-skip guarantee. No fetched project tests ran: external runtime evaluation is deferred until commands/dependencies are reviewed; the M7 external static demo remains separate. Reproduction commands, aggregate/empty-case policy and resource bounds are in the harness README. Final release evidence must be regenerated on its integrated candidate.

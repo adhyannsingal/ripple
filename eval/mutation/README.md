@@ -1,0 +1,14 @@
+# Owned controlled mutation evaluation
+
+```sh
+python3 -m unittest discover -s eval/mutation -v
+python3 eval/mutation/run.py --binary target/release/ripple --node /path/to/node --typescript /path/to/eval/oracle/node_modules/typescript --output /tmp/ripple-mutations-new
+```
+
+Use Node 24.22.1 and TypeScript 6.0.3 from the pinned oracle lockfile (`npm ci --prefix eval/oracle --ignore-scripts`). This evaluation dependency is not required by installed Ripple. Output must be new. Each of eight mutations runs in a fresh disposable Git root with fixed commit metadata; no user worktree is touched. Only owned fixture code runs. The baseline is strictly compiled and all five tests must pass before each mutation. Mutants are strictly compiled with no emit on error; compiling mutants run each test file in a separate Node process, bounded to two seconds by default. A timeout is killed/reaped and excluded, never credited as a caught fault. Invalid compilation and survivors remain explicit; zero failing-test denominators are null.
+
+Runtime ground truth is the full per-file suite, not Ripple selection. Compare symbol-backed, combined, independently compiler-AST-derived static file-import closure, and all-tests selection against the same mutations. Static imports/exports include side-effect imports and exclude dynamic import expressions; fixture import membership is unchanged by these body mutations. Thus a baseline AST inventory suffices for both endpoints; this is not a general module resolver. The runtime and indexed head test inventories must agree in this controlled corpus.
+
+Aggregate recall is micro selected failing files / all failing files across compiling, completed, killed mutants only. The aggregate selection ratio uses those same cases and five head test files per case. Survivors have no failing-test denominator; invalid and timeout rows are excluded. Raw rows retain statuses, diagnostics, runtime failures, exclusions, misses/categories, exact commit IDs, source/binary/fixture/tool versions and counts. A supported direct miss is a hard self-check failure. Metric tests independently exercise missed failures, empty denominators and cyclic/side-effect import closure.
+
+The finite corpus is deliberately designed to expose both supported and unsupported behavior, not sampled to estimate real-project safety. Dynamic import is a known miss for both static selections; global-state side effects are missed by symbol-only selection and recovered by conservative imports. Combined may equal file-import baseline. An external runtime campaign is deferred: the pinned M7 external project needs its own unreviewed test/dependency commands; this task executes no fetched project scripts. M7 retains static external evidence separately. Re-run this campaign on the final analyzer candidate, and disclose this scope rather than generalizing its recall.

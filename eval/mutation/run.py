@@ -120,6 +120,7 @@ def main():
                 row.update(incomplete_analysis=report['incomplete_analysis'],head_test_files=data['counts']['total_head_test_files'],ripple_report_sha256=hashlib.sha256(raw.stdout).hexdigest(),selection_completeness=data['selection']['completeness'])
                 if row['head_test_files']!=len(tests): raise ValueError('fixture/runtime denominator mismatch')
                 if expected_failure and failures!=[expected_failure]: raise ValueError('mutation did not fail its independently expected file')
+                if category=='supported_direct' and any(expected_failure not in policies[key] for key in ['symbol_backed','combined']): raise RuntimeError('supported direct selection miss; retain fixture and repair before release')
                 for policy,values in row['policies'].items():
                     values['miss_categories']=[category for _ in values['missed']]
             if name=='invalid' and row['status']!='invalid': raise ValueError('invalid self-check failed')
