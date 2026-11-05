@@ -46,13 +46,19 @@ Human output displays accepted-attempt work, retry parse totals, reasons and del
 
 `CanonicalState` compares captured input hashes, facts/spans/diagnostics and complete typed graph/provenance/confidence/unresolved records. `CanonicalAnalysis` additionally compares module/config/discovery evidence and missing probes. Operational origin/time/generation/DB IDs are excluded; lookup precedence and witness-hop order are retained. The required invariant is full canonical incremental = independent cold state.
 
-The generated guard was integrated before cutoff. It now runs 96 basic edit comparisons plus 24 fully resolved body comparisons, persistence reloads, no-op idempotence and deliberately stale output faults. Targeted tests cover global invalidators, real SQL rollback, parser/capture failures, concurrent verification, moves/deletes, signatures/classes/aliases, cyclic/ambiguous barrels, candidates and missing-target repair. See [seed/replay policy](../fixtures/incremental/regressions/README.md).
+The generated guard was integrated before cutoff. It now runs 96 basic edit comparisons, 24 fully resolved body comparisons and 128 adversarial edit comparisons, persistence reloads, no-op idempotence and deliberately stale output faults. Targeted tests cover global invalidators, real SQL rollback, parser/capture failures, concurrent verification, moves/deletes, signatures/classes/aliases, cyclic/ambiguous barrels, candidates and missing-target repair. See [seed/replay policy](../fixtures/incremental/regressions/README.md).
 
 ```sh
 cargo test --workspace --locked
 cargo test --locked -p ripple-index --test properties_basic -- --nocapture
-python3 scripts/m5-smoke.py --binary target/debug/ripple
-python3 scripts/m5-smoke.py --install-root /path/to/install
+python3 scripts/m6-smoke.py --binary target/debug/ripple
+python3 scripts/m6-smoke.py --install-root /path/to/install
 ```
 
-The installed smoke includes every prior implemented command and refresh/`--full`/stale/failure sequences on Linux, macOS and Windows. This is finite equality evidence; expanded adversarial properties and pinned real-history replay are M6, dedicated test selection/safety is M7–M8, and benchmarks remain later. No power-loss fault-injection or test-sufficiency guarantee is claimed. See [cache](adr/0025-incremental-cache.md), [refresh](adr/0026-verified-refresh.md), [generated guard](adr/0027-generated-equality.md), [selective proof](adr/0028-selective-resolution.md) and [CLI policy](adr/0029-incremental-cli.md).
+The installed smoke includes every prior implemented command and refresh/`--full`/stale/failure sequences on Linux, macOS and Windows. The extended four-seed adversarial campaign also passed 1,024 comparisons. Pinned history replay passed 16/16 steps across two clean campaigns with identical semantic/counter/diagnostic results; [raw evidence](../eval/results/replay/README.md) retains all unknowns and scope exclusions. This is finite equality evidence; dedicated test selection/safety remains M7–M8. No power-loss fault-injection or test-sufficiency guarantee is claimed. See [cache](adr/0025-incremental-cache.md), [refresh](adr/0026-verified-refresh.md), [generated guard](adr/0027-generated-equality.md), [selective proof](adr/0028-selective-resolution.md) and [CLI policy](adr/0029-incremental-cli.md).
+
+## M6 release measurements
+
+The v0.3.0-dev candidate has [reproducible release measurements](../bench/results/README.md): 20 samples each for cold, no-op, stable body, export and configuration changes on a pinned four-source external projection and a 65-file supported synthetic chain. All 200 measured comparisons plus 10 discarded warm-ups matched independent cold analysis. Body updates parse one file and reuse the rest; global config changes parse all files. The supported body case resolves zero module files and one reference file.
+
+On the recorded machine, supported-chain body p50/p95 was 27.04/28.11 ms versus independent cold 28.35/29.75 ms. External body was 49.48/52.95 ms versus cold 48.95/51.80 ms. The measurements show modest or absent small-workload latency gains; no general speedup or latency bound is claimed. Caches are warm, application indexes are fresh per sample with one prior generation for updates, and library timing excludes process startup, real Git provenance and canonical comparison. Raw data records hardware, toolchain, hashes, counters, all cases and scope limits. CI checks correctness and installed behavior, without absolute timing thresholds.

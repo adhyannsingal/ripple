@@ -1,0 +1,1665 @@
+{
+  "format_version": 1,
+  "corpus": "sourcemap-codec-history-v1",
+  "manifest_sha256": "e8306a8c3642ecef98b05699d4bc166a2766be83fe01aa95bda7ea810f6b41ed",
+  "source_commit": "6592a63bc9355df70da8f6df3b9947bcdeb73854",
+  "helper_sha256": "57e9b870281adcc8a673913580bbaeb3390523cdfc145db0fdd2df88e81b7732",
+  "command": "eval/commit-replay/run.py --helper /Users/adhyannsingal/ripple/target/release/examples/incremental_evaluate --output /tmp/ripple-M6-T03-replay",
+  "timing_scope": "library refresh/cold: capture, verification, analysis and publication; excludes process startup and canonical reload; helper_wall_ms includes both and comparison",
+  "repeats": [
+    [
+      {
+        "identity": "e86a0ffe2c307eacd4707bbad13750e83879f6f5",
+        "canonical_equal": true,
+        "canonical_sha256": "a47fb3279aa07730a8056df70569ca637fb06d65080840f6ddd7fdbab8202bd6",
+        "cold_ms": 51.829291,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 19,
+          "files": 4,
+          "symbols": 19,
+          "unresolved": 696
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 94.028375,
+        "update": {
+          "added": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "empty_index",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": true,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 185.02658398938365
+      },
+      {
+        "identity": "ed80f4c897040892c8802fdf70008be976db2a79",
+        "canonical_equal": true,
+        "canonical_sha256": "6f9682e291aaf69a3f57aabfbcf99fe6029a1ca0ae4d27ad43f346cb6cd22fc6",
+        "cold_ms": 59.257625000000004,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 21,
+          "files": 4,
+          "symbols": 21,
+          "unresolved": 696
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 57.959042000000004,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 149.43683298770338
+      },
+      {
+        "identity": "d06c9ebeb50ba02077239d79549618f2c888bb78",
+        "canonical_equal": true,
+        "canonical_sha256": "b8bbc6581441f21a67fc85c485c910921bc13e103f5387fe5d453e2dbf47da2c",
+        "cold_ms": 50.352125,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 23,
+          "files": 4,
+          "symbols": 23,
+          "unresolved": 654
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 53.085583,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 3,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 1,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 3,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 134.09258401952684
+      },
+      {
+        "identity": "154656b1be82e3104620a05c4bf3430e1db9507d",
+        "canonical_equal": true,
+        "canonical_sha256": "af102f876c91dfbcd6a96dd5d2972a1fb73a90672f315b11e1560e329ae5fb71",
+        "cold_ms": 48.643583,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 22,
+          "files": 4,
+          "symbols": 22,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 50.880541,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 2,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 2,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 2,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 129.1228749905713
+      },
+      {
+        "identity": "b3bb7f01c1c0dc8a5fa95c071e468f261d9e328c",
+        "canonical_equal": true,
+        "canonical_sha256": "2653a43b3d186aded0d879fb3333a994c01b10e261d8401e7bd8911d85ec6aed",
+        "cold_ms": 49.653999999999996,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 22,
+          "files": 4,
+          "symbols": 22,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 52.659459,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 1,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 3,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 1,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 131.79075001971796
+      },
+      {
+        "identity": "curated:add",
+        "canonical_equal": true,
+        "canonical_sha256": "55225386577cbf590e111a692cc0d76a028df227fd7de3be3c91eb882b9d95ca",
+        "cold_ms": 49.588209,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 5,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 5,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 23,
+          "files": 5,
+          "symbols": 23,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 48.597666999999994,
+        "update": {
+          "added": [
+            "src/replay-added.ts"
+          ],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 1,
+          "rebuild_reason": null,
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 4,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 1,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 128.57008300488815
+      },
+      {
+        "identity": "curated:config",
+        "canonical_equal": true,
+        "canonical_sha256": "70465243930039f394734de8a935e8fd62f86e09b9841b2e1f4f0cae5b8ef8a8",
+        "cold_ms": 54.836125,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 5,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 5,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 23,
+          "files": 5,
+          "symbols": 23,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 53.646541,
+        "update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 5,
+          "rebuild_reason": "global_inputs",
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": true,
+          "strategy": "full",
+          "total_parsed_files": 5,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 139.3503330182284
+      },
+      {
+        "identity": "curated:delete",
+        "canonical_equal": true,
+        "canonical_sha256": "13ef54356fc2d231e97bf453c6db24e91407abeddef83ea3ebf1a673f2cd3df1",
+        "cold_ms": 49.61725,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 22,
+          "files": 4,
+          "symbols": 22,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 50.232667,
+        "update": {
+          "added": [],
+          "changed": [],
+          "deleted": [
+            "src/replay-added.ts"
+          ],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 0,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 4,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 0,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 130.40699998964556
+      }
+    ],
+    [
+      {
+        "identity": "e86a0ffe2c307eacd4707bbad13750e83879f6f5",
+        "canonical_equal": true,
+        "canonical_sha256": "a47fb3279aa07730a8056df70569ca637fb06d65080840f6ddd7fdbab8202bd6",
+        "cold_ms": 49.228792,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 19,
+          "files": 4,
+          "symbols": 19,
+          "unresolved": 696
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 56.349042000000004,
+        "update": {
+          "added": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "empty_index",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": true,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 137.3700839758385
+      },
+      {
+        "identity": "ed80f4c897040892c8802fdf70008be976db2a79",
+        "canonical_equal": true,
+        "canonical_sha256": "6f9682e291aaf69a3f57aabfbcf99fe6029a1ca0ae4d27ad43f346cb6cd22fc6",
+        "cold_ms": 51.557,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 21,
+          "files": 4,
+          "symbols": 21,
+          "unresolved": 696
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 56.381125,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 140.19229100085795
+      },
+      {
+        "identity": "d06c9ebeb50ba02077239d79549618f2c888bb78",
+        "canonical_equal": true,
+        "canonical_sha256": "b8bbc6581441f21a67fc85c485c910921bc13e103f5387fe5d453e2dbf47da2c",
+        "cold_ms": 47.97775,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 23,
+          "files": 4,
+          "symbols": 23,
+          "unresolved": 654
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 54.936334,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 3,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 1,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 3,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 133.27304099220783
+      },
+      {
+        "identity": "154656b1be82e3104620a05c4bf3430e1db9507d",
+        "canonical_equal": true,
+        "canonical_sha256": "af102f876c91dfbcd6a96dd5d2972a1fb73a90672f315b11e1560e329ae5fb71",
+        "cold_ms": 48.623041,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 22,
+          "files": 4,
+          "symbols": 22,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 51.767583,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 2,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 2,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 2,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 130.00125001417473
+      },
+      {
+        "identity": "b3bb7f01c1c0dc8a5fa95c071e468f261d9e328c",
+        "canonical_equal": true,
+        "canonical_sha256": "2653a43b3d186aded0d879fb3333a994c01b10e261d8401e7bd8911d85ec6aed",
+        "cold_ms": 48.788875000000004,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 22,
+          "files": 4,
+          "symbols": 22,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 52.839542,
+        "update": {
+          "added": [],
+          "changed": [
+            "src/scopes.ts"
+          ],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 1,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 3,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 1,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 131.80950001697056
+      },
+      {
+        "identity": "curated:add",
+        "canonical_equal": true,
+        "canonical_sha256": "55225386577cbf590e111a692cc0d76a028df227fd7de3be3c91eb882b9d95ca",
+        "cold_ms": 48.556292,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 5,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 5,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declaration",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "declarationDir",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "inlineSources",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "sourceMap",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_compiler_option",
+            "detail": "typeRoots",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "exclude",
+            "file": "tsconfig.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 23,
+          "files": 5,
+          "symbols": 23,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 50.015167,
+        "update": {
+          "added": [
+            "src/replay-added.ts"
+          ],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 1,
+          "rebuild_reason": null,
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 4,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 1,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 129.57537500187755
+      },
+      {
+        "identity": "curated:config",
+        "canonical_equal": true,
+        "canonical_sha256": "70465243930039f394734de8a935e8fd62f86e09b9841b2e1f4f0cae5b8ef8a8",
+        "cold_ms": 50.506,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 5,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 5,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 23,
+          "files": 5,
+          "symbols": 23,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 57.891791999999995,
+        "update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 5,
+          "parsed_files": 5,
+          "rebuild_reason": "global_inputs",
+          "reference_files_resolved": 5,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": true,
+          "strategy": "full",
+          "total_parsed_files": 5,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 141.70195799670182
+      },
+      {
+        "identity": "curated:delete",
+        "canonical_equal": true,
+        "canonical_sha256": "13ef54356fc2d231e97bf453c6db24e91407abeddef83ea3ebf1a673f2cd3df1",
+        "cold_ms": 49.236917,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 4,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 4,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [
+          {
+            "code": "unsupported_package_policy",
+            "detail": "package entry points, conditions or module mode are outside the source-inventory policy",
+            "file": "package.json"
+          },
+          {
+            "code": "unsupported_config_field",
+            "detail": "include",
+            "file": "tsconfig.json"
+          }
+        ],
+        "counts": {
+          "edges": 22,
+          "files": 4,
+          "symbols": 22,
+          "unresolved": 651
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 50.457958,
+        "update": {
+          "added": [],
+          "changed": [],
+          "deleted": [
+            "src/replay-added.ts"
+          ],
+          "invalidation_candidates": [
+            "src/replay-added.ts",
+            "src/scopes.ts",
+            "src/sourcemap-codec.ts",
+            "src/strings.ts",
+            "src/vlq.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 4,
+          "parsed_files": 0,
+          "rebuild_reason": null,
+          "reference_files_resolved": 4,
+          "reference_files_reused": 0,
+          "reused_files": 4,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 0,
+          "unchanged_external_surfaces": []
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        },
+        "helper_wall_ms": 129.89033400663175
+      }
+    ]
+  ],
+  "semantic_reproducible": true,
+  "canonical_mismatches": 0
+}

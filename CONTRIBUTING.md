@@ -17,7 +17,7 @@ cargo fmt --all -- --check
 cargo build --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
 cargo test --workspace --locked
-python3 scripts/m5-smoke.py --binary target/debug/ripple
+python3 scripts/m6-smoke.py --binary target/debug/ripple
 cargo run --locked -p ripple-cli -- --help
 cargo run --locked -p ripple-cli -- --version
 cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
