@@ -1,0 +1,229 @@
+{
+  "format_version": 1,
+  "id": "sourcemap-codec-history-v1",
+  "repository": "https://github.com/jridgewell/sourcemap-codec",
+  "license": {
+    "spdx": "MIT",
+    "path": "LICENSE"
+  },
+  "projection": "Unmodified src TS/TSX plus package.json, tsconfig.json and LICENSE at five ancestor-ordered commits. Tests, build config, assets and lockfiles excluded; not whole-repository compatibility. Unsupported config/package behavior remains explicit.",
+  "snapshots": [
+    {
+      "commit": "e86a0ffe2c307eacd4707bbad13750e83879f6f5",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1072,
+          "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b"
+        },
+        {
+          "path": "package.json",
+          "bytes": 2304,
+          "sha256": "8738259877e21f562f0017b5f70e59c7f0881ab5442983a08dec464ac2fa3832"
+        },
+        {
+          "path": "src/scopes.ts",
+          "bytes": 10348,
+          "sha256": "93cb1940e37d3b74649f287d18562ff5c98f512b5ffcc0c79cc83cb880be8502"
+        },
+        {
+          "path": "src/sourcemap-codec.ts",
+          "bytes": 3276,
+          "sha256": "1d30796bada6152c3afbe26b849a11bb97bb5e03daa3b7d3e148747fd61a5432"
+        },
+        {
+          "path": "src/strings.ts",
+          "bytes": 1643,
+          "sha256": "f95fa4ca3be47b12e2fa8bfe6bf78365f3faaeb0d0203bb3bca1363f16f83edd"
+        },
+        {
+          "path": "src/vlq.ts",
+          "bytes": 1162,
+          "sha256": "3a3743723dea2e10903d1be6551159fc9653865f7678687d0809150b6f811c9b"
+        },
+        {
+          "path": "tsconfig.json",
+          "bytes": 437,
+          "sha256": "4a2a90041b959921017432963e43695e56fa126135e462e08de5e55d100a5ba5"
+        }
+      ]
+    },
+    {
+      "commit": "ed80f4c897040892c8802fdf70008be976db2a79",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1072,
+          "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b"
+        },
+        {
+          "path": "package.json",
+          "bytes": 2304,
+          "sha256": "8738259877e21f562f0017b5f70e59c7f0881ab5442983a08dec464ac2fa3832"
+        },
+        {
+          "path": "src/scopes.ts",
+          "bytes": 10357,
+          "sha256": "a8b5921d8a8505a3a846f0ed466c394f86a6bb243da1f830190ac1518587de07"
+        },
+        {
+          "path": "src/sourcemap-codec.ts",
+          "bytes": 3290,
+          "sha256": "8210ccbc87f312cbe6a302ced7b70c375664973635c2f0441bfa7522355fc1bd"
+        },
+        {
+          "path": "src/strings.ts",
+          "bytes": 1543,
+          "sha256": "0d6c813b28572094dddb87cbf13d76e78294a8d373166023ca1539ca1275a127"
+        },
+        {
+          "path": "src/vlq.ts",
+          "bytes": 1387,
+          "sha256": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+        },
+        {
+          "path": "tsconfig.json",
+          "bytes": 437,
+          "sha256": "4a2a90041b959921017432963e43695e56fa126135e462e08de5e55d100a5ba5"
+        }
+      ]
+    },
+    {
+      "commit": "d06c9ebeb50ba02077239d79549618f2c888bb78",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1072,
+          "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b"
+        },
+        {
+          "path": "package.json",
+          "bytes": 2304,
+          "sha256": "8738259877e21f562f0017b5f70e59c7f0881ab5442983a08dec464ac2fa3832"
+        },
+        {
+          "path": "src/scopes.ts",
+          "bytes": 9913,
+          "sha256": "4765eb987841eea8e45aae67b84a1bc435bc71319d2668f0ecdc198d4d3fc377"
+        },
+        {
+          "path": "src/sourcemap-codec.ts",
+          "bytes": 3317,
+          "sha256": "be34d536a69e2cd101ad40f8600e48cf29e1c25366bdcd6c6e76369f54956c85"
+        },
+        {
+          "path": "src/strings.ts",
+          "bytes": 1473,
+          "sha256": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99"
+        },
+        {
+          "path": "src/vlq.ts",
+          "bytes": 1387,
+          "sha256": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+        },
+        {
+          "path": "tsconfig.json",
+          "bytes": 437,
+          "sha256": "4a2a90041b959921017432963e43695e56fa126135e462e08de5e55d100a5ba5"
+        }
+      ]
+    },
+    {
+      "commit": "154656b1be82e3104620a05c4bf3430e1db9507d",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1072,
+          "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b"
+        },
+        {
+          "path": "package.json",
+          "bytes": 2304,
+          "sha256": "8738259877e21f562f0017b5f70e59c7f0881ab5442983a08dec464ac2fa3832"
+        },
+        {
+          "path": "src/scopes.ts",
+          "bytes": 9714,
+          "sha256": "a1691c8b578cd4a28ea4fef9ef27c308e15746263343c70fbd6455adfc672b6f"
+        },
+        {
+          "path": "src/sourcemap-codec.ts",
+          "bytes": 3203,
+          "sha256": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e"
+        },
+        {
+          "path": "src/strings.ts",
+          "bytes": 1473,
+          "sha256": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99"
+        },
+        {
+          "path": "src/vlq.ts",
+          "bytes": 1387,
+          "sha256": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+        },
+        {
+          "path": "tsconfig.json",
+          "bytes": 437,
+          "sha256": "4a2a90041b959921017432963e43695e56fa126135e462e08de5e55d100a5ba5"
+        }
+      ]
+    },
+    {
+      "commit": "b3bb7f01c1c0dc8a5fa95c071e468f261d9e328c",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1072,
+          "sha256": "1c632a84f7ba5a7b32d9c15e707f419b2393e7ad7de362bd9c837b5e435a197b"
+        },
+        {
+          "path": "package.json",
+          "bytes": 2304,
+          "sha256": "8738259877e21f562f0017b5f70e59c7f0881ab5442983a08dec464ac2fa3832"
+        },
+        {
+          "path": "src/scopes.ts",
+          "bytes": 9713,
+          "sha256": "1db13eedacbcb83d4c0ca6023379de51240be2b50cfe96b2d6513789a31ab9af"
+        },
+        {
+          "path": "src/sourcemap-codec.ts",
+          "bytes": 3203,
+          "sha256": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e"
+        },
+        {
+          "path": "src/strings.ts",
+          "bytes": 1473,
+          "sha256": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99"
+        },
+        {
+          "path": "src/vlq.ts",
+          "bytes": 1387,
+          "sha256": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+        },
+        {
+          "path": "tsconfig.json",
+          "bytes": 437,
+          "sha256": "4a2a90041b959921017432963e43695e56fa126135e462e08de5e55d100a5ba5"
+        }
+      ]
+    }
+  ],
+  "supplemental": [
+    {
+      "id": "add",
+      "path": "src/replay-added.ts",
+      "text": "export function replayAdded() { return 1; }\n"
+    },
+    {
+      "id": "config",
+      "path": "tsconfig.json",
+      "text": "{\"compilerOptions\":{\"baseUrl\":\".\",\"paths\":{\"@replay/*\":[\"src/*\"]}},\"include\":[\"src\"]}\n"
+    },
+    {
+      "id": "delete",
+      "path": "src/replay-added.ts",
+      "text": null
+    }
+  ]
+}
