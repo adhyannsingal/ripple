@@ -3060,23 +3060,36 @@
         "crates/<profiled-subsystem>/",
         "crates/ripple-index/examples/workflow_benchmark.rs"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M8-T02",
       "started_at": "2026-11-05T19:41:38.994246+00:00",
-      "heartbeat_at": "2026-11-05T19:49:40.237864+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-05T20:08:54.815414+00:00",
+      "completed_at": "2026-11-05T20:08:54.815414+00:00",
+      "integrated_commit": "97775568b9fd37c1501313bbfe8dca5cf2658502",
+      "validation": [
+        {
+          "command": "python3 bench/scripts/workflows.py --binary RELEASE --helper workflow_benchmark --output NEW --samples 20 (20 retained samples and warm-up; production query equality; RSS/size; counterexample)",
+          "outcome": "passed"
+        },
+        {
+          "command": "cargo fmt --all -- --check; cargo build --workspace --locked; cargo clippy --workspace --all-targets --locked -- -D warnings; cargo test --workspace --locked (275 local tests)",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/42097599121",
+          "outcome": "passed"
+        },
+        {
+          "command": "https://github.com/adhyannsingal/ripple/actions/runs/42097599082",
+          "outcome": "passed"
+        }
+      ],
       "blocker": null,
       "base_commit": "9b5013639cde971191ba7523f41c446b0f2f7a10",
-      "claimed_paths": [
-        "bench/",
-        "docs/benchmarks.md",
-        "crates/ripple-index/examples/workflow_benchmark.rs"
-      ],
-      "checkpoint": "20-sample workflow/phase/resource profile and stale-metadata counterexample integrated; no production algorithm changed.",
-      "next_action": "Run integrated workspace and applicable CI; record rejected optimization outcome before T03.",
+      "claimed_paths": [],
+      "checkpoint": "Workflow phase/resource profile, rejected optimization counterexample, integrated 275 tests and three-platform/oracle CI passed.",
+      "next_action": "M8-T03 documentation; final candidate measurements rerun in T04.",
       "report": "docs/task-reports/M8-T02.md"
     },
     {
@@ -3094,21 +3107,44 @@
         "CONTRIBUTING.md",
         "LICENSE",
         "docs/{thesis,architecture,graph-model,resolution,incremental,evaluation,benchmarks,limitations,prior-art}.md",
-        "docs/adr/"
+        "docs/adr/",
+        "docs/third-party-notices/",
+        "docs/examples/quickstart.py",
+        "docs/project-status.md",
+        "docs/cli.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "coordinator",
+      "branch": "agent/M8-T03",
+      "started_at": "2026-11-05T20:08:54.815414+00:00",
+      "heartbeat_at": "2026-11-05T20:08:54.815414+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": null,
-      "next_action": null,
+      "base_commit": "db35a9b1ddc22605d5fd51757897bc0de0ea1622",
+      "claimed_paths": [
+        "README.md",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "docs/thesis.md",
+        "docs/architecture.md",
+        "docs/graph-model.md",
+        "docs/resolution.md",
+        "docs/incremental.md",
+        "docs/evaluation.md",
+        "docs/benchmarks.md",
+        "docs/limitations.md",
+        "docs/prior-art.md",
+        "docs/adr/0032-release-policy.md",
+        "docs/third-party-notices/",
+        "docs/examples/quickstart.py",
+        "docs/project-status.md",
+        "docs/cli.md"
+      ],
+      "checkpoint": "T01/T02 verified; owner explicitly selected MIT. Align docs with implemented product and actual evidence.",
+      "next_action": "Write accurate handoff/quickstart/prior art, add MIT and missing pinned upstream notices; validate commands and links.",
       "report": "docs/task-reports/M8-T03.md"
     },
     {
@@ -3145,8 +3181,8 @@
     "owner": "coordinator",
     "session_id": "M8-2026-11-05",
     "integration_branch": "main",
-    "checkpoint": "T01 integrated and verified; T02 in review awaiting final CI.",
-    "next_action": "Build phase benchmark and profile/reject or validate one optimization using equivalent inputs.",
-    "updated_at": "2026-11-05T19:54:47.297608+00:00"
+    "checkpoint": "T01/T02 verified; owner explicitly selected MIT. Align docs with implemented product and actual evidence.",
+    "next_action": "Write accurate handoff/quickstart/prior art, add MIT and missing pinned upstream notices; validate commands and links.",
+    "updated_at": "2026-11-05T20:08:54.815414+00:00"
   }
 }

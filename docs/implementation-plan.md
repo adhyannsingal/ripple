@@ -440,7 +440,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M8-T03 — Complete honest product docs and contributor handoff
 
 - **Depends on:** M8-T01, M8-T02. **Lane:** documentation.
-- **Own:** `README.md`; `CHANGELOG.md`; `CONTRIBUTING.md`; `LICENSE`; `docs/{thesis,architecture,graph-model,resolution,incremental,evaluation,benchmarks,limitations,prior-art}.md`; `docs/adr/`.
+- **Own:** `README.md`; `CHANGELOG.md`; `CONTRIBUTING.md`; `LICENSE`; `docs/{thesis,architecture,graph-model,resolution,incremental,evaluation,benchmarks,limitations,prior-art}.md`; `docs/adr/`; `docs/third-party-notices/`; `docs/examples/quickstart.py`; `docs/project-status.md`; `docs/cli.md`.
 - **Implement:** Write install/quickstart and a small reproducible end-to-end demo; align architecture/ADRs and limitations with implemented behavior; add prior-art research using primary sources and dated links. Record supported TS/config/OS subset and all uncertainty/metric caveats. Prepare license choice as a proposal if owner preference is unavailable; do not impose licensing rights without authority.
 - **Acceptance:** Every documented command is exercised against the release candidate; claims link to actual evidence; all spec-required docs/ADRs exist and links work; missing license authorization is a publication blocker, not an excuse to stop local code/docs work.
 - **Handoff:** Owner-readable architecture/evaluation explanations and accurate external-developer documentation.
