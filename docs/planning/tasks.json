@@ -3182,11 +3182,11 @@
         "crates/ripple-parse/Cargo.toml",
         "crates/ripple-core/Cargo.toml"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M8-T04",
       "started_at": "2026-11-05T20:25:57.427458+00:00",
-      "heartbeat_at": "2026-11-05T20:25:57.427458+00:00",
+      "heartbeat_at": "2026-11-05T20:33:01.222254+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3217,8 +3217,8 @@
         "crates/ripple-parse/Cargo.toml",
         "crates/ripple-core/Cargo.toml"
       ],
-      "checkpoint": "All prerequisite tasks verified, MIT authorized. Prepare 0.4.0 binaries/checksums/notices and fresh-runner smoke without public publication.",
-      "next_action": "Implement safe packaging verification, workflow, version/license metadata; rerun final candidate oracle/replay/safety/performance.",
+      "checkpoint": "0.4.0 packaging/workflow integrated; local archive and 21 contracts passed. Final evidence/artifact gates pending.",
+      "next_action": "Dispatch candidate workflow, run final-source evaluations and audits; collect manifests and verify fresh-runner outcomes.",
       "report": "docs/task-reports/M8-T04.md"
     }
   ],
