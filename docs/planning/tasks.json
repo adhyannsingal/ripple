@@ -3180,13 +3180,14 @@
         "crates/ripple-resolve/Cargo.toml",
         "crates/ripple-index/Cargo.toml",
         "crates/ripple-parse/Cargo.toml",
-        "crates/ripple-core/Cargo.toml"
+        "crates/ripple-core/Cargo.toml",
+        "docs/third-party-notices/.gitattributes"
       ],
       "status": "review",
       "owner": "coordinator",
       "branch": "agent/M8-T04",
       "started_at": "2026-11-05T20:25:57.427458+00:00",
-      "heartbeat_at": "2026-11-05T20:33:01.222254+00:00",
+      "heartbeat_at": "2026-11-05T20:40:39.393714+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3215,10 +3216,11 @@
         "crates/ripple-index/Cargo.toml",
         "crates/ripple-cli/Cargo.toml",
         "crates/ripple-parse/Cargo.toml",
-        "crates/ripple-core/Cargo.toml"
+        "crates/ripple-core/Cargo.toml",
+        "docs/third-party-notices/.gitattributes"
       ],
-      "checkpoint": "0.4.0 packaging/workflow integrated; local archive and 21 contracts passed. Final evidence/artifact gates pending.",
-      "next_action": "Dispatch candidate workflow, run final-source evaluations and audits; collect manifests and verify fresh-runner outcomes.",
+      "checkpoint": "Initial Windows package gate failed because Git converted pinned notice LF bytes to CRLF; product smoke passed. Repair byte-preserving notice checkout and repeat final gate.",
+      "next_action": "Add scoped notice attributes and regression, rerun candidate workflow and candidate evidence.",
       "report": "docs/task-reports/M8-T04.md"
     }
   ],

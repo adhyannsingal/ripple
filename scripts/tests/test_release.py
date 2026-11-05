@@ -29,3 +29,8 @@ class ReleaseContracts(unittest.TestCase):
                 i=zipfile.ZipInfo('ripple');i.external_attr=0o120777<<16;z.writestr(i,b'owned fixture')
             m['archive_sha256']=r.digest((root/'test.zip').read_bytes());(root/'manifest.json').write_text(json.dumps(m))
             with self.assertRaisesRegex(ValueError,'unsafe member'):r.verify(root)
+
+    def test_vendored_notice_bytes_match_immutable_manifest(self):
+        manifest=json.loads((r.ROOT/'docs/third-party-notices/manifest.json').read_text())
+        for item in manifest['notices']:
+            self.assertEqual(r.digest((r.ROOT/'docs/third-party-notices'/item['file']).read_bytes()),item['sha256'])
