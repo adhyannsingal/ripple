@@ -1,0 +1,17 @@
+{
+  "reason": "These pinned Cargo source archives omit their root license text; preserve exact upstream notices for packaging. Other notices come from locked registry source files, including AUTHORS where applicable.",
+  "notices": [
+    {
+      "package": "tree-sitter-typescript-0.23.2",
+      "url": "https://raw.githubusercontent.com/tree-sitter/tree-sitter-typescript/f975a621f4e7f532fe322e13c4f79495e0a7b2e7/LICENSE",
+      "file": "tree-sitter-typescript-0.23.2-LICENSE",
+      "sha256": "49bf33cf78ef5897e4e161ce1517df7de1ae5042a65b6bcfd44401e0fc606559"
+    },
+    {
+      "package": "rsqlite-vfs-0.2.0",
+      "url": "https://raw.githubusercontent.com/Spxg/sqlite-wasm-rs/3d8318430bacd7d6a1aafdf5b5e54fb0fee8d451/LICENSE",
+      "file": "rsqlite-vfs-0.2.0-LICENSE",
+      "sha256": "e1c1975c3474cce31722836f101a40ffaf1cc784e4d2f38ce3e77b9712934e78"
+    }
+  ]
+}

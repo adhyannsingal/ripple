@@ -1,34 +1,40 @@
 # Ripple
 
-A local Rust CLI in development that maps TypeScript Git changes to symbols and explains potentially affected code and test files through dependency paths.
+Ripple is a local Rust CLI for explainable TypeScript change impact. It maps Git changes to supported symbols, follows reverse dependencies, and reports potentially related code and test files with base/head witness paths, confidence and explicit uncertainty.
 
-M0 (contracts and bootstrap) is complete and reviewed: the workspace, CLI bootstrap, source/syntax/graph/evidence and index/revision/canonical contracts are implemented and tested. Run `cargo run --locked -p ripple-cli -- --help` or try `inspect` below. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and checks. The product is named Ripple; the repository and CLI use `ripple`.
+The six commands are `index`, `inspect`, `status`, `impact`, `diff` and `test`. Indexing persists atomic SQLite generations and reuses unchanged analysis behind content/version/equality guards. Diff/test analyze immutable endpoints without checkout or index publication. Test selection is a conservative union of symbol-backed and file-import fallback evidence; it never executes tests or guarantees a sufficient set.
 
-M1 source understanding and the M2 cold-index pipeline are implemented. Ripple captures TS/TSX and supported configuration inputs, resolves supported lexical/imported calls and re-export chains, stores atomic SQLite generations, verifies freshness and explains reverse paths with separate symbol-backed/module-fallback evidence. Unsupported syntax/configuration and incomplete analysis remain explicit. M4 adds immutable `diff A..B` with base/head witnesses, explicit change/uncertainty records and test-presence partitions. M5 adds verified incremental parse/reference reuse, explicit rebuild reasons and `index --full`. M6 adds expanded generated equality checks, pinned history replay and repeated release update measurements. The v0.3.0-dev candidate keeps incomplete analysis explicit; M7 adds `test A..B`, revision-aware evidence partitions and recomputable head-only selection ratios. Mutation-safety evaluation remains M8 work; no selected set is claimed sufficient.
+## Install and try
+
+Install Rust with a C toolchain and Git supporting `--no-lazy-fetch`; [setup and supported hosts](CONTRIBUTING.md). SQLite is bundled; the CLI needs no Node, database server, account or project scripts.
 
 ```sh
-cargo install --path crates/ripple-cli --locked --root /path/to/install
-# From a supported Git project root, using the installed binary:
-ripple index .
-# Repeat after edits to refresh; force a cold rebuild when needed:
-ripple index . --full
-ripple status
-ripple impact src/auth.ts::authenticate --format json
-ripple inspect src/auth.ts
-ripple diff main..HEAD --format json
-ripple test main..HEAD --format json
+cargo install --locked --path crates/ripple-cli --root /path/to/install
+python3 docs/examples/quickstart.py --binary /path/to/install/bin/ripple
 ```
 
-See [CLI usage](docs/cli.md) for paths, output and exit codes, and [incremental indexing](docs/incremental.md) for reuse proofs, counters and limits.
+Windows uses `python` and `ripple.exe`. The demo creates a disposable Git project, exercises every command and checks one symbol-backed test plus one fallback-only addition. In a supported TypeScript Git project:
 
-- [Current capabilities](docs/project-status.md): what works now, current CLI usage and the next implementation steps.
-- [Build specification](ripple_buildspec.md): authoritative product scope and constraints.
-- [Implementation plan](docs/implementation-plan.md): 43 dependency-linked tasks across nine milestones, including acceptance checks and handoffs.
-- [Agent instructions](AGENTS.md): how to start, work, validate and report each task.
-- [Execution protocol](docs/planning/execution-protocol.md): asynchronous coordination, implementation defaults, recovery and integration rules.
-- [Task ledger](docs/planning/tasks.json): current task state, dependencies, ownership and validation evidence.
-- [Completion report template](docs/task-reports/TEMPLATE.md): required short summary after every task.
+```sh
+ripple index .
+ripple inspect lib.ts
+ripple status
+ripple impact lib.ts::f --format json
+ripple diff BASE..HEAD --format json
+ripple test BASE..HEAD --format json
+ripple index . --full
+```
 
-Have the coordinator read the agent instructions and assign the next ready task from `python3 scripts/plan.py ready`. The task ledger records verified completion and the next ready task. The coordinator can be an agent; routine tasks and milestone checks do not require owner intervention.
+Use existing explicit refs for BASE/HEAD and a real supported symbol/path. [CLI reference](docs/cli.md) describes flags, output and failure semantics.
 
-Check task readiness with `python3 scripts/plan.py validate` and `python3 scripts/plan.py ready`. The helper validates planning state; it does not start agents.
+## Evidence and current limits
+
+[Evaluation](docs/evaluation.md) links narrow compiler-oracle agreement, incremental/cold equality, pinned history replay and controlled mutation results. In the deliberately small mutation corpus, symbol-backed selection caught 3/5 failing files and combined caught 4/5, equal to the independent static file-import baseline. Dynamic imports/global state expose misses. These are finite observations, not general test safety or accuracy estimates.
+
+[Performance](docs/benchmarks.md) separates verified CLI cost from cached graph traversal and records raw samples/hardware/state. The profile rejected a timestamp-only freshness shortcut after a same-size restored-mtime edit defeated it. No unmeasured optimization gain is claimed.
+
+Scope: one Git root, TS/TSX and a [narrow documented config/resolution subset](docs/resolution.md). Modern package modes, project references, receiver/dynamic dispatch and many constructs remain diagnosed. Index archives have no GC. [Limitations](docs/limitations.md) and JSON completeness fields must be read before using selections. Prior work is acknowledged in [prior art](docs/prior-art.md).
+
+[Architecture](docs/architecture.md), [thesis](docs/thesis.md), [graph model](docs/graph-model.md), [incremental policy](docs/incremental.md), [ADRs](docs/adr/0001-rust-core.md), [task ledger](docs/planning/tasks.json) and [agent protocol](AGENTS.md) provide the contributor handoff. The ledger records verified progress; it is not a background scheduler.
+
+Licensed under [MIT](LICENSE). Upstream corpus notices remain separate. Versioned candidate packaging and final release checks are the remaining M8-T04 handoff; no public release is implied by this source checkout.

@@ -34,6 +34,12 @@ For dependency and credential checks, run `cargo audit` with a current RustSec d
 
 The coordinator owns the workspace manifest and `Cargo.lock`. Pin shared third-party versions centrally in `[workspace.dependencies]` and inherit them in member manifests. Commit the lockfile. Dependency changes must be deliberate, explained in an ADR when architectural, and verified on affected checks; never introduce parallel lockfile rewrites. See [the bootstrap dependency decision](docs/adr/0010-build-toolchain-and-dependencies.md).
 
-Crates are unpublished local packages until a release task deliberately establishes publication/license metadata. Do not infer an open-source license from dependencies. Native dependency smoke tests validate grammar/API and SQLite compatibility; they do not claim syntax extraction or storage features exist.
+The owner selected the project MIT license (see LICENSE). Crates remain unpublished local packages; binary candidate preparation is separate from public tag/package publication. Upstream dependency/corpus notices retain their own licensing. Native dependency smoke tests validate grammar/API and SQLite compatibility; they do not claim syntax extraction or storage features exist.
 
 Use your configured Git identity and focused commits. Do not add Codex attribution or rewrite human attribution. Link the real check results and task report in each handoff; preserve partial work and blockers rather than marking them done.
+
+## Evaluation and release handoff
+
+The product CLI needs no Node. Evaluation uses pinned Node 24.22.1 / TypeScript 6.0.3 from `eval/oracle/package-lock.json`; install with `npm ci --prefix eval/oracle --ignore-scripts`. See [mutation methodology](eval/mutation/README.md), [replay](eval/commit-replay/README.md), [workflow measurements](bench/results/workflows/README.md) and [oracle](eval/oracle/README.md) for actual reproduction commands and bounds. Corpus scripts are never executed by routine indexing/replay. The owned mutation suite executes only its reviewed fixture tests.
+
+`python3 docs/examples/quickstart.py --binary /path/to/ripple` exercises the six commands in a disposable project. M8-T04 prepares checksummed archives and fresh-runner smoke evidence. Public publication is a separate authorized action; keep `publish = false` until that scope is deliberately changed. SQLite is bundled; distribution/runtime dependencies are audited per supported target.

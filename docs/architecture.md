@@ -1,59 +1,47 @@
 # Ripple architecture
 
-Implemented through M0-T05: a buildable workspace and backend-independent source/identity/syntax, graph/evidence and index/revision/canonical data contracts. M1 now supplies deterministic source discovery, bounded TS/TSX parsing, supported symbol extraction and structural signature/body hashes. Import/export/reference and lexical-scope extraction and the inspect CLI are now implemented; resolution, storage, Git comparisons and impact analysis remain future implementation tasks; do not infer feature support from the types below.
+All six CLI commands compose implemented libraries. Production has three boundaries: syntax facts, semantic graph resolution, then impact/change/test analysis. Node/TypeScript is evaluation-only. SQLite is bundled and local; Git is an argument-array subprocess adapter with bounded reads, environment isolation and no lazy fetch.
 
-## Boundaries
-
-| Crate | Responsibility | Internal dependencies |
+| Crate | Responsibility | Internal production dependencies |
 |---|---|---|
-| ripple-core | Shared source, identity, syntax, graph and result contracts | none |
-| ripple-parse | Capture-facing scanner, TS/TSX parsing and syntax facts | core |
-| ripple-resolve | Supported module/export/call resolution and uncertainty | core |
-| ripple-index | Cold/incremental orchestration and atomic SQLite generations | core, parse, resolve |
-| ripple-git | Immutable refs, tree/blob sources and structured changes | core |
-| ripple-impact | Graph queries, changed-symbol comparison and witnesses | core |
-| ripple-cli | Compose providers/engines and render outputs | all as needed |
+| ripple-core | Validated source/identity/syntax/graph/revision/result contracts | none |
+| ripple-parse | Capability-relative scanning, bounded TS/TSX parsing/extraction/hashes | core |
+| ripple-resolve | Captured config/module/export/direct-reference rules and uncertainty | core |
+| ripple-index | Captured cold/incremental orchestration, freshness and atomic SQLite/cache | core, parse, resolve |
+| ripple-git | Pinned refs, trees/blobs, hunks and provenance | core |
+| ripple-impact | Adjacency/traversal, symbol changes, revision/test evidence | core |
+| ripple-cli | Provider/engine composition and human/versioned JSON | owning libraries |
 
-Core currently uses only serde/thiserror. It has no Tree-sitter, SQLite, filesystem or Git dependencies. Syntax facts expose lexical references and bindings, never resolved edges. M0-T04 defines the implemented graph/evidence contracts; M0-T05 defines the implemented generation/revision contracts. Implementations live in their owning crates rather than leaking into core.
+```mermaid
+flowchart LR
+ Git[Immutable Git endpoints / live root] --> Capture[Captured source/config/ignore bytes]
+ Capture --> Syntax[Syntax facts + structured hashes]
+ Syntax --> Semantics[Supported bindings + graph + unknowns]
+ Semantics --> Store[Atomic SQLite generations / sealed analysis cache]
+ Semantics --> Impact[Base/head change mapping + reverse witnesses]
+ Store --> Verify[Content/provenance freshness verification]
+ Verify --> Impact
+ Impact --> CLI[impact / diff / test reports]
+```
 
-## Source and identity
+## Inputs and durable state
 
-`RepoPath` normalizes slash separators, redundant separators and `.` components while rejecting absolute/drive/UNC paths, parent traversal and control characters. Preserve case and Unicode spelling; do not derive identity from machine-specific absolute paths. Scanning rejects portable case collisions and skips encountered symlinks. Worktree IO is anchored to an open directory handle, with capability-relative paths and regular-file checks; see [ADR 0011](adr/0011-source-discovery.md). Host filenames containing literal backslashes are outside this portable path contract and must be diagnosed by a scanner rather than accidentally conflated.
+RepoPath uses portable relative UTF-8 spelling, rejects escapes/control characters and preserves case. Scanning rejects case collisions, anchors reads through directory capabilities, excludes symlinks and known generated/dependency/index folders, and records source/config/ignore membership and bytes. Source positions are UTF-8 byte offsets with one-based byte display columns. Captures are verified again before atomic publication, with at most three attempts. This is not an OS-atomic snapshot; later edits make a published generation stale.
 
-`SourceSnapshot` owns immutable captured UTF-8 text keyed by normalized paths in sorted order. Providers capture once through `SourceProvider`; the index layer will verify the original inputs before publication and bound retries. Core captures no filesystem freshness guarantee. Non-UTF-8 inputs are rejected/diagnosed at provider boundaries; core `SourceFile` accepts valid Rust strings only.
+SQLite schema v2 is authoritative. Complete immutable generations include captured inputs, validated facts/graph and a sealed analysis/fingerprint cache. Derived metadata/module sidecars are recoverable, not the source of truth. Reader transactions see one generation; failed capture/build/publication preserves the prior one. Corrupt state fails explicitly; unsupported schema repair is archive/rebuild, never silent deletion. No archive GC is implemented. [Storage](storage.md), [capture/storage decisions](adr/0021-cold-index.md) and [cache](adr/0025-incremental-cache.md).
 
-`SourceSpan` uses half-open UTF-8 byte offsets and one-based display line/byte-column coordinates. LF advances lines; CRLF counts as one newline with both bytes retained. EOF/empty spans are representable; interior UTF-8 offsets are rejected. Validate deserialized facts against their captured source, not just structurally against serialized coordinates. Bare CR line endings are not normalized into LF silently.
+## Identity, syntax and semantics
 
-`SymbolId` has project key, path, kind, structured qualified-name components and a disambiguator. Use persisted `default` project key for initial single-project support. Line/byte spans and revisions are absent from identity. `semantic_key()` is versioned and byte-length-framed; dotted display names are not unique identifiers. A method literally named `a.b` cannot collide with two qualified-name components. Disambiguators describe stable declaration roles/signatures, never byte positions or line numbers.
+Symbol IDs use project/path/qualified-name/kind/disambiguator, excluding offsets, revision and DB row IDs. Hashes use versioned node structure and meaningful lexical content, preserving ASI, strings/templates/TSX text. Extraction retains lexical scopes, reference ownership and diagnostics; Tree-sitter is not semantic proof. Module lookup consumes captured config and inventory; export closure preserves original declarations, transfer witnesses and missing probes. Supported direct calls/reads respect lexical shadowing and type-only imports. Unsupported constructs remain unknown. [Resolution](resolution.md) and [hash decision](adr/0012-syntax-hashes.md).
 
-## Syntax facts and supported declaration subset
+Incremental refresh reuses only content/version-bound facts, then guarded module/reference results where complete input/external-surface equality proves applicability. Config/package/lock/ignore/policy and missing-probe changes can trigger full fallback. Inventory/coordinate/unknown changes rebuild conservatively. Full canonical snapshot plus module/config/discovery equality gates reuse. A no-op still verifies inputs and publishes a generation; zero parses does not mean zero writes or latency. [Incremental](incremental.md).
 
-`FileFacts` holds symbols, imports/exports, lexical scopes, bindings, references and diagnostics. Validate paths, coordinates, owner membership, lexical parent containment/cycles, hash shape and incomplete-parse diagnostics before downstream use. Recovered syntax may emit validated partial facts with explicit diagnostics; failed parsing emits diagnostics without syntax facts. Validation does not prove that extraction or resolution is correct.
+## Historical and query workflows
 
-`ripple-parse::symbols::extract` now supports named top-level function declarations, named classes/methods, named/default exports and top-level const bindings to arrow/function expressions, represented as FUNCTION nodes. Anonymous default declarations use stable default-export roles. Contiguous overload signatures preceding one implementation form one logical symbol; fingerprints retain all headers conservatively. Static/get/set roles distinguish methods with the same local name. Ambient-only declarations and unsupported anonymous/computed cases are diagnosed instead of fabricated as executable targets. No additional symbol kinds are introduced for callbacks initially.
+Diff/test pin A..B once, build independent in-memory endpoint snapshots from immutable blobs and classify supported symbols/files using both sides. They never publish the user's index or checkout files. Path-based identity means renames can be delete/add; global inputs seed explicit policy fallback. Existing-path metadata distinguishes absent old tests from present-unindexed paths.
 
-References inside nested callbacks retain lexical scope and belong to their closest supported enclosing symbol; top-level test callbacks belong to the file. Record parameter/local/import bindings to let resolution detect shadowing. Module-level direct calls retain file ownership. Namespace/computed/dynamic constructs retain syntax evidence plus unsupported diagnostics when precise resolution is unavailable.
+Queries build adjacency once per graph and reverse-walk CALLS/REFERENCES separately from DEFINES-at-seed then IMPORTS/REEXPORTS. No containment expansion enters the semantic track. Witnesses retain seed, endpoint, track, original hops/provenance and weakest confidence. Deterministic BFS chooses shortest paths with documented ties. Display limits preserve full JSON sets; depth boundaries and graph-wide unresolved context remain visible. Test selection projects validated revision evidence into head/absent/unindexed partitions, using supported head tests as ratio denominator. [Graph model](graph-model.md) and [test decision](adr/0030-test-impact.md).
 
-M0 contracts compute no hashes themselves. M1-T03 produces SHA-256 syntax fingerprints with versioned domains, length-framed node kinds/fields/leaf content and ASI-sensitive line-break evidence, as specified in [ADR 0012](adr/0012-syntax-hashes.md). Supported method bodies are omitted from class shape, while unrepresented class members retain full syntax conservatively. Hashes and semantic IDs ignore source line shifts. Signature hashes may be absent for recovered/unmodeled export input; their presence does not prove TypeScript compiler API equality or justify early cutoff. Raw source/config digest production remains separate.
+## Verification and measurements
 
-`ripple_parse::extract` now returns supported symbol/import/export/reference/scope facts; `symbols::extract` remains the symbol-only API. References retain exact source spans, lexical parents and smallest enclosing symbol/file ownership. Binding-level type-only imports, shadowing and module-level callbacks stay explicit; no resolved targets or graph edges are emitted. Supplemental extraction has depth/scope/count/text budgets, with all supplemental facts withheld on a resource limit. See [ADR 0013](adr/0013-reference-extraction.md) for supported syntax, opaque boundaries, compatibility and limits. Unsupported names, bindings, ambient/type-only declarations, decorators and class initialization have diagnostics and documented limits.
-
-## Graph, generations and revision binding
-
-See [graph-model.md](graph-model.md) for typed endpoints and independent symbol-backed/module-fallback witnesses. Graph snapshots are sorted semantic records; the impact crate will build adjacency/BFS later. Every stored witness must validate against the graph for its actual revision.
-
-`SnapshotData` is a serializable transport record, not an automatically trusted query index. `validate(captured_sources)` checks manifest membership/byte lengths, syntax facts, project identity, graph symbol/file membership, coordinates/provenance and hash-format shape. It returns a private, immutable `IndexSnapshot`; decoding persisted data must pass through that source validation again. Hash computation/verification is a producer responsibility and not accomplished by checking 64 hex characters. Config/ignore/package/lockfile bytes are fingerprinted as manifest inputs, but only supported UTF-8 source files enter SourceSnapshot/FileFacts.
-
-SnapshotOrigin distinguishes a possibly dirty worktree with optional HEAD (including unborn repositories) from an immutable commit. RevisionGraphs binds Base/Head labels to matching full commit IDs and compatible project/formats, so deleted symbols remain explainable only in their base graph. It never treats a clean worktree as a committed-tree index. The real Git provider/diff mapper and old/head traversal remain future tasks.
-
-`IndexVersions` separates SQLite schema, hash encoding and analyzer compatibility identifiers. Callers must compare against supported identifiers from the running analyzer with `ensure_compatible`; positive version numbers alone are not compatibility proof. Incompatible development builds must not share an unchanged package-version token. A complete generation has creation metadata/counter; SQLite implements actual transactions/locking/recovery later.
-
-`check_observation` compares supplied input/HEAD observations to the captured manifest. It performs no filesystem access and does not create a freshness certificate. The index implementation must actually recapture/re-hash membership and inputs before publication, with at most three attempts, and preserve the previous generation on continued changes/failure. Files can change after verification; queries still need compatibility/freshness checks.
-
-`CanonicalState` v1 preserves input hashes, effective-config semantics, facts, typed edges, confidence, rule/provenance, parse status and unknown/diagnostic records while normalizing order. It excludes generation numbers, times and actual checkout origin. Thus equal semantic state at different revisions can still fail freshness/revision checks. This comparison artifact cannot be loaded as an unchecked runtime index, and unsupported comparison format versions are rejected. SQLite row IDs never enter these contracts. M5/M6 extend fingerprints and test real incremental/cold updates, not just projection examples.
-
-## Validation and execution
-
-Contract tests use manually authored facts, not parser-generated expected output. Every task has its own report and integrated commit in the ledger. See [the execution protocol](planning/execution-protocol.md) for claims, integration, uncertainty, cold-equality gates and version-specific completion requirements.
-
-`ripple inspect` composes captured discovery and complete syntax facts without writing state. Human and versioned JSON reports retain paths/spans/ownership, diagnostics and explicit incomplete-analysis status. See [CLI usage](cli.md) and [ADR 0014](adr/0014-inspect-output.md); no dependency resolution is implied by a successful syntax report.
+[Evaluation](evaluation.md) and [benchmarks](benchmarks.md) link finite fixtures, compiler agreement, generated cold equality, real-history replay, controlled runtime faults and stage/resource measurements. The phase helper includes actual capture source and checks equality with the production query. No stat-only freshness optimization is shipped. Supported OS installation is tested through CI and the final artifact gate; exact candidate evidence belongs in the release checklist. Trust/resource boundaries are in [limitations](limitations.md).

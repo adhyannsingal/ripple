@@ -13,7 +13,7 @@ let resolver = ConfiguredResolver::new(&config, source_inventory)?;
 let lookup = resolver.lookup(&importer, specifier);
 ```
 
-Import these types from `ripple_resolve::config` and `ripple_resolve::paths`. All configs/source paths are captured inputs supplied by the caller; these APIs perform no discovery or IO. Supply the finite relevant inheritance inventory before expecting a supported result. Missing inputs remain visible in `config.inputs()` and produce diagnostics. `CapturedConfigs::get` retrieves present bytes for manifest construction; freshness/retry is M2-T05 work.
+Import these types from `ripple_resolve::config` and `ripple_resolve::paths`. All configs/source paths are captured inputs supplied by the caller; these APIs perform no discovery or IO. Supply the finite relevant inheritance inventory before expecting a supported result. Missing inputs remain visible in `config.inputs()` and produce diagnostics. `CapturedConfigs::get` retrieves present bytes for manifest construction; index orchestration verifies freshness and bounds retries.
 
 | Supported policy | Behavior |
 |---|---|
@@ -35,7 +35,7 @@ Supported moduleResolution is absent or node/node10 under the source-inventory p
 
 This task intentionally implements the build spec's legacy baseUrl lookup policy. The [TypeScript 6.0 release documentation](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/#deprecated---baseurl) changes that behavior. No latest-compiler equivalence is claimed; the later oracle must pin a declared compatible policy/version. See [module reference](https://www.typescriptlang.org/docs/handbook/modules/reference#paths) and [inheritance reference](https://www.typescriptlang.org/tsconfig/extends.html).
 
-Run `cargo test --locked -p ripple-resolve`: 21 config tests, 10 legacy module tests and 19 re-export tests cover independent lookups/digests/bindings, unsupported forms, boundaries, persistence round trips and cold repair. The M3 compiler-oracle and benchmark harnesses do not exist yet; accuracy and performance are not measured.
+Run `cargo test --locked -p ripple-resolve`: 21 config tests, 10 legacy module tests and 19 re-export tests cover independent lookups/digests/bindings, unsupported forms, boundaries, persistence round trips and cold repair. Scoped compiler agreement and workflow measurements now exist; see [evaluation](evaluation.md) and [benchmarks](benchmarks.md), which do not establish general compiler equivalence.
 
 ## Configured bindings and re-exports (M2-T07)
 
@@ -45,7 +45,7 @@ Every successful export retains the original SymbolId, effective type-only flag,
 
 ModuleAnalysis includes project/config provenance, present/missing config inputs, import/re-export lookup dependencies, transfers and external fingerprints. It supports serde JSON round trips for persistence handoff. Deserialize produces transport evidence, not a trusted analysis: call `analysis.validate(project, sources, facts, config)` before reuse, with appropriate caller-side artifact size limits. Validation recomputes against captured inputs; live freshness and revision binding remain index/Git obligations. This library writes no SQL/files; index/incremental integration owns cache composition.
 
-External fingerprints include supported signature/exposure/origin/config/lookup/uncertainty evidence. They exclude body hashes and witness locations, so some body-only edits preserve a fingerprint. That is not semantic API equality or permission to skip re-resolution; inferred types, side effects and unsupported forms require conservative fallback and M5's equality gates. No early-cutoff optimization is implemented.
+External fingerprints include supported signature/exposure/origin/config/lookup/uncertainty evidence. They exclude body hashes and witness locations, so some body-only edits preserve a fingerprint. That is not semantic API equality or permission to skip re-resolution; inferred types, side effects and unsupported forms require conservative fallback and M5's equality gates. Guarded reuse is implemented only under the [incremental policy](incremental.md); these fingerprints alone never authorize it.
 
 Closure is bounded by 100000 cells/transfers, 512 rounds per phase and five million charged work units. Exhaustion fails explicitly without returning partial unique results. Full witnesses can consume substantial memory; no latency or total-memory guarantee is measured. See [ADR 0019](adr/0019-reexport-fixed-point.md), [fixtures](../fixtures/resolution/reexports/README.md) and the [task report](task-reports/M2-T07.md). M2-T02 and M2-T05 now compose call resolution and cold CLI integration.
 

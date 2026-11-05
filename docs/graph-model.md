@@ -28,15 +28,15 @@ Example: `src/lib.ts` exports unrelated `a` and `b`; `a.test.ts` imports/calls `
 
 ## Witness, revision and output contracts
 
-A `Witness` records a seed, target, revision side (worktree/base/head), evidence kind and original dependency edges in reverse-walk order. Validation checks membership in the chosen revision graph, continuity, endpoint identity, evidence policy and absence of repeated nodes. The graph itself may contain cycles; explanation paths are simple. The M2-T04 BFS chooses shortest witnesses with deterministic tie-breaking; core validation alone does not choose or prove shortestness. Immutable SHA/origin binding arrives in M0-T05.
+A `Witness` records a seed, target, revision side (worktree/base/head), evidence kind and original dependency edges in reverse-walk order. Validation checks membership in the chosen revision graph, continuity, endpoint identity, evidence policy and absence of repeated nodes. The graph itself may contain cycles; explanation paths are simple. The M2-T04 BFS chooses shortest witnesses with deterministic tie-breaking; core validation alone does not choose or prove shortestness. Immutable SHA/origin binding is enforced by revision graphs.
 
 Distance is hop count within a track. A fallback containment hop counts; it must not be presented as a semantic call distance. There can be an exact and fallback witness to the same result, or base/head witnesses to it; keep these rather than deduplicating just by display name.
 
-Query defaults are unlimited depth and 100 displayed results. `QueryLimits` and `Truncation` explicitly separate depth boundaries from omitted display rows. Display limiting must not limit traversal or the complete test selection. `ImpactResult` is a transport contract: deserialize/partition evidence structurally, then validate each witness against its actual revision graph before rendering. The M2-T04 query engine populates depth/display completeness data; CLI presentation remains M2-T05.
+Query defaults are unlimited depth and 100 displayed results. `QueryLimits` and `Truncation` explicitly separate depth boundaries from omitted display rows. Display limiting must not limit traversal or the complete test selection. `ImpactResult` is a transport contract: deserialize/partition evidence structurally, then validate each witness against its actual revision graph before rendering. The M2-T04 query engine populates depth/display completeness data; CLI presentation is implemented for impact/diff/test.
 
 ## Acceptance evidence
 
-`cargo test --locked -p ripple-core --test graph_contracts` exercises independently authored graph records: unrelated exports, direct file-owned calls, candidates, unresolved boundaries, graph cycles, disconnected/forged witnesses, provenance errors, serialization and evidence partitioning. Tests do not compare a real resolver or claim measured TypeScript accuracy. Actual extraction/resolution fixtures and oracle metrics belong to their later tasks.
+`cargo test --locked -p ripple-core --test graph_contracts` exercises independently authored graph records: unrelated exports, direct file-owned calls, candidates, unresolved boundaries, graph cycles, disconnected/forged witnesses, provenance errors, serialization and evidence partitioning. Tests do not compare a real resolver or claim measured TypeScript accuracy. Extraction/resolution fixtures and scoped oracle metrics are linked in [evaluation](evaluation.md).
 
 ## Query library (M2-T04)
 
