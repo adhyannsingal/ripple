@@ -16,7 +16,8 @@ ROOT=Path(__file__).resolve().parents[2]
 spec=importlib.util.spec_from_file_location('incremental',ROOT/'bench/scripts/incremental.py');inc=importlib.util.module_from_spec(spec);spec.loader.exec_module(inc)
 
 def run(argv,cwd,env):
-    start=time.perf_counter();out=subprocess.run([str(a) for a in argv],cwd=cwd,env=env,capture_output=True,timeout=120,check=True)
+    start=time.perf_counter();out=subprocess.run([str(a) for a in argv],cwd=cwd,env=env,capture_output=True,timeout=120)
+    if out.returncode: raise RuntimeError(out.stderr.decode('utf8','replace')[:8192])
     return out,(time.perf_counter()-start)*1000
 
 def stat(values,p):return sorted(values)[math.ceil(len(values)*p)-1]

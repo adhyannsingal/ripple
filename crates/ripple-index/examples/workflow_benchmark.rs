@@ -13,6 +13,8 @@ fn ms(start: Instant) -> f64 {
     start.elapsed().as_secs_f64() * 1000.0
 }
 fn run(root: &Path) -> Result<(), String> {
+    let canonical_root = std::fs::canonicalize(root).map_err(|e| e.to_string())?;
+    let root = canonical_root.as_path();
     let start = Instant::now();
     let loaded = storage::Store::open(root.join(".ripple"), build::versions())
         .map_err(|e| e.to_string())?
