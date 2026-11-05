@@ -414,7 +414,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M7-T02 — Deliver test command and selection-ratio reporting
 
 - **Depends on:** M7-T01. **Lane:** cli.
-- **Own:** `crates/ripple-cli/src/commands/test*`; `crates/ripple-cli/tests/test_impact*`; `docs/examples/`.
+- **Own:** `crates/ripple-cli/src/commands/test*`; `crates/ripple-cli/tests/test_impact*`; `docs/examples/`; `crates/ripple-cli/src/main.rs`; `crates/ripple-cli/src/commands/mod.rs`; `crates/ripple-cli/tests/cli.rs`; `scripts/m7-smoke.py`; `.github/workflows/ci.yml`; `README.md`; `CONTRIBUTING.md`; `docs/cli.md`; `docs/project-status.md`; `docs/limitations.md`; `docs/adr/0031-test-cli.md`.
 - **Implement:** Expose test A..B with human/JSON reports, potential-related wording, per-file explanation and counts. Define denominator as supported head test files, separate base-only evidence, and retain all selected paths in machine output or explicit completeness metadata. Add pinned external repo demo. JSON includes complete selected sets with evidence partitions and human output labels fallback-only paths. Report selection ratios separately for symbol-backed and combined selection; the default conservative union may equal the file-import baseline and must not be presented as a precision improvement without data.
 - **Acceptance:** End-to-end tests cover empty selection/zero tests/added-deleted tests/invalid refs/unresolved analysis; selection ratio is recomputable from raw counts; no output claims tests are sufficient; M7 gate includes real-repo evidence and full checks.
 - **Handoff:** Usable conservative test-impact CLI and input to mutation evaluation.
