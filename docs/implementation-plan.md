@@ -432,7 +432,7 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 #### M8-T02 — Benchmark production workflows and apply one measured optimization
 
 - **Depends on:** M6-T03, M7-T02. **Lane:** performance.
-- **Own:** `bench/`; `docs/benchmarks.md`; `crates/<profiled-subsystem>/`.
+- **Own:** `bench/`; `docs/benchmarks.md`; `crates/<profiled-subsystem>/`; `crates/ripple-index/examples/workflow_benchmark.rs`.
 - **Implement:** Benchmark cold files/sec and LOC/sec, incremental p50/p95, impact p50/p99, peak RSS and index size on pinned workloads. Capture CPU/RAM/OS/hardware/config/version/state/run counts. Profile, choose one demonstrated bottleneck, implement a bounded optimization or document evidence that a proposed change was rejected. Separate end-to-end process startup, freshness/content verification, graph loading and pure traversal timings. Label cached versus verified-worktree measurements. If optimization changes behavior, regenerate oracle/replay/safety evidence on the final integrated commit before release readiness.
 - **Acceptance:** Reproduction scripts and raw samples generate reported statistics; before/after use equivalent inputs and hardware; all impacted fixtures, oracle comparison and cold/incremental suites still pass; no shared-CI absolute latency assertion. Optimization outcome is evidence-based, with unmeasured metrics explicitly blocked or documented.
 - **Handoff:** Performance report and explainable profiling decision for final release review.
