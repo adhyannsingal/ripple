@@ -1,0 +1,7968 @@
+{
+  "coverage": {
+    "eligible_edges": 16,
+    "eligible_occurrences": 65,
+    "excluded_occurrences": 524,
+    "runtime_identifiers": 589
+  },
+  "diagnostics": [
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 959
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'pop' does not exist on type '{}'.",
+      "start": 1307
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 1828
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 1930
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 1953
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 2130
+    },
+    {
+      "code": 7053,
+      "file": "src/scopes.ts",
+      "message": "Element implicitly has an 'any' type because expression of type 'number' can't be used to index type '{}'.   No index signature with a parameter of type 'number' was found on type '{}'.",
+      "start": 2399
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 2922
+    },
+    {
+      "code": 7053,
+      "file": "src/scopes.ts",
+      "message": "Element implicitly has an 'any' type because expression of type 'number' can't be used to index type '{}'.   No index signature with a parameter of type 'number' was found on type '{}'.",
+      "start": 2951
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 3368
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'pop' does not exist on type '{}'.",
+      "start": 3956
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 6169
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 6334
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 6457
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 6482
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 6685
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 6778
+    },
+    {
+      "code": 7053,
+      "file": "src/scopes.ts",
+      "message": "Element implicitly has an 'any' type because expression of type 'number' can't be used to index type '{}'.   No index signature with a parameter of type 'number' was found on type '{}'.",
+      "start": 7234
+    },
+    {
+      "code": 2339,
+      "file": "src/scopes.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 9109
+    },
+    {
+      "code": 7053,
+      "file": "src/scopes.ts",
+      "message": "Element implicitly has an 'any' type because expression of type 'number' can't be used to index type '{}'.   No index signature with a parameter of type 'number' was found on type '{}'.",
+      "start": 9138
+    },
+    {
+      "code": 2339,
+      "file": "src/sourcemap-codec.ts",
+      "message": "Property 'length' does not exist on type '{}'.",
+      "start": 662
+    },
+    {
+      "code": 2339,
+      "file": "src/sourcemap-codec.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 1773
+    },
+    {
+      "code": 2339,
+      "file": "src/sourcemap-codec.ts",
+      "message": "Property 'push' does not exist on type '{}'.",
+      "start": 1852
+    },
+    {
+      "code": 2339,
+      "file": "src/sourcemap-codec.ts",
+      "message": "Property 'sort' does not exist on type '{}'.",
+      "start": 1996
+    },
+    {
+      "code": 2304,
+      "file": "src/sourcemap-codec.ts",
+      "message": "Cannot find name 'Readonly'.",
+      "start": 2214
+    },
+    {
+      "code": 2304,
+      "file": "src/sourcemap-codec.ts",
+      "message": "Cannot find name 'Readonly'.",
+      "start": 2284
+    },
+    {
+      "code": 2304,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'TextDecoder'.",
+      "start": 96
+    },
+    {
+      "code": 2304,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'TextDecoder'.",
+      "start": 150
+    },
+    {
+      "code": 2591,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.",
+      "start": 177
+    },
+    {
+      "code": 2304,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'Uint8Array'.",
+      "start": 228
+    },
+    {
+      "code": 2591,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.",
+      "start": 272
+    },
+    {
+      "code": 2304,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'Uint8Array'.",
+      "start": 409
+    },
+    {
+      "code": 2304,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'String'.",
+      "start": 523
+    },
+    {
+      "code": 2304,
+      "file": "src/strings.ts",
+      "message": "Cannot find name 'Uint8Array'.",
+      "start": 689
+    },
+    {
+      "code": 2339,
+      "file": "src/strings.ts",
+      "message": "Property 'charCodeAt' does not exist on type 'string'.",
+      "start": 1213
+    },
+    {
+      "code": 2339,
+      "file": "src/strings.ts",
+      "message": "Property 'charCodeAt' does not exist on type 'string'.",
+      "start": 1284
+    },
+    {
+      "code": 2339,
+      "file": "src/strings.ts",
+      "message": "Property 'indexOf' does not exist on type 'string'.",
+      "start": 1402
+    },
+    {
+      "code": 2339,
+      "file": "src/strings.ts",
+      "message": "Property 'length' does not exist on type 'string'.",
+      "start": 1453
+    },
+    {
+      "code": 2339,
+      "file": "src/vlq.ts",
+      "message": "Property 'charCodeAt' does not exist on type '\",\"'.",
+      "start": 87
+    },
+    {
+      "code": 2339,
+      "file": "src/vlq.ts",
+      "message": "Property 'charCodeAt' does not exist on type '\";\"'.",
+      "start": 131
+    },
+    {
+      "code": 2304,
+      "file": "src/vlq.ts",
+      "message": "Cannot find name 'Uint8Array'.",
+      "start": 251
+    },
+    {
+      "code": 2304,
+      "file": "src/vlq.ts",
+      "message": "Cannot find name 'Uint8Array'.",
+      "start": 311
+    },
+    {
+      "code": 2339,
+      "file": "src/vlq.ts",
+      "message": "Property 'length' does not exist on type '\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"'.",
+      "start": 376
+    },
+    {
+      "code": 2339,
+      "file": "src/vlq.ts",
+      "message": "Property 'charCodeAt' does not exist on type '\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"'.",
+      "start": 409
+    }
+  ],
+  "edges": [
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2171,
+          "start": 2150
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 2171,
+            "start": 2150
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",1991,2228]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3111,
+          "start": 3090
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 3111,
+            "start": 3090
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2571,
+          "start": 2558
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 2571,
+            "start": 2558
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 2617,
+            "start": 2604
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 2658,
+            "start": 2645
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 2743,
+            "start": 2730
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 2803,
+            "start": 2790
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 2870,
+            "start": 2857
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 3197,
+            "start": 3184
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 3241,
+            "start": 3228
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3911,
+          "start": 3901
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 3911,
+            "start": 3901
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 5475,
+            "start": 5465
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 6385,
+            "start": 6375
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3868,
+          "start": 3855
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 3868,
+            "start": 3855
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 4081,
+            "start": 4068
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 4411,
+            "start": 4398
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 4489,
+            "start": 4476
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 5028,
+            "start": 5015
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 5157,
+            "start": 5144
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 5236,
+            "start": 5223
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 5647,
+            "start": 5634
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 5803,
+            "start": 5790
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 5959,
+            "start": 5946
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 6025,
+            "start": 6012
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 6125,
+            "start": 6112
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6820,
+          "start": 6798
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 6820,
+            "start": 6798
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6598,6895]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9299,
+          "start": 9277
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 9299,
+            "start": 9277
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7431,
+          "start": 7420
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 7431,
+            "start": 7420
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 9379,
+            "start": 9368
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",9567,9712]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7588,
+          "start": 7575
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 7588,
+            "start": 7575
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 7741,
+            "start": 7728
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 7937,
+            "start": 7924
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 7999,
+            "start": 7986
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 8303,
+            "start": 8290
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 8365,
+            "start": 8352
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 8423,
+            "start": 8410
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 8559,
+            "start": 8546
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 8648,
+            "start": 8635
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 8883,
+            "start": 8870
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 8967,
+            "start": 8954
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 9032,
+            "start": 9019
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 9516,
+            "start": 9503
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1262,
+          "start": 1252
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1262,
+            "start": 1252
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1715,
+            "start": 1705
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1870,
+            "start": 1860
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1181,
+          "start": 1168
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1181,
+            "start": 1168
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1229,
+            "start": 1216
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1414,
+            "start": 1401
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1459,
+            "start": 1446
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1601,
+            "start": 1588
+          }
+        },
+        {
+          "file": "src/scopes.ts",
+          "span": {
+            "end": 1802,
+            "start": 1789
+          }
+        }
+      ],
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]"
+    },
+    {
+      "kind": "REFERENCES",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2015,
+          "start": 2001
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 2015,
+            "start": 2001
+          }
+        }
+      ],
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",1947,2019]",
+      "target": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2021,2120]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2774,
+          "start": 2761
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 2774,
+            "start": 2761
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 2884,
+            "start": 2871
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 2952,
+            "start": 2939
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 3020,
+            "start": 3007
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 3131,
+            "start": 3118
+          }
+        }
+      ],
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2122,3202]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1832,
+          "start": 1828
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1832,
+            "start": 1828
+          }
+        }
+      ],
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",1947,2019]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1241,
+          "start": 1231
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1241,
+            "start": 1231
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1458,
+            "start": 1448
+          }
+        }
+      ],
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1125,
+          "start": 1112
+        }
+      },
+      "occurrences": [
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1125,
+            "start": 1112
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1295,
+            "start": 1282
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1353,
+            "start": 1340
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1411,
+            "start": 1398
+          }
+        },
+        {
+          "file": "src/sourcemap-codec.ts",
+          "span": {
+            "end": 1512,
+            "start": 1499
+          }
+        }
+      ],
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]"
+    }
+  ],
+  "exclusions": [
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 107,
+          "start": 96
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "TextDecoder"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 161,
+          "start": 150
+        }
+      },
+      "reason": "constructor",
+      "text": "TextDecoder"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 183,
+          "start": 177
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "Buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 278,
+          "start": 272
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "Buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 287,
+          "start": 284
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "buf"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 299,
+          "start": 296
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "buf"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 315,
+          "start": 312
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "buf"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 349,
+          "start": 346
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "out"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 482,
+          "start": 481
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 488,
+          "start": 485
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "buf"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 498,
+          "start": 497
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 519,
+          "start": 516
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "out"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 529,
+          "start": 523
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "String"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 546,
+          "start": 543
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "buf"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 548,
+          "start": 547
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 584,
+          "start": 581
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "out"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 699,
+          "start": 689
+        }
+      },
+      "reason": "constructor",
+      "text": "Uint8Array"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 709,
+          "start": 700
+        }
+      },
+      "reason": "constructor",
+      "text": "bufLength"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 779,
+          "start": 773
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 795,
+          "start": 794
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "v"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 827,
+          "start": 818
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bufLength"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 851,
+          "start": 849
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "td"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 865,
+          "start": 859
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 972,
+          "start": 969
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "pos"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 982,
+          "start": 979
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "out"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 987,
+          "start": 985
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "td"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1001,
+          "start": 995
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1017,
+          "start": 1014
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "pos"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1025,
+          "start": 1022
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "out"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1164,
+          "start": 1158
+        }
+      },
+      "reason": "unsupported_owner",
+      "text": "buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1401,
+          "start": 1395
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1414,
+          "start": 1410
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "char"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1419,
+          "start": 1416
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "pos"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1436,
+          "start": 1433
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "idx"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1452,
+          "start": 1446
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "buffer"
+    },
+    {
+      "location": {
+        "file": "src/strings.ts",
+        "span": {
+          "end": 1465,
+          "start": 1462
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "idx"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 261,
+          "start": 251
+        }
+      },
+      "reason": "constructor",
+      "text": "Uint8Array"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 321,
+          "start": 311
+        }
+      },
+      "reason": "constructor",
+      "text": "Uint8Array"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 367,
+          "start": 366
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 375,
+          "start": 370
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "chars"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 385,
+          "start": 384
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 408,
+          "start": 403
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "chars"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 421,
+          "start": 420
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 435,
+          "start": 426
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "intToChar"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 437,
+          "start": 436
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 442,
+          "start": 441
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "c"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 455,
+          "start": 446
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "charToInt"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 457,
+          "start": 456
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "c"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 462,
+          "start": 461
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 628,
+          "start": 622
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 648,
+          "start": 641
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "integer"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 660,
+          "start": 651
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "charToInt"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 662,
+          "start": 661
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "c"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 674,
+          "start": 669
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "value"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 686,
+          "start": 679
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "integer"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 701,
+          "start": 696
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "shift"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 712,
+          "start": 707
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "shift"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 737,
+          "start": 730
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "integer"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 774,
+          "start": 769
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "value"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 787,
+          "start": 782
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "value"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 815,
+          "start": 803
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "shouldNegate"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 828,
+          "start": 823
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "value"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 851,
+          "start": 846
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "value"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 875,
+          "start": 867
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "relative"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 883,
+          "start": 878
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "value"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 999,
+          "start": 996
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "num"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1010,
+          "start": 1002
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "relative"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1020,
+          "start": 1015
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1028,
+          "start": 1023
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1042,
+          "start": 1037
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1060,
+          "start": 1055
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1097,
+          "start": 1092
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1119,
+          "start": 1114
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1141,
+          "start": 1136
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1154,
+          "start": 1147
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "clamped"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1179,
+          "start": 1172
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "builder"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1195,
+          "start": 1186
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "intToChar"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1203,
+          "start": 1196
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "clamped"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1223,
+          "start": 1218
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "delta"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1243,
+          "start": 1240
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "num"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1324,
+          "start": 1318
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1335,
+          "start": 1332
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "max"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1366,
+          "start": 1360
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/vlq.ts",
+        "span": {
+          "end": 1383,
+          "start": 1378
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "comma"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 975,
+          "start": 970
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "input"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1010,
+          "start": 998
+        }
+      },
+      "reason": "constructor",
+      "text": "StringReader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1016,
+          "start": 1011
+        }
+      },
+      "reason": "constructor",
+      "text": "input"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1126,
+          "start": 1120
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1139,
+          "start": 1133
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "length"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1147,
+          "start": 1141
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1165,
+          "start": 1161
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1188,
+          "start": 1182
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1194,
+          "start": 1190
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1236,
+          "start": 1230
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1269,
+          "start": 1263
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1277,
+          "start": 1271
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "length"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1306,
+          "start": 1301
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "stack"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1325,
+          "start": 1321
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "last"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1335,
+          "start": 1331
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1347,
+          "start": 1343
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "last"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1359,
+          "start": 1353
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "column"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1421,
+          "start": 1415
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1466,
+          "start": 1460
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1498,
+          "start": 1492
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "fields"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1558,
+          "start": 1551
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "hasName"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1566,
+          "start": 1562
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1574,
+          "start": 1568
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "column"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1586,
+          "start": 1582
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "kind"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1608,
+          "start": 1602
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1621,
+          "start": 1617
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1629,
+          "start": 1623
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "column"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1641,
+          "start": 1637
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "kind"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1695,
+          "start": 1690
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "EMPTY"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1722,
+          "start": 1716
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1730,
+          "start": 1724
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "length"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1745,
+          "start": 1741
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "vars"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1809,
+          "start": 1803
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1827,
+          "start": 1823
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "vars"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1842,
+          "start": 1833
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "varsIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1877,
+          "start": 1871
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1885,
+          "start": 1879
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "length"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1904,
+          "start": 1899
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1916,
+          "start": 1912
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "vars"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1929,
+          "start": 1923
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1940,
+          "start": 1935
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1952,
+          "start": 1947
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "stack"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1963,
+          "start": 1958
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1986,
+          "start": 1980
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2096,
+          "start": 2084
+        }
+      },
+      "reason": "constructor",
+      "text": "StringWriter"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2120,
+          "start": 2119
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2129,
+          "start": 2123
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2147,
+          "start": 2146
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2178,
+          "start": 2172
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2181,
+          "start": 2180
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2189,
+          "start": 2183
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2217,
+          "start": 2211
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2405,
+          "start": 2399
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2411,
+          "start": 2406
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2503,
+          "start": 2498
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2517,
+          "start": 2512
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2529,
+          "start": 2523
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2541,
+          "start": 2536
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "comma"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2552,
+          "start": 2547
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2578,
+          "start": 2572
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2589,
+          "start": 2580
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "startLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2596,
+          "start": 2591
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2624,
+          "start": 2618
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2637,
+          "start": 2626
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "startColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2665,
+          "start": 2659
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2671,
+          "start": 2667
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "kind"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2700,
+          "start": 2695
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2750,
+          "start": 2744
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2758,
+          "start": 2752
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "fields"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2775,
+          "start": 2770
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2810,
+          "start": 2804
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2817,
+          "start": 2812
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2849,
+          "start": 2845
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "vars"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2877,
+          "start": 2871
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2880,
+          "start": 2879
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "v"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2903,
+          "start": 2898
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2912,
+          "start": 2907
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2921,
+          "start": 2915
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2957,
+          "start": 2951
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2963,
+          "start": 2958
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2997,
+          "start": 2993
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "next"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3008,
+          "start": 3007
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "l"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3018,
+          "start": 3011
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3024,
+          "start": 3023
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "l"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3036,
+          "start": 3029
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3041,
+          "start": 3040
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "c"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3054,
+          "start": 3045
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3087,
+          "start": 3082
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3118,
+          "start": 3112
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopes"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3125,
+          "start": 3120
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3133,
+          "start": 3127
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3140,
+          "start": 3135
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3156,
+          "start": 3150
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3168,
+          "start": 3163
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "comma"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3178,
+          "start": 3173
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3204,
+          "start": 3198
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3213,
+          "start": 3206
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3220,
+          "start": 3215
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3248,
+          "start": 3242
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3259,
+          "start": 3250
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3280,
+          "start": 3275
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3384,
+          "start": 3379
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "input"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3419,
+          "start": 3407
+        }
+      },
+      "reason": "constructor",
+      "text": "StringReader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3425,
+          "start": 3420
+        }
+      },
+      "reason": "constructor",
+      "text": "input"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3752,
+          "start": 3746
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3808,
+          "start": 3802
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3819,
+          "start": 3815
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3827,
+          "start": 3821
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3852,
+          "start": 3843
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3875,
+          "start": 3869
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3886,
+          "start": 3877
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3918,
+          "start": 3912
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3924,
+          "start": 3920
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3955,
+          "start": 3950
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "stack"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3976,
+          "start": 3972
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "last"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3989,
+          "start": 3982
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4003,
+          "start": 3999
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "last"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4018,
+          "start": 4009
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4088,
+          "start": 4082
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4128,
+          "start": 4122
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "fields"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4171,
+          "start": 4165
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "fields"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4211,
+          "start": 4205
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "fields"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4304,
+          "start": 4299
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "EMPTY"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4362,
+          "start": 4349
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "hasDefinition"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4418,
+          "start": 4412
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4442,
+          "start": 4420
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "definitionSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4473,
+          "start": 4453
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "definitionScopeIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4507,
+          "start": 4501
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4541,
+          "start": 4519
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "definitionSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4561,
+          "start": 4546
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "defSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4584,
+          "start": 4564
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "definitionScopeIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4632,
+          "start": 4610
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "definitionSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4650,
+          "start": 4635
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "defSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4665,
+          "start": 4660
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4676,
+          "start": 4669
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4687,
+          "start": 4678
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4710,
+          "start": 4695
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "defSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4732,
+          "start": 4712
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "definitionScopeIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4781,
+          "start": 4776
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4792,
+          "start": 4785
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4803,
+          "start": 4794
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4850,
+          "start": 4845
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4871,
+          "start": 4863
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "hasScope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4895,
+          "start": 4884
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "hasCallsite"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4943,
+          "start": 4923
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4982,
+          "start": 4970
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5012,
+          "start": 4992
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5035,
+          "start": 5029
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5057,
+          "start": 5037
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5094,
+          "start": 5087
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "prevCsi"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5119,
+          "start": 5099
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5141,
+          "start": 5129
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5164,
+          "start": 5158
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5176,
+          "start": 5166
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sameSource"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5191,
+          "start": 5179
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5220,
+          "start": 5206
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5254,
+          "start": 5248
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5276,
+          "start": 5266
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sameSource"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5288,
+          "start": 5280
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "prevLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5305,
+          "start": 5293
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5322,
+          "start": 5308
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5356,
+          "start": 5348
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsite"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5380,
+          "start": 5360
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteSourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5394,
+          "start": 5382
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5410,
+          "start": 5396
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsiteColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5432,
+          "start": 5427
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5452,
+          "start": 5444
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsite"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5482,
+          "start": 5476
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5488,
+          "start": 5484
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5509,
+          "start": 5501
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindings"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5550,
+          "start": 5539
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5560,
+          "start": 5553
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5585,
+          "start": 5572
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5597,
+          "start": 5588
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5654,
+          "start": 5648
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5748,
+          "start": 5732
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expressionsCount"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5785,
+          "start": 5769
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expressionRanges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5810,
+          "start": 5804
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5848,
+          "start": 5847
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5867,
+          "start": 5851
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expressionsCount"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5870,
+          "start": 5869
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5916,
+          "start": 5905
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5943,
+          "start": 5932
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5966,
+          "start": 5960
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5979,
+          "start": 5968
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6009,
+          "start": 5996
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6032,
+          "start": 6026
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6045,
+          "start": 6034
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6056,
+          "start": 6050
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "prevBl"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6072,
+          "start": 6059
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6132,
+          "start": 6126
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6168,
+          "start": 6152
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expressionRanges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6185,
+          "start": 6175
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expression"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6198,
+          "start": 6187
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6213,
+          "start": 6200
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6278,
+          "start": 6262
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expressionRanges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6299,
+          "start": 6283
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expressionsCount"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6333,
+          "start": 6325
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindings"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6355,
+          "start": 6339
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expressionRanges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6392,
+          "start": 6386
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6398,
+          "start": 6394
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6421,
+          "start": 6416
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6441,
+          "start": 6433
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindings"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6456,
+          "start": 6450
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6467,
+          "start": 6462
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6481,
+          "start": 6476
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "stack"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6492,
+          "start": 6487
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6513,
+          "start": 6506
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6527,
+          "start": 6521
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6538,
+          "start": 6534
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6561,
+          "start": 6555
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6574,
+          "start": 6568
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "length"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6593,
+          "start": 6587
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6684,
+          "start": 6678
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6744,
+          "start": 6732
+        }
+      },
+      "reason": "constructor",
+      "text": "StringWriter"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6768,
+          "start": 6767
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6777,
+          "start": 6771
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6795,
+          "start": 6794
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6827,
+          "start": 6821
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6830,
+          "start": 6829
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6838,
+          "start": 6832
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6884,
+          "start": 6878
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7240,
+          "start": 7234
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7246,
+          "start": 7241
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7383,
+          "start": 7378
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7397,
+          "start": 7392
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7412,
+          "start": 7403
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "startLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7438,
+          "start": 7432
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7445,
+          "start": 7440
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7459,
+          "start": 7450
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "startLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7471,
+          "start": 7466
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7486,
+          "start": 7477
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "startLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7497,
+          "start": 7492
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7524,
+          "start": 7519
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7542,
+          "start": 7536
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7554,
+          "start": 7549
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "comma"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7569,
+          "start": 7564
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7595,
+          "start": 7589
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7602,
+          "start": 7597
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7612,
+          "start": 7607
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7646,
+          "start": 7641
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7685,
+          "start": 7677
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsite"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7710,
+          "start": 7703
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "isScope"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7748,
+          "start": 7742
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7756,
+          "start": 7750
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "fields"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7774,
+          "start": 7769
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7844,
+          "start": 7839
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7866,
+          "start": 7854
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7876,
+          "start": 7871
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7894,
+          "start": 7889
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7918,
+          "start": 7913
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7944,
+          "start": 7938
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7958,
+          "start": 7946
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7965,
+          "start": 7960
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7980,
+          "start": 7975
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8006,
+          "start": 8000
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8019,
+          "start": 8008
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "scopesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8026,
+          "start": 8021
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8051,
+          "start": 8043
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callsite"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8120,
+          "start": 8115
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "range"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8152,
+          "start": 8140
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8162,
+          "start": 8157
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8180,
+          "start": 8175
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8200,
+          "start": 8195
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8232,
+          "start": 8224
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8242,
+          "start": 8237
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8260,
+          "start": 8255
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8284,
+          "start": 8279
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8310,
+          "start": 8304
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8324,
+          "start": 8312
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8331,
+          "start": 8326
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8346,
+          "start": 8341
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8372,
+          "start": 8366
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8382,
+          "start": 8374
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8389,
+          "start": 8384
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8404,
+          "start": 8399
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8430,
+          "start": 8424
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8442,
+          "start": 8432
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "callColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8449,
+          "start": 8444
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8474,
+          "start": 8466
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindings"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8512,
+          "start": 8504
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindings"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8533,
+          "start": 8526
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "binding"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8566,
+          "start": 8560
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8576,
+          "start": 8569
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "binding"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8621,
+          "start": 8614
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "binding"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8655,
+          "start": 8649
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8667,
+          "start": 8657
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expression"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8711,
+          "start": 8702
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "startLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8755,
+          "start": 8744
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "startColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8780,
+          "start": 8779
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8790,
+          "start": 8783
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "binding"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8800,
+          "start": 8799
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8838,
+          "start": 8831
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "binding"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8840,
+          "start": 8839
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8867,
+          "start": 8851
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingStartLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8890,
+          "start": 8884
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8900,
+          "start": 8892
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expRange"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8922,
+          "start": 8906
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingStartLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8951,
+          "start": 8933
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingStartColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8974,
+          "start": 8968
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8984,
+          "start": 8976
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expRange"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9008,
+          "start": 8990
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "bindingStartColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9039,
+          "start": 9033
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9049,
+          "start": 9041
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "expRange"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9090,
+          "start": 9085
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9099,
+          "start": 9094
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9108,
+          "start": 9102
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9144,
+          "start": 9138
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9150,
+          "start": 9145
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9184,
+          "start": 9180
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "next"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9195,
+          "start": 9194
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "l"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9205,
+          "start": 9198
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9211,
+          "start": 9210
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "l"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9223,
+          "start": 9216
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9228,
+          "start": 9227
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "c"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9241,
+          "start": 9232
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9274,
+          "start": 9269
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9306,
+          "start": 9300
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "ranges"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9313,
+          "start": 9308
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9321,
+          "start": 9315
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9328,
+          "start": 9323
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9347,
+          "start": 9342
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9360,
+          "start": 9353
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9386,
+          "start": 9380
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9393,
+          "start": 9388
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9405,
+          "start": 9398
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9417,
+          "start": 9412
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9430,
+          "start": 9423
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9441,
+          "start": 9436
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9471,
+          "start": 9465
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9483,
+          "start": 9478
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "comma"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9497,
+          "start": 9492
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9523,
+          "start": 9517
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9534,
+          "start": 9525
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "endColumn"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9541,
+          "start": 9536
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "state"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9562,
+          "start": 9557
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "index"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9661,
+          "start": 9655
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9677,
+          "start": 9668
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semicolon"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9701,
+          "start": 9693
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "lastLine"
+    },
+    {
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9708,
+          "start": 9704
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 681,
+          "start": 673
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "mappings"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 716,
+          "start": 704
+        }
+      },
+      "reason": "constructor",
+      "text": "StringReader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 725,
+          "start": 717
+        }
+      },
+      "reason": "constructor",
+      "text": "mappings"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 913,
+          "start": 907
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1021,
+          "start": 1012
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1045,
+          "start": 1039
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1056,
+          "start": 1052
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1109,
+          "start": 1100
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1132,
+          "start": 1126
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1143,
+          "start": 1134
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1165,
+          "start": 1156
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1175,
+          "start": 1168
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "lastCol"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1183,
+          "start": 1177
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sorted"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1206,
+          "start": 1199
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "lastCol"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1218,
+          "start": 1209
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1248,
+          "start": 1242
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1254,
+          "start": 1250
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1279,
+          "start": 1267
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1302,
+          "start": 1296
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1316,
+          "start": 1304
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1337,
+          "start": 1327
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceLine"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1360,
+          "start": 1354
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1372,
+          "start": 1362
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceLine"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1395,
+          "start": 1383
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1418,
+          "start": 1412
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1432,
+          "start": 1420
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1465,
+          "start": 1459
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1471,
+          "start": 1467
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1496,
+          "start": 1486
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "namesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1519,
+          "start": 1513
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1531,
+          "start": 1521
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "namesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1547,
+          "start": 1544
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "seg"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1560,
+          "start": 1551
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1574,
+          "start": 1562
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1586,
+          "start": 1576
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceLine"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1600,
+          "start": 1588
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1612,
+          "start": 1602
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "namesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1645,
+          "start": 1642
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "seg"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1658,
+          "start": 1649
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1672,
+          "start": 1660
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1684,
+          "start": 1674
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceLine"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1698,
+          "start": 1686
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1737,
+          "start": 1734
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "seg"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1750,
+          "start": 1741
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1772,
+          "start": 1768
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1781,
+          "start": 1778
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "seg"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1796,
+          "start": 1790
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1826,
+          "start": 1820
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sorted"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1837,
+          "start": 1833
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1851,
+          "start": 1844
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "decoded"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1861,
+          "start": 1857
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1874,
+          "start": 1868
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1885,
+          "start": 1881
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semi"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1908,
+          "start": 1902
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "reader"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1922,
+          "start": 1916
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "length"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1942,
+          "start": 1935
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "decoded"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1995,
+          "start": 1991
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2107,
+          "start": 2106
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "a"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2114,
+          "start": 2113
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "b"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2356,
+          "start": 2344
+        }
+      },
+      "reason": "constructor",
+      "text": "StringWriter"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2472,
+          "start": 2471
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2482,
+          "start": 2475
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "decoded"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2492,
+          "start": 2491
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2522,
+          "start": 2515
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "decoded"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2524,
+          "start": 2523
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2536,
+          "start": 2535
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "i"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2548,
+          "start": 2542
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2564,
+          "start": 2555
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "semicolon"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2579,
+          "start": 2575
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2650,
+          "start": 2649
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "j"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2657,
+          "start": 2653
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2667,
+          "start": 2666
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "j"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2699,
+          "start": 2695
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "line"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2701,
+          "start": 2700
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "j"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2715,
+          "start": 2714
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "j"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2727,
+          "start": 2721
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2739,
+          "start": 2734
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "comma"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2758,
+          "start": 2749
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2781,
+          "start": 2775
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2790,
+          "start": 2783
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "segment"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2804,
+          "start": 2795
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "genColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2825,
+          "start": 2818
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "segment"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2868,
+          "start": 2856
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2891,
+          "start": 2885
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2900,
+          "start": 2893
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "segment"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2917,
+          "start": 2905
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourcesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2936,
+          "start": 2926
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceLine"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2959,
+          "start": 2953
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2968,
+          "start": 2961
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "segment"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2983,
+          "start": 2973
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceLine"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3004,
+          "start": 2992
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3027,
+          "start": 3021
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3036,
+          "start": 3029
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "segment"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3053,
+          "start": 3041
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "sourceColumn"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3074,
+          "start": 3067
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "segment"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3115,
+          "start": 3105
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "namesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3138,
+          "start": 3132
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3147,
+          "start": 3140
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "segment"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3162,
+          "start": 3152
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "namesIndex"
+    },
+    {
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3191,
+          "start": 3185
+        }
+      },
+      "reason": "outside_supported_definition",
+      "text": "writer"
+    }
+  ],
+  "format_version": 1,
+  "input_hashes": {
+    "src/scopes.ts": "1db13eedacbcb83d4c0ca6023379de51240be2b50cfe96b2d6513789a31ab9af",
+    "src/sourcemap-codec.ts": "d3fe1debb387fc47fad36e4624eca9fe46928f14374d8ed749c94f0aaae9ef2e",
+    "src/strings.ts": "09f6c58f7662acb0c3880da7b658cbe94d2564267fc3a4a56b0ccbc5061d7f99",
+    "src/vlq.ts": "dd0d7471c014cb6b65d3bfd6b32bc9cfab8a1e3afcc5305d84cec8e12bdd4812"
+  },
+  "node": "v24.22.1",
+  "occurrences": [
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1181,
+          "start": 1168
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1229,
+          "start": 1216
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1262,
+          "start": 1252
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1414,
+          "start": 1401
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1459,
+          "start": 1446
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1601,
+          "start": 1588
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1715,
+          "start": 1705
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1802,
+          "start": 1789
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 1870,
+          "start": 1860
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2171,
+          "start": 2150
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",1991,2228]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "text": "_encodeOriginalScopes"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2571,
+          "start": 2558
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2617,
+          "start": 2604
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2658,
+          "start": 2645
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2743,
+          "start": 2730
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2803,
+          "start": 2790
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 2870,
+          "start": 2857
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3111,
+          "start": 3090
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "text": "_encodeOriginalScopes"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3197,
+          "start": 3184
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3241,
+          "start": 3228
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3868,
+          "start": 3855
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 3911,
+          "start": 3901
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4081,
+          "start": 4068
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4411,
+          "start": 4398
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 4489,
+          "start": 4476
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5028,
+          "start": 5015
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5157,
+          "start": 5144
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5236,
+          "start": 5223
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5475,
+          "start": 5465
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5647,
+          "start": 5634
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5803,
+          "start": 5790
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 5959,
+          "start": 5946
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6025,
+          "start": 6012
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6125,
+          "start": 6112
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6385,
+          "start": 6375
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 6820,
+          "start": 6798
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6598,6895]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "text": "_encodeGeneratedRanges"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7431,
+          "start": 7420
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",9567,9712]",
+      "text": "catchupLine"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7588,
+          "start": 7575
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7741,
+          "start": 7728
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7937,
+          "start": 7924
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 7999,
+          "start": 7986
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8303,
+          "start": 8290
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8365,
+          "start": 8352
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8423,
+          "start": 8410
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8559,
+          "start": 8546
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8648,
+          "start": 8635
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8883,
+          "start": 8870
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 8967,
+          "start": 8954
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9032,
+          "start": 9019
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9299,
+          "start": 9277
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "text": "_encodeGeneratedRanges"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9379,
+          "start": 9368
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/scopes.ts\",\"FUNCTION\",9567,9712]",
+      "text": "catchupLine"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/scopes.ts",
+        "span": {
+          "end": 9516,
+          "start": 9503
+        }
+      },
+      "source": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1125,
+          "start": 1112
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1241,
+          "start": 1231
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1295,
+          "start": 1282
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1353,
+          "start": 1340
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1411,
+          "start": 1398
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1458,
+          "start": 1448
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "text": "hasMoreVlq"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1512,
+          "start": 1499
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "text": "decodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 1832,
+          "start": 1828
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "target": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",1947,2019]",
+      "text": "sort"
+    },
+    {
+      "kind": "REFERENCES",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2015,
+          "start": 2001
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",1947,2019]",
+      "target": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2021,2120]",
+      "text": "sortComparator"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2774,
+          "start": 2761
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2122,3202]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2884,
+          "start": 2871
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2122,3202]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 2952,
+          "start": 2939
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2122,3202]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3020,
+          "start": 3007
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2122,3202]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    },
+    {
+      "kind": "CALLS",
+      "location": {
+        "file": "src/sourcemap-codec.ts",
+        "span": {
+          "end": 3131,
+          "start": 3118
+        }
+      },
+      "source": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2122,3202]",
+      "target": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "text": "encodeInteger"
+    }
+  ],
+  "options": {
+    "jsx": 1,
+    "module": 1,
+    "moduleResolution": 2,
+    "noEmit": true,
+    "noLib": true,
+    "skipLibCheck": true,
+    "target": 9,
+    "types": []
+  },
+  "policy": "ripple-oracle-v1",
+  "symbols": [
+    {
+      "file": "src/scopes.ts",
+      "implementation_span": {
+        "end": 2228,
+        "start": 1991
+      },
+      "key": "[\"src/scopes.ts\",\"FUNCTION\",1991,2228]",
+      "kind": "FUNCTION",
+      "name": "encodeOriginalScopes",
+      "name_span": {
+        "end": 2027,
+        "start": 2007
+      },
+      "span": {
+        "end": 2228,
+        "start": 1991
+      }
+    },
+    {
+      "file": "src/scopes.ts",
+      "implementation_span": {
+        "end": 3283,
+        "start": 2230
+      },
+      "key": "[\"src/scopes.ts\",\"FUNCTION\",2230,3283]",
+      "kind": "FUNCTION",
+      "name": "_encodeOriginalScopes",
+      "name_span": {
+        "end": 2260,
+        "start": 2239
+      },
+      "span": {
+        "end": 3283,
+        "start": 2230
+      }
+    },
+    {
+      "file": "src/scopes.ts",
+      "implementation_span": {
+        "end": 6596,
+        "start": 3285
+      },
+      "key": "[\"src/scopes.ts\",\"FUNCTION\",3285,6596]",
+      "kind": "FUNCTION",
+      "name": "decodeGeneratedRanges",
+      "name_span": {
+        "end": 3322,
+        "start": 3301
+      },
+      "span": {
+        "end": 6596,
+        "start": 3285
+      }
+    },
+    {
+      "file": "src/scopes.ts",
+      "implementation_span": {
+        "end": 6895,
+        "start": 6598
+      },
+      "key": "[\"src/scopes.ts\",\"FUNCTION\",6598,6895]",
+      "kind": "FUNCTION",
+      "name": "encodeGeneratedRanges",
+      "name_span": {
+        "end": 6635,
+        "start": 6614
+      },
+      "span": {
+        "end": 6895,
+        "start": 6598
+      }
+    },
+    {
+      "file": "src/scopes.ts",
+      "implementation_span": {
+        "end": 9565,
+        "start": 6897
+      },
+      "key": "[\"src/scopes.ts\",\"FUNCTION\",6897,9565]",
+      "kind": "FUNCTION",
+      "name": "_encodeGeneratedRanges",
+      "name_span": {
+        "end": 6928,
+        "start": 6906
+      },
+      "span": {
+        "end": 9565,
+        "start": 6897
+      }
+    },
+    {
+      "file": "src/scopes.ts",
+      "implementation_span": {
+        "end": 1989,
+        "start": 878
+      },
+      "key": "[\"src/scopes.ts\",\"FUNCTION\",878,1989]",
+      "kind": "FUNCTION",
+      "name": "decodeOriginalScopes",
+      "name_span": {
+        "end": 914,
+        "start": 894
+      },
+      "span": {
+        "end": 1989,
+        "start": 878
+      }
+    },
+    {
+      "file": "src/scopes.ts",
+      "implementation_span": {
+        "end": 9712,
+        "start": 9567
+      },
+      "key": "[\"src/scopes.ts\",\"FUNCTION\",9567,9712]",
+      "kind": "FUNCTION",
+      "name": "catchupLine",
+      "name_span": {
+        "end": 9587,
+        "start": 9576
+      },
+      "span": {
+        "end": 9712,
+        "start": 9567
+      }
+    },
+    {
+      "file": "src/sourcemap-codec.ts",
+      "implementation_span": {
+        "end": 2019,
+        "start": 1947
+      },
+      "key": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",1947,2019]",
+      "kind": "FUNCTION",
+      "name": "sort",
+      "name_span": {
+        "end": 1960,
+        "start": 1956
+      },
+      "span": {
+        "end": 2019,
+        "start": 1947
+      }
+    },
+    {
+      "file": "src/sourcemap-codec.ts",
+      "implementation_span": {
+        "end": 2120,
+        "start": 2021
+      },
+      "key": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2021,2120]",
+      "kind": "FUNCTION",
+      "name": "sortComparator",
+      "name_span": {
+        "end": 2044,
+        "start": 2030
+      },
+      "span": {
+        "end": 2120,
+        "start": 2021
+      }
+    },
+    {
+      "file": "src/sourcemap-codec.ts",
+      "implementation_span": {
+        "end": 3202,
+        "start": 2252
+      },
+      "key": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",2122,3202]",
+      "kind": "FUNCTION",
+      "name": "encode",
+      "name_span": {
+        "end": 2274,
+        "start": 2268
+      },
+      "span": {
+        "end": 3202,
+        "start": 2122
+      }
+    },
+    {
+      "file": "src/sourcemap-codec.ts",
+      "implementation_span": {
+        "end": 1945,
+        "start": 590
+      },
+      "key": "[\"src/sourcemap-codec.ts\",\"FUNCTION\",590,1945]",
+      "kind": "FUNCTION",
+      "name": "decode",
+      "name_span": {
+        "end": 612,
+        "start": 606
+      },
+      "span": {
+        "end": 1945,
+        "start": 590
+      }
+    },
+    {
+      "file": "src/strings.ts",
+      "implementation_span": {
+        "end": 1472,
+        "start": 1034
+      },
+      "key": "[\"src/strings.ts\",\"CLASS\",1034,1472]",
+      "kind": "CLASS",
+      "name": "StringReader",
+      "name_span": {
+        "end": 1059,
+        "start": 1047
+      },
+      "span": {
+        "end": 1472,
+        "start": 1034
+      }
+    },
+    {
+      "file": "src/strings.ts",
+      "implementation_span": {
+        "end": 1032,
+        "start": 607
+      },
+      "key": "[\"src/strings.ts\",\"CLASS\",607,1032]",
+      "kind": "CLASS",
+      "name": "StringWriter",
+      "name_span": {
+        "end": 632,
+        "start": 620
+      },
+      "span": {
+        "end": 1032,
+        "start": 607
+      }
+    },
+    {
+      "file": "src/strings.ts",
+      "implementation_span": {
+        "end": 1240,
+        "start": 1173
+      },
+      "key": "[\"src/strings.ts\",\"METHOD\",1173,1240]",
+      "kind": "METHOD",
+      "name": "StringReader.next",
+      "name_span": {
+        "end": 1177,
+        "start": 1173
+      },
+      "span": {
+        "end": 1240,
+        "start": 1173
+      }
+    },
+    {
+      "file": "src/strings.ts",
+      "implementation_span": {
+        "end": 1309,
+        "start": 1244
+      },
+      "key": "[\"src/strings.ts\",\"METHOD\",1244,1309]",
+      "kind": "METHOD",
+      "name": "StringReader.peek",
+      "name_span": {
+        "end": 1248,
+        "start": 1244
+      },
+      "span": {
+        "end": 1309,
+        "start": 1244
+      }
+    },
+    {
+      "file": "src/strings.ts",
+      "implementation_span": {
+        "end": 1470,
+        "start": 1313
+      },
+      "key": "[\"src/strings.ts\",\"METHOD\",1313,1470]",
+      "kind": "METHOD",
+      "name": "StringReader.indexOf",
+      "name_span": {
+        "end": 1320,
+        "start": 1313
+      },
+      "span": {
+        "end": 1470,
+        "start": 1313
+      }
+    },
+    {
+      "file": "src/strings.ts",
+      "implementation_span": {
+        "end": 897,
+        "start": 715
+      },
+      "key": "[\"src/strings.ts\",\"METHOD\",715,897]",
+      "kind": "METHOD",
+      "name": "StringWriter.write",
+      "name_span": {
+        "end": 720,
+        "start": 715
+      },
+      "span": {
+        "end": 897,
+        "start": 715
+      }
+    },
+    {
+      "file": "src/strings.ts",
+      "implementation_span": {
+        "end": 1030,
+        "start": 901
+      },
+      "key": "[\"src/strings.ts\",\"METHOD\",901,1030]",
+      "kind": "METHOD",
+      "name": "StringWriter.flush",
+      "name_span": {
+        "end": 906,
+        "start": 901
+      },
+      "span": {
+        "end": 1030,
+        "start": 901
+      }
+    },
+    {
+      "file": "src/vlq.ts",
+      "implementation_span": {
+        "end": 1386,
+        "start": 1248
+      },
+      "key": "[\"src/vlq.ts\",\"FUNCTION\",1248,1386]",
+      "kind": "FUNCTION",
+      "name": "hasMoreVlq",
+      "name_span": {
+        "end": 1274,
+        "start": 1264
+      },
+      "span": {
+        "end": 1386,
+        "start": 1248
+      }
+    },
+    {
+      "file": "src/vlq.ts",
+      "implementation_span": {
+        "end": 886,
+        "start": 467
+      },
+      "key": "[\"src/vlq.ts\",\"FUNCTION\",467,886]",
+      "kind": "FUNCTION",
+      "name": "decodeInteger",
+      "name_span": {
+        "end": 496,
+        "start": 483
+      },
+      "span": {
+        "end": 886,
+        "start": 467
+      }
+    },
+    {
+      "file": "src/vlq.ts",
+      "implementation_span": {
+        "end": 1246,
+        "start": 888
+      },
+      "key": "[\"src/vlq.ts\",\"FUNCTION\",888,1246]",
+      "kind": "FUNCTION",
+      "name": "encodeInteger",
+      "name_span": {
+        "end": 917,
+        "start": 904
+      },
+      "span": {
+        "end": 1246,
+        "start": 888
+      }
+    }
+  ],
+  "typescript": "6.0.3"
+}

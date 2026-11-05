@@ -1,0 +1,84 @@
+{
+  "format_version": 1,
+  "version": "0.4.0",
+  "candidate_source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+  "workflow": "https://github.com/adhyannsingal/ripple/actions/runs/42106021325",
+  "workflow_conclusion": "success",
+  "public_release_created": false,
+  "artifacts": [
+    {
+      "target": "aarch64-apple-darwin",
+      "archive": "ripple-0.4.0-aarch64-apple-darwin.zip",
+      "sha256": "410132534988d0c43e7892d80905f46f42b8df8b17b659b26fc1c01dbec872dc",
+      "binary_sha256": "ba980f7703448754812608386207a3fafd49a166ffa0a1372765dbf1d08c1e50",
+      "bytes": 4314675,
+      "local_path": "dist/local/ripple-0.4.0-aarch64-apple-darwin.zip",
+      "source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+      "verification": "local unpacked all-command smoke",
+      "notice_packages": 115,
+      "rustflags": "",
+      "unsigned": true
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "archive": "ripple-0.4.0-x86_64-unknown-linux-gnu.zip",
+      "sha256": "7f72ddc6c4716fe08480cf72850d865a8f197d87aedf75ddc6d4091527f2c66e",
+      "binary_sha256": "1a0e5b286176dc5601717710f29d72ccd62f2a59f659ae9a5396dd0cf2689852",
+      "bytes": 4938188,
+      "local_path": "dist/ci-linux/ripple-0.4.0-x86_64-unknown-linux-gnu.zip",
+      "source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+      "verification": "candidate build smoke + independent fresh-runner unpacked all-command smoke; local archive/member integrity verification",
+      "notice_packages": 115,
+      "rustflags": "",
+      "unsigned": true,
+      "ci_artifact": {
+        "id": 13452885378,
+        "name": "candidate-x86_64-unknown-linux-gnu",
+        "size_in_bytes": 4543829,
+        "digest": "sha256:f032eadc12b9aee65f4378040d9b6c445ba5998e0f572bc56b68d7c90fac2106",
+        "expires_at": "2026-11-19T20:45:50Z"
+      }
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "archive": "ripple-0.4.0-x86_64-pc-windows-msvc.zip",
+      "sha256": "a3a6c91f3ad607c5d88bc2d0b2a29234166e93a837f265e23fd209eb158989ac",
+      "binary_sha256": "0e8042e6e6a67b189aeb272d21f49fc76658212fb3bbcc3c52474cf735b6f723",
+      "bytes": 4394037,
+      "local_path": "dist/ci-windows/ripple-0.4.0-x86_64-pc-windows-msvc.zip",
+      "source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+      "verification": "candidate build smoke + independent fresh-runner unpacked all-command smoke; local archive/member integrity verification",
+      "notice_packages": 115,
+      "rustflags": "-C target-feature=+crt-static",
+      "unsigned": true,
+      "ci_artifact": {
+        "id": 13452376796,
+        "name": "candidate-x86_64-pc-windows-msvc",
+        "size_in_bytes": 4011550,
+        "digest": "sha256:019928b43150976e22b93fb8e71abc51233ac22d57625a8a8d03c7f0545b9780",
+        "expires_at": "2026-11-19T20:46:55Z"
+      }
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "archive": "ripple-0.4.0-x86_64-apple-darwin.zip",
+      "sha256": "56fe552e56bfc05b2ac7c907c8bc11785200aee009d153652964c76710baf220",
+      "binary_sha256": "9ab9a8e850d364e0b2935c8a3cc92f400644858262ac01d40dfa63b9aea1645d",
+      "bytes": 4567201,
+      "local_path": "dist/ci-macos/ripple-0.4.0-x86_64-apple-darwin.zip",
+      "source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+      "verification": "candidate build smoke + independent fresh-runner unpacked all-command smoke; local archive/member integrity verification",
+      "notice_packages": 115,
+      "rustflags": "",
+      "unsigned": true,
+      "ci_artifact": {
+        "id": 13452517526,
+        "name": "candidate-x86_64-apple-darwin",
+        "size_in_bytes": 4186327,
+        "digest": "sha256:503e734aa57b89110058c554d89edfc24634554fd224c198ed9515704a0c737f",
+        "expires_at": "2026-11-19T20:52:49Z"
+      }
+    }
+  ],
+  "notes": "CI artifact retention is 14 days; no public tag/release/package publication. SHA256 gives integrity, not signing. Local binary ZIPs/downloads are intentionally ignored by Git."
+}

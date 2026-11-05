@@ -1,0 +1,75 @@
+{
+  "counts": {
+    "candidate_comparable_edges": 0,
+    "oracle_edges": 3,
+    "oracle_excluded_occurrences": 4,
+    "out_of_scope_ripple_edges": 0,
+    "resolved_comparable_edges": 3,
+    "unmapped_eligible_ripple_edges": 0,
+    "unmapped_ripple_definitions": 0,
+    "unresolved_occurrences": 2
+  },
+  "format_version": 1,
+  "mapping_exclusions": [],
+  "metadata": {
+    "analyzer_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+    "analyzer_versions": {
+      "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+      "hash_version": 1,
+      "schema_version": 2
+    },
+    "binary_sha256": "ba980f7703448754812608386207a3fafd49a166ffa0a1372765dbf1d08c1e50",
+    "compiler_options": {
+      "jsx": 1,
+      "module": 1,
+      "moduleResolution": 2,
+      "noEmit": true,
+      "noLib": true,
+      "skipLibCheck": true,
+      "target": 9,
+      "types": []
+    },
+    "corpus": {
+      "id": "mini",
+      "projection": "owned hand-checked mini corpus"
+    },
+    "input_hashes": {
+      "barrel.ts": "4e8e33e93166b62a7d68455f01557f6b39bc4a788a393058d45c749001b93fe0",
+      "lib.ts": "9620c1b919f606c0e53cb4a9f0ed06bfb72e8d03b590fd9019c83d05f53c4ad2",
+      "main.ts": "64340c485b28df1b26523b0bdc033d38ead332e3f7663fe4e5e4c68e74819d5e",
+      "view.tsx": "826f28c13e981cbdae0731e193448011a633543242d93bbaf45c559fa598df60"
+    },
+    "node": "v24.22.1",
+    "rust_source_tree": "42a95961f348958590c8e378df3adf89e72f25c5",
+    "typescript": "6.0.3"
+  },
+  "metrics": {
+    "candidate_coverage": {
+      "denominator": 3,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "false_negative": [],
+    "false_positive": [],
+    "precision": {
+      "denominator": 3,
+      "numerator": 3,
+      "value": 1.0
+    },
+    "recall": {
+      "denominator": 3,
+      "numerator": 3,
+      "value": 1.0
+    },
+    "true_positive": [
+      "[\"[\\\"main.ts\\\",\\\"FUNCTION\\\",143,186]\",\"[\\\"lib.ts\\\",\\\"FUNCTION\\\",0,88]\",\"REFERENCES\"]",
+      "[\"[\\\"main.ts\\\",\\\"FUNCTION\\\",82,142]\",\"[\\\"lib.ts\\\",\\\"FUNCTION\\\",0,88]\",\"CALLS\"]",
+      "[\"[\\\"view.tsx\\\",\\\"FUNCTION\\\",33,89]\",\"[\\\"main.ts\\\",\\\"FUNCTION\\\",82,142]\",\"CALLS\"]"
+    ]
+  },
+  "mismatches": [],
+  "out_of_scope_edges": [],
+  "policy": "ripple-oracle-v1",
+  "ranked_categories": [],
+  "unmapped_edges": []
+}

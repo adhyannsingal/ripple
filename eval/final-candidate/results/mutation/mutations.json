@@ -1,0 +1,1083 @@
+{
+  "format_version": 1,
+  "analyzer_source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+  "binary_sha256": "ba980f7703448754812608386207a3fafd49a166ffa0a1372765dbf1d08c1e50",
+  "node_version": "v24.22.1",
+  "typescript_version": "6.0.3",
+  "fixture_sha256": "3d4ff3afd4d3f761678b780dbb488ba076b6a7617bb6991522fc736db7565d51",
+  "baseline_tests": [
+    "alpha.test.ts",
+    "beta.test.ts",
+    "dynamic.test.ts",
+    "other.test.ts",
+    "side.test.ts"
+  ],
+  "mutations": [
+    {
+      "id": "direct",
+      "category": "supported_direct",
+      "changed_file": "lib.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "b40019907f1b19eea70b008d9c0dbcae0f097383",
+      "baseline_passed": true,
+      "compile_exit": 0,
+      "compiler_output": "",
+      "status": "killed",
+      "failing_files": [
+        "alpha.test.ts"
+      ],
+      "timeouts": [],
+      "runtime": [
+        {
+          "file": "alpha.test.ts",
+          "exit_code": 1,
+          "stderr": "/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-vma2ja_s/build/alpha.test.js:5\n    throw new Error('alpha');\n    ^\n\nError: alpha\n    at Object.<anonymous> (/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-vma2ja_s/build/alpha.test.js:5:11)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47\n\nNode.js v24.22.1\n"
+        },
+        {
+          "file": "beta.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "dynamic.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "other.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "side.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      ],
+      "policies": {
+        "symbol_backed": {
+          "selected": [
+            "alpha.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "combined": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "file_import": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "all_tests": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts",
+            "dynamic.test.ts",
+            "other.test.ts",
+            "side.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "miss_categories": []
+        }
+      },
+      "incomplete_analysis": true,
+      "head_test_files": 5,
+      "ripple_report_sha256": "dc056ccfb7c2271409ea2000f32bfa94ca8b19e18b983b3f16776c1e82abae4e",
+      "selection_completeness": {
+        "analysis_incomplete": true,
+        "depth_truncated": false,
+        "reasons": [
+          "base: graph-wide unresolved references",
+          "base: snapshot analysis incomplete",
+          "head: graph-wide unresolved references",
+          "head: snapshot analysis incomplete"
+        ],
+        "requested_depth": null,
+        "selected_paths_complete_within_depth": true
+      }
+    },
+    {
+      "id": "other-export",
+      "category": "supported_direct",
+      "changed_file": "lib.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "c3c634686ebda8f2b0bbe4ae234325380c3a0052",
+      "baseline_passed": true,
+      "compile_exit": 0,
+      "compiler_output": "",
+      "status": "killed",
+      "failing_files": [
+        "beta.test.ts"
+      ],
+      "timeouts": [],
+      "runtime": [
+        {
+          "file": "alpha.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "beta.test.ts",
+          "exit_code": 1,
+          "stderr": "/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-ntmx9_m0/build/beta.test.js:5\n    throw new Error('beta');\n    ^\n\nError: beta\n    at Object.<anonymous> (/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-ntmx9_m0/build/beta.test.js:5:11)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47\n\nNode.js v24.22.1\n"
+        },
+        {
+          "file": "dynamic.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "other.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "side.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      ],
+      "policies": {
+        "symbol_backed": {
+          "selected": [
+            "beta.test.ts"
+          ],
+          "selected_failing": [
+            "beta.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "combined": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [
+            "beta.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "file_import": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [
+            "beta.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "all_tests": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts",
+            "dynamic.test.ts",
+            "other.test.ts",
+            "side.test.ts"
+          ],
+          "selected_failing": [
+            "beta.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "miss_categories": []
+        }
+      },
+      "incomplete_analysis": true,
+      "head_test_files": 5,
+      "ripple_report_sha256": "153931d10907c1b09c00c9930fb4081c0bc6da39d2ab091e167f4bc2e327a20b",
+      "selection_completeness": {
+        "analysis_incomplete": true,
+        "depth_truncated": false,
+        "reasons": [
+          "base: graph-wide unresolved references",
+          "base: snapshot analysis incomplete",
+          "head: graph-wide unresolved references",
+          "head: snapshot analysis incomplete"
+        ],
+        "requested_depth": null,
+        "selected_paths_complete_within_depth": true
+      }
+    },
+    {
+      "id": "caller",
+      "category": "supported_direct",
+      "changed_file": "caller.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "5af424ef9e5019c2ce1d391caf11dae067e69c5c",
+      "baseline_passed": true,
+      "compile_exit": 0,
+      "compiler_output": "",
+      "status": "killed",
+      "failing_files": [
+        "alpha.test.ts"
+      ],
+      "timeouts": [],
+      "runtime": [
+        {
+          "file": "alpha.test.ts",
+          "exit_code": 1,
+          "stderr": "/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-z0erxco7/build/alpha.test.js:5\n    throw new Error('alpha');\n    ^\n\nError: alpha\n    at Object.<anonymous> (/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-z0erxco7/build/alpha.test.js:5:11)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47\n\nNode.js v24.22.1\n"
+        },
+        {
+          "file": "beta.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "dynamic.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "other.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "side.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      ],
+      "policies": {
+        "symbol_backed": {
+          "selected": [
+            "alpha.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "combined": {
+          "selected": [
+            "alpha.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "file_import": {
+          "selected": [
+            "alpha.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "all_tests": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts",
+            "dynamic.test.ts",
+            "other.test.ts",
+            "side.test.ts"
+          ],
+          "selected_failing": [
+            "alpha.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "miss_categories": []
+        }
+      },
+      "incomplete_analysis": true,
+      "head_test_files": 5,
+      "ripple_report_sha256": "511e4e2e82027119ec4dd23403a6ebdb3aa675c9c882bd83e9d87439ac999765",
+      "selection_completeness": {
+        "analysis_incomplete": true,
+        "depth_truncated": false,
+        "reasons": [
+          "base: graph-wide unresolved references",
+          "base: snapshot analysis incomplete",
+          "head: graph-wide unresolved references",
+          "head: snapshot analysis incomplete"
+        ],
+        "requested_depth": null,
+        "selected_paths_complete_within_depth": true
+      }
+    },
+    {
+      "id": "dynamic",
+      "category": "unsupported_dynamic_import",
+      "changed_file": "dyn.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "fb55527766afbf2b787b7f85d9b6db3be3afa557",
+      "baseline_passed": true,
+      "compile_exit": 0,
+      "compiler_output": "",
+      "status": "killed",
+      "failing_files": [
+        "dynamic.test.ts"
+      ],
+      "timeouts": [],
+      "runtime": [
+        {
+          "file": "alpha.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "beta.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "dynamic.test.ts",
+          "exit_code": 1,
+          "stderr": "/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-ety_nbn8/build/dynamic.test.js:36\n    throw new Error('dynamic'); });\n          ^\n\nError: dynamic\n    at /private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-ety_nbn8/build/dynamic.test.js:36:11\n\nNode.js v24.22.1\n"
+        },
+        {
+          "file": "other.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "side.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      ],
+      "policies": {
+        "symbol_backed": {
+          "selected": [],
+          "selected_failing": [],
+          "missed": [
+            "dynamic.test.ts"
+          ],
+          "recall": {
+            "numerator": 0,
+            "denominator": 1,
+            "fraction": 0.0
+          },
+          "selection_ratio": {
+            "numerator": 0,
+            "denominator": 5,
+            "fraction": 0.0
+          },
+          "miss_categories": [
+            "unsupported_dynamic_import"
+          ]
+        },
+        "combined": {
+          "selected": [],
+          "selected_failing": [],
+          "missed": [
+            "dynamic.test.ts"
+          ],
+          "recall": {
+            "numerator": 0,
+            "denominator": 1,
+            "fraction": 0.0
+          },
+          "selection_ratio": {
+            "numerator": 0,
+            "denominator": 5,
+            "fraction": 0.0
+          },
+          "miss_categories": [
+            "unsupported_dynamic_import"
+          ]
+        },
+        "file_import": {
+          "selected": [],
+          "selected_failing": [],
+          "missed": [
+            "dynamic.test.ts"
+          ],
+          "recall": {
+            "numerator": 0,
+            "denominator": 1,
+            "fraction": 0.0
+          },
+          "selection_ratio": {
+            "numerator": 0,
+            "denominator": 5,
+            "fraction": 0.0
+          },
+          "miss_categories": [
+            "unsupported_dynamic_import"
+          ]
+        },
+        "all_tests": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts",
+            "dynamic.test.ts",
+            "other.test.ts",
+            "side.test.ts"
+          ],
+          "selected_failing": [
+            "dynamic.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "miss_categories": []
+        }
+      },
+      "incomplete_analysis": true,
+      "head_test_files": 5,
+      "ripple_report_sha256": "a180984059d7ee49600754bf3149bfc16cd247e9f2d282d16252f34764ccafb0",
+      "selection_completeness": {
+        "analysis_incomplete": true,
+        "depth_truncated": false,
+        "reasons": [
+          "base: graph-wide unresolved references",
+          "base: snapshot analysis incomplete",
+          "head: graph-wide unresolved references",
+          "head: snapshot analysis incomplete"
+        ],
+        "requested_depth": null,
+        "selected_paths_complete_within_depth": true
+      }
+    },
+    {
+      "id": "side-effect",
+      "category": "unsupported_global_state",
+      "changed_file": "effect.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "f2b55e3b59d2ff203bc36cff6b109878ad6cbbf9",
+      "baseline_passed": true,
+      "compile_exit": 0,
+      "compiler_output": "",
+      "status": "killed",
+      "failing_files": [
+        "side.test.ts"
+      ],
+      "timeouts": [],
+      "runtime": [
+        {
+          "file": "alpha.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "beta.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "dynamic.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "other.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "side.test.ts",
+          "exit_code": 1,
+          "stderr": "/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-pllbzme3/build/side.test.js:5\n    throw new Error('side');\n    ^\n\nError: side\n    at Object.<anonymous> (/private/var/folders/3n/9rpx91y55hn3z8c3h739lt1c0000gn/T/ripple-mutation-pllbzme3/build/side.test.js:5:11)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47\n\nNode.js v24.22.1\n"
+        }
+      ],
+      "policies": {
+        "symbol_backed": {
+          "selected": [],
+          "selected_failing": [],
+          "missed": [
+            "side.test.ts"
+          ],
+          "recall": {
+            "numerator": 0,
+            "denominator": 1,
+            "fraction": 0.0
+          },
+          "selection_ratio": {
+            "numerator": 0,
+            "denominator": 5,
+            "fraction": 0.0
+          },
+          "miss_categories": [
+            "unsupported_global_state"
+          ]
+        },
+        "combined": {
+          "selected": [
+            "side.test.ts"
+          ],
+          "selected_failing": [
+            "side.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "file_import": {
+          "selected": [
+            "side.test.ts"
+          ],
+          "selected_failing": [
+            "side.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "all_tests": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts",
+            "dynamic.test.ts",
+            "other.test.ts",
+            "side.test.ts"
+          ],
+          "selected_failing": [
+            "side.test.ts"
+          ],
+          "missed": [],
+          "recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "fraction": 1.0
+          },
+          "selection_ratio": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "miss_categories": []
+        }
+      },
+      "incomplete_analysis": true,
+      "head_test_files": 5,
+      "ripple_report_sha256": "7ef640d67b9ac64f1e6028ebe9d4dc91f3896d59ff6b826dcf2b139052cc3457",
+      "selection_completeness": {
+        "analysis_incomplete": true,
+        "depth_truncated": false,
+        "reasons": [
+          "base: graph-wide unresolved references",
+          "base: snapshot analysis incomplete",
+          "head: graph-wide unresolved references",
+          "head: snapshot analysis incomplete"
+        ],
+        "requested_depth": null,
+        "selected_paths_complete_within_depth": true
+      }
+    },
+    {
+      "id": "survivor",
+      "category": "survivor",
+      "changed_file": "lib.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "0c3d4485fc21e37e601e33ac223f1027f5204341",
+      "baseline_passed": true,
+      "compile_exit": 0,
+      "compiler_output": "",
+      "status": "survived",
+      "failing_files": [],
+      "timeouts": [],
+      "runtime": [
+        {
+          "file": "alpha.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "beta.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "dynamic.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "other.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "side.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      ],
+      "policies": {
+        "symbol_backed": {
+          "selected": [
+            "alpha.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "combined": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "file_import": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "all_tests": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts",
+            "dynamic.test.ts",
+            "other.test.ts",
+            "side.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "miss_categories": []
+        }
+      },
+      "incomplete_analysis": true,
+      "head_test_files": 5,
+      "ripple_report_sha256": "faad835cb4d5927acd75612d9f259bf58b843266b92320cf6668fed020b41ae7",
+      "selection_completeness": {
+        "analysis_incomplete": true,
+        "depth_truncated": false,
+        "reasons": [
+          "base: graph-wide unresolved references",
+          "base: snapshot analysis incomplete",
+          "head: graph-wide unresolved references",
+          "head: snapshot analysis incomplete"
+        ],
+        "requested_depth": null,
+        "selected_paths_complete_within_depth": true
+      }
+    },
+    {
+      "id": "invalid",
+      "category": "compile_invalid",
+      "changed_file": "lib.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "5e1a29e44bc3f31e012a5a0aa2345e8c0138f2e2",
+      "baseline_passed": true,
+      "compile_exit": 1,
+      "compiler_output": "lib.ts(1,31): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+      "status": "invalid",
+      "failing_files": [],
+      "policies": null
+    },
+    {
+      "id": "timeout",
+      "category": "timeout",
+      "changed_file": "lib.ts",
+      "base": "e63c65778705241f332de04c7da2f46832c41530",
+      "head": "0edd13e2dd5dad6735ac9344d004fc514e6af72e",
+      "baseline_passed": true,
+      "compile_exit": 0,
+      "compiler_output": "",
+      "status": "timeout",
+      "failing_files": [],
+      "timeouts": [
+        "alpha.test.ts"
+      ],
+      "runtime": [
+        {
+          "file": "alpha.test.ts",
+          "timeout": true
+        },
+        {
+          "file": "beta.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "dynamic.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "other.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "file": "side.test.ts",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      ],
+      "policies": {
+        "symbol_backed": {
+          "selected": [
+            "alpha.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 1,
+            "denominator": 5,
+            "fraction": 0.2
+          },
+          "miss_categories": []
+        },
+        "combined": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "file_import": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 2,
+            "denominator": 5,
+            "fraction": 0.4
+          },
+          "miss_categories": []
+        },
+        "all_tests": {
+          "selected": [
+            "alpha.test.ts",
+            "beta.test.ts",
+            "dynamic.test.ts",
+            "other.test.ts",
+            "side.test.ts"
+          ],
+          "selected_failing": [],
+          "missed": [],
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "fraction": null
+          },
+          "selection_ratio": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "miss_categories": []
+        }
+      },
+      "incomplete_analysis": true,
+      "head_test_files": 5,
+      "ripple_report_sha256": "1ffd2bc3c4b7d2248fdd28d9dd67682efeaeba5f9aa1342d3ea76e8ed8a8c13b",
+      "selection_completeness": {
+        "analysis_incomplete": true,
+        "depth_truncated": false,
+        "reasons": [
+          "base: graph-wide unresolved references",
+          "base: snapshot analysis incomplete",
+          "head: graph-wide unresolved references",
+          "head: snapshot analysis incomplete"
+        ],
+        "requested_depth": null,
+        "selected_paths_complete_within_depth": true
+      }
+    }
+  ],
+  "aggregate": {
+    "symbol_backed": {
+      "fault_catching_recall": {
+        "numerator": 3,
+        "denominator": 5,
+        "fraction": 0.6
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 3,
+        "denominator": 25,
+        "fraction": 0.12
+      }
+    },
+    "combined": {
+      "fault_catching_recall": {
+        "numerator": 4,
+        "denominator": 5,
+        "fraction": 0.8
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 6,
+        "denominator": 25,
+        "fraction": 0.24
+      }
+    },
+    "file_import": {
+      "fault_catching_recall": {
+        "numerator": 4,
+        "denominator": 5,
+        "fraction": 0.8
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 6,
+        "denominator": 25,
+        "fraction": 0.24
+      }
+    },
+    "all_tests": {
+      "fault_catching_recall": {
+        "numerator": 5,
+        "denominator": 5,
+        "fraction": 1.0
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 25,
+        "denominator": 25,
+        "fraction": 1.0
+      }
+    }
+  },
+  "policy": "Micro recall across compiling, completed, killed mutations only; survivors have undefined recall; invalid/timeout rows excluded from aggregate. Selection ratio uses same killed cases and supported head file denominator. No runtime safety guarantee.",
+  "excluded": {
+    "invalid": [
+      "invalid"
+    ],
+    "timeout": [
+      "timeout"
+    ],
+    "survived": [
+      "survivor"
+    ]
+  },
+  "command": "/Users/adhyannsingal/ripple/eval/mutation/run.py --binary /private/tmp/ripple-M8-final-install/bin/ripple --node /private/tmp/node-v24.22.1-darwin-arm64/bin/node --typescript /Users/adhyannsingal/ripple/eval/oracle/node_modules/typescript --output /private/tmp/ripple-v0.4-final-16eaf56/mutation"
+}

@@ -1,0 +1,53 @@
+{
+  "repository": "https://github.com/jridgewell/sourcemap-codec",
+  "base": "154656b1be82e3104620a05c4bf3430e1db9507d",
+  "head": "b3bb7f01c1c0dc8a5fa95c071e468f261d9e328c",
+  "scope": "Complete committed repository under supported scanner/config policy; no rewriting or source projection",
+  "analyzer_source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+  "counts": {
+    "base_only": 0,
+    "combined_selected": 0,
+    "fallback_only_selected": 0,
+    "module_fallback_selected": 0,
+    "present_unindexed_head": 0,
+    "symbol_backed_selected": 0,
+    "total_head_test_files": 2
+  },
+  "selection_ratios": {
+    "combined": {
+      "denominator": 2,
+      "fraction": 0.0,
+      "numerator": 0
+    },
+    "module_fallback": {
+      "denominator": 2,
+      "fraction": 0.0,
+      "numerator": 0
+    },
+    "symbol_backed": {
+      "denominator": 2,
+      "fraction": 0.0,
+      "numerator": 0
+    }
+  },
+  "incomplete_analysis": true,
+  "repeatable_json": true,
+  "report_sha256": "f6821a8d9d052543e75c6b30efa5b42d49ef352bff16df7a732289f0a984cd4f",
+  "binary_sha256": "ba980f7703448754812608386207a3fafd49a166ffa0a1372765dbf1d08c1e50",
+  "analyzer_versions": {
+    "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+    "hash_version": 1,
+    "schema_version": 2
+  },
+  "endpoint_context": {
+    "base": {
+      "unresolved": 849,
+      "snapshot_diagnostics": 21
+    },
+    "head": {
+      "unresolved": 849,
+      "snapshot_diagnostics": 21
+    }
+  },
+  "limits": "Incomplete upstream package/config/syntax. Source-only zero selection is not safe omission; changed-test inclusion is not dependency accuracy. No tests executed."
+}

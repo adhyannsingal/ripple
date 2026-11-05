@@ -1,0 +1,121 @@
+{
+  "source_commit": "16eaf563b9376d2c73fdc98c85eccdb37f82b235",
+  "binary_sha256": "ba980f7703448754812608386207a3fafd49a166ffa0a1372765dbf1d08c1e50",
+  "version": "ripple 0.4.0",
+  "command": "eval/final-candidate/run.py --binary /tmp/ripple-M8-final-install/bin/ripple --node /tmp/node-v24.22.1-darwin-arm64/bin/node --typescript eval/oracle/node_modules/typescript --incremental-helper target/release/examples/incremental_evaluate --workflow-helper target/release/examples/workflow_benchmark --output /tmp/ripple-v0.4-final-16eaf56",
+  "mutation": {
+    "symbol_backed": {
+      "fault_catching_recall": {
+        "numerator": 3,
+        "denominator": 5,
+        "fraction": 0.6
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 3,
+        "denominator": 25,
+        "fraction": 0.12
+      }
+    },
+    "combined": {
+      "fault_catching_recall": {
+        "numerator": 4,
+        "denominator": 5,
+        "fraction": 0.8
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 6,
+        "denominator": 25,
+        "fraction": 0.24
+      }
+    },
+    "file_import": {
+      "fault_catching_recall": {
+        "numerator": 4,
+        "denominator": 5,
+        "fraction": 0.8
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 6,
+        "denominator": 25,
+        "fraction": 0.24
+      }
+    },
+    "all_tests": {
+      "fault_catching_recall": {
+        "numerator": 5,
+        "denominator": 5,
+        "fraction": 1.0
+      },
+      "selection_ratio_killed_micro": {
+        "numerator": 25,
+        "denominator": 25,
+        "fraction": 1.0
+      }
+    }
+  },
+  "replay_mismatches": 0,
+  "incremental_mismatches": 0,
+  "oracle": {
+    "oracle-mini": {
+      "candidate_coverage": {
+        "denominator": 3,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "false_negative": [],
+      "false_positive": [],
+      "precision": {
+        "denominator": 3,
+        "numerator": 3,
+        "value": 1.0
+      },
+      "recall": {
+        "denominator": 3,
+        "numerator": 3,
+        "value": 1.0
+      },
+      "true_positive": [
+        "[\"[\\\"main.ts\\\",\\\"FUNCTION\\\",143,186]\",\"[\\\"lib.ts\\\",\\\"FUNCTION\\\",0,88]\",\"REFERENCES\"]",
+        "[\"[\\\"main.ts\\\",\\\"FUNCTION\\\",82,142]\",\"[\\\"lib.ts\\\",\\\"FUNCTION\\\",0,88]\",\"CALLS\"]",
+        "[\"[\\\"view.tsx\\\",\\\"FUNCTION\\\",33,89]\",\"[\\\"main.ts\\\",\\\"FUNCTION\\\",82,142]\",\"CALLS\"]"
+      ]
+    },
+    "oracle-external": {
+      "candidate_coverage": {
+        "denominator": 16,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "false_negative": [],
+      "false_positive": [],
+      "precision": {
+        "denominator": 16,
+        "numerator": 16,
+        "value": 1.0
+      },
+      "recall": {
+        "denominator": 16,
+        "numerator": 16,
+        "value": 1.0
+      },
+      "true_positive": [
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",1991,2228]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",3285,6596]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",3285,6596]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6598,6895]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",9567,9712]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",878,1989]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+        "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",878,1989]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]",
+        "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",1947,2019]\",\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",2021,2120]\",\"REFERENCES\"]",
+        "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",2122,3202]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+        "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",1947,2019]\",\"CALLS\"]",
+        "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+        "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]"
+      ]
+    }
+  }
+}
