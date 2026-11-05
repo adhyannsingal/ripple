@@ -1,0 +1,27 @@
+Potentially related test files (conservative combined selection)
+Supported indexed head test files: 2
+Symbol-backed: 0
+Fallback-only: 0
+Combined active at head: 0
+Absent at head: 0
+Present but unindexed at head: 0
+Incomplete analysis: true
+Depth truncated: false
+Selection ratio symbol-backed: 0/2 (0.00%)
+Selection ratio combined: 0/2 (0.00%)
+Ratios describe supported head tests within the requested depth; base-only/unindexed evidence is excluded. Module fallback may equal file-import reachability; no precision improvement is implied.
+Active head paths omitted from human display: 0
+Absent at head paths omitted from human display: 0
+Present but unindexed at head paths omitted from human display: 0
+Uncertainty: "base: graph-wide unresolved references"
+Uncertainty: "base: snapshot analysis incomplete"
+Uncertainty: "change classification incomplete"
+Uncertainty: "head: graph-wide unresolved references"
+Uncertainty: "head: snapshot analysis incomplete"
+Uncertainty reasons omitted from human display: 0
+JSON retains complete selected paths and witnesses within requested depth. A depth boundary can omit related tests.
+These tests are potentially related, not a sufficiency guarantee. No tests were executed.
+Comparison: 154656b1be82e3104620a05c4bf3430e1db9507d..b3bb7f01c1c0dc8a5fa95c071e468f261d9e328c
+Git diagnostics: 0 (complete in JSON)
+base: 849 graph-wide unresolved records (context, not reachable paths), 21 snapshot diagnostics, 0 depth boundary nodes
+head: 849 graph-wide unresolved records (context, not reachable paths), 21 snapshot diagnostics, 0 depth boundary nodes

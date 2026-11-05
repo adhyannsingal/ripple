@@ -17,7 +17,7 @@ cargo fmt --all -- --check
 cargo build --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
 cargo test --workspace --locked
-python3 scripts/m6-smoke.py --binary target/debug/ripple
+python3 scripts/m7-smoke.py --binary target/debug/ripple
 cargo run --locked -p ripple-cli -- --help
 cargo run --locked -p ripple-cli -- --version
 cargo run --locked -p ripple-cli -- inspect src/caller.ts --root fixtures/inspect/project
@@ -26,7 +26,7 @@ cargo run --locked -p ripple-cli -- inspect src/view.tsx --root fixtures/inspect
 
 On Windows use `python` if `python3` is unavailable. On first build, rustup loads the pinned compiler/components and Cargo fetches the committed lockfile dependencies. CI defines the same checks for macOS, Linux and Windows; defining a job is not evidence that it has already passed remotely.
 
-Install the current binary locally with `cargo install --locked --path crates/ripple-cli`. Implemented commands are `index` (incremental by default, `--full` for cold), `inspect`, `status`, `impact` and `diff`, plus help/version. See [CLI usage](docs/cli.md) and [incremental behavior](docs/incremental.md). The deferred `test` command returns operational failure. CI installs a fresh release binary and exercises all implemented commands.
+Install the current binary locally with `cargo install --locked --path crates/ripple-cli`. Implemented commands are `index` (incremental by default, `--full` for cold), `inspect`, `status`, `impact`, `diff` and `test`, plus help/version. See [CLI usage](docs/cli.md) and [incremental behavior](docs/incremental.md). CI installs a fresh release binary and exercises all implemented commands.
 
 For dependency and credential checks, run `cargo audit` with a current RustSec database, `npm audit --prefix eval/oracle`, and `gitleaks git --redact=100 --log-opts=--all .` after installing those optional audit tools. These supplement the checks above; report tool/database versions and actual results. They are not currently CI gates. Reuse a single `CARGO_TARGET_DIR` across sequential task worktrees to avoid duplicating build caches; never share it between concurrent Cargo mutations.
 

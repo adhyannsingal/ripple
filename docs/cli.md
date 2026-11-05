@@ -1,6 +1,6 @@
 # Using Ripple
 
-Implemented commands are `index`, `inspect`, `status`, `impact` and `diff`. The binary is `ripple 0.3.0-dev`; Git is required for persistent commands and diff, and SQLite is bundled. Node, a database server and project-script execution are not required.
+Implemented commands are `index`, `inspect`, `status`, `impact`, `diff` and `test`. The binary is `ripple 0.3.0-dev`; Git is required for persistent commands and immutable diff/test, and SQLite is bundled. Node, a database server and project-script execution are not required.
 
 From a supported single-project Git root:
 
@@ -13,6 +13,7 @@ ripple impact src/auth.ts::authenticate --format json
 ripple impact authenticate --depth 2 --limit 100
 ripple inspect src/auth.ts
 ripple diff main..HEAD --depth 3 --limit 100
+ripple test main..HEAD --format json
 ```
 
 Install locally with `cargo install --path crates/ripple-cli --locked --root /path/to/install`; the executable is under its bin directory. To run without installation, prefix commands with `cargo run --locked -p ripple-cli --`. `index ROOT` accepts a positional Git root. The other commands accept `--root ROOT` and default to the current directory. Inspect can operate on an explicit non-Git root; persistent commands require the Git repository root and reject submodules/nested Git projects.
@@ -67,3 +68,11 @@ Inspect remains syntax-only (`resolution_available: false`), with supported symb
 | 2 | Invalid/missing arguments or format. |
 
 `test` remains an explicit unimplemented placeholder. Supported config/language limitations and bounds are in [limitations](limitations.md), [resolution](resolution.md) and [cold-index ADR](adr/0021-cold-index.md). Reproduce the installed capability gate with `python3 scripts/m5-smoke.py --install-root /path/to/install`.
+
+## Potentially related tests
+
+`ripple test A..B [--root ROOT] [--depth N] [--limit N]` cold-builds both pinned immutable endpoints and reports potentially related test files; it never executes tests, checks out files or updates the worktree index. No persistent index is needed. Two-dot endpoint semantics and failure codes match diff; missing objects/invalid refs fail without success output.
+
+The default selection is the conservative union of symbol-backed and module-fallback evidence. Human output labels fallback-only paths, preserves base/head per-file explanations and separately lists absent-head and present-but-unindexed old test paths. JSON `data.selection` contains complete active-head/base-only/present-unindexed partitions and per-file witnesses; `data.analysis` retains full change classification and endpoint uncertainty. `data.counts` and `data.selection_ratios` make symbol-backed/combined/module-fallback fractions recomputable: active selected supported head test files divided by all supported indexed head test files. A zero denominator yields `fraction: null`; deleted and unindexed evidence never inflates the active numerator. This is static path classification, not test-runner discovery.
+
+Display limits only shorten human sections and report omissions; machine selection/witnesses remain complete within requested depth. Explicit depth limits can omit related tests, set `depth_truncated` and mark analysis incomplete. Graph-wide unknowns are context, not reachable evidence. A fraction is not a test-safety metric; combined may equal file-import reachability. No set is claimed sufficient and `sufficiency_guaranteed` is always false. See [pinned examples](examples/m7-test/README.md) and [decision](adr/0031-test-cli.md).
