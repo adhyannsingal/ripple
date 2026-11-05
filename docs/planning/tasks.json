@@ -3113,11 +3113,11 @@
         "docs/project-status.md",
         "docs/cli.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M8-T03",
       "started_at": "2026-11-05T20:08:54.815414+00:00",
-      "heartbeat_at": "2026-11-05T20:08:54.815414+00:00",
+      "heartbeat_at": "2026-11-05T20:13:13.524336+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3143,8 +3143,8 @@
         "docs/project-status.md",
         "docs/cli.md"
       ],
-      "checkpoint": "T01/T02 verified; owner explicitly selected MIT. Align docs with implemented product and actual evidence.",
-      "next_action": "Write accurate handoff/quickstart/prior art, add MIT and missing pinned upstream notices; validate commands and links.",
+      "checkpoint": "MIT/docs/prior-art and disposable all-command demo integrated; links/plan/diff checks passed.",
+      "next_action": "Verify integrated documentation/CI before T04 final artifact/evidence preparation.",
       "report": "docs/task-reports/M8-T03.md"
     },
     {
