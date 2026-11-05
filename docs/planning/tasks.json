@@ -2931,11 +2931,11 @@
         "docs/limitations.md",
         "docs/adr/0031-test-cli.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M7-T02",
       "started_at": "2026-11-05T05:37:34.819708+00:00",
-      "heartbeat_at": "2026-11-05T05:37:34.819708+00:00",
+      "heartbeat_at": "2026-11-05T05:43:42.083983+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -2957,8 +2957,8 @@
         "docs/limitations.md",
         "docs/adr/0031-test-cli.md"
       ],
-      "checkpoint": "M7-T01 verified; implement immutable test CLI, recomputable head-only ratios and pinned upstream demo.",
-      "next_action": "Implement command/rendering, CLI safety/edge-case fixtures and installed smoke.",
+      "checkpoint": "CLI/evidence/docs integrated; focused tests, pinned fresh/local demos and local release smoke passed.",
+      "next_action": "Complete integrated workspace, code/security review and three-platform installed/replay/oracle CI, then close M7 gate.",
       "report": "docs/task-reports/M7-T02.md"
     },
     {
