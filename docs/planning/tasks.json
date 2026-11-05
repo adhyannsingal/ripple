@@ -2806,7 +2806,7 @@
       "blocker": null,
       "base_commit": "b444e66e01ebee8df6f7f1e7469245732ac289a0",
       "claimed_paths": [
-        "bench/scripts/incremental*",
+        "bench/scripts/incremental.py",
         "bench/results/",
         "docs/incremental.md",
         "crates/ripple-index/",
