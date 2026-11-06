@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-06T17:41:16.137519+00:00",
+  "updated_at": "2026-11-06T17:49:46.598869+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -3265,23 +3265,40 @@
         "scripts/tests/test_release.py",
         "docs/reviews/full-security-2026-11-05.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M9-T01",
       "started_at": "2026-11-06T17:31:46.665753+00:00",
-      "heartbeat_at": "2026-11-06T17:41:16.137519+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-06T17:49:46.598869+00:00",
+      "completed_at": "2026-11-06T17:49:46.598869+00:00",
+      "integrated_commit": "9d8bd6a0404b9ebefb283adf7e482c5f7cdfaf6f",
+      "validation": [
+        {
+          "command": "GitHub Actions CI 42263379650 at source 36826c602ac77a1725904f81169c7818778c1135",
+          "outcome": "passed",
+          "details": "All Linux, Intel macOS and Windows workspace/install/smoke checks passed; Linux history replay passed."
+        },
+        {
+          "command": "GitHub Actions oracle 42263379521",
+          "outcome": "passed",
+          "details": "Owned mini oracle, mutation campaign, metric contracts and compiling small-project exercise passed."
+        },
+        {
+          "command": "cargo test --workspace --locked; cargo fmt --all -- --check; cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed",
+          "details": "277 Rust tests; fmt and strict Clippy passed locally."
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests -v",
+          "outcome": "passed",
+          "details": "26 tests passed, including oversized/growing/nonregular/expanding inputs; all four recorded archives still verify."
+        }
+      ],
       "blocker": null,
       "base_commit": "f5c5b54cd8e150ce96c2c1c643d90e06616a459c",
-      "claimed_paths": [
-        "scripts/release.py",
-        "scripts/tests/test_release.py",
-        "docs/reviews/full-security-2026-11-05.md"
-      ],
-      "checkpoint": "Bounded verifier integrated; 26 local contracts and four archives pass. Applicable CI pending.",
-      "next_action": "Wait for CI before marking done.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated and verified; required local and platform/oracle CI passed. Claims released.",
+      "next_action": "M9-T04: design command-wide cancellation/subprocess cleanup and explicit storage quotas/retention.",
       "report": "docs/task-reports/M9-T01.md"
     },
     {
@@ -3297,23 +3314,45 @@
         "crates/ripple-parse/tests/scanner.rs",
         "docs/limitations.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M9-T02",
       "started_at": "2026-11-06T17:33:28.511782+00:00",
-      "heartbeat_at": "2026-11-06T17:41:16.137519+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-06T17:49:46.598869+00:00",
+      "completed_at": "2026-11-06T17:49:46.598869+00:00",
+      "integrated_commit": "34b0a878fca3c7754626e2761b36a484c0905ec9",
+      "validation": [
+        {
+          "command": "GitHub Actions CI 42263379650 at source 36826c602ac77a1725904f81169c7818778c1135",
+          "outcome": "passed",
+          "details": "All Linux, Intel macOS and Windows workspace/install/smoke checks passed; Linux history replay passed."
+        },
+        {
+          "command": "GitHub Actions oracle 42263379521",
+          "outcome": "passed",
+          "details": "Owned mini oracle, mutation campaign, metric contracts and compiling small-project exercise passed."
+        },
+        {
+          "command": "cargo test --workspace --locked; cargo fmt --all -- --check; cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed",
+          "details": "277 Rust tests; fmt and strict Clippy passed locally."
+        },
+        {
+          "command": "cargo test --locked -p ripple-parse; full workspace canonical incremental/cold tests",
+          "outcome": "passed",
+          "details": "Generated source/config/ignore aggregate limits reject before retaining excess inputs; below-budget behavior and full equality tests passed."
+        },
+        {
+          "command": "bench/scripts/workflows.py --samples 5, original and hardened CLI",
+          "outcome": "passed",
+          "details": "Warm sequential before/after comparison retained under docs/examples/small-repo; same new phase helper in both, no speed/significance claim."
+        }
+      ],
       "blocker": null,
       "base_commit": "121edbc2de7dd50e485ec11c76181c9e703b4b39",
-      "claimed_paths": [
-        "crates/ripple-parse/src/scanner.rs",
-        "crates/ripple-parse/tests/scanner.rs",
-        "docs/limitations.md"
-      ],
-      "checkpoint": "Scanner cap integrated; focused tests passed; full validation pending.",
-      "next_action": "Run workspace/canonical equality and same-workload comparison; await CI.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated and verified; required local and platform/oracle CI passed. Claims released.",
+      "next_action": "M9-T04: design command-wide cancellation/subprocess cleanup and explicit storage quotas/retention.",
       "report": "docs/task-reports/M9-T02.md"
     },
     {
@@ -3330,24 +3369,45 @@
         "docs/project-status.md",
         ".github/workflows/oracle.yml"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M9-T03",
       "started_at": "2026-11-06T17:34:34.493843+00:00",
-      "heartbeat_at": "2026-11-06T17:41:16.137519+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
-      "validation": [],
+      "heartbeat_at": "2026-11-06T17:49:46.598869+00:00",
+      "completed_at": "2026-11-06T17:49:46.598869+00:00",
+      "integrated_commit": "36826c602ac77a1725904f81169c7818778c1135",
+      "validation": [
+        {
+          "command": "GitHub Actions CI 42263379650 at source 36826c602ac77a1725904f81169c7818778c1135",
+          "outcome": "passed",
+          "details": "All Linux, Intel macOS and Windows workspace/install/smoke checks passed; Linux history replay passed."
+        },
+        {
+          "command": "GitHub Actions oracle 42263379521",
+          "outcome": "passed",
+          "details": "Owned mini oracle, mutation campaign, metric contracts and compiling small-project exercise passed."
+        },
+        {
+          "command": "cargo test --workspace --locked; cargo fmt --all -- --check; cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed",
+          "details": "277 Rust tests; fmt and strict Clippy passed locally."
+        },
+        {
+          "command": "scripts/small-repo-smoke.py (exact inputs/hashes in docs/examples/small-repo/report.json)",
+          "outcome": "passed",
+          "details": "Baseline 3/3 green; only checkout.test.ts fails after compiling arithmetic change; expected symbol/fallback/exclusion sets, stale rejection, cold equality and Git/index/main-db-file preservation passed."
+        },
+        {
+          "command": "Python tooling/replay/mutation/oracle contracts; npm test --prefix eval/oracle",
+          "outcome": "passed",
+          "details": "37 Python and 6 Node tests passed locally; RustSec/npm/history/evidence scans returned zero findings."
+        }
+      ],
       "blocker": null,
       "base_commit": "34b0a878fca3c7754626e2761b36a484c0905ec9",
-      "claimed_paths": [
-        "scripts/small-repo-smoke.py",
-        "docs/examples/small-repo/",
-        "docs/project-status.md",
-        ".github/workflows/oracle.yml"
-      ],
-      "checkpoint": "Owned compiling Git exercise passed; 277 Rust/37 Python/6 Node local checks passed. Oracle CI 42263379521 including the new exercise passed; platform CI 42263379650 pending.",
-      "next_action": "Wait for all platform CI gates, mark verified and release claims.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated and verified; required local and platform/oracle CI passed. Claims released.",
+      "next_action": "M9-T04: design command-wide cancellation/subprocess cleanup and explicit storage quotas/retention.",
       "report": "docs/task-reports/M9-T03.md"
     },
     {
@@ -3383,11 +3443,11 @@
     }
   ],
   "coordinator": {
-    "owner": "coordinator",
-    "session_id": "M9-2026-11-06",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "Archive/scanner fixes and small-project exercise integrated. All local checks and new oracle CI passed; platform CI in progress. M9-T04 intentionally pending.",
-    "next_action": "Close verified M9-T01/02/03 after CI; hand off cancellation/quota design as the next batch.",
-    "updated_at": "2026-11-06T17:41:16.137519+00:00"
+    "checkpoint": "November 6 batch complete: M9-T01/02/03 verified; M0\u2013M8 historical gates remain passed. M9-T04 pending, so M9 gate remains open.",
+    "next_action": "Next batch: M9-T04 command-wide cancellation/subprocess cleanup and explicit storage quota/retention design. No public publication or refreshed candidate performed.",
+    "updated_at": "2026-11-06T17:49:46.598869+00:00"
   }
 }

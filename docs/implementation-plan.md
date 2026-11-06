@@ -534,7 +534,7 @@ For each candidate, run relevant commands from a clean install on the declared s
 
 Run `python3 scripts/plan.py validate` and `python3 scripts/plan.py ready` from any working directory using the script's absolute path if needed. `--json` produces machine-readable output. Run `python3 -m unittest discover -s scripts/tests -v` when this tooling changes. The validator checks plan/ledger consistency, cycles, evidence shape, required reports, claims and completed milestone order; it does not run Rust checks, establish that reports are truthful, acquire locks or launch agents. The coordinator still reviews evidence and verifies Git integration.
 
-The ledger contains a coordinator checkpoint plus per-task base commit, concrete claimed paths and next action. Persist them on claim/progress/handoff so a new session can resume without asking the owner to reconstruct context. All implementation cards remain pending after this planning amendment; the added Python tooling is planning infrastructure, not completion of M0-T01.
+The ledger contains a coordinator checkpoint plus per-task base commit, concrete claimed paths and next action. Persist them on claim/progress/handoff so a new session can resume without asking the owner to reconstruct context. Use the ledger for live status: the original M0–M8 implementation is integrated and verified; the newly authorized M9 cards track post-plan security and practical validation work.
 
 ## Questions and decision policy
 
