@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-06T17:34:34.493843+00:00",
+  "updated_at": "2026-11-06T17:37:43.156693+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -3327,7 +3327,8 @@
       "owned_paths": [
         "scripts/small-repo-smoke.py",
         "docs/examples/small-repo/",
-        "docs/project-status.md"
+        "docs/project-status.md",
+        ".github/workflows/oracle.yml"
       ],
       "status": "in_progress",
       "owner": "coordinator",
@@ -3342,7 +3343,8 @@
       "claimed_paths": [
         "scripts/small-repo-smoke.py",
         "docs/examples/small-repo/",
-        "docs/project-status.md"
+        "docs/project-status.md",
+        ".github/workflows/oracle.yml"
       ],
       "checkpoint": "Owned compiling TypeScript Git exercise planned; preserve all user state.",
       "next_action": "Create baseline/failing change, run all commands and compare static evidence with independent full-suite failures.",

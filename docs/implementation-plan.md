@@ -476,7 +476,7 @@ Added after the original M0–M8 plan in response to the November 6 security/tes
 #### M9-T03 — Validate a compiling small Git repository
 
 - **Depends on:** M8-T04. **Lane:** verification.
-- **Own:** `scripts/small-repo-smoke.py`; `docs/examples/small-repo/`; `docs/project-status.md`.
+- **Own:** `scripts/small-repo-smoke.py`; `docs/examples/small-repo/`; `docs/project-status.md`; `.github/workflows/oracle.yml`.
 - **Implement:** Disposable owned TS Git project with passing baseline and a controlled regression; run all six commands, verify exact symbol/fallback selection and run the full compiled test suite independently. Check stale rejection, refresh, cold equality and preservation of user Git state.
 - **Acceptance:** Baseline tests pass; changed full suite fails only the expected test; selected symbol witness contains that test; unrelated file stays out; fallback remains disclosed; all command outputs and checks are recorded.
 - **Handoff:** Reproducible report and practical developer-preview status.

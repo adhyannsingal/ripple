@@ -32,3 +32,7 @@ jobs:
         run: python -m unittest discover -s eval/mutation -v
       - name: Run owned compiling fault campaign
         run: python -c "import shutil,subprocess; subprocess.run(['python','eval/mutation/run.py','--binary','target/debug/ripple','--node',shutil.which('node'),'--typescript','eval/oracle/node_modules/typescript','--output','target/mutation-ci'],check=True)"
+      - name: Build canonical comparison helper
+        run: cargo build --locked -p ripple-index --example incremental_evaluate
+      - name: Verify compiling small Git project against full-suite failures
+        run: python -c "import shutil,subprocess; subprocess.run(['python','scripts/small-repo-smoke.py','--binary','target/debug/ripple','--helper','target/debug/examples/incremental_evaluate','--node',shutil.which('node'),'--typescript','eval/oracle/node_modules/typescript','--output','target/small-repo-ci'],check=True)"
