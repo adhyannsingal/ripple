@@ -13,8 +13,37 @@ import stat
 import subprocess
 import tempfile
 import zipfile
+from contextlib import contextmanager
 
 ROOT=Path(__file__).resolve().parents[1]
+MAX_MANIFEST_BYTES=1024*1024
+MAX_ARCHIVE_BYTES=160*1024*1024
+HASH_CHUNK_BYTES=1024*1024
+
+@contextmanager
+def bounded_regular(path,maximum):
+    before=path.lstat()
+    if not stat.S_ISREG(before.st_mode):raise ValueError('input must be a regular non-symlink file')
+    if before.st_size>maximum:raise ValueError('input byte limit exceeded')
+    flags=os.O_RDONLY|getattr(os,'O_BINARY',0)|getattr(os,'O_NOFOLLOW',0)|getattr(os,'O_NONBLOCK',0)
+    descriptor=os.open(path,flags)
+    with os.fdopen(descriptor,'rb')as stream:
+        opened=os.fstat(stream.fileno())
+        if not stat.S_ISREG(opened.st_mode) or (before.st_dev,before.st_ino)!=(opened.st_dev,opened.st_ino):
+            raise ValueError('input changed or is not a regular file')
+        if opened.st_size>maximum:raise ValueError('input byte limit exceeded')
+        yield stream
+
+def stream_digest(stream,maximum):
+    hashed=hashlib.sha256();total=0
+    while True:
+        raw=stream.read(min(HASH_CHUNK_BYTES,maximum-total+1))
+        if not raw:break
+        total+=len(raw)
+        if total>maximum:raise ValueError('input byte limit exceeded')
+        hashed.update(raw)
+    return hashed.hexdigest()
+
 def digest(raw):return hashlib.sha256(raw).hexdigest()
 def command(argv):
     return subprocess.run([str(a)for a in argv],cwd=ROOT,capture_output=True,text=True,timeout=180,check=True).stdout
@@ -107,15 +136,19 @@ def prepare(binary,output,target):
     print(json.dumps({'prepared':name,'sha256':manifest['archive_sha256'],'notice_packages':len(notices)}))
 
 def verify(directory,smoke=False):
-    manifest=json.loads((directory/'manifest.json').read_text())
+    with bounded_regular(directory/'manifest.json',MAX_MANIFEST_BYTES)as stream:
+        raw=stream.read(MAX_MANIFEST_BYTES+1)
+        if len(raw)>MAX_MANIFEST_BYTES:raise ValueError('manifest byte limit exceeded')
+        manifest=json.loads(raw.decode('utf-8'))
     safe(manifest['archive'])
     if len(PurePosixPath(manifest['archive']).parts)!=1:raise ValueError('archive name must be a basename')
     archive=directory/manifest['archive']
-    if digest(archive.read_bytes())!=manifest['archive_sha256']:raise ValueError('archive checksum mismatch')
     if manifest['binary'] not in ('ripple','ripple.exe') or manifest['binary'] not in manifest['files']:raise ValueError('invalid binary name')
-    with tempfile.TemporaryDirectory(prefix='ripple-unpacked-')as temp:
+    with bounded_regular(archive,MAX_ARCHIVE_BYTES)as stream,tempfile.TemporaryDirectory(prefix='ripple-unpacked-')as temp:
+        if stream_digest(stream,MAX_ARCHIVE_BYTES)!=manifest['archive_sha256']:raise ValueError('archive checksum mismatch')
+        stream.seek(0)
         root=Path(temp)
-        with zipfile.ZipFile(archive)as z:
+        with zipfile.ZipFile(stream)as z:
             if len(z.infolist())>4096 or len(z.namelist())!=len({n.casefold() for n in z.namelist()}):raise ValueError('duplicate/oversized inventory')
             if set(z.namelist())!=set(manifest['files']):raise ValueError('archive inventory mismatch')
             if sum(i.file_size for i in z.infolist())>128*1024*1024:raise ValueError('archive byte limit')
