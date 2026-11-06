@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-06T17:31:46.665753+00:00",
+  "updated_at": "2026-11-06T17:33:03.926782+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -3265,11 +3265,11 @@
         "scripts/tests/test_release.py",
         "docs/reviews/full-security-2026-11-05.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M9-T01",
       "started_at": "2026-11-06T17:31:46.665753+00:00",
-      "heartbeat_at": "2026-11-06T17:31:46.665753+00:00",
+      "heartbeat_at": "2026-11-06T17:33:03.926782+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3280,8 +3280,8 @@
         "scripts/tests/test_release.py",
         "docs/reviews/full-security-2026-11-05.md"
       ],
-      "checkpoint": "SEC-01: add bounded regular input handles and streamed archive hashing.",
-      "next_action": "Implement input limits and adversarial regression tests.",
+      "checkpoint": "Bounded verifier integrated; 26 local contracts and four archives pass. Applicable CI pending.",
+      "next_action": "Wait for CI before marking done.",
       "report": "docs/task-reports/M9-T01.md"
     },
     {
@@ -3289,7 +3289,7 @@
       "milestone": "M9",
       "title": "Bound standalone discovery capture",
       "depends_on": [
-        "M9-T01"
+        "M8-T04"
       ],
       "lane": "security",
       "owned_paths": [
@@ -3317,7 +3317,7 @@
       "milestone": "M9",
       "title": "Validate a compiling small Git repository",
       "depends_on": [
-        "M9-T02"
+        "M8-T04"
       ],
       "lane": "verification",
       "owned_paths": [
