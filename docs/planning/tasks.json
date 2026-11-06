@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-06T17:33:28.511782+00:00",
+  "updated_at": "2026-11-06T17:34:34.493843+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -3297,11 +3297,11 @@
         "crates/ripple-parse/tests/scanner.rs",
         "docs/limitations.md"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M9-T02",
       "started_at": "2026-11-06T17:33:28.511782+00:00",
-      "heartbeat_at": "2026-11-06T17:33:28.511782+00:00",
+      "heartbeat_at": "2026-11-06T17:34:34.493843+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3312,8 +3312,8 @@
         "crates/ripple-parse/tests/scanner.rs",
         "docs/limitations.md"
       ],
-      "checkpoint": "Standalone scanner needs aggregate capture accounting; indexing BudgetTree already has a cap.",
-      "next_action": "Add scanner budget checks before retention and small-budget generated regressions.",
+      "checkpoint": "Scanner cap integrated; focused tests passed; full validation pending.",
+      "next_action": "Run workspace/canonical equality and same-workload comparison; await CI.",
       "report": "docs/task-reports/M9-T02.md"
     },
     {
@@ -3329,19 +3329,23 @@
         "docs/examples/small-repo/",
         "docs/project-status.md"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "in_progress",
+      "owner": "coordinator",
+      "branch": "agent/M9-T03",
+      "started_at": "2026-11-06T17:34:34.493843+00:00",
+      "heartbeat_at": "2026-11-06T17:34:34.493843+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": "New post-plan follow-up, not implemented.",
-      "next_action": "Select after verified prerequisites.",
+      "base_commit": "34b0a878fca3c7754626e2761b36a484c0905ec9",
+      "claimed_paths": [
+        "scripts/small-repo-smoke.py",
+        "docs/examples/small-repo/",
+        "docs/project-status.md"
+      ],
+      "checkpoint": "Owned compiling TypeScript Git exercise planned; preserve all user state.",
+      "next_action": "Create baseline/failing change, run all commands and compare static evidence with independent full-suite failures.",
       "report": "docs/task-reports/M9-T03.md"
     },
     {
@@ -3380,8 +3384,8 @@
     "owner": "coordinator",
     "session_id": "M9-2026-11-06",
     "integration_branch": "main",
-    "checkpoint": "Standalone scanner needs aggregate capture accounting; indexing BudgetTree already has a cap.",
-    "next_action": "Add scanner budget checks before retention and small-budget generated regressions.",
-    "updated_at": "2026-11-06T17:33:28.511782+00:00"
+    "checkpoint": "M9-T01/T02 integrated in review; M9-T03 owned repo exercise claimed.",
+    "next_action": "Run full checks and compiling small-repository acceptance exercise.",
+    "updated_at": "2026-11-06T17:34:34.493843+00:00"
   }
 }
