@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-06T17:37:43.156693+00:00",
+  "updated_at": "2026-11-06T17:41:16.137519+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -3269,7 +3269,7 @@
       "owner": "coordinator",
       "branch": "agent/M9-T01",
       "started_at": "2026-11-06T17:31:46.665753+00:00",
-      "heartbeat_at": "2026-11-06T17:33:03.926782+00:00",
+      "heartbeat_at": "2026-11-06T17:41:16.137519+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3301,7 +3301,7 @@
       "owner": "coordinator",
       "branch": "agent/M9-T02",
       "started_at": "2026-11-06T17:33:28.511782+00:00",
-      "heartbeat_at": "2026-11-06T17:34:34.493843+00:00",
+      "heartbeat_at": "2026-11-06T17:41:16.137519+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3330,11 +3330,11 @@
         "docs/project-status.md",
         ".github/workflows/oracle.yml"
       ],
-      "status": "in_progress",
+      "status": "review",
       "owner": "coordinator",
       "branch": "agent/M9-T03",
       "started_at": "2026-11-06T17:34:34.493843+00:00",
-      "heartbeat_at": "2026-11-06T17:34:34.493843+00:00",
+      "heartbeat_at": "2026-11-06T17:41:16.137519+00:00",
       "completed_at": null,
       "integrated_commit": null,
       "validation": [],
@@ -3346,8 +3346,8 @@
         "docs/project-status.md",
         ".github/workflows/oracle.yml"
       ],
-      "checkpoint": "Owned compiling TypeScript Git exercise planned; preserve all user state.",
-      "next_action": "Create baseline/failing change, run all commands and compare static evidence with independent full-suite failures.",
+      "checkpoint": "Owned compiling Git exercise passed; 277 Rust/37 Python/6 Node local checks passed. Oracle CI 42263379521 including the new exercise passed; platform CI 42263379650 pending.",
+      "next_action": "Wait for all platform CI gates, mark verified and release claims.",
       "report": "docs/task-reports/M9-T03.md"
     },
     {
@@ -3386,8 +3386,8 @@
     "owner": "coordinator",
     "session_id": "M9-2026-11-06",
     "integration_branch": "main",
-    "checkpoint": "M9-T01/T02 integrated in review; M9-T03 owned repo exercise claimed.",
-    "next_action": "Run full checks and compiling small-repository acceptance exercise.",
-    "updated_at": "2026-11-06T17:34:34.493843+00:00"
+    "checkpoint": "Archive/scanner fixes and small-project exercise integrated. All local checks and new oracle CI passed; platform CI in progress. M9-T04 intentionally pending.",
+    "next_action": "Close verified M9-T01/02/03 after CI; hand off cancellation/quota design as the next batch.",
+    "updated_at": "2026-11-06T17:41:16.137519+00:00"
   }
 }
