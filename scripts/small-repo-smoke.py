@@ -39,7 +39,7 @@ def main():
     def run(argv, cwd, check=True):
         result = subprocess.run([str(a) for a in argv],cwd=cwd,env=env,capture_output=True,timeout=120)
         if check and result.returncode:
-            raise RuntimeError(str(argv)+': '+result.stderr.decode('utf8','replace'))
+            raise RuntimeError(str(argv)+': '+(result.stdout+result.stderr).decode('utf8','replace'))
         return result
     with tempfile.TemporaryDirectory(prefix='ripple-small-repo-') as directory:
         temp=Path(directory);root=temp/'checkout project';root.mkdir();template=temp/'empty-template';template.mkdir()
@@ -54,7 +54,7 @@ def main():
             result=run([binary,*argv,'--format','json'],root,check=check);commands.append(argv[0])
             return json.loads(result.stdout) if check else result
         def suite():
-            run([node,typescript/'lib/tsc.js','--strict','--target','es2022','--module','commonjs','--noEmitOnError','--outDir','build',*sorted(p for p in FILES if p.endswith('.ts'))],root)
+            run([node,typescript/'lib/tsc.js','--ignoreConfig','--strict','--target','es2022','--module','commonjs','--noEmitOnError','--outDir','build',*sorted(p for p in FILES if p.endswith('.ts'))],root)
             rows=[]
             for test in TESTS:
                 result=run([node,root/'build'/test.replace('.ts','.js')],root,check=False)
