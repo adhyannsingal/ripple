@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-05T21:01:04.480999+00:00",
+  "updated_at": "2026-11-06T17:31:46.665753+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -201,6 +201,14 @@
         "eval/final-candidate/results/summary.json; dist/artifact-manifest.json; docs/reviews/M8-release-security-2026-11-05.md."
       ],
       "completed_at": "2026-11-05T21:01:04.480999+00:00"
+    },
+    {
+      "id": "M9",
+      "title": "Post-plan security hardening and practical validation",
+      "target": "Follow-up authorized November 6",
+      "gate_status": "pending",
+      "gate_evidence": [],
+      "completed_at": null
     }
   ],
   "tasks": [
@@ -3243,14 +3251,133 @@
       "checkpoint": "Integrated candidate 16eaf56 verified; final evidence and four archive hashes retained. M8 release-ready; no public publication.",
       "next_action": "No remaining implementation tasks. Public tag/release remains a separate owner-authorized action.",
       "report": "docs/task-reports/M8-T04.md"
+    },
+    {
+      "id": "M9-T01",
+      "milestone": "M9",
+      "title": "Bound release verifier inputs",
+      "depends_on": [
+        "M8-T04"
+      ],
+      "lane": "security",
+      "owned_paths": [
+        "scripts/release.py",
+        "scripts/tests/test_release.py",
+        "docs/reviews/full-security-2026-11-05.md"
+      ],
+      "status": "in_progress",
+      "owner": "coordinator",
+      "branch": "agent/M9-T01",
+      "started_at": "2026-11-06T17:31:46.665753+00:00",
+      "heartbeat_at": "2026-11-06T17:31:46.665753+00:00",
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": "f5c5b54cd8e150ce96c2c1c643d90e06616a459c",
+      "claimed_paths": [
+        "scripts/release.py",
+        "scripts/tests/test_release.py",
+        "docs/reviews/full-security-2026-11-05.md"
+      ],
+      "checkpoint": "SEC-01: add bounded regular input handles and streamed archive hashing.",
+      "next_action": "Implement input limits and adversarial regression tests.",
+      "report": "docs/task-reports/M9-T01.md"
+    },
+    {
+      "id": "M9-T02",
+      "milestone": "M9",
+      "title": "Bound standalone discovery capture",
+      "depends_on": [
+        "M9-T01"
+      ],
+      "lane": "security",
+      "owned_paths": [
+        "crates/ripple-parse/src/scanner.rs",
+        "crates/ripple-parse/tests/scanner.rs",
+        "docs/limitations.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": "New post-plan follow-up, not implemented.",
+      "next_action": "Select after verified prerequisites.",
+      "report": "docs/task-reports/M9-T02.md"
+    },
+    {
+      "id": "M9-T03",
+      "milestone": "M9",
+      "title": "Validate a compiling small Git repository",
+      "depends_on": [
+        "M9-T02"
+      ],
+      "lane": "verification",
+      "owned_paths": [
+        "scripts/small-repo-smoke.py",
+        "docs/examples/small-repo/",
+        "docs/project-status.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": "New post-plan follow-up, not implemented.",
+      "next_action": "Select after verified prerequisites.",
+      "report": "docs/task-reports/M9-T03.md"
+    },
+    {
+      "id": "M9-T04",
+      "milestone": "M9",
+      "title": "Design and implement command cancellation and index quotas",
+      "depends_on": [
+        "M9-T02"
+      ],
+      "lane": "security",
+      "owned_paths": [
+        "crates/ripple-core/src/",
+        "crates/ripple-index/src/",
+        "crates/ripple-git/src/",
+        "crates/ripple-cli/src/",
+        "docs/adr/",
+        "docs/limitations.md"
+      ],
+      "status": "pending",
+      "owner": null,
+      "branch": null,
+      "started_at": null,
+      "heartbeat_at": null,
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [],
+      "blocker": null,
+      "base_commit": null,
+      "claimed_paths": [],
+      "checkpoint": "New post-plan follow-up, not implemented.",
+      "next_action": "Select after verified prerequisites.",
+      "report": "docs/task-reports/M9-T04.md"
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "coordinator",
+    "session_id": "M9-2026-11-06",
     "integration_branch": "main",
-    "checkpoint": "All 43 tasks and M0\u2013M8 gates complete. Version 0.4.0/MIT candidate release-ready; source16eaf56, evidence and hashes retained.",
-    "next_action": "No pending implementation task; public publication, signing and broader future scope require a separate assignment.",
-    "updated_at": "2026-11-05T21:01:04.480999+00:00"
+    "checkpoint": "November 6 follow-up authorized. M9-T01 claimed; original M0\u2013M8 gates historical/passed.",
+    "next_action": "Bound archive verification, then discovery and practical Git smoke; cancellation/storage is a separate follow-up.",
+    "updated_at": "2026-11-06T17:31:46.665753+00:00"
   }
 }

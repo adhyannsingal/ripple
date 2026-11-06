@@ -23,6 +23,7 @@ This plan began with only documentation and a Python planning helper. The task l
 | M6 — Incremental correctness | Week 6 | Property suites, idempotence, persistence equality, and a pinned real commit replay have zero canonical mismatches; v0.3 candidate. |
 | M7 — Test-file impact | Week 7 | test emits an explainable, deterministic set of potentially related test files on fixtures and a pinned real repo. |
 | M8 — Safety evidence and release readiness | Week 8 | Resolver, replay, mutation, benchmark and install evidence exists; another developer can install/use the tool; v0.4 release-ready artifacts. |
+| M9 — Post-plan security hardening and practical validation | Follow-up authorized November 6 | Input/resource defenses and a compiling small-repository exercise verified; command cancellation/storage policy tracked explicitly. |
 
 Milestone gates pass in order. Internally, a later-milestone card may start as soon as its explicit dependencies are integrated; this allows storage, graph and Git adapters to be developed alongside parsing. A milestone exits only when all its required cards are `done`, previous milestone gates pass, and its own evidence is recorded. Releases in this table are candidates/readiness targets, not automatic publication.
 
@@ -452,6 +453,42 @@ Every card requires a preflight statement and `docs/task-reports/<ID>.md` on han
 - **Implement:** Prepare versioned release binaries/checksums, packaging metadata and draft notes. Validate cargo install --path crates/ripple-cli plus clean-machine smoke for supported targets without Node/database server/cloud credentials; Git remains a documented prerequisite. Choose a deliberate static/dynamic SQLite strategy and test it. Audit package contents and migration/CLI compatibility policy.
 - **Acceptance:** On supported macOS/Linux/Windows runners install/build and run index/inspect/status/impact/diff/test against a tiny fixture; full checks, oracle report, replay, safety and benchmark artifacts are linked in checklist; release-ready status requires no known blocking defects. Public upload/tag/package publication requires separate authorization if not already granted.
 - **Handoff:** v0.4 release-ready artifact manifest, hashes, install evidence and one concise owner handoff for any remaining publication/license decision.
+### M9 — Post-plan security hardening and practical validation
+
+Added after the original M0–M8 plan in response to the November 6 security/testing follow-up. Historical M8 candidate evidence remains bound to its recorded source; later changes do not inherit that candidate's final-source evidence. No publication is implied.
+
+#### M9-T01 — Bound release verifier inputs
+
+- **Depends on:** M8-T04. **Lane:** security.
+- **Own:** `scripts/release.py`; `scripts/tests/test_release.py`; `docs/reviews/full-security-2026-11-05.md`.
+- **Implement:** Bound regular manifest/archive inputs before buffering; stream archive hashing on the same opened handle used for ZIP verification. Retain expansion/path/hash checks.
+- **Acceptance:** Oversized manifest/archive, symlink/nonregular inputs and ZIP expansion fail before extraction/execution; four existing archives still verify; tooling tests and applicable CI pass.
+- **Handoff:** SEC-01 addressed with a focused report; hashes are integrity, not authenticity.
+
+#### M9-T02 — Bound standalone discovery capture
+
+- **Depends on:** M9-T01. **Lane:** security.
+- **Own:** `crates/ripple-parse/src/scanner.rs`; `crates/ripple-parse/tests/scanner.rs`; `docs/limitations.md`.
+- **Implement:** Enforce the existing 256 MiB aggregate input policy during standalone discovery, before retaining source/config/ignore bytes. Preserve existing indexing capture limits.
+- **Acceptance:** Generated source/config/ignore inputs exceed a small injected test budget and fail explicitly; below-budget captures remain unchanged; full workspace, canonical incremental/cold and CLI checks pass.
+- **Handoff:** Standalone inspect resource protection; no total process-RSS claim.
+
+#### M9-T03 — Validate a compiling small Git repository
+
+- **Depends on:** M9-T02. **Lane:** verification.
+- **Own:** `scripts/small-repo-smoke.py`; `docs/examples/small-repo/`; `docs/project-status.md`.
+- **Implement:** Disposable owned TS Git project with passing baseline and a controlled regression; run all six commands, verify exact symbol/fallback selection and run the full compiled test suite independently. Check stale rejection, refresh, cold equality and preservation of user Git state.
+- **Acceptance:** Baseline tests pass; changed full suite fails only the expected test; selected symbol witness contains that test; unrelated file stays out; fallback remains disclosed; all command outputs and checks are recorded.
+- **Handoff:** Reproducible report and practical developer-preview status.
+
+#### M9-T04 — Design and implement command cancellation and index quotas
+
+- **Depends on:** M9-T02. **Lane:** security.
+- **Own:** `crates/ripple-core/src/`; `crates/ripple-index/src/`; `crates/ripple-git/src/`; `crates/ripple-cli/src/`; `docs/adr/`; `docs/limitations.md`.
+- **Implement:** Define command-wide cancellation with subprocess cleanup and atomic publication behavior; explicit storage quota/retention defaults that preserve active generations and never silently delete archives.
+- **Acceptance:** Cancellation before publication preserves prior generation; child processes are reaped; quota rejection is actionable and leaves committed state usable; platform/cold-equality regressions and CI pass. Do not claim a hard process memory cap from captured-byte limits.
+- **Handoff:** SEC-02 resource follow-up resolved only after actual implementation and verification.
+
 ## Validation strategy
 
 After bootstrap, run formatting, strict clippy and locked workspace tests at integration. Semantic rules require small independently expected fixtures. Parser diagnostics, graph uncertainty and stale indexes are part of correctness, not just happy-path behavior. CLI JSON/golden tests verify an agent-consumable interface. Temporary Git fixtures cover both endpoints without touching user changes.
