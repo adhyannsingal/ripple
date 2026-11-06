@@ -1,0 +1,226 @@
+{
+  "source_commit": "36826c602ac77a1725904f81169c7818778c1135",
+  "binary_sha256": "ba980f7703448754812608386207a3fafd49a166ffa0a1372765dbf1d08c1e50",
+  "helper_sha256": "9774975370fbdc7504adcd5ee17054a57597ae303c59239213804292694d7f67",
+  "toolchain": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "ripple_version": "ripple 0.4.0",
+  "samples": 5,
+  "warmups": 1,
+  "workload": {
+    "id": "supported-chain-65-v1",
+    "files": 65,
+    "loc": 65,
+    "sha256": "76bfd2306b23e4849b18f20400a4e96a851411213a89855b67d6b1f1af09f9d1"
+  },
+  "hardware": {
+    "os": "macOS-26.5-arm64-arm-64bit-Mach-O",
+    "cpu": "Apple M4",
+    "memory_bytes": 17179869184
+  },
+  "metrics": {
+    "cold": {
+      "count": 5,
+      "p50_ms": 364.2439999966882,
+      "p95_ms": 375.75741700129583,
+      "p99_ms": 375.75741700129583
+    },
+    "no_op": {
+      "count": 5,
+      "p50_ms": 364.80033298721537,
+      "p95_ms": 370.8776249550283,
+      "p99_ms": 370.8776249550283
+    },
+    "body": {
+      "count": 5,
+      "p50_ms": 362.940915976651,
+      "p95_ms": 429.26945799263194,
+      "p99_ms": 429.26945799263194
+    },
+    "verified_impact": {
+      "count": 5,
+      "p50_ms": 318.12562502454966,
+      "p95_ms": 329.5275829732418,
+      "p99_ms": 329.5275829732418
+    },
+    "startup_version": {
+      "count": 5,
+      "p50_ms": 4.343167005572468,
+      "p95_ms": 5.745415983255953,
+      "p99_ms": 5.745415983255953
+    },
+    "adjacency_ms": {
+      "count": 5,
+      "p50_ms": 0.07358300000000001,
+      "p95_ms": 0.161541,
+      "p99_ms": 0.161541
+    },
+    "capture_verification_ms": {
+      "count": 5,
+      "p50_ms": 273.349125,
+      "p95_ms": 360.805916,
+      "p99_ms": 360.805916
+    },
+    "module_policy_ms": {
+      "count": 5,
+      "p50_ms": 1.027541,
+      "p95_ms": 1.5785,
+      "p99_ms": 1.5785
+    },
+    "production_verified_load_ms": {
+      "count": 5,
+      "p50_ms": 268.210667,
+      "p95_ms": 283.87425,
+      "p99_ms": 283.87425
+    },
+    "pure_traversal_ms": {
+      "count": 5,
+      "p50_ms": 1.1900840000000001,
+      "p95_ms": 1.790375,
+      "p99_ms": 1.790375
+    },
+    "storage_load_ms": {
+      "count": 5,
+      "p50_ms": 3.352417,
+      "p95_ms": 3.752208,
+      "p99_ms": 3.752208
+    }
+  },
+  "cold_files_per_second": 178.45180703207464,
+  "cold_loc_per_second": 178.45180703207464,
+  "raw": {
+    "cold_ms": [
+      356.2956659588963,
+      364.2439999966882,
+      375.75741700129583,
+      361.46816599648446,
+      364.83520799083635
+    ],
+    "no_op_ms": [
+      361.73029197379947,
+      370.8776249550283,
+      365.00541697023436,
+      364.80033298721537,
+      359.0449590119533
+    ],
+    "body_ms": [
+      350.75574996881187,
+      356.3994169817306,
+      362.940915976651,
+      429.26945799263194,
+      380.2424999885261
+    ],
+    "impact_ms": [
+      309.62408398045227,
+      305.5085420492105,
+      318.12562502454966,
+      320.08558296365663,
+      329.5275829732418
+    ],
+    "startup_ms": [
+      4.343167005572468,
+      5.745415983255953,
+      3.1078749452717602,
+      3.7669159937649965,
+      4.784624965395778
+    ],
+    "phases": [
+      {
+        "adjacency_ms": 0.047917,
+        "canonical_query_equal": true,
+        "capture_verification_ms": 285.318459,
+        "module_policy_ms": 0.7077500000000001,
+        "production_verified_load_ms": 261.408583,
+        "pure_traversal_ms": 0.778,
+        "storage_load_ms": 3.3803750000000004,
+        "targets": 129,
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        }
+      },
+      {
+        "adjacency_ms": 0.07358300000000001,
+        "canonical_query_equal": true,
+        "capture_verification_ms": 259.888833,
+        "module_policy_ms": 1.1058750000000002,
+        "production_verified_load_ms": 269.586833,
+        "pure_traversal_ms": 1.305542,
+        "storage_load_ms": 3.304541,
+        "targets": 129,
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        }
+      },
+      {
+        "adjacency_ms": 0.074417,
+        "canonical_query_equal": true,
+        "capture_verification_ms": 256.928041,
+        "module_policy_ms": 1.027541,
+        "production_verified_load_ms": 268.210667,
+        "pure_traversal_ms": 1.1900840000000001,
+        "storage_load_ms": 3.331875,
+        "targets": 129,
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        }
+      },
+      {
+        "adjacency_ms": 0.161541,
+        "canonical_query_equal": true,
+        "capture_verification_ms": 273.349125,
+        "module_policy_ms": 1.5785,
+        "production_verified_load_ms": 283.87425,
+        "pure_traversal_ms": 1.790375,
+        "storage_load_ms": 3.352417,
+        "targets": 129,
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        }
+      },
+      {
+        "adjacency_ms": 0.056708,
+        "canonical_query_equal": true,
+        "capture_verification_ms": 360.805916,
+        "module_policy_ms": 0.71575,
+        "production_verified_load_ms": 264.06675,
+        "pure_traversal_ms": 0.783042,
+        "storage_load_ms": 3.752208,
+        "targets": 129,
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        }
+      }
+    ],
+    "index_bytes_three_generations": [
+      1813819,
+      1813819,
+      1813819,
+      1813819,
+      1813819
+    ],
+    "peak_impact_rss_bytes": [
+      77758464,
+      77692928,
+      77725696,
+      77561856,
+      77758464,
+      77692928
+    ]
+  },
+  "rejected_optimization": {
+    "metadata_equal": true,
+    "production_rejected_stale": true,
+    "stderr": "error[stale_index]: \"stale index or changing inputs; run ripple index .\"\n"
+  },
+  "state": "Release; warm OS cache, no cache eviction; fresh per-sample Git roots/indexes, one discarded warm-up. CLI time includes startup, real Git provenance, verification, serialization. Phase helper compiles actual production capture source and checks query equality with production load_current; stage times are sequential observations, not subtraction. Peak RSS: BSD time -l, impact only. Fixed case order; background load uncontrolled. Startup version is a proxy, not subtracted from queries. No latency thresholds.",
+  "command": "bench/scripts/workflows.py --binary /tmp/ripple-M8-final-install/bin/ripple --helper target/release/examples/workflow_benchmark --output /tmp/ripple-M9-cli-budget-before-clean --samples 5"
+}
