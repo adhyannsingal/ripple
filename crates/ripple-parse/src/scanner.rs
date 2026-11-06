@@ -15,6 +15,8 @@ use std::{
 
 pub const MAX_TREE_ENTRIES: usize = 100_000;
 pub const MAX_INPUT_BYTES: u64 = 16 * 1024 * 1024;
+/// Captured input bytes, not a bound on total process memory or syntax facts.
+pub const MAX_CAPTURE_BYTES: usize = 256 * 1024 * 1024;
 const EXCLUDED: &[&str] = &[
     "node_modules",
     ".git",
@@ -65,13 +67,25 @@ pub fn classify(path: &RepoPath) -> Option<(Language, bool)> {
         .any(|s| name.ends_with(s));
     Some((language, is_test))
 }
-fn read(tree: &impl SourceTree, path: &RepoPath) -> Result<Vec<u8>, ScanError> {
+fn read(
+    tree: &impl SourceTree,
+    path: &RepoPath,
+    captured: &mut usize,
+    maximum: usize,
+) -> Result<Vec<u8>, ScanError> {
     let bytes = tree.read(path)?;
     if bytes.len() as u64 > MAX_INPUT_BYTES {
         return Err(ScanError(format!(
             "{path}: input exceeds {MAX_INPUT_BYTES} bytes"
         )));
     }
+    let total = captured.saturating_add(bytes.len());
+    if total > maximum {
+        return Err(ScanError(format!(
+            "{path}: captured input byte budget exceeds {maximum} bytes"
+        )));
+    }
+    *captured = total;
     Ok(bytes)
 }
 fn utf8<'a>(bytes: &'a [u8], path: &RepoPath) -> Result<&'a str, ScanError> {
@@ -88,6 +102,10 @@ fn ignored(rules: &[Gitignore], path: &RepoPath, is_dir: bool) -> bool {
     false
 }
 pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
+    discover_with_budget(tree, MAX_CAPTURE_BYTES)
+}
+fn discover_with_budget(tree: &impl SourceTree, maximum: usize) -> Result<Discovery, ScanError> {
+    let mut captured = 0usize;
     let mut files = Vec::new();
     let mut sources = Vec::new();
     let mut inputs = Vec::new();
@@ -126,7 +144,7 @@ pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
             if let Some(entry) = entries.iter().find(|e| {
                 e.path.as_str().rsplit('/').next() == Some(name) && e.kind == EntryKind::File
             }) {
-                let bytes = read(tree, &entry.path)?;
+                let bytes = read(tree, &entry.path, &mut captured, maximum)?;
                 let root =
                     Path::new("snapshot").join(directory.as_ref().map_or("", RepoPath::as_str));
                 let mut builder = GitignoreBuilder::new(root);
@@ -170,7 +188,7 @@ pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
                 continue;
             }
             if let Some((language, is_test)) = classify(&entry.path) {
-                let bytes = read(tree, &entry.path)?;
+                let bytes = read(tree, &entry.path, &mut captured, maximum)?;
                 sources.push(SourceFile::new(
                     entry.path.clone(),
                     utf8(&bytes, &entry.path)?.into(),
@@ -186,7 +204,7 @@ pub fn discover(tree: &impl SourceTree) -> Result<Discovery, ScanError> {
                 });
             } else if root_config {
                 inputs.push(CapturedFile {
-                    bytes: read(tree, &entry.path)?,
+                    bytes: read(tree, &entry.path, &mut captured, maximum)?,
                     path: entry.path,
                 });
             }
@@ -372,5 +390,75 @@ mod tests {
                 .expect("FIFO open must not block")
         );
         worker.join().unwrap();
+    }
+}
+
+#[cfg(test)]
+mod capture_budget_tests {
+    use super::*;
+    use std::cell::Cell;
+    struct GeneratedTree {
+        names: Vec<&'static str>,
+        reads: Cell<usize>,
+    }
+    impl SourceTree for GeneratedTree {
+        fn entries(
+            &self,
+            directory: Option<&RepoPath>,
+            _: usize,
+        ) -> Result<Vec<TreeEntry>, ScanError> {
+            assert!(directory.is_none());
+            Ok(self
+                .names
+                .iter()
+                .map(|name| TreeEntry {
+                    path: RepoPath::new(name).unwrap(),
+                    kind: EntryKind::File,
+                })
+                .collect())
+        }
+        fn read(&self, _: &RepoPath) -> Result<Vec<u8>, ScanError> {
+            self.reads.set(self.reads.get() + 1);
+            Ok(b"  \n".to_vec())
+        }
+    }
+    #[test]
+    fn aggregate_source_budget_stops_before_retaining_or_reading_further_inputs() {
+        let tree = GeneratedTree {
+            names: vec!["a.ts", "b.ts", "c.ts"],
+            reads: Cell::new(0),
+        };
+        assert!(
+            discover_with_budget(&tree, 5)
+                .unwrap_err()
+                .0
+                .contains("captured input byte budget")
+        );
+        assert_eq!(tree.reads.get(), 2);
+        let captured = discover_with_budget(&tree, 9).unwrap();
+        assert_eq!(captured.inputs.len(), 3);
+        assert_eq!(
+            captured.inputs.iter().map(|i| i.bytes.len()).sum::<usize>(),
+            9
+        );
+        assert_eq!(captured.files, discover(&tree).unwrap().files);
+    }
+    #[test]
+    fn config_and_ignore_inputs_share_the_source_budget() {
+        for name in [".gitignore", ".ignore", "tsconfig.json", "package.json"] {
+            let tree = GeneratedTree {
+                names: vec![name, "a.ts"],
+                reads: Cell::new(0),
+            };
+            assert!(
+                discover_with_budget(&tree, 5)
+                    .unwrap_err()
+                    .0
+                    .contains("captured input byte budget"),
+                "{name}"
+            );
+            assert_eq!(tree.reads.get(), 2);
+            assert_eq!(discover_with_budget(&tree, 6).unwrap().inputs.len(), 2);
+        }
     }
 }
