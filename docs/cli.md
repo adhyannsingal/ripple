@@ -67,7 +67,7 @@ Inspect remains syntax-only (`resolution_available: false`), with supported symb
 | 1 | Operational failure, missing/stale/incompatible index, unknown/ambiguous symbol or unimplemented command. No success report. |
 | 2 | Invalid/missing arguments or format. |
 
-`test` remains an explicit unimplemented placeholder. Supported config/language limitations and bounds are in [limitations](limitations.md), [resolution](resolution.md) and [cold-index ADR](adr/0021-cold-index.md). Reproduce the installed capability gate with `python3 scripts/m5-smoke.py --install-root /path/to/install`.
+All six commands are implemented. Supported config/language limitations and bounds are in [limitations](limitations.md), [resolution](resolution.md) and [cold-index ADR](adr/0021-cold-index.md). Reproduce the installed capability gate with `python3 scripts/m7-smoke.py --install-root /path/to/install`.
 
 ## Potentially related tests
 

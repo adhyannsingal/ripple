@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-06T17:49:46.598869+00:00",
+  "updated_at": "2026-11-08T05:05:41.040278+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -3440,14 +3440,65 @@
       "checkpoint": "New post-plan follow-up, not implemented.",
       "next_action": "Select after verified prerequisites.",
       "report": "docs/task-reports/M9-T04.md"
+    },
+    {
+      "id": "M9-T05",
+      "milestone": "M9",
+      "title": "Rewrite the reader-facing product README",
+      "depends_on": [
+        "M9-T03"
+      ],
+      "lane": "documentation",
+      "owned_paths": [
+        "README.md",
+        "docs/cli.md"
+      ],
+      "status": "review",
+      "owner": "coordinator",
+      "branch": "main",
+      "started_at": "2026-11-08T04:47:41.515428+00:00",
+      "heartbeat_at": "2026-11-08T05:05:41.040278+00:00",
+      "completed_at": null,
+      "integrated_commit": null,
+      "validation": [
+        {
+          "command": "python3 docs/examples/quickstart.py --binary target/release/ripple",
+          "outcome": "passed",
+          "details": "All six commands passed in the disposable demo."
+        },
+        {
+          "command": "python3 -m unittest discover -s scripts/tests",
+          "outcome": "passed",
+          "details": "26 tests passed."
+        },
+        {
+          "command": "python3 scripts/plan.py validate; local links/code fences; git diff --check",
+          "outcome": "passed",
+          "details": "Plan/ledger, README/CLI local links and fences, and whitespace checks passed."
+        },
+        {
+          "command": "gh release list --limit 3 --json tagName,isDraft,isPrerelease",
+          "outcome": "passed",
+          "details": "Empty release inventory; README accurately directs current users to source builds."
+        }
+      ],
+      "blocker": null,
+      "base_commit": "f4267913497c0209c480756ca9123a44a0c1edb6",
+      "claimed_paths": [
+        "README.md",
+        "docs/cli.md"
+      ],
+      "checkpoint": "User explicitly approved committing the reviewed documentation on November 8. Local checks passed; no integration/CI completion is claimed.",
+      "next_action": "Create the approved local commit; record integration SHA and applicable CI after integration. No push requested in this turn.",
+      "report": "docs/task-reports/M9-T05.md"
     }
   ],
   "coordinator": {
-    "owner": null,
-    "session_id": null,
+    "owner": "coordinator",
+    "session_id": "README-2026-11-07",
     "integration_branch": "main",
-    "checkpoint": "November 6 batch complete: M9-T01/02/03 verified; M0\u2013M8 historical gates remain passed. M9-T04 pending, so M9 gate remains open.",
-    "next_action": "Next batch: M9-T04 command-wide cancellation/subprocess cleanup and explicit storage quota/retention design. No public publication or refreshed candidate performed.",
-    "updated_at": "2026-11-06T17:49:46.598869+00:00"
+    "checkpoint": "User explicitly approved committing the reviewed documentation on November 8. Local checks passed; no integration/CI completion is claimed.",
+    "next_action": "Create the approved local commit; record integration SHA and applicable CI after integration. No push requested in this turn.",
+    "updated_at": "2026-11-08T05:05:41.040278+00:00"
   }
 }

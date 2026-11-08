@@ -489,6 +489,14 @@ Added after the original M0–M8 plan in response to the November 6 security/tes
 - **Acceptance:** Cancellation before publication preserves prior generation; child processes are reaped; quota rejection is actionable and leaves committed state usable; platform/cold-equality regressions and CI pass. Do not claim a hard process memory cap from captured-byte limits.
 - **Handoff:** SEC-02 resource follow-up resolved only after actual implementation and verification.
 
+#### M9-T05 — Rewrite the reader-facing product README
+
+- **Depends on:** M9-T03. **Lane:** documentation.
+- **Own:** `README.md`; `docs/cli.md`.
+- **Implement:** Explain the product, intended use, concrete impact example, source installation, all six commands, machine output, current evidence and supported-scope limitations. Correct the linked CLI guide's stale test-placeholder claim.
+- **Acceptance:** Claims match implemented CLI and retained practical evidence; local links resolve; six-command quickstart passes; docs/plan/whitespace checks pass. Present the finished diff for explicit user approval before any commit.
+- **Handoff:** Reader-friendly README and concise task report. Public release/publication remains separate; graphify-out is excluded.
+
 ## Validation strategy
 
 After bootstrap, run formatting, strict clippy and locked workspace tests at integration. Semantic rules require small independently expected fixtures. Parser diagnostics, graph uncertainty and stale indexes are part of correctness, not just happy-path behavior. CLI JSON/golden tests verify an agent-consumable interface. Temporary Git fixtures cover both endpoints without touching user changes.
