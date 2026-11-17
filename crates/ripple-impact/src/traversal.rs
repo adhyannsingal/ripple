@@ -105,16 +105,19 @@ impl DependencyGraph<'_> {
         let mut summaries = Vec::new();
         let mut boundary = BTreeSet::new();
         for seed in seeds {
+            ripple_core::execution::check().map_err(GraphError)?;
             let seed_index = self.position(seed).expect("checked seed");
             for track in [EvidenceKind::SymbolBacked, EvidenceKind::ModuleFallback] {
                 if track == EvidenceKind::SymbolBacked && !matches!(seed, NodeId::Symbol(_)) {
                     continue;
                 }
                 let walk = self.walk(seed_index, track, limits.depth);
+                ripple_core::execution::check().map_err(GraphError)?;
                 boundary.extend(walk.boundary.iter().cloned());
                 let mut counts = BTreeMap::new();
                 let mut hubs = Vec::new();
                 for (i, distance) in walk.distances.iter().enumerate() {
+                    ripple_core::execution::check().map_err(GraphError)?;
                     let Some(distance) = distance else { continue };
                     *counts.entry(*distance).or_default() += 1;
                     let id = &self.snapshot.nodes()[i].id;
@@ -248,9 +251,15 @@ impl DependencyGraph<'_> {
         let mut frontier = vec![seed];
         let mut distance = 0;
         while !frontier.is_empty() {
+            if ripple_core::execution::stopped() {
+                break;
+            }
             let mut next = BTreeSet::new();
             for &current in &frontier {
                 for &edge_index in &self.reverse[current] {
+                    if ripple_core::execution::stopped() {
+                        return result;
+                    }
                     let edge = &self.snapshot.edges()[edge_index];
                     if !allowed(edge, track, current == seed) {
                         continue;

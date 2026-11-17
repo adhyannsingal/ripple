@@ -73,7 +73,9 @@ fn read(
     captured: &mut usize,
     maximum: usize,
 ) -> Result<Vec<u8>, ScanError> {
+    ripple_core::execution::check().map_err(|e| ScanError(e.into()))?;
     let bytes = tree.read(path)?;
+    ripple_core::execution::check().map_err(|e| ScanError(e.into()))?;
     if bytes.len() as u64 > MAX_INPUT_BYTES {
         return Err(ScanError(format!(
             "{path}: input exceeds {MAX_INPUT_BYTES} bytes"
@@ -114,6 +116,7 @@ fn discover_with_budget(tree: &impl SourceTree, maximum: usize) -> Result<Discov
     let mut seen = BTreeSet::new();
     let mut folded = BTreeSet::new();
     while let Some((directory, mut rules, depth)) = stack.pop() {
+        ripple_core::execution::check().map_err(|e| ScanError(e.into()))?;
         if depth > 128 {
             return Err(ScanError("directory nesting exceeds 128".into()));
         }
@@ -161,6 +164,7 @@ fn discover_with_budget(tree: &impl SourceTree, maximum: usize) -> Result<Discov
             }
         }
         for entry in entries.into_iter().rev() {
+            ripple_core::execution::check().map_err(|e| ScanError(e.into()))?;
             let name = entry.path.as_str().rsplit('/').next().unwrap_or("");
             if EXCLUDED.contains(&name) {
                 continue;

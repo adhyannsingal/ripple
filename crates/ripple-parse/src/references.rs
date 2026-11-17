@@ -469,10 +469,16 @@ impl Context<'_> {
         }
     }
     fn walk(&mut self, root: Node<'_>) {
+        if ripple_core::execution::stopped() {
+            return;
+        }
         let module = self.new_scope(root, None);
         let mut stack = vec![(root, module, module, 0usize)];
         let mut callees = BTreeSet::new();
         while let Some((node, parent_scope, parent_var_scope, depth)) = stack.pop() {
+            if ripple_core::execution::stopped() {
+                return;
+            }
             if self.text_budget_exceeded
                 || depth > MAX_DEPTH
                 || self.facts.scopes.len() > MAX_SCOPES
@@ -774,6 +780,7 @@ impl Context<'_> {
 }
 /// Extract complete supported syntax facts from captured bytes; resolution is a later stage.
 pub fn extract(parsed: &ParsedSource, project: ProjectKey) -> Result<FileFacts, ContractError> {
+    ripple_core::execution::check().map_err(ContractError::Execution)?;
     let facts = symbols::extract(parsed, project)?;
     if parsed.tree().is_none()
         || facts
@@ -792,6 +799,7 @@ pub fn extract(parsed: &ParsedSource, project: ProjectKey) -> Result<FileFacts, 
     };
     // Symbol extraction already preflights every tree node against the shared budget.
     cx.walk(parsed.tree().unwrap().root_node());
+    ripple_core::execution::check().map_err(ContractError::Execution)?;
     cx.facts.imports.sort();
     cx.facts.imports.dedup();
     cx.facts.exports.sort();

@@ -600,6 +600,7 @@ fn extract_with_node_budget(
         let mut visited = 0;
         let mut classes = Vec::new();
         'tree: loop {
+            ripple_core::execution::check().map_err(ContractError::Execution)?;
             let node = cursor.node();
             visited += 1;
             if visited > node_budget {

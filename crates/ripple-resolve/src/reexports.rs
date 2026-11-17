@@ -172,6 +172,7 @@ fn digest(bytes: &[u8]) -> VersionedHash {
     }
 }
 fn spend(work: &mut usize, n: usize) -> Result<(), ResolutionError> {
+    ripple_core::execution::check().map_err(|e| ResolutionError(e.into()))?;
     *work = work.saturating_add(n);
     if *work > MAX_WORK {
         return Err(ResolutionError(

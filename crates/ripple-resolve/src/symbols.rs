@@ -179,6 +179,7 @@ pub(crate) fn graph_with_modules(
     let mut sorted = files.iter().collect::<Vec<_>>();
     sorted.sort_by_key(|f| &f.path);
     for f in sorted {
+        ripple_core::execution::check().map_err(|e| ResolutionError(e.into()))?;
         let file = NodeId::file(project.clone(), f.path.clone());
         for s in &f.symbols {
             nodes.push(GraphNode::symbol(s.identity.clone(), s.span));
@@ -247,6 +248,7 @@ pub(crate) fn graph_with_modules(
         refs.sort();
         refs.dedup();
         for (ordinal, r) in refs.iter().enumerate() {
+            ripple_core::execution::check().map_err(|e| ResolutionError(e.into()))?;
             let source = match &r.owner {
                 ReferenceOwner::File => file.clone(),
                 ReferenceOwner::Symbol(s) => NodeId::Symbol(s.clone()),

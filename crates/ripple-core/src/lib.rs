@@ -1,6 +1,7 @@
 //! Backend-independent source, identity and syntax contracts.
 
 pub mod canonical;
+pub mod execution;
 pub mod graph;
 pub mod identity;
 pub mod index;
@@ -11,6 +12,8 @@ pub mod syntax;
 
 #[derive(Debug, thiserror::Error)]
 pub enum ContractError {
+    #[error("{0}")]
+    Execution(&'static str),
     #[error("invalid repository-relative path: {0}")]
     InvalidPath(String),
     #[error("invalid identity: {0}")]

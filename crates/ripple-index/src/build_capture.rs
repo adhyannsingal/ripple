@@ -39,6 +39,7 @@ impl<T: SourceTree> SourceTree for BudgetTree<'_, T> {
             }
             return Ok(list.values().cloned().collect());
         }
+        ripple_core::execution::check().map_err(|e| ripple_parse::scanner::ScanError(e.into()))?;
         let entries = self.tree.entries(dir, max)?;
         let count = self.listed.get().saturating_add(entries.len());
         if count > 100_000 {
@@ -68,6 +69,7 @@ impl<T: SourceTree> SourceTree for BudgetTree<'_, T> {
         Ok(entries)
     }
     fn read(&self, path: &RepoPath) -> Result<Vec<u8>, ripple_parse::scanner::ScanError> {
+        ripple_core::execution::check().map_err(|e| ripple_parse::scanner::ScanError(e.into()))?;
         let bytes = self.tree.read(path)?;
         let total = self.total.get().saturating_add(bytes.len());
         if bytes.len() > 16 * 1024 * 1024 || total > 256 * 1024 * 1024 {

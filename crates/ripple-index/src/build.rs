@@ -69,9 +69,13 @@ pub fn counts(snapshot: &ripple_core::index::IndexSnapshot) -> Counts {
     }
 }
 pub(crate) fn parse(source: &ripple_core::source::SourceFile) -> Result<FileFacts, String> {
+    ripple_core::execution::check().map_err(str::to_string)?;
     let parsed = ripple_parse::parser::parse(source.path().clone(), source.text().as_bytes())
         .map_err(|e| e.to_string())?;
-    ripple_parse::extract(&parsed, ProjectKey::single_project()).map_err(|e| e.to_string())
+    let facts =
+        ripple_parse::extract(&parsed, ProjectKey::single_project()).map_err(|e| e.to_string())?;
+    ripple_core::execution::check().map_err(str::to_string)?;
+    Ok(facts)
 }
 fn facts(c: &Capture) -> Result<Vec<FileFacts>, String> {
     c.discovery.sources.files().map(parse).collect()
@@ -102,6 +106,7 @@ pub(crate) fn resolve(
         &tests,
     )
     .map_err(|e| e.to_string())?;
+    ripple_core::execution::check().map_err(str::to_string)?;
     Ok(analysis)
 }
 #[derive(Clone, Copy)]
@@ -133,6 +138,7 @@ fn build_inner(
     incremental: bool,
     hook: &mut impl FnMut(usize, Phase),
 ) -> Result<IndexOutcome, String> {
+    ripple_core::execution::check().map_err(str::to_string)?;
     let root = fs::canonicalize(root).map_err(|e| e.to_string())?;
     // Validate provenance before creating local state.
     provenance(&root)?;
@@ -155,6 +161,7 @@ fn build_inner(
     let mut total_parsed = 0;
     let mut failure = String::new();
     for attempt in 1..=3 {
+        ripple_core::execution::check().map_err(str::to_string)?;
         let captured = match capture(&root, provenance) {
             Ok(c) => c,
             Err(e) => {
@@ -181,6 +188,7 @@ fn build_inner(
             continue;
         }
         hook(attempt, Phase::AfterVerification);
+        ripple_core::execution::check().map_err(str::to_string)?;
         let generation = store.next_generation().map_err(|e| e.to_string())?;
         let snapshot = SnapshotData {
             metadata: IndexMetadata {
@@ -218,6 +226,7 @@ fn build_inner(
             .publish_analysis(&snapshot, &captured.inputs, Some(&cache))
             .map_err(|e| e.to_string())?;
         let module_cache = (|| -> Result<(), String> {
+            ripple_core::execution::check().map_err(str::to_string)?;
             let bytes = serde_json::to_vec(&analysis.modules).map_err(|e| e.to_string())?;
             if bytes.len() > 256 * 1024 * 1024 {
                 return Err("module artifact exceeds 256 MiB".into());
@@ -269,6 +278,7 @@ fn build_inner(
     ))
 }
 pub fn load_current(root: &Path, provenance: Provenance) -> Result<CurrentIndex, String> {
+    ripple_core::execution::check().map_err(str::to_string)?;
     let root = fs::canonicalize(root).map_err(|e| e.to_string())?;
     if !root.join(".ripple/index.db").exists() {
         return Err("no index; run ripple index .".into());

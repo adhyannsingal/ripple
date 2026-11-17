@@ -78,6 +78,7 @@ pub fn parse_with_limits(
     bytes: &[u8],
     limits: ParseLimits,
 ) -> Result<ParsedSource, ParseError> {
+    ripple_core::execution::check().map_err(|e| ParseError(e.into()))?;
     if bytes.len() > limits.max_bytes.min(MAX_SOURCE_BYTES) {
         return Err(ParseError(format!(
             "{path}: source exceeds configured byte limit"
@@ -103,7 +104,7 @@ pub fn parse_with_limits(
         .map_err(|e| ParseError(e.to_string()))?;
     let start = Instant::now();
     let mut progress = |_: &tree_sitter::ParseState| {
-        if start.elapsed() >= limits.timeout {
+        if start.elapsed() >= limits.timeout || ripple_core::execution::stopped() {
             ControlFlow::Break(())
         } else {
             ControlFlow::Continue(())
@@ -118,6 +119,7 @@ pub fn parse_with_limits(
             Some(ParseOptions::new().progress_callback(&mut progress)),
         )
     };
+    ripple_core::execution::check().map_err(|e| ParseError(e.into()))?;
     let Some(tree) = tree else {
         return Ok(ParsedSource {
             source,
@@ -136,6 +138,7 @@ pub fn parse_with_limits(
     let mut diagnostics = Vec::new();
     let mut cursor = tree.walk();
     loop {
+        ripple_core::execution::check().map_err(|e| ParseError(e.into()))?;
         let node = cursor.node();
         if node.is_error() || node.is_missing() {
             diagnostics.push(Diagnostic {

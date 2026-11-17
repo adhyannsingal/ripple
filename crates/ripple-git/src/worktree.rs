@@ -8,6 +8,7 @@ use std::{
     time::{Duration, Instant},
 };
 pub(crate) fn run(root: &Path, args: &[&str]) -> Result<(bool, Vec<u8>), String> {
+    ripple_core::execution::check().map_err(str::to_string)?;
     let mut cmd = Command::new("git");
     for (name, _) in std::env::vars_os() {
         if name
@@ -57,6 +58,11 @@ pub(crate) fn run(root: &Path, args: &[&str]) -> Result<(bool, Vec<u8>), String>
     let err = reader(Box::new(stderr));
     let deadline = Instant::now() + Duration::from_secs(10);
     let status = loop {
+        if let Err(reason) = ripple_core::execution::check() {
+            let _ = child.kill();
+            let _ = child.wait();
+            break Err(reason.to_string());
+        }
         match child.try_wait() {
             Ok(Some(status)) => break Ok(status),
             Ok(None) if Instant::now() < deadline => thread::sleep(Duration::from_millis(10)),

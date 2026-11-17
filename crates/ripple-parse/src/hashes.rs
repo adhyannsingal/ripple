@@ -79,6 +79,9 @@ pub(crate) fn fingerprint(
         let mut cursor = root.walk();
         let mut previous_leaf = None;
         'tree: loop {
+            if ripple_core::execution::stopped() {
+                return None;
+            }
             let node = cursor.node();
             let skip = excluded.contains(&node.id()) || matches!(node.kind(), "comment" | ";");
             if !skip {
