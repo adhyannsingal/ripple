@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-17T23:12:23.654820+00:00",
+  "updated_at": "2026-11-17T23:26:16.101907+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -206,9 +206,14 @@
       "id": "M9",
       "title": "Post-plan security hardening and practical validation",
       "target": "Follow-up authorized November 6",
-      "gate_status": "pending",
-      "gate_evidence": [],
-      "completed_at": null
+      "gate_status": "passed",
+      "gate_evidence": [
+        "M9-T01 through M9-T05 integrated and verified; all prior M0\u2013M8 gates remain passed.",
+        "Main source 8b1de023d0b2c8d5dadca04dbbcd6e3595288cb9 passed CI 44197299614 (Linux/macOS/Windows) and oracle/mutation/practical CI 44197299808.",
+        "291 local Rust, 37 Python, 6 Node tests; source-bound oracle/replay/mutation/workflow/physical-compaction evidence and security results retained in docs/task-reports/M9-T04-evidence.json.",
+        "Resource limits are cooperative and SQLite payload/page/count budgets, not hard OS RSS/filesystem quotas; native Windows console injection remains unmeasured. Public release/candidate refresh remains separate."
+      ],
+      "completed_at": "2026-11-17T23:26:16.101907+00:00"
     }
   ],
   "tasks": [
@@ -3439,13 +3444,13 @@
         "docs/reviews/full-security-2026-11-05.md",
         "docs/third-party-notices/"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "agent/M9-T04",
       "started_at": "2026-11-17T22:10:48.016725+00:00",
-      "heartbeat_at": "2026-11-17T23:12:23.654820+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
+      "heartbeat_at": "2026-11-17T23:26:16.101907+00:00",
+      "completed_at": "2026-11-17T23:26:16.101907+00:00",
+      "integrated_commit": "8b1de023d0b2c8d5dadca04dbbcd6e3595288cb9",
       "validation": [
         {
           "command": "cargo test --workspace --locked (shared target; dev/test debug=0; incremental=0)",
@@ -3483,36 +3488,22 @@
           "details": "129 Cargo packages / 1527 advisories, zero vulnerabilities/warnings; npm and history/working secret scans clean. New exact upstream license notices pinned."
         },
         {
-          "command": "Platform CI and native Windows console delivery verification",
+          "command": "GitHub Actions CI 44197299614 and oracle 44197299808",
+          "outcome": "passed",
+          "details": "Both workflows passed at 8b1de023d0b2c8d5dadca04dbbcd6e3595288cb9; Linux/macOS/Windows build, strict lint, tests, installed-command smoke; Linux replay and oracle/mutation/practical project all passed."
+        },
+        {
+          "command": "Native Windows console event injection",
           "outcome": "not_run",
-          "details": "Requires the user-approved commit/push; this uncommitted source is not marked integrated/done."
+          "required": false,
+          "details": "Not part of the automated milestone card matrix; remains explicitly unmeasured as disclosed before user approval. This is separated from required platform CI rather than falsely claiming CI proves native event delivery."
         }
       ],
       "blocker": null,
       "base_commit": "09e9c341d025b2e1f288556f39219ea292493e16",
-      "claimed_paths": [
-        "crates/ripple-core/src/",
-        "crates/ripple-index/src/",
-        "crates/ripple-git/src/",
-        "crates/ripple-cli/src/",
-        "crates/ripple-parse/src/",
-        "crates/ripple-resolve/src/",
-        "crates/ripple-impact/src/",
-        "crates/ripple-index/tests/",
-        "crates/ripple-cli/tests/",
-        "docs/adr/",
-        "docs/limitations.md",
-        "docs/cli.md",
-        "docs/project-status.md",
-        "README.md",
-        "Cargo.toml",
-        "Cargo.lock",
-        "crates/ripple-cli/Cargo.toml",
-        "docs/reviews/full-security-2026-11-05.md",
-        "docs/third-party-notices/"
-      ],
-      "checkpoint": "User approved commit/push. Runtime changes committed in 9189b6a and f148f8d4bbbde022feae511c16e69dc30adfa0ff; runtime/test manifest verified unchanged from local tests. Documentation/evidence ready; platform CI pending.",
-      "next_action": "Push the complete dependency-ordered commits, await platform/oracle CI, then record verified integration and close M9.",
+      "claimed_paths": [],
+      "checkpoint": "Integrated in verified main source 8b1de023d0b2c8d5dadca04dbbcd6e3595288cb9. All required platform/oracle CI passed; source manifest matches local results. Claims released.",
+      "next_action": "No remaining M9 implementation tasks. Refresh final release candidate/evidence before separate publication authorization.",
       "report": "docs/task-reports/M9-T04.md"
     },
     {
@@ -3570,11 +3561,11 @@
     }
   ],
   "coordinator": {
-    "owner": "coordinator",
-    "session_id": "M9-T04-2026-11-17",
+    "owner": null,
+    "session_id": null,
     "integration_branch": "main",
-    "checkpoint": "User approved commit/push. Runtime changes committed in 9189b6a and f148f8d4bbbde022feae511c16e69dc30adfa0ff; runtime/test manifest verified unchanged from local tests. Documentation/evidence ready; platform CI pending.",
-    "next_action": "Push the complete dependency-ordered commits, await platform/oracle CI, then record verified integration and close M9.",
-    "updated_at": "2026-11-17T23:12:23.654820+00:00"
+    "checkpoint": "All 48 tasks and M0\u2013M9 gates complete. M9-T04 verified source 8b1de023d0b2c8d5dadca04dbbcd6e3595288cb9; no retained claims. No release/tag/package publication performed.",
+    "next_action": "Prepare refreshed candidate artifacts and final-source release evidence when assigned; public publication remains separately authorized.",
+    "updated_at": "2026-11-17T23:26:16.101907+00:00"
   }
 }

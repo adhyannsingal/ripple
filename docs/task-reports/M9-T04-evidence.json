@@ -1,6 +1,6 @@
 {
   "task": "M9-T04",
-  "status": "local verification passed; approved source committed; platform CI pending",
+  "status": "integrated and verified",
   "base_commit": "09e9c341d025b2e1f288556f39219ea292493e16",
   "source_manifest_sha256": "af4d2e209cf82a9c286014179ed2d864d48ff08ac00ba430e36b66c5fabb34ef",
   "source_files_sha256": {
@@ -445,11 +445,48 @@
     "gitleaks": {
       "version": "8.30.1",
       "all_refs_findings": 0,
-      "working_files_findings": 0
+      "working_files_findings": 0,
+      "post_commit_history_commits": 263,
+      "post_commit_history_findings": 0
     },
     "platform_ci": {
+      "outcome": "passed",
+      "source_commit": "8b1de023d0b2c8d5dadca04dbbcd6e3595288cb9",
+      "workflows": {
+        "platform": {
+          "url": "https://github.com/adhyannsingal/ripple/actions/runs/44197299614",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "name": "Workspace (macos-15-intel)",
+              "conclusion": "success"
+            },
+            {
+              "name": "Workspace (ubuntu-latest)",
+              "conclusion": "success"
+            },
+            {
+              "name": "Workspace (windows-latest)",
+              "conclusion": "success"
+            }
+          ]
+        },
+        "oracle": {
+          "url": "https://github.com/adhyannsingal/ripple/actions/runs/44197299808",
+          "conclusion": "success",
+          "jobs": [
+            {
+              "name": "fixtures",
+              "conclusion": "success"
+            }
+          ]
+        }
+      }
+    },
+    "native_windows_console_events": {
       "outcome": "not_run",
-      "reason": "User approved commit and push; awaiting workflows on the complete committed change."
+      "required": false,
+      "scope": "Native console event injection remains unmeasured as disclosed before approval. Portable control/SQLite/quota/CLI tests passed Windows CI; native SIGINT/SIGTERM reaping tests run on Unix."
     }
   },
   "workflows": {
@@ -908,5 +945,6 @@
     "scope": "Five retained warm samples plus one warm-up each, pinned 65-file chain, same Apple host, sequential before/after. Before executable/helper from base 09e9c34; after from uncommitted manifest. Background load uncontrolled; no significant regression or performance guarantee claimed. Final after samples ran after workspace/evaluation load stopped. A provisional after run overlapping tests is excluded."
   },
   "local_logs_prefix": "/tmp/ripple-M9-T04-",
-  "committed_source": "f148f8d4bbbde022feae511c16e69dc30adfa0ff"
+  "committed_source": "f148f8d4bbbde022feae511c16e69dc30adfa0ff",
+  "verification_commit": "8b1de023d0b2c8d5dadca04dbbcd6e3595288cb9"
 }

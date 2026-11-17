@@ -135,7 +135,7 @@ Index data stays under `.ripple/` in the analyzed repository. Its size depends o
 
 ## Verification and evidence
 
-The last integrated hardening/practical-validation batch passed **277 Rust tests, 37 Python tests, and 6 Node tests**, alongside Linux, macOS, and Windows CI. These are bounded checks, not a blanket correctness or security guarantee.
+The last integrated hardening/practical-validation batch passed **291 Rust tests, 37 Python tests, and 6 Node tests**, alongside Linux, macOS, and Windows CI. These are bounded checks, not a blanket correctness or security guarantee.
 
 The evaluation includes compiler-oracle comparisons in declared supported projections, generated incremental-versus-cold comparisons, pinned Git-history replay, controlled runtime faults, and workflow benchmarks. The small mutation campaign caught 3 of 5 killed mutations with symbol-backed selection and 4 of 5 with the combined selection; known dynamic-import and global-state misses remain documented. Combined selection equalled file-import selection in that corpus.
 

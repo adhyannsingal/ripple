@@ -1,6 +1,6 @@
 # ADR 0033 — Cooperative cancellation and explicit index retention
 
-Status: accepted for M9-T04 implementation; validation/integration recorded separately.
+Status: accepted; implemented and verified in M9-T04.
 
 The CLI installs a per-command control context: 120 seconds by default, configurable with --timeout-seconds (1..86400), and a Ctrl-C/SIGTERM cancellation flag. Library calls have no command-wide deadline unless a caller installs a context; existing subsystem budgets still apply. Open Store inside that scope so SQLite callbacks bind its control token. Main-thread analysis/capture/traversal checkpoints and Tree-sitter/SQLite progress callbacks observe it. A running trusted Git direct child is killed and waited on before cancellation returns. This is cooperative cancellation, not hard real-time preemption or an OS process-memory limit; individual filesystem/system calls, sorting/serialization and commit/checkpoint operations can delay observation. Arbitrary descendants of malicious executables are outside the trusted-Git model.
 
@@ -12,4 +12,4 @@ There is no automatic expiry or deletion. `ripple index . --prune-to N` is an ex
 
 Pruning returns reusable database pages; SQLite need not shrink the file. Optional --compact with --prune-to requests SQLite VACUUM and WAL truncation, which may need substantial temporary disk space and may be blocked by other readers. Compaction/file cleanup failures after prune commit are reported as pending, not falsely described as a rolled-back prune. No migration, format-v1/schema-v2 change or unsupported-semantics expansion is introduced.
 
-Signal handling uses pinned [ctrlc 3.5.2](https://docs.rs/ctrlc/3.5.2/ctrlc/); SQLite progress hooks and page limits use the existing pinned rusqlite/SQLite backend. Authored Rust remains unsafe-free. Native SIGINT/SIGTERM child-reaping tests run on Unix; Windows native console delivery requires platform verification, while control/SQLite/quota tests are portable.
+Signal handling uses pinned [ctrlc 3.5.2](https://docs.rs/ctrlc/3.5.2/ctrlc/); SQLite progress hooks and page limits use the existing pinned rusqlite/SQLite backend. Authored Rust remains unsafe-free. Native SIGINT/SIGTERM child-reaping tests run on Unix; Native Windows console-event injection remains unmeasured; portable control/SQLite/quota/CLI tests passed Windows CI.
