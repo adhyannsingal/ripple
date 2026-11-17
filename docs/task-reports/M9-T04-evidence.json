@@ -1,0 +1,912 @@
+{
+  "task": "M9-T04",
+  "status": "local verification passed; approved source committed; platform CI pending",
+  "base_commit": "09e9c341d025b2e1f288556f39219ea292493e16",
+  "source_manifest_sha256": "af4d2e209cf82a9c286014179ed2d864d48ff08ac00ba430e36b66c5fabb34ef",
+  "source_files_sha256": {
+    "crates/ripple-cli/Cargo.toml": "dbd8a4cf56d644f20d49c7420ca4554561a1ca7f1b48bd7828e9717ea8a17787",
+    "crates/ripple-cli/src/commands/diff.rs": "6f5efed184c428c794b56dd4368e8dcaeec4f86ffa5599a906808df4124eb33d",
+    "crates/ripple-cli/src/commands/diff_render.rs": "784757cd361f0f2d4a9db6a369315f3a876770a2044b2688c920bc2ff8de430c",
+    "crates/ripple-cli/src/commands/impact.rs": "f3240c2a89ebf759a9585349fdd88b1fe27a5ed659e948d40afa8d7f33986d53",
+    "crates/ripple-cli/src/commands/index.rs": "595441fe961d4544e8a47cb8906ea632c5a1ea2aac2df237ac770ed9a5c9ee18",
+    "crates/ripple-cli/src/commands/inspect.rs": "9dd36beadd83c7278a2355411448b07ea3222d9905a728126933f18087678554",
+    "crates/ripple-cli/src/commands/mod.rs": "f31ac4150bf8c29293de5c2f13fa4b4cbeb5fa10b0f16e103bf519e6210ae43b",
+    "crates/ripple-cli/src/commands/persistent.rs": "72c6210d89b2d4fe768cd7fed7d310d71c5099ff1773769624bd9563e8118508",
+    "crates/ripple-cli/src/commands/status.rs": "38d66a331cc46ec6bc7f91cf90e0d762414df46693798d1b85807e322a516ff2",
+    "crates/ripple-cli/src/commands/test.rs": "18767b5d10d9527cf0dd83fc79643e881ff0033a489a126640c53268ab2f15e7",
+    "crates/ripple-cli/src/main.rs": "1b9cc6d63c63838ba1bb3cea02a3d80008d051727b9a466469c5214055f0473a",
+    "crates/ripple-cli/src/output.rs": "0e87938fd51b242826f1db442ca5f32eb182f2e5de87a91a56a51149e24da42a",
+    "crates/ripple-cli/tests/cli.rs": "aac073df1e4c6bb38592e1a2fea29d38b76ac6511602bc846c84f412d9282a2d",
+    "crates/ripple-cli/tests/diff.rs": "f4517c823c75f54942a553fb79054babb32b4d906c52d32f1219caa9071eb18e",
+    "crates/ripple-cli/tests/incremental.rs": "dc3f422b4b0e69a56702c89f5ac04dd605dad813db75fa4330738b9ed1dcde1d",
+    "crates/ripple-cli/tests/index_impact.rs": "6fffba655f86ff6e584323e07bb65eec2c4309a9ea1ac3124d1edbe10818e472",
+    "crates/ripple-cli/tests/infrastructure.rs": "96f8c95ca9bfefb83f83dc842fd68b67afc7491d6ea1ac21e584492dea74bf4a",
+    "crates/ripple-cli/tests/inspect.rs": "eedd70b04e36478ebf8478c99a57fc9748e0b1e852adbe7a22bebcf465e2b6d9",
+    "crates/ripple-cli/tests/resources.rs": "b3bd9237e0392c37652d7cca4e1c8b5213517b4338c7ca8a0655f2c2b616551b",
+    "crates/ripple-cli/tests/support/mod.rs": "a5a02be0550babe7892ba04d504c401279314f8967691cc0d7f3929fbeaf3238",
+    "crates/ripple-cli/tests/test_impact.rs": "50e133d8c533304640c90f949cb40c37973f1c86db5fb37891a10a6195ab819e",
+    "crates/ripple-core/Cargo.toml": "d6deb073960b623a669cf8c3ad1f1d76c85e564d58a398c1ee103e7a9217dbb7",
+    "crates/ripple-core/src/canonical.rs": "1a265020ec5dbb4b95f2c8ab98905415872480970610ad90998d827090dc7eec",
+    "crates/ripple-core/src/execution.rs": "1929b128bc3e210ad43c346d4f251a86c361b8160cd49a0dc5793f814cc1fcae",
+    "crates/ripple-core/src/graph.rs": "29b701ebc8effb254485aac5c9c5c02582198228ee15068468090eb15dea885d",
+    "crates/ripple-core/src/identity.rs": "af446fd1d0d4abd7ced9f9c94ed1b37c9bdc9723a9f84e45bea15b2ca58ede03",
+    "crates/ripple-core/src/index.rs": "4cb4afdd83608565ae3656228e31dfa14d3a5afd1c28daa97926b2979663e346",
+    "crates/ripple-core/src/lib.rs": "4ba5c30a6121e71311e63fea79a17b98b7c37c232ab88f185676d49668278c7f",
+    "crates/ripple-core/src/results.rs": "23d77ab37c0b669145be5c1112f195c29134c9147adeb05c3c24b3e0c077e10c",
+    "crates/ripple-core/src/revision.rs": "e911fb80ea6690030341fc3e7b863651fb2555e3f761ea3d7afd5df41cf96d60",
+    "crates/ripple-core/src/source.rs": "5258bd0b622d82757e9a8ce4fcb969ad2cae637f03261363dfadb39be7b730f6",
+    "crates/ripple-core/src/syntax.rs": "3441d1186266599be93ebe532b2b6e6eb8b5f3f15f9108e7c7fb8639f9a6dcad",
+    "crates/ripple-core/tests/contracts.rs": "78fdfccfe177b9a0747148df7acd49f552932ed9a5b9ced5325f24bbacc1f5c5",
+    "crates/ripple-core/tests/graph_contracts.rs": "e19a114a6c5f2f8727db07d145b247197ba7e6d48cb7b85b83501b0723490fb3",
+    "crates/ripple-core/tests/index_contracts.rs": "ba7b18e343ff5a9043b0edce88d578f97a9e00af24f4856e54b5f023fe3a09e6",
+    "crates/ripple-git/Cargo.toml": "6e1f049e06fc2c44055d72de34cd9243bdae94ff989711d79b109e483a601665",
+    "crates/ripple-git/src/lib.rs": "9fa694d373ff2938023b4b247062b7d9616c575c09e0fc41e81f7588e1f6a454",
+    "crates/ripple-git/src/revisions.rs": "e840ed5802d7cae5283fa996df60d459215da4dae6b2691834d323975c05c200",
+    "crates/ripple-git/src/worktree.rs": "56a1e9f32ee9a68403f05445b6403d7294f742f3f465d46117bce72d1d694690",
+    "crates/ripple-git/tests/revisions.rs": "0a875c6fd300463bd3a9fb82542d59ba898f84d2c46a58c84e3dc17823e28f97",
+    "crates/ripple-impact/Cargo.toml": "3d56014b5252e1063dfd0fee8e88b806766c4fe5717d3dd7777a7a8708a9f369",
+    "crates/ripple-impact/src/changes.rs": "8c467aec8059c52f932fb72da9e14386acc5cb7ef8976377f01761b14a57b71e",
+    "crates/ripple-impact/src/changes_tests.rs": "4b74f0acf739df397e74b4c611210caea10f39fd78c7457292ddb5f1279bc8cd",
+    "crates/ripple-impact/src/graph.rs": "ef7c899103568ae7233f8ce142a8602251ee2e66cc854ab0b528cd6df9bd36df",
+    "crates/ripple-impact/src/lib.rs": "47b779b8e33ed02bb71e2b7cdd039cbe9bb3a7234e3c1c7c3c0496345209fa2f",
+    "crates/ripple-impact/src/revision_impact.rs": "702d69a857e8c83a5495b95785591fd0a08c735c3bac55b908e171a08b4e5420",
+    "crates/ripple-impact/src/tests.rs": "332881cd86e1208f6cfe1c08f07cf9413f4bb15920cfa4e54e1ce667facac507",
+    "crates/ripple-impact/src/traversal.rs": "60d15e80a05cfddd35371e7532f367d4184a79d4fea25f0210b17a8008b261ba",
+    "crates/ripple-impact/src/traversal_tests.rs": "ead75080e0b53bf0883b85b637b438572168a8abc7197b3b88d080a5b62c8a55",
+    "crates/ripple-index/Cargo.toml": "24524587358b7222095def6d8e596b71b46ab50a59b715e6a3592c1bd9d4eb7d",
+    "crates/ripple-index/examples/incremental_evaluate.rs": "f056c6c709934c915891b92429b44ba7a02eafb024196f283657de2d14451052",
+    "crates/ripple-index/examples/workflow_benchmark.rs": "2aca3295905abbc2a55e60d215f798fc735d3f96155990e9251754034f6e8701",
+    "crates/ripple-index/src/build.rs": "797eed9aac4b52d0672bffdd8ff05184ba2c65f8e727ac86f2034264c94b068e",
+    "crates/ripple-index/src/build_capture.rs": "a29af813b633b5e4d991e5d9877f0748abac8188ea57e59127a14807ac9522a8",
+    "crates/ripple-index/src/fingerprints.rs": "c6afc7c14bda1330a97b4fc1d2c00e75fa1e9b839c3f4a234f6ac612fdfc225a",
+    "crates/ripple-index/src/fingerprints_tests.rs": "fb33dcd1d12e255b5627c961ddefc4fb555f233d7950cdeb9101e896d0aedbe2",
+    "crates/ripple-index/src/incremental.rs": "ab1ae34c48d5e6d21264054717f17a8fb8c603e20b3945cde96f584cb195f7d5",
+    "crates/ripple-index/src/incremental_tests.rs": "9f386577caf369bc48f2b2d6fd0810c0ce6a8f59a15beab7b91a254c5d7f95c3",
+    "crates/ripple-index/src/invalidation.rs": "15cfec2b264968b70b5609c9c765e50f7b05fffceaddc63b24a4c80341c7ccd0",
+    "crates/ripple-index/src/invalidation_tests.rs": "65c025a4df8928020984cc1eaeff7d321b26926fa0525dfced734d9cbf0f9636",
+    "crates/ripple-index/src/lib.rs": "5770b84a6a0055bac0769f3d14de3620e4e0a6b6ed3c16aaa6740cc3aa3eaf71",
+    "crates/ripple-index/src/snapshots.rs": "08bc209be6d7e6a8f4dbda3692e3d6fd4ed87454110980f6acac167971ccd719",
+    "crates/ripple-index/src/snapshots_tests.rs": "c1de63cb59b5cfe2b65208ac6a3b9d83b6639f743bd039c287ca19edc8561231",
+    "crates/ripple-index/src/storage.rs": "3cc5490c83e028e1839582e5aceee2caa4f05c6fa59aec5168d4c6543dbf9ccb",
+    "crates/ripple-index/tests/properties_basic.rs": "e1eda2070db8ed97f8a08a7a06efda3423039f70b02388fa6a0249d30a663709",
+    "crates/ripple-index/tests/storage.rs": "9445f133d5722bb9f217a4e4fb3f5d36545146da933b0b4b6ee9c6a7541af21c",
+    "crates/ripple-index/tests/test_impact.rs": "9c0f0da79d7cc3eac5cbbfee022ac2fb1f016291e53a68f80ec59a9221b46d35",
+    "crates/ripple-parse/Cargo.toml": "336e9a816eac66c6170da474009530183774c4b45f5655b95558531ca70e1f1d",
+    "crates/ripple-parse/src/hashes.rs": "cc16ec81b7db5afe29c16c917fcce2871623d1b50cdeaee344f5ac5c9c503214",
+    "crates/ripple-parse/src/lib.rs": "11d958bcf297a57c28199987e3c3993d06bd2a681e47fe519d59130f540688ca",
+    "crates/ripple-parse/src/parser.rs": "41daf2d729b0e37897af6e645aba5f8045ccf8edf13f0d1f4ee036fd94efca62",
+    "crates/ripple-parse/src/references.rs": "13631f5f50a60de9fd25c99914676ef61a6a9f64d49b8e069da9604ef60f67bc",
+    "crates/ripple-parse/src/scanner.rs": "c6556e5b4eb2fdb0e3c671af4544954b938f83815d3265653e99cdbb05aff702",
+    "crates/ripple-parse/src/symbols.rs": "3ec09c9212614260d4f6e962317edac0688307fcafeb742f3d1e7632ecf392a6",
+    "crates/ripple-parse/tests/parser.rs": "4f09c13ee88e11f2c64fd74aa3b21fa44fabcec6663da9c1921baa91de238308",
+    "crates/ripple-parse/tests/references.rs": "467fe39e03fe41e4cb77918f554d6620fca52dd2f412ed68b09c0f1bb0dc568e",
+    "crates/ripple-parse/tests/scanner.rs": "c96a5c15bb4bfd0268f51383f0fd951a08a7dac2ee1fd47163cb172800274e4d",
+    "crates/ripple-parse/tests/symbols.rs": "41963c4d8fd180b7d91d37d84d127b69dade60da9b56826385c1d918997cdf27",
+    "crates/ripple-resolve/Cargo.toml": "e28de1a283a3186ef7a6275cd6ea4181be2a0d8d8d2d3dbf800ef91e94921489",
+    "crates/ripple-resolve/src/config.rs": "28884ecfa7c9b3ba229c5fd89b4197f132d62ae4a65ef93613f5c43b95e67005",
+    "crates/ripple-resolve/src/config_json.rs": "d6e303f167039a1c67784b92abb6bd6880c995fc7a3c3ca10a1f50f97dc2af33",
+    "crates/ripple-resolve/src/dependencies.rs": "dbc5a652a714125a9ea1df61e9a032af81b096bd0979b676a40fa52a79e64ac6",
+    "crates/ripple-resolve/src/exports.rs": "cedd0eccd0070850281a502f7a5947ac025c15d2dc925f5b2182e4e94daf8e8d",
+    "crates/ripple-resolve/src/lib.rs": "ca740d2ad4da18fa1f70b0da32a110cc290c463849d2d8d21a82db5ffea26b85",
+    "crates/ripple-resolve/src/modules.rs": "06ae0efeea4935ad7c3eece2c973c4162d24d1e6d931f80bf77611fc614e54f7",
+    "crates/ripple-resolve/src/paths.rs": "a0524f1ac1c22ab8219f8bb7a6c6951e21121f151b62f14af4bd22504b93e6be",
+    "crates/ripple-resolve/src/reexports.rs": "f78aa10f081f9a31f1828faeb89ab709cd79ec7fb0bd54143de38aeee29c2a68",
+    "crates/ripple-resolve/src/symbols.rs": "b9d7bbc74f7bff7fbb3cc1e6c536013f2d56739266f99d2129136927a33b38a8",
+    "crates/ripple-resolve/tests/calls.rs": "751ba20dd0ebe79dfcb8d3b3d0300497797871f5bb90ede1b5a3105297530f87",
+    "crates/ripple-resolve/tests/config.rs": "a5dc14aa78bbdf6df2a7e47664c5c8626bceaa27abfc812f7f77b49d73a33688",
+    "crates/ripple-resolve/tests/modules.rs": "af061b7fb0fedddf4a2d8ea1d78da7833b46414d59eb2b28969551a34127ab52",
+    "crates/ripple-resolve/tests/reexports.rs": "5e870ce66d03cd521b6df46b9d5ff23532c19bedf6eeae1de63f308d22eedaa7",
+    "Cargo.toml": "00eabd21ff36ff1f75aac1e4c17452ea475c7d18d11bd3226b0edf64b19af13b",
+    "Cargo.lock": "32a34e5776fc0c1c5f36e8fc4fcfce449553ddc0edbc36e48bfff0b10648c4f2"
+  },
+  "debug_binary_sha256": "5c2a6858ca7f775c157fba4fbe29a403e0aba1034d69450649112962d72909b4",
+  "release_binary_sha256": "9a34d4eadfadf3e22e80bd973dffc75f8217718e641ec1b364faa0cf94060738",
+  "provenance_note": "Local evaluation was performed before committing. Its full runtime/test file manifest matches committed source f148f8d4bbbde022feae511c16e69dc30adfa0ff. Raw harness Git metadata names base HEAD 09e9c34; executable hashes and the manifest identify the evaluated changes. Platform CI results are recorded separately after push.",
+  "checks": {
+    "rust_workspace": {
+      "passed": 291,
+      "log": "/tmp/ripple-M9-T04-workspace-final.log"
+    },
+    "fmt": "passed",
+    "strict_clippy": "passed",
+    "python_tests": 37,
+    "node_tests": 6,
+    "quickstart": "all six commands passed",
+    "m7_smoke": "passed",
+    "oracle": {
+      "mini": {
+        "metrics": {
+          "candidate_coverage": {
+            "denominator": 3,
+            "numerator": 0,
+            "value": 0.0
+          },
+          "false_negative": [],
+          "false_positive": [],
+          "precision": {
+            "denominator": 3,
+            "numerator": 3,
+            "value": 1.0
+          },
+          "recall": {
+            "denominator": 3,
+            "numerator": 3,
+            "value": 1.0
+          },
+          "true_positive": [
+            "[\"[\\\"main.ts\\\",\\\"FUNCTION\\\",143,186]\",\"[\\\"lib.ts\\\",\\\"FUNCTION\\\",0,88]\",\"REFERENCES\"]",
+            "[\"[\\\"main.ts\\\",\\\"FUNCTION\\\",82,142]\",\"[\\\"lib.ts\\\",\\\"FUNCTION\\\",0,88]\",\"CALLS\"]",
+            "[\"[\\\"view.tsx\\\",\\\"FUNCTION\\\",33,89]\",\"[\\\"main.ts\\\",\\\"FUNCTION\\\",82,142]\",\"CALLS\"]"
+          ]
+        },
+        "counts": {
+          "candidate_comparable_edges": 0,
+          "oracle_edges": 3,
+          "oracle_excluded_occurrences": 4,
+          "out_of_scope_ripple_edges": 0,
+          "resolved_comparable_edges": 3,
+          "unmapped_eligible_ripple_edges": 0,
+          "unmapped_ripple_definitions": 0,
+          "unresolved_occurrences": 2
+        }
+      },
+      "external": {
+        "metrics": {
+          "candidate_coverage": {
+            "denominator": 16,
+            "numerator": 0,
+            "value": 0.0
+          },
+          "false_negative": [],
+          "false_positive": [],
+          "precision": {
+            "denominator": 16,
+            "numerator": 16,
+            "value": 1.0
+          },
+          "recall": {
+            "denominator": 16,
+            "numerator": 16,
+            "value": 1.0
+          },
+          "true_positive": [
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",1991,2228]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",2230,3283]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",3285,6596]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",3285,6596]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6598,6895]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",9567,9712]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",6897,9565]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",878,1989]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+            "[\"[\\\"src/scopes.ts\\\",\\\"FUNCTION\\\",878,1989]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]",
+            "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",1947,2019]\",\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",2021,2120]\",\"REFERENCES\"]",
+            "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",2122,3202]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",888,1246]\",\"CALLS\"]",
+            "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",1947,2019]\",\"CALLS\"]",
+            "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",1248,1386]\",\"CALLS\"]",
+            "[\"[\\\"src/sourcemap-codec.ts\\\",\\\"FUNCTION\\\",590,1945]\",\"[\\\"src/vlq.ts\\\",\\\"FUNCTION\\\",467,886]\",\"CALLS\"]"
+          ]
+        },
+        "counts": {
+          "candidate_comparable_edges": 0,
+          "oracle_edges": 16,
+          "oracle_excluded_occurrences": 524,
+          "out_of_scope_ripple_edges": 6,
+          "resolved_comparable_edges": 16,
+          "unmapped_eligible_ripple_edges": 0,
+          "unmapped_ripple_definitions": 1,
+          "unresolved_occurrences": 567
+        }
+      }
+    },
+    "replay": {
+      "canonical_mismatches": 0,
+      "comparisons": 16,
+      "semantic_reproducible": true
+    },
+    "mutations": {
+      "aggregate": {
+        "symbol_backed": {
+          "fault_catching_recall": {
+            "numerator": 3,
+            "denominator": 5,
+            "fraction": 0.6
+          },
+          "selection_ratio_killed_micro": {
+            "numerator": 3,
+            "denominator": 25,
+            "fraction": 0.12
+          }
+        },
+        "combined": {
+          "fault_catching_recall": {
+            "numerator": 4,
+            "denominator": 5,
+            "fraction": 0.8
+          },
+          "selection_ratio_killed_micro": {
+            "numerator": 6,
+            "denominator": 25,
+            "fraction": 0.24
+          }
+        },
+        "file_import": {
+          "fault_catching_recall": {
+            "numerator": 4,
+            "denominator": 5,
+            "fraction": 0.8
+          },
+          "selection_ratio_killed_micro": {
+            "numerator": 6,
+            "denominator": 25,
+            "fraction": 0.24
+          }
+        },
+        "all_tests": {
+          "fault_catching_recall": {
+            "numerator": 5,
+            "denominator": 5,
+            "fraction": 1.0
+          },
+          "selection_ratio_killed_micro": {
+            "numerator": 25,
+            "denominator": 25,
+            "fraction": 1.0
+          }
+        }
+      },
+      "excluded": {
+        "invalid": [
+          "invalid"
+        ],
+        "timeout": [
+          "timeout"
+        ],
+        "survived": [
+          "survivor"
+        ]
+      },
+      "statuses": {
+        "direct": "killed",
+        "other-export": "killed",
+        "caller": "killed",
+        "dynamic": "killed",
+        "side-effect": "killed",
+        "survivor": "survived",
+        "invalid": "invalid",
+        "timeout": "timeout"
+      }
+    },
+    "small_repo": {
+      "status": "passed",
+      "symbol_backed": [
+        "checkout.test.ts"
+      ],
+      "fallback_only": [
+        "shipping.test.ts"
+      ],
+      "combined": [
+        "checkout.test.ts",
+        "shipping.test.ts"
+      ],
+      "incomplete_analysis": true,
+      "canonical": {
+        "canonical_equal": true,
+        "canonical_sha256": "7612308263a2045bbf17d66a1839028f85ed596c17b860fa85793cd319e39255",
+        "cold_ms": 29.071292,
+        "cold_update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [
+            "checkout.test.ts",
+            "checkout.ts",
+            "pricing.ts",
+            "shipping.test.ts",
+            "unrelated.test.ts",
+            "unrelated.ts"
+          ],
+          "module_cache_reused": false,
+          "module_files_resolved": 6,
+          "parsed_files": 6,
+          "rebuild_reason": "explicit_full",
+          "reference_files_resolved": 6,
+          "reference_files_reused": 0,
+          "reused_files": 0,
+          "source_delta_available": false,
+          "strategy": "full",
+          "total_parsed_files": 6,
+          "unchanged_external_surfaces": []
+        },
+        "config_diagnostics": [],
+        "counts": {
+          "edges": 12,
+          "files": 6,
+          "symbols": 4,
+          "unresolved": 8
+        },
+        "discovery_diagnostics": [],
+        "incomplete": true,
+        "incremental_ms": 33.346958,
+        "update": {
+          "added": [],
+          "changed": [],
+          "deleted": [],
+          "invalidation_candidates": [],
+          "module_cache_reused": true,
+          "module_files_resolved": 0,
+          "parsed_files": 0,
+          "rebuild_reason": null,
+          "reference_files_resolved": 0,
+          "reference_files_reused": 6,
+          "reused_files": 6,
+          "source_delta_available": true,
+          "strategy": "incremental_selective",
+          "total_parsed_files": 0,
+          "unchanged_external_surfaces": [
+            "checkout.test.ts",
+            "checkout.ts",
+            "pricing.ts",
+            "shipping.test.ts",
+            "unrelated.test.ts",
+            "unrelated.ts"
+          ]
+        },
+        "versions": {
+          "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+          "hash_version": 1,
+          "schema_version": 2
+        }
+      },
+      "git_index_and_worktree_preserved": true
+    },
+    "physical_compaction": {
+      "before_database_bytes": 966656,
+      "after_database_bytes": 159744,
+      "bytes_reclaimed": 806912,
+      "prune": {
+        "command": "index",
+        "data": {
+          "maintenance": "prune",
+          "result": {
+            "active_generation": 12,
+            "compacted": true,
+            "pending": [],
+            "removed_generations": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "retained_generations": [
+              12
+            ]
+          }
+        },
+        "format_version": 1,
+        "incomplete_analysis": false
+      },
+      "active_status_unchanged": true,
+      "owned_fixture_source_bytes": 65568
+    },
+    "rustsec": {
+      "database": {
+        "advisory-count": 1527,
+        "last-commit": "233155b4025b854c68a4b199c0e32d7fd53291a2",
+        "last-updated": "2026-11-17T11:14:35+01:00"
+      },
+      "lockfile": {
+        "dependency-count": 129
+      },
+      "settings": {
+        "target_arch": [],
+        "target_os": [],
+        "severity": null,
+        "ignore": [],
+        "informational_warnings": [
+          "unmaintained",
+          "unsound",
+          "notice"
+        ]
+      },
+      "vulnerabilities": {
+        "found": false,
+        "count": 0,
+        "list": []
+      },
+      "warnings": {}
+    },
+    "npm": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencies": {
+        "prod": 2,
+        "dev": 0,
+        "optional": 0,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 1
+      }
+    },
+    "gitleaks": {
+      "version": "8.30.1",
+      "all_refs_findings": 0,
+      "working_files_findings": 0
+    },
+    "platform_ci": {
+      "outcome": "not_run",
+      "reason": "User approved commit and push; awaiting workflows on the complete committed change."
+    }
+  },
+  "workflows": {
+    "before": {
+      "source_commit": "09e9c341d025b2e1f288556f39219ea292493e16",
+      "binary_sha256": "331e52e3c6df300f007b9b7446e50ba33daf6ec2bf913088d0f0301be0167794",
+      "helper_sha256": "9774975370fbdc7504adcd5ee17054a57597ae303c59239213804292694d7f67",
+      "toolchain": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+      "ripple_version": "ripple 0.4.0",
+      "samples": 5,
+      "warmups": 1,
+      "workload": {
+        "id": "supported-chain-65-v1",
+        "files": 65,
+        "loc": 65,
+        "sha256": "76bfd2306b23e4849b18f20400a4e96a851411213a89855b67d6b1f1af09f9d1"
+      },
+      "hardware": {
+        "os": "macOS-26.5-arm64-arm-64bit-Mach-O",
+        "cpu": "Apple M4",
+        "memory_bytes": 17179869184
+      },
+      "metrics": {
+        "cold": {
+          "count": 5,
+          "p50_ms": 359.1560840141028,
+          "p95_ms": 366.53295799624175,
+          "p99_ms": 366.53295799624175
+        },
+        "no_op": {
+          "count": 5,
+          "p50_ms": 350.56562500540167,
+          "p95_ms": 354.0531669277698,
+          "p99_ms": 354.0531669277698
+        },
+        "body": {
+          "count": 5,
+          "p50_ms": 359.0632079867646,
+          "p95_ms": 359.8621250130236,
+          "p99_ms": 359.8621250130236
+        },
+        "verified_impact": {
+          "count": 5,
+          "p50_ms": 299.89070794545114,
+          "p95_ms": 384.0929999714717,
+          "p99_ms": 384.0929999714717
+        },
+        "startup_version": {
+          "count": 5,
+          "p50_ms": 3.908999962732196,
+          "p95_ms": 4.6139160403981805,
+          "p99_ms": 4.6139160403981805
+        },
+        "adjacency_ms": {
+          "count": 5,
+          "p50_ms": 0.077042,
+          "p95_ms": 0.086375,
+          "p99_ms": 0.086375
+        },
+        "capture_verification_ms": {
+          "count": 5,
+          "p50_ms": 257.87787499999996,
+          "p95_ms": 258.173916,
+          "p99_ms": 258.173916
+        },
+        "module_policy_ms": {
+          "count": 5,
+          "p50_ms": 1.059166,
+          "p95_ms": 1.232709,
+          "p99_ms": 1.232709
+        },
+        "production_verified_load_ms": {
+          "count": 5,
+          "p50_ms": 262.2195,
+          "p95_ms": 263.09754200000003,
+          "p99_ms": 263.09754200000003
+        },
+        "pure_traversal_ms": {
+          "count": 5,
+          "p50_ms": 1.255916,
+          "p95_ms": 1.4249589999999999,
+          "p99_ms": 1.4249589999999999
+        },
+        "storage_load_ms": {
+          "count": 5,
+          "p50_ms": 3.3943329999999996,
+          "p95_ms": 3.452417,
+          "p99_ms": 3.452417
+        }
+      },
+      "cold_files_per_second": 180.97981043096482,
+      "cold_loc_per_second": 180.97981043096482,
+      "raw": {
+        "cold_ms": [
+          366.53295799624175,
+          355.92591704335064,
+          352.62766701634973,
+          360.271165962331,
+          359.1560840141028
+        ],
+        "no_op_ms": [
+          347.7580409962684,
+          353.9521660422906,
+          350.56562500540167,
+          349.34008307754993,
+          354.0531669277698
+        ],
+        "body_ms": [
+          359.7994999727234,
+          358.42912504449487,
+          358.87062503024936,
+          359.8621250130236,
+          359.0632079867646
+        ],
+        "impact_ms": [
+          296.0122920339927,
+          289.6587089635432,
+          302.6235830038786,
+          299.89070794545114,
+          384.0929999714717
+        ],
+        "startup_ms": [
+          3.908999962732196,
+          3.8821250200271606,
+          3.4466669894754887,
+          4.02774999383837,
+          4.6139160403981805
+        ],
+        "phases": [
+          {
+            "adjacency_ms": 0.077042,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 257.122834,
+            "module_policy_ms": 1.059166,
+            "production_verified_load_ms": 262.360333,
+            "pure_traversal_ms": 1.2910000000000001,
+            "storage_load_ms": 3.373625,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.086375,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 258.173916,
+            "module_policy_ms": 1.232709,
+            "production_verified_load_ms": 261.262542,
+            "pure_traversal_ms": 1.255916,
+            "storage_load_ms": 3.3938330000000003,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.056958,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 257.87787499999996,
+            "module_policy_ms": 0.8336669999999999,
+            "production_verified_load_ms": 262.2195,
+            "pure_traversal_ms": 0.9903749999999999,
+            "storage_load_ms": 3.4384580000000002,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.077958,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 258.0685,
+            "module_policy_ms": 1.212208,
+            "production_verified_load_ms": 263.09754200000003,
+            "pure_traversal_ms": 1.4249589999999999,
+            "storage_load_ms": 3.3943329999999996,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.046708,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 253.10625,
+            "module_policy_ms": 0.7240000000000001,
+            "production_verified_load_ms": 257.25775,
+            "pure_traversal_ms": 0.78325,
+            "storage_load_ms": 3.452417,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          }
+        ],
+        "index_bytes_three_generations": [
+          1813819,
+          1813819,
+          1813819,
+          1813819,
+          1813819
+        ],
+        "peak_impact_rss_bytes": [
+          77774848,
+          77807616,
+          77676544,
+          77627392,
+          77791232,
+          77594624
+        ]
+      },
+      "rejected_optimization": {
+        "metadata_equal": true,
+        "production_rejected_stale": true,
+        "stderr": "error[stale_index]: \"stale index or changing inputs; run ripple index .\"\n"
+      },
+      "state": "Release; warm OS cache, no cache eviction; fresh per-sample Git roots/indexes, one discarded warm-up. CLI time includes startup, real Git provenance, verification, serialization. Phase helper compiles actual production capture source and checks query equality with production load_current; stage times are sequential observations, not subtraction. Peak RSS: BSD time -l, impact only. Fixed case order; background load uncontrolled. Startup version is a proxy, not subtracted from queries. No latency thresholds.",
+      "command": "bench/scripts/workflows.py --binary /tmp/ripple-M9-T04-baseline/ripple --helper /tmp/ripple-M9-T04-baseline/workflow_benchmark --output /tmp/ripple-M9-T04-bench-before --samples 5"
+    },
+    "after": {
+      "source_commit": "09e9c341d025b2e1f288556f39219ea292493e16",
+      "binary_sha256": "9a34d4eadfadf3e22e80bd973dffc75f8217718e641ec1b364faa0cf94060738",
+      "helper_sha256": "7eb81854d1d92cadf9193bfcecfa4daaabc1844fdbf43ac11b71103d28076fc1",
+      "toolchain": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+      "ripple_version": "ripple 0.4.0",
+      "samples": 5,
+      "warmups": 1,
+      "workload": {
+        "id": "supported-chain-65-v1",
+        "files": 65,
+        "loc": 65,
+        "sha256": "76bfd2306b23e4849b18f20400a4e96a851411213a89855b67d6b1f1af09f9d1"
+      },
+      "hardware": {
+        "os": "macOS-26.5-arm64-arm-64bit-Mach-O",
+        "cpu": "Apple M4",
+        "memory_bytes": 17179869184
+      },
+      "metrics": {
+        "cold": {
+          "count": 5,
+          "p50_ms": 416.9107499765232,
+          "p95_ms": 440.32791699282825,
+          "p99_ms": 440.32791699282825
+        },
+        "no_op": {
+          "count": 5,
+          "p50_ms": 411.9005410466343,
+          "p95_ms": 422.87495895288885,
+          "p99_ms": 422.87495895288885
+        },
+        "body": {
+          "count": 5,
+          "p50_ms": 414.6431660046801,
+          "p95_ms": 416.86224995646626,
+          "p99_ms": 416.86224995646626
+        },
+        "verified_impact": {
+          "count": 5,
+          "p50_ms": 358.65591606125236,
+          "p95_ms": 369.71483298111707,
+          "p99_ms": 369.71483298111707
+        },
+        "startup_version": {
+          "count": 5,
+          "p50_ms": 6.5072920406237245,
+          "p95_ms": 8.389583905227482,
+          "p99_ms": 8.389583905227482
+        },
+        "adjacency_ms": {
+          "count": 5,
+          "p50_ms": 0.0945,
+          "p95_ms": 0.109917,
+          "p99_ms": 0.109917
+        },
+        "capture_verification_ms": {
+          "count": 5,
+          "p50_ms": 299.265625,
+          "p95_ms": 304.426125,
+          "p99_ms": 304.426125
+        },
+        "module_policy_ms": {
+          "count": 5,
+          "p50_ms": 1.364917,
+          "p95_ms": 1.492875,
+          "p99_ms": 1.492875
+        },
+        "production_verified_load_ms": {
+          "count": 5,
+          "p50_ms": 311.74104200000005,
+          "p95_ms": 312.84225,
+          "p99_ms": 312.84225
+        },
+        "pure_traversal_ms": {
+          "count": 5,
+          "p50_ms": 1.623,
+          "p95_ms": 1.90675,
+          "p99_ms": 1.90675
+        },
+        "storage_load_ms": {
+          "count": 5,
+          "p50_ms": 3.5652909999999998,
+          "p95_ms": 3.744792,
+          "p99_ms": 3.744792
+        }
+      },
+      "cold_files_per_second": 155.90866871065387,
+      "cold_loc_per_second": 155.90866871065387,
+      "raw": {
+        "cold_ms": [
+          414.3282080767676,
+          440.32791699282825,
+          416.9107499765232,
+          422.9160419199616,
+          415.26462498586625
+        ],
+        "no_op_ms": [
+          411.9005410466343,
+          422.87495895288885,
+          409.3866250477731,
+          410.37579206749797,
+          421.13595898263156
+        ],
+        "body_ms": [
+          416.86224995646626,
+          400.5345000186935,
+          415.60595901682973,
+          410.17566598020494,
+          414.6431660046801
+        ],
+        "impact_ms": [
+          356.2894999049604,
+          358.65591606125236,
+          369.71483298111707,
+          364.2177500296384,
+          353.8504579337314
+        ],
+        "startup_ms": [
+          5.070457933470607,
+          7.314124959520996,
+          6.119916099123657,
+          8.389583905227482,
+          6.5072920406237245
+        ],
+        "phases": [
+          {
+            "adjacency_ms": 0.0945,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 299.265625,
+            "module_policy_ms": 1.364917,
+            "production_verified_load_ms": 312.84225,
+            "pure_traversal_ms": 1.623,
+            "storage_load_ms": 3.2695,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.086583,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 293.065958,
+            "module_policy_ms": 1.212959,
+            "production_verified_load_ms": 298.422042,
+            "pure_traversal_ms": 1.4515419999999999,
+            "storage_load_ms": 3.744792,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.107916,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 304.426125,
+            "module_policy_ms": 1.492875,
+            "production_verified_load_ms": 308.262083,
+            "pure_traversal_ms": 1.804583,
+            "storage_load_ms": 3.5652909999999998,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.091,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 293.420292,
+            "module_policy_ms": 1.274542,
+            "production_verified_load_ms": 311.74104200000005,
+            "pure_traversal_ms": 1.509041,
+            "storage_load_ms": 3.685209,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          },
+          {
+            "adjacency_ms": 0.109917,
+            "canonical_query_equal": true,
+            "capture_verification_ms": 299.27725,
+            "module_policy_ms": 1.4673749999999999,
+            "production_verified_load_ms": 311.854292,
+            "pure_traversal_ms": 1.90675,
+            "storage_load_ms": 3.515333,
+            "targets": 129,
+            "versions": {
+              "analyzer_version": "cold-v1|ripple-analysis-cache-v1|ripple-package-policy-v1|ripple-facts-v4-ts0.23.2-runtime0.27.1|ripple-relative-v1|ripple-modules-v1|ripple-config-v1-legacy-baseurl|ripple-graph-v2-reuse",
+              "hash_version": 1,
+              "schema_version": 2
+            }
+          }
+        ],
+        "index_bytes_three_generations": [
+          1813819,
+          1813819,
+          1813819,
+          1813819,
+          1813819
+        ],
+        "peak_impact_rss_bytes": [
+          82001920,
+          81985536,
+          82083840,
+          82001920,
+          82083840,
+          82067456
+        ]
+      },
+      "rejected_optimization": {
+        "metadata_equal": true,
+        "production_rejected_stale": true,
+        "stderr": "error[stale_index]: \"stale index or changing inputs; run ripple index .\"\n"
+      },
+      "state": "Release; warm OS cache, no cache eviction; fresh per-sample Git roots/indexes, one discarded warm-up. CLI time includes startup, real Git provenance, verification, serialization. Phase helper compiles actual production capture source and checks query equality with production load_current; stage times are sequential observations, not subtraction. Peak RSS: BSD time -l, impact only. Fixed case order; background load uncontrolled. Startup version is a proxy, not subtracted from queries. No latency thresholds.",
+      "command": "bench/scripts/workflows.py --binary /Users/adhyannsingal/ripple/target/release/ripple --helper /Users/adhyannsingal/ripple/target/release/examples/workflow_benchmark --output /tmp/ripple-M9-T04-bench-after-clean --samples 5"
+    },
+    "scope": "Five retained warm samples plus one warm-up each, pinned 65-file chain, same Apple host, sequential before/after. Before executable/helper from base 09e9c34; after from uncommitted manifest. Background load uncontrolled; no significant regression or performance guarantee claimed. Final after samples ran after workspace/evaluation load stopped. A provisional after run overlapping tests is excluded."
+  },
+  "local_logs_prefix": "/tmp/ripple-M9-T04-",
+  "committed_source": "f148f8d4bbbde022feae511c16e69dc30adfa0ff"
+}

@@ -484,10 +484,11 @@ Added after the original M0–M8 plan in response to the November 6 security/tes
 #### M9-T04 — Design and implement command cancellation and index quotas
 
 - **Depends on:** M9-T02. **Lane:** security.
-- **Own:** `crates/ripple-core/src/`; `crates/ripple-index/src/`; `crates/ripple-git/src/`; `crates/ripple-cli/src/`; `docs/adr/`; `docs/limitations.md`.
+- **Own:** `crates/ripple-core/src/`; `crates/ripple-index/src/`; `crates/ripple-git/src/`; `crates/ripple-cli/src/`; `crates/ripple-parse/src/`; `crates/ripple-resolve/src/`; `crates/ripple-impact/src/`; `crates/ripple-index/tests/`; `crates/ripple-cli/tests/`; `docs/adr/`; `docs/limitations.md`; `docs/cli.md`; `docs/project-status.md`; `README.md`; `Cargo.toml`; `Cargo.lock`; `crates/ripple-cli/Cargo.toml`; `docs/reviews/full-security-2026-11-05.md`; `docs/third-party-notices/`.
 - **Implement:** Define command-wide cancellation with subprocess cleanup and atomic publication behavior; explicit storage quota/retention defaults that preserve active generations and never silently delete archives.
 - **Acceptance:** Cancellation before publication preserves prior generation; child processes are reaped; quota rejection is actionable and leaves committed state usable; platform/cold-equality regressions and CI pass. Do not claim a hard process memory cap from captured-byte limits.
 - **Handoff:** SEC-02 resource follow-up resolved only after actual implementation and verification.
+
 
 #### M9-T05 — Rewrite the reader-facing product README
 

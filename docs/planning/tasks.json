@@ -4,7 +4,7 @@
   "spec": "ripple_buildspec.md",
   "plan": "docs/implementation-plan.md",
   "protocol": "docs/planning/execution-protocol.md",
-  "updated_at": "2026-11-08T05:05:41.040278+00:00",
+  "updated_at": "2026-11-17T23:12:23.654820+00:00",
   "notes": "43 tasks including the user-requested M0 review follow-up; statuses/evidence are authoritative. Single coordinator writes claims.",
   "milestones": [
     {
@@ -3423,22 +3423,96 @@
         "crates/ripple-index/src/",
         "crates/ripple-git/src/",
         "crates/ripple-cli/src/",
+        "crates/ripple-parse/src/",
+        "crates/ripple-resolve/src/",
+        "crates/ripple-impact/src/",
+        "crates/ripple-index/tests/",
+        "crates/ripple-cli/tests/",
         "docs/adr/",
-        "docs/limitations.md"
+        "docs/limitations.md",
+        "docs/cli.md",
+        "docs/project-status.md",
+        "README.md",
+        "Cargo.toml",
+        "Cargo.lock",
+        "crates/ripple-cli/Cargo.toml",
+        "docs/reviews/full-security-2026-11-05.md",
+        "docs/third-party-notices/"
       ],
-      "status": "pending",
-      "owner": null,
-      "branch": null,
-      "started_at": null,
-      "heartbeat_at": null,
+      "status": "review",
+      "owner": "coordinator",
+      "branch": "agent/M9-T04",
+      "started_at": "2026-11-17T22:10:48.016725+00:00",
+      "heartbeat_at": "2026-11-17T23:12:23.654820+00:00",
       "completed_at": null,
       "integrated_commit": null,
-      "validation": [],
+      "validation": [
+        {
+          "command": "cargo test --workspace --locked (shared target; dev/test debug=0; incremental=0)",
+          "outcome": "passed",
+          "details": "291 tests passed locally on Apple Silicon macOS, including new resource/transaction regressions."
+        },
+        {
+          "command": "cargo fmt --all -- --check; cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "outcome": "passed",
+          "details": "Passed on the reviewed working source."
+        },
+        {
+          "command": "Python planning/release/replay/mutation/oracle tests; npm test",
+          "outcome": "passed",
+          "details": "37 Python and 6 Node tests passed; pinned notice hashes rechecked."
+        },
+        {
+          "command": "scripts/m7-smoke.py; docs/examples/quickstart.py; scripts/small-repo-smoke.py",
+          "outcome": "passed",
+          "details": "All six commands and independent full-suite regression comparison, stale rejection, canonical equality and Git/index preservation passed."
+        },
+        {
+          "command": "eval/oracle/compare_run.py mini and pinned external; eval/commit-replay/run.py; eval/mutation/run.py",
+          "outcome": "passed",
+          "details": "3/3 and 16/16 eligible oracle edges with unknowns/exclusions retained; 16 zero-mismatch replay comparisons; original 3/5 symbol and 4/5 combined mutation recall retained."
+        },
+        {
+          "command": "bench/scripts/workflows.py --samples 5, base and working executables; owned physical compaction experiment",
+          "outcome": "passed",
+          "details": "Raw p50s/hardware/hashes in M9-T04-evidence.json; 12\u21921 generations shrank DB 966656\u2192159744 bytes without active-status change. Finite measurements, no performance guarantee."
+        },
+        {
+          "command": "cargo-audit 0.22.2; npm audit; Gitleaks 8.30.1 all refs and working source",
+          "outcome": "passed",
+          "details": "129 Cargo packages / 1527 advisories, zero vulnerabilities/warnings; npm and history/working secret scans clean. New exact upstream license notices pinned."
+        },
+        {
+          "command": "Platform CI and native Windows console delivery verification",
+          "outcome": "not_run",
+          "details": "Requires the user-approved commit/push; this uncommitted source is not marked integrated/done."
+        }
+      ],
       "blocker": null,
-      "base_commit": null,
-      "claimed_paths": [],
-      "checkpoint": "New post-plan follow-up, not implemented.",
-      "next_action": "Select after verified prerequisites.",
+      "base_commit": "09e9c341d025b2e1f288556f39219ea292493e16",
+      "claimed_paths": [
+        "crates/ripple-core/src/",
+        "crates/ripple-index/src/",
+        "crates/ripple-git/src/",
+        "crates/ripple-cli/src/",
+        "crates/ripple-parse/src/",
+        "crates/ripple-resolve/src/",
+        "crates/ripple-impact/src/",
+        "crates/ripple-index/tests/",
+        "crates/ripple-cli/tests/",
+        "docs/adr/",
+        "docs/limitations.md",
+        "docs/cli.md",
+        "docs/project-status.md",
+        "README.md",
+        "Cargo.toml",
+        "Cargo.lock",
+        "crates/ripple-cli/Cargo.toml",
+        "docs/reviews/full-security-2026-11-05.md",
+        "docs/third-party-notices/"
+      ],
+      "checkpoint": "User approved commit/push. Runtime changes committed in 9189b6a and f148f8d4bbbde022feae511c16e69dc30adfa0ff; runtime/test manifest verified unchanged from local tests. Documentation/evidence ready; platform CI pending.",
+      "next_action": "Push the complete dependency-ordered commits, await platform/oracle CI, then record verified integration and close M9.",
       "report": "docs/task-reports/M9-T04.md"
     },
     {
@@ -3453,13 +3527,13 @@
         "README.md",
         "docs/cli.md"
       ],
-      "status": "review",
+      "status": "done",
       "owner": "coordinator",
       "branch": "main",
       "started_at": "2026-11-08T04:47:41.515428+00:00",
       "heartbeat_at": "2026-11-08T05:05:41.040278+00:00",
-      "completed_at": null,
-      "integrated_commit": null,
+      "completed_at": "2026-11-17T22:11:07.969859+00:00",
+      "integrated_commit": "09e9c341d025b2e1f288556f39219ea292493e16",
       "validation": [
         {
           "command": "python3 docs/examples/quickstart.py --binary target/release/ripple",
@@ -3480,25 +3554,27 @@
           "command": "gh release list --limit 3 --json tagName,isDraft,isPrerelease",
           "outcome": "passed",
           "details": "Empty release inventory; README accurately directs current users to source builds."
+        },
+        {
+          "command": "GitHub Actions CI 42449453338 and oracle 42449453375",
+          "outcome": "passed",
+          "details": "Both passed at approved pushed README commit 09e9c341d025b2e1f288556f39219ea292493e16."
         }
       ],
       "blocker": null,
       "base_commit": "f4267913497c0209c480756ca9123a44a0c1edb6",
-      "claimed_paths": [
-        "README.md",
-        "docs/cli.md"
-      ],
-      "checkpoint": "User explicitly approved committing the reviewed documentation on November 8. Local checks passed; no integration/CI completion is claimed.",
-      "next_action": "Create the approved local commit; record integration SHA and applicable CI after integration. No push requested in this turn.",
+      "claimed_paths": [],
+      "checkpoint": "Approved README commit 09e9c34 pushed; CI 42449453338 and oracle 42449453375 passed. Retained path claims released by coordinator for authorized resource docs.",
+      "next_action": "README integration verified; resource changes owned by M9-T04.",
       "report": "docs/task-reports/M9-T05.md"
     }
   ],
   "coordinator": {
     "owner": "coordinator",
-    "session_id": "README-2026-11-07",
+    "session_id": "M9-T04-2026-11-17",
     "integration_branch": "main",
-    "checkpoint": "User explicitly approved committing the reviewed documentation on November 8. Local checks passed; no integration/CI completion is claimed.",
-    "next_action": "Create the approved local commit; record integration SHA and applicable CI after integration. No push requested in this turn.",
-    "updated_at": "2026-11-08T05:05:41.040278+00:00"
+    "checkpoint": "User approved commit/push. Runtime changes committed in 9189b6a and f148f8d4bbbde022feae511c16e69dc30adfa0ff; runtime/test manifest verified unchanged from local tests. Documentation/evidence ready; platform CI pending.",
+    "next_action": "Push the complete dependency-ordered commits, await platform/oracle CI, then record verified integration and close M9.",
+    "updated_at": "2026-11-17T23:12:23.654820+00:00"
   }
 }

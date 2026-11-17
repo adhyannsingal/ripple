@@ -30,6 +30,28 @@ Git provenance uses repository-local settings with system/global configuration i
 
 The index report includes `data.update`: accepted-attempt parsed/reused/module/reference file counts, parse work across attempts, rebuild reasons, source-delta availability and invalidation candidates. Known stable-coordinate body changes can skip importer resolution; uncertain contexts use full module analysis. These are work counters, not performance guarantees. See [incremental indexing](incremental.md) for exact rules, failure behavior and reproducible equality checks. Unsupported on-disk formats require explicit archive/rebuild; `--full` does not bypass compatibility checks.
 
+## Deadlines, quotas and explicit retention
+
+Every CLI command has a cooperative 120-second deadline. Set `--timeout-seconds N` globally (1–86400). Ctrl-C also requests cancellation; Unix SIGTERM/SIGHUP use the same handler. Active trusted Git direct children are killed and reaped before cancellation returns. Timeout/cancellation failures exit 1 with `deadline_exceeded` or `command_cancelled` diagnostics and no read-command success report.
+
+This is cooperative cancellation, not hard real-time enforcement: filesystem calls, sorting/serialization, output writes and commit/checkpoint operations can delay observation. No total process-RSS or arbitrary subprocess-descendant sandbox is claimed. A cancellation observed before publication's final commit check rolls back; a signal arriving during/after COMMIT cannot undo committed state. Index output retains the committed generation and marks derived writes pending where necessary.
+
+Index publication defaults to **1024 MiB live SQLite payload/page budgets** and **256 retained generations**. Override the policy for an invocation with `--max-index-mib N` (1–65536) and `--max-generations N` (1–100000). The payload includes stored inputs and serialized analysis records/metadata. SQLite page allocation is bounded separately by the same byte setting. WAL, temporary files, allocation overhead and derived artifacts are additional; these settings are not a hard `.ripple/` filesystem quota. Oversized existing stores remain readable. A rejected publication leaves the prior generation intact and gives prune/increase-limit instructions. Nothing is automatically deleted.
+
+```sh
+ripple index . --timeout-seconds 300 --max-index-mib 2048 --max-generations 128
+
+# Explicit maintenance only: keep active + four newest older generations.
+ripple index . --prune-to 5
+
+# Also ask SQLite to reclaim physical file space (may need temporary space).
+ripple index . --prune-to 5 --compact
+```
+
+`--prune-to` does not analyze inputs or publish a generation; it conflicts with `--full`. It preserves the active generation, sources, user Git state and unrelated files. Old-generation module caches are removed only through this explicit operation; retrying pruning also cleans known old orphan caches left by interrupted cleanup. Pruned generations are no longer available to future `load_generation` calls. Already-open reader transactions retain their consistent SQLite view.
+
+Without `--compact`, freed pages are reusable but the main SQLite file may not shrink. Compaction can need substantial temporary disk space and can be blocked by readers. Pruning itself commits transactionally; later cleanup/compaction failures are reported as pending, not as rolled-back pruning. Maintenance JSON has `data.maintenance: "prune"` and `data.result` containing active/retained/removed generation IDs, `compacted` and `pending`; inspect those fields even on exit 0. No source or build-cache cleanup is performed by this command.
+
 ## Impact evidence
 
 Choose a unique symbol by qualified name (`Class.method` where supported), path plus name (`src/file.ts::name`), or exact semantic key. Ambiguous short names fail with qualified alternatives.
