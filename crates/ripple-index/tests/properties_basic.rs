@@ -110,6 +110,17 @@ fn independent(root: &Path) -> (tempfile::TempDir, LoadedGeneration) {
 }
 #[test]
 fn generated_edit_sequences_equal_cold_after_every_step() {
+    // Long campaigns deliberately retain more snapshots than the CLI default.
+    ripple_index::storage::with_limits(
+        ripple_index::storage::StorageLimits {
+            max_bytes: 1024 * 1024 * 1024,
+            max_generations: 1024,
+        },
+        generated_edit_sequences_equal_cold_after_every_step_with_history_headroom,
+    );
+}
+
+fn generated_edit_sequences_equal_cold_after_every_step_with_history_headroom() {
     let bounds: serde_json::Value = serde_json::from_str(include_str!(
         "../../../fixtures/incremental/regressions/basic-seeds.json"
     ))
@@ -345,6 +356,17 @@ fn resolved_body_sequences_equal_cold_before_and_after_cutoff() {
 
 #[test]
 fn adversarial_sequences_equal_cold_after_every_transition() {
+    // Long campaigns deliberately retain more snapshots than the CLI default.
+    ripple_index::storage::with_limits(
+        ripple_index::storage::StorageLimits {
+            max_bytes: 1024 * 1024 * 1024,
+            max_generations: 1024,
+        },
+        adversarial_sequences_equal_cold_after_every_transition_with_history_headroom,
+    );
+}
+
+fn adversarial_sequences_equal_cold_after_every_transition_with_history_headroom() {
     let bounds: serde_json::Value = serde_json::from_str(include_str!(
         "../../../fixtures/incremental/regressions/adversarial-seeds.json"
     ))

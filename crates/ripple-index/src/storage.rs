@@ -34,6 +34,7 @@ const MAX_RECORDS: usize = 1_000_000;
 #[derive(Debug)]
 pub enum StorageError {
     Busy,
+    Quota(String),
     Incompatible(String),
     Invalid(String),
     Database(rusqlite::Error),
@@ -43,6 +44,10 @@ pub enum StorageError {
 impl fmt::Display for StorageError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
+            Self::Quota(s) => write!(
+                f,
+                "index quota exceeded: {s}; use explicit index --prune-to N [--compact], or raise --max-index-mib/--max-generations"
+            ),
             Self::Busy => {
                 f.write_str("index writer is busy; retry after the current writer finishes")
             }
@@ -63,6 +68,9 @@ impl From<rusqlite::Error> for StorageError {
         match e.sqlite_error_code() {
             Some(rusqlite::ErrorCode::DatabaseBusy | rusqlite::ErrorCode::DatabaseLocked) => {
                 Self::Busy
+            }
+            Some(rusqlite::ErrorCode::DiskFull) => {
+                Self::Quota("SQLite page limit or available disk space exhausted".into())
             }
             _ => Self::Database(e),
         }
@@ -117,7 +125,76 @@ pub struct Store {
     connection: Connection,
     directory: PathBuf,
     expected: IndexVersions,
+    limits: StorageLimits,
 }
+
+/// Limits on retained SQLite content/pages; not a hard filesystem quota on WAL/temp/cache files.
+#[derive(Debug, Clone, Copy)]
+pub struct StorageLimits {
+    pub max_bytes: u64,
+    pub max_generations: u64,
+}
+impl Default for StorageLimits {
+    fn default() -> Self {
+        Self {
+            max_bytes: 1024 * 1024 * 1024,
+            max_generations: 256,
+        }
+    }
+}
+thread_local! { static LIMITS: std::cell::Cell<StorageLimits> = const { std::cell::Cell::new(StorageLimits { max_bytes: 1024*1024*1024, max_generations:256 }) }; }
+/// Scoped policy for orchestration; restored even if the operation panics.
+pub fn with_limits<T>(limits: StorageLimits, operation: impl FnOnce() -> T) -> T {
+    struct Restore(StorageLimits);
+    impl Drop for Restore {
+        fn drop(&mut self) {
+            LIMITS.with(|l| l.set(self.0));
+        }
+    }
+    let _restore = Restore(LIMITS.with(|l| l.replace(limits)));
+    operation()
+}
+#[derive(Debug, Serialize)]
+pub struct PruneReceipt {
+    pub active_generation: u64,
+    pub removed_generations: Vec<u64>,
+    pub retained_generations: Vec<u64>,
+    pub compacted: bool,
+    pub pending: Vec<String>,
+}
+fn checkpoint() -> Result<(), StorageError> {
+    ripple_core::execution::check().map_err(invalid)
+}
+fn live_payload(c: &Connection) -> Result<u64, StorageError> {
+    let mut total = 0u64;
+    for (table, column) in [
+        ("generations", "metadata_json"),
+        ("generations", "seal"),
+        ("captured_inputs", "bytes"),
+        ("files", "facts_json"),
+        ("symbols", "record_json"),
+        ("nodes", "record_json"),
+        ("edges", "record_json"),
+        ("unresolved_references", "record_json"),
+        ("analysis_artifacts", "record_json"),
+    ] {
+        checkpoint()?;
+        let value: i64 = c.query_row(
+            &format!("SELECT COALESCE(sum(length(CAST({column} AS BLOB))),0) FROM {table}"),
+            [],
+            |r| r.get(0),
+        )?;
+        total = total
+            .checked_add(
+                value
+                    .try_into()
+                    .map_err(|_| invalid("negative payload size"))?,
+            )
+            .ok_or_else(|| invalid("payload size overflow"))?;
+    }
+    Ok(total)
+}
+
 fn digest(bytes: &[u8]) -> String {
     let mut result = String::with_capacity(64);
     for byte in Sha256::digest(bytes) {
@@ -256,10 +333,18 @@ fn seal(
 }
 impl Store {
     /// The directory is explicit and caller-owned; this does not select a project root.
+    /// Open inside the desired execution scope: SQLite callbacks bind its token until store drop.
     pub fn open(
         directory: impl AsRef<Path>,
         expected: IndexVersions,
     ) -> Result<Self, StorageError> {
+        checkpoint()?;
+        let limits = LIMITS.with(|l| l.get());
+        if limits.max_bytes < 1024 * 1024 || limits.max_generations == 0 {
+            return Err(invalid(
+                "positive generation limit and at least 1 MiB required",
+            ));
+        }
         expected.validate().map_err(|e| invalid(e.to_string()))?;
         if expected.schema_version != SCHEMA_VERSION || expected.hash_version != HASH_VERSION {
             return Err(StorageError::Incompatible(
@@ -302,6 +387,9 @@ impl Store {
             OpenFlags::SQLITE_OPEN_READ_WRITE | OpenFlags::SQLITE_OPEN_NOFOLLOW,
         )?;
         connection.busy_timeout(Duration::ZERO)?;
+        if let Some(control) = ripple_core::execution::current() {
+            connection.progress_handler(1000, Some(move || control.check().is_err()))?;
+        }
         connection.execute_batch("PRAGMA foreign_keys=ON; PRAGMA trusted_schema=OFF;")?;
         connection.set_db_config(DbConfig::SQLITE_DBCONFIG_DEFENSIVE, true)?;
         let version: i64 = connection.pragma_query_value(None, "user_version", |r| r.get(0))?;
@@ -382,6 +470,7 @@ impl Store {
             connection,
             directory,
             expected,
+            limits,
         })
     }
     pub fn next_generation(&self) -> Result<u64, StorageError> {
@@ -404,6 +493,24 @@ impl Store {
         inputs: &[InputBytes],
         analysis: Option<&crate::fingerprints::AnalysisCache>,
     ) -> Result<PublishReceipt, StorageError> {
+        self.publish_with_hook(snapshot, inputs, analysis, |_| {})
+    }
+    fn publish_with_hook(
+        &mut self,
+        snapshot: &IndexSnapshot,
+        inputs: &[InputBytes],
+        analysis: Option<&crate::fingerprints::AnalysisCache>,
+        mut hook: impl FnMut(bool),
+    ) -> Result<PublishReceipt, StorageError> {
+        checkpoint()?;
+        let page_size: i64 = self
+            .connection
+            .pragma_query_value(None, "page_size", |r| r.get(0))?;
+        self.connection.pragma_update(
+            None,
+            "max_page_count",
+            ((self.limits.max_bytes / page_size as u64).max(1)).min(i64::MAX as u64) as i64,
+        )?;
         if let Some(analysis) = analysis {
             analysis.validate(snapshot).map_err(invalid)?;
         }
@@ -440,6 +547,13 @@ impl Store {
                 "generation conflict; refresh the generation counter before publishing",
             ));
         }
+        let retained: i64 = tx.query_row("SELECT count(*) FROM generations", [], |r| r.get(0))?;
+        if retained as u64 >= self.limits.max_generations {
+            return Err(StorageError::Quota(
+                "retained generation limit reached".into(),
+            ));
+        }
+        checkpoint()?;
         tx.execute(
             "INSERT INTO generations(id,metadata_json,seal,complete) VALUES(?1,?2,?3,0)",
             params![id, metadata, checksum],
@@ -449,6 +563,7 @@ impl Store {
             .map(|i| (&i.path, &i.bytes))
             .collect::<BTreeMap<_, _>>();
         for input in snapshot.inputs().entries() {
+            checkpoint()?;
             tx.execute(
                 "INSERT INTO captured_inputs VALUES(?1,?2,?3,?4,?5,?6,?7)",
                 params![
@@ -462,13 +577,16 @@ impl Store {
                 ],
             )?;
         }
+        hook(false);
         for node in snapshot.graph().nodes() {
+            checkpoint()?;
             tx.execute(
                 "INSERT INTO nodes VALUES(?1,?2,?3,?4)",
                 params![id, node.id.semantic_key(), tag(&node.kind)?, json(node)?],
             )?;
         }
         for facts in snapshot.files() {
+            checkpoint()?;
             let mut detail = facts.clone();
             detail.symbols.clear();
             tx.execute(
@@ -494,6 +612,7 @@ impl Store {
             }
         }
         for (ordinal, edge) in snapshot.graph().edges().iter().enumerate() {
+            checkpoint()?;
             tx.execute(
                 "INSERT INTO edges VALUES(?1,?2,?3,?4,?5,?6,?7)",
                 params![
@@ -508,6 +627,7 @@ impl Store {
             )?;
         }
         for (ordinal, item) in snapshot.graph().unresolved().iter().enumerate() {
+            checkpoint()?;
             tx.execute(
                 "INSERT INTO unresolved_references VALUES(?1,?2,?3,?4,?5)",
                 params![
@@ -525,11 +645,24 @@ impl Store {
                 params![id, json(analysis)?],
             )?;
         }
+        if live_payload(&tx)? > self.limits.max_bytes {
+            return Err(StorageError::Quota(
+                "retained generation payload limit reached".into(),
+            ));
+        }
+        let pages: i64 = tx.pragma_query_value(None, "page_count", |r| r.get(0))?;
+        if (pages as u64).saturating_mul(page_size as u64) > self.limits.max_bytes {
+            return Err(StorageError::Quota(
+                "SQLite page budget exceeded; compact before further writes".into(),
+            ));
+        }
         // Never commit a generation that the bounded loader would reject.
         check_stored_budget(&tx, id)?;
         tx.execute("UPDATE generations SET complete=1 WHERE id=?1", [id])?;
         tx.execute("INSERT INTO current_generation VALUES(1,?1) ON CONFLICT(singleton) DO UPDATE SET generation_id=excluded.generation_id",[id])?;
+        checkpoint()?;
         tx.commit()?;
+        hook(true);
         let metadata = self
             .recover_metadata()
             .unwrap_or_else(|e| MetadataStatus::Pending {
@@ -538,6 +671,140 @@ impl Store {
         Ok(PublishReceipt {
             generation: id as u64,
             metadata,
+        })
+    }
+    /// Explicitly discard old generations; active state is never eligible.
+    pub fn prune(&mut self, keep: usize, compact: bool) -> Result<PruneReceipt, StorageError> {
+        self.prune_with_hook(keep, compact, || {})
+    }
+    fn prune_with_hook(
+        &mut self,
+        keep: usize,
+        compact: bool,
+        mut after_delete: impl FnMut(),
+    ) -> Result<PruneReceipt, StorageError> {
+        if keep == 0 {
+            return Err(invalid("must retain at least the active generation"));
+        }
+        checkpoint()?;
+        let tx = self
+            .connection
+            .transaction_with_behavior(TransactionBehavior::Immediate)?;
+        let active = current(&tx)?.ok_or_else(|| invalid("no active generation to prune"))?;
+        load(&tx, active, &self.expected)?.ok_or_else(|| invalid("active generation missing"))?;
+        let ids: Vec<i64> = {
+            let mut q = tx.prepare("SELECT id FROM generations ORDER BY id DESC")?;
+            q.query_map([], |r| r.get(0))?.collect::<Result<_, _>>()?
+        };
+        let mut retained = vec![active];
+        let mut removed = Vec::new();
+        for id in ids {
+            if id == active {
+                continue;
+            }
+            if retained.len() < keep {
+                retained.push(id);
+            } else {
+                removed.push(id);
+            }
+        }
+        for id in &removed {
+            checkpoint()?;
+            for table in [
+                "unresolved_references",
+                "edges",
+                "symbols",
+                "files",
+                "nodes",
+                "captured_inputs",
+                "analysis_artifacts",
+            ] {
+                tx.execute(&format!("DELETE FROM {table} WHERE generation_id=?1"), [id])?;
+            }
+            tx.execute("DELETE FROM generations WHERE id=?1", [id])?;
+            after_delete();
+        }
+        checkpoint()?;
+        tx.commit()?;
+        // From this point the prune is committed: report any subsequent maintenance as pending.
+        let mut pending = Vec::new();
+        // Explicit maintenance also retries known orphan cache files left by an interrupted prior prune.
+        let retained_set = retained
+            .iter()
+            .copied()
+            .collect::<std::collections::BTreeSet<_>>();
+        let cleanup = (|| -> Result<(), StorageError> {
+            for (ordinal, entry) in fs::read_dir(&self.directory)?.enumerate() {
+                checkpoint()?;
+                if ordinal >= 100_000 {
+                    return Err(invalid("maintenance directory entry budget exceeded"));
+                }
+                let entry = entry?;
+                let Some(name) = entry.file_name().to_str().map(str::to_owned) else {
+                    continue;
+                };
+                let Some(id) = name
+                    .strip_prefix("modules-")
+                    .and_then(|s| s.strip_suffix(".json"))
+                    .and_then(|s| s.parse::<i64>().ok())
+                else {
+                    continue;
+                };
+                if id <= 0
+                    || id >= active
+                    || retained_set.contains(&id)
+                    || name != format!("modules-{id}.json")
+                {
+                    continue;
+                }
+                let path = entry.path();
+                if let Err(e) = reject_special(&path)
+                    .and_then(|_| fs::remove_file(&path).map_err(StorageError::Io))
+                {
+                    pending.push(format!("generation {id} cache cleanup pending: {e}"));
+                }
+            }
+            Ok(())
+        })();
+        if let Err(e) = cleanup {
+            pending.push(format!("prune committed; cache cleanup pending: {e}"));
+        }
+        let mut compacted = false;
+        if compact {
+            let result = (|| -> Result<(), StorageError> {
+                checkpoint()?;
+                let (busy, _, _): (i64, i64, i64) =
+                    self.connection
+                        .query_row("PRAGMA wal_checkpoint(TRUNCATE)", [], |r| {
+                            Ok((r.get(0)?, r.get(1)?, r.get(2)?))
+                        })?;
+                if busy != 0 {
+                    return Err(StorageError::Busy);
+                }
+                self.connection.execute_batch("VACUUM")?;
+                let (busy, _, _): (i64, i64, i64) =
+                    self.connection
+                        .query_row("PRAGMA wal_checkpoint(TRUNCATE)", [], |r| {
+                            Ok((r.get(0)?, r.get(1)?, r.get(2)?))
+                        })?;
+                if busy != 0 {
+                    return Err(StorageError::Busy);
+                }
+                Ok(())
+            })();
+            match result {
+                Ok(()) => compacted = true,
+                Err(e) => pending.push(format!("prune committed; compaction pending: {e}")),
+            }
+        }
+        retained.sort();
+        removed.sort();
+        Ok(PruneReceipt {
+            active_generation: active as u64,
+            removed_generations: removed.into_iter().map(|n| n as u64).collect(),
+            retained_generations: retained.into_iter().map(|n| n as u64).collect(),
+            compacted,
+            pending,
         })
     }
     pub fn load(&mut self) -> Result<Option<LoadedGeneration>, StorageError> {
@@ -571,12 +838,15 @@ impl Store {
             }
         };
         hook()?;
+        checkpoint()?;
         let loaded = load(&tx, generation, &self.expected)?;
+        checkpoint()?;
         tx.commit()?;
         Ok(loaded)
     }
     /// Rebuild the latest derived summary while holding the writer slot; it is never authoritative.
     pub fn recover_metadata(&mut self) -> Result<MetadataStatus, StorageError> {
+        checkpoint()?;
         let tx = self
             .connection
             .transaction_with_behavior(TransactionBehavior::Immediate)?;
@@ -913,6 +1183,114 @@ mod tests {
         assert_eq!(
             CanonicalState::from_snapshot(&new.snapshot),
             CanonicalState::from_snapshot(&two)
+        );
+    }
+    #[test]
+    fn cancellation_mid_publication_rolls_back_but_after_commit_reports_committed_state() {
+        use ripple_core::execution::Control;
+        let temp = tempfile::tempdir().unwrap();
+        let mut store = Store::open(temp.path(), fixture::versions()).unwrap();
+        let build = |id| {
+            let (s, inputs) = fixture::fixture(id, "1", input_hash);
+            (
+                s,
+                inputs
+                    .into_iter()
+                    .map(|(path, bytes)| InputBytes { path, bytes })
+                    .collect::<Vec<_>>(),
+            )
+        };
+        let (s, b) = build(1);
+        store.publish(&s, &b).unwrap();
+        let (s, b) = build(2);
+        let c = Control::new(Duration::from_secs(10));
+        {
+            let _scope = c.enter();
+            assert!(
+                store
+                    .publish_with_hook(&s, &b, None, |committed| if !committed {
+                        c.cancel();
+                    })
+                    .is_err()
+            );
+        }
+        assert_eq!(
+            store
+                .load()
+                .unwrap()
+                .unwrap()
+                .snapshot
+                .metadata()
+                .generation,
+            1
+        );
+        assert!(store.load_generation(2).unwrap().is_none());
+        let c = Control::new(Duration::from_secs(10));
+        {
+            let _scope = c.enter();
+            let receipt = store
+                .publish_with_hook(&s, &b, None, |committed| {
+                    if committed {
+                        c.cancel();
+                    }
+                })
+                .unwrap();
+            assert_eq!(receipt.generation, 2);
+            assert!(matches!(receipt.metadata, MetadataStatus::Pending { .. }));
+        }
+        assert_eq!(
+            store
+                .load()
+                .unwrap()
+                .unwrap()
+                .snapshot
+                .metadata()
+                .generation,
+            2
+        );
+    }
+    #[test]
+    fn sqlite_progress_callback_interrupts_a_running_statement() {
+        let control = ripple_core::execution::Control::new(Duration::from_secs(10));
+        let _scope = control.enter();
+        let temp = tempfile::tempdir().unwrap();
+        let store = Store::open(temp.path(), fixture::versions()).unwrap();
+        control.cancel();
+        let result=store.connection.query_row("WITH RECURSIVE n(x) AS (VALUES(1) UNION ALL SELECT x+1 FROM n WHERE x<1000000) SELECT sum(x) FROM n",[],|r|r.get::<_,i64>(0));
+        assert_eq!(
+            result.unwrap_err().sqlite_error_code(),
+            Some(rusqlite::ErrorCode::OperationInterrupted)
+        );
+    }
+    #[test]
+    fn cancellation_mid_prune_rolls_back_all_removed_generations() {
+        let temp = tempfile::tempdir().unwrap();
+        let mut store = Store::open(temp.path(), fixture::versions()).unwrap();
+        for id in 1..=3 {
+            let (s, inputs) = fixture::fixture(id, "1", input_hash);
+            let bytes = inputs
+                .into_iter()
+                .map(|(path, bytes)| InputBytes { path, bytes })
+                .collect::<Vec<_>>();
+            store.publish(&s, &bytes).unwrap();
+        }
+        let c = ripple_core::execution::Control::new(Duration::from_secs(10));
+        {
+            let _scope = c.enter();
+            assert!(store.prune_with_hook(1, false, || c.cancel()).is_err());
+        }
+        for id in 1..=3 {
+            assert!(store.load_generation(id).unwrap().is_some());
+        }
+        assert_eq!(
+            store
+                .load()
+                .unwrap()
+                .unwrap()
+                .snapshot
+                .metadata()
+                .generation,
+            3
         );
     }
 }

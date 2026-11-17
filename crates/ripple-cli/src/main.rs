@@ -23,6 +23,9 @@ struct Cli {
     /// Output style for implemented commands.
     #[arg(long, global = true, value_enum, default_value = "human")]
     format: Format,
+    /// Cooperative command deadline; Ctrl-C also requests cancellation.
+    #[arg(long, global = true, default_value_t = 120, value_parser=clap::value_parser!(u64).range(1..=86400))]
+    timeout_seconds: u64,
     #[command(subcommand)]
     command: Command,
 }
@@ -39,6 +42,18 @@ enum Command {
     },
     /// Refresh a verified persistent index, reusing unchanged analysis where proven.
     Index {
+        /// Maximum retained SQLite payload/page budget (WAL/temp overhead is additional).
+        #[arg(long, default_value_t=1024, value_parser=clap::value_parser!(u64).range(1..=65536))]
+        max_index_mib: u64,
+        /// Reject publication when this many generations are retained; no automatic deletion.
+        #[arg(long, default_value_t=256, value_parser=clap::value_parser!(u64).range(1..=100000))]
+        max_generations: u64,
+        /// Maintenance only: explicitly retain active plus newest older generations.
+        #[arg(long, conflicts_with="full", value_parser=clap::value_parser!(u64).range(1..=100000))]
+        prune_to: Option<u64>,
+        /// Compact after explicit pruning (may need temporary disk space).
+        #[arg(long, requires = "prune_to")]
+        compact: bool,
         #[arg(default_value = ".")]
         root: PathBuf,
         /// Force cold parsing and resolution; does not silently migrate incompatible formats.
@@ -89,7 +104,26 @@ enum Command {
 }
 fn run(cli: Cli) -> Result<(), CommandError> {
     let report = match cli.command {
-        Command::Index { root, full } => return commands::index::run(&root, full, cli.format),
+        Command::Index {
+            root,
+            full,
+            max_index_mib,
+            max_generations,
+            prune_to,
+            compact,
+        } => {
+            let limits = ripple_index::storage::StorageLimits {
+                max_bytes: max_index_mib * 1024 * 1024,
+                max_generations,
+            };
+            return ripple_index::storage::with_limits(limits, || {
+                if let Some(keep) = prune_to {
+                    commands::index::prune(&root, keep as usize, compact, cli.format)
+                } else {
+                    commands::index::run(&root, full, cli.format)
+                }
+            });
+        }
         Command::Status { root } => return commands::status::run(&root, cli.format),
         Command::Impact {
             symbol,
@@ -111,12 +145,14 @@ fn run(cli: Cli) -> Result<(), CommandError> {
             limit,
         } => return commands::test::run(&root, &comparison, depth, limit, cli.format),
     };
+    ripple_core::execution::check().map_err(|e| CommandError::new("command_cancelled", e))?;
     let bytes = report
         .render(cli.format)
         .map_err(|e| CommandError::new("output_failed", e))?;
     let diagnostics = report
         .stderr()
         .map_err(|e| CommandError::new("output_failed", e.to_string()))?;
+    ripple_core::execution::check().map_err(|e| CommandError::new("command_cancelled", e))?;
     io::stdout()
         .lock()
         .write_all(&bytes)
@@ -128,9 +164,28 @@ fn run(cli: Cli) -> Result<(), CommandError> {
     Ok(())
 }
 fn main() -> ExitCode {
-    match run(Cli::parse()) {
+    let cli = Cli::parse();
+    let control =
+        ripple_core::execution::Control::new(std::time::Duration::from_secs(cli.timeout_seconds));
+    let signal = control.clone();
+    if let Err(error) = ctrlc::set_handler(move || signal.cancel()) {
+        eprintln!("error[signal_handler]: {error:?}");
+        return ExitCode::FAILURE;
+    }
+    let _scope = control.enter();
+    match run(cli) {
         Ok(()) => ExitCode::SUCCESS,
-        Err(error) => {
+        Err(mut error) => {
+            if let Err(reason) = control.check() {
+                error = CommandError::new(
+                    if reason == "command cancelled" {
+                        "command_cancelled"
+                    } else {
+                        "deadline_exceeded"
+                    },
+                    reason,
+                );
+            }
             let _ = writeln!(
                 io::stderr().lock(),
                 "error[{}]: {:?}",

@@ -53,3 +53,33 @@ pub fn run(root: &Path, full: bool, format: Format) -> Result<(), CommandError> 
     );
     persistent::emit("index", &result, result.incomplete, format, human)
 }
+
+/// Explicit maintenance; never invokes analysis or publishes another generation.
+pub fn prune(root: &Path, keep: usize, compact: bool, format: Format) -> Result<(), CommandError> {
+    let root = std::fs::canonicalize(root).map_err(|e| persistent::error(e.to_string()))?;
+    ripple_git::worktree::observe(&root).map_err(persistent::error)?;
+    if !root.join(".ripple/index.db").is_file() {
+        return Err(persistent::error("no existing index to prune".into()));
+    }
+    let mut store =
+        ripple_index::storage::Store::open(root.join(".ripple"), ripple_index::build::versions())
+            .map_err(|e| persistent::error(e.to_string()))?;
+    let receipt = store
+        .prune(keep, compact)
+        .map_err(|e| persistent::error(e.to_string()))?;
+    let human = format!(
+        "Index maintenance committed\nActive generation: {}\nRemoved generations: {:?}\nRetained generations: {:?}\nCompacted: {}\nPending maintenance: {}\n",
+        receipt.active_generation,
+        receipt.removed_generations,
+        receipt.retained_generations,
+        receipt.compacted,
+        terminal_json(&receipt.pending).map_err(|e| persistent::error(e.to_string()))?
+    );
+    persistent::emit(
+        "index",
+        &serde_json::json!({"maintenance":"prune","result":receipt}),
+        false,
+        format,
+        human,
+    )
+}

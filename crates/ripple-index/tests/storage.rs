@@ -392,3 +392,183 @@ fn oversized_capture_and_stored_blob_fail_explicitly_without_partial_output() {
             .contains("budget exceeded")
     );
 }
+
+#[test]
+fn generation_quota_preserves_current_and_explicit_prune_releases_capacity() {
+    use ripple_index::storage::{StorageLimits, with_limits};
+    let temp = tempfile::tempdir().unwrap();
+    with_limits(
+        StorageLimits {
+            max_bytes: 1024 * 1024,
+            max_generations: 2,
+        },
+        || {
+            let mut store = Store::open(temp.path(), support::versions()).unwrap();
+            for id in 1..=2 {
+                let (s, b) = fixture(id, "1");
+                store.publish(&s, &b).unwrap();
+            }
+            let (s, b) = fixture(3, "2");
+            assert!(matches!(store.publish(&s, &b), Err(StorageError::Quota(_))));
+            assert_eq!(
+                store
+                    .load()
+                    .unwrap()
+                    .unwrap()
+                    .snapshot
+                    .metadata()
+                    .generation,
+                2
+            );
+            assert!(store.load_generation(1).unwrap().is_some());
+            assert!(store.prune(0, false).is_err());
+            fs::write(temp.path().join("modules-1.json"), "old").unwrap();
+            fs::write(temp.path().join("modules-2.json"), "active").unwrap();
+            fs::write(temp.path().join("user-file"), "preserve").unwrap();
+            let receipt = store.prune(1, true).unwrap();
+            assert_eq!(receipt.removed_generations, vec![1]);
+            assert_eq!(receipt.retained_generations, vec![2]);
+            assert!(receipt.compacted, "{:?}", receipt.pending);
+            assert!(!temp.path().join("modules-1.json").exists());
+            assert_eq!(
+                fs::read_to_string(temp.path().join("modules-2.json")).unwrap(),
+                "active"
+            );
+            assert_eq!(
+                fs::read_to_string(temp.path().join("user-file")).unwrap(),
+                "preserve"
+            );
+            assert!(store.load_generation(1).unwrap().is_none());
+            assert_eq!(store.next_generation().unwrap(), 3);
+            store.publish(&s, &b).unwrap();
+        },
+    );
+}
+#[test]
+fn byte_quota_failure_preserves_previous_generation_and_metadata() {
+    use ripple_index::storage::{StorageLimits, with_limits};
+    let temp = tempfile::tempdir().unwrap();
+    let mut store = Store::open(temp.path(), support::versions()).unwrap();
+    let (s, b) = fixture(1, "1");
+    store.publish(&s, &b).unwrap();
+    drop(store);
+    let before = fs::read(temp.path().join("metadata.json")).unwrap();
+    with_limits(
+        StorageLimits {
+            max_bytes: 1024 * 1024,
+            max_generations: 256,
+        },
+        || {
+            let mut store = Store::open(temp.path(), support::versions()).unwrap();
+            let (s, b) = fixture(2, &"1".repeat(2 * 1024 * 1024));
+            assert!(matches!(store.publish(&s, &b), Err(StorageError::Quota(_))));
+            assert_eq!(
+                store
+                    .load()
+                    .unwrap()
+                    .unwrap()
+                    .snapshot
+                    .metadata()
+                    .generation,
+                1
+            );
+            assert_eq!(store.next_generation().unwrap(), 2);
+            assert!(store.load_generation(2).unwrap().is_none());
+            assert_eq!(fs::read(temp.path().join("metadata.json")).unwrap(), before);
+        },
+    );
+}
+#[test]
+fn cancellation_before_publish_and_prune_preserves_all_generations() {
+    use ripple_core::execution::Control;
+    let temp = tempfile::tempdir().unwrap();
+    let mut store = Store::open(temp.path(), support::versions()).unwrap();
+    for id in 1..=2 {
+        let (s, b) = fixture(id, "1");
+        store.publish(&s, &b).unwrap();
+    }
+    let control = Control::new(std::time::Duration::from_secs(10));
+    {
+        let _scope = control.enter();
+        control.cancel();
+        let (s, b) = fixture(3, "2");
+        assert!(store.publish(&s, &b).is_err());
+        assert!(store.prune(1, true).is_err());
+    }
+    assert_eq!(
+        store
+            .load()
+            .unwrap()
+            .unwrap()
+            .snapshot
+            .metadata()
+            .generation,
+        2
+    );
+    assert!(store.load_generation(1).unwrap().is_some());
+    assert!(store.load_generation(3).unwrap().is_none());
+}
+#[test]
+fn existing_reader_keeps_snapshot_and_blocked_compaction_reports_committed_prune() {
+    let temp = tempfile::tempdir().unwrap();
+    let mut store = Store::open(temp.path(), support::versions()).unwrap();
+    for id in 1..=3 {
+        let (s, b) = fixture(id, "1");
+        store.publish(&s, &b).unwrap();
+    }
+    let reader = Connection::open(temp.path().join("index.db")).unwrap();
+    reader.execute_batch("BEGIN").unwrap();
+    let before: i64 = reader
+        .query_row("SELECT count(*) FROM generations", [], |r| r.get(0))
+        .unwrap();
+    assert_eq!(before, 3);
+    let result = store.prune(1, true).unwrap();
+    assert_eq!(result.removed_generations, vec![1, 2]);
+    assert!(!result.compacted);
+    assert!(!result.pending.is_empty());
+    assert_eq!(
+        reader
+            .query_row("SELECT count(*) FROM generations", [], |r| r
+                .get::<_, i64>(0))
+            .unwrap(),
+        3
+    );
+    reader.execute_batch("ROLLBACK").unwrap();
+    assert_eq!(
+        store
+            .load()
+            .unwrap()
+            .unwrap()
+            .snapshot
+            .metadata()
+            .generation,
+        3
+    );
+    assert!(store.load_generation(1).unwrap().is_none());
+    assert!(store.prune(1, true).unwrap().compacted);
+}
+
+#[test]
+fn explicit_prune_retries_orphan_caches_but_preserves_unknown_names() {
+    let temp = tempfile::tempdir().unwrap();
+    let mut store = Store::open(temp.path(), support::versions()).unwrap();
+    for id in 1..=2 {
+        let (s, b) = fixture(id, "1");
+        store.publish(&s, &b).unwrap();
+    }
+    store.prune(1, false).unwrap();
+    fs::write(
+        temp.path().join("modules-1.json"),
+        "orphan from interrupted cleanup",
+    )
+    .unwrap();
+    fs::write(temp.path().join("modules-01.json"), "unknown").unwrap();
+    fs::write(temp.path().join("modules-2.json"), "active").unwrap();
+    fs::write(temp.path().join("modules-99.json"), "future/unknown").unwrap();
+    let result = store.prune(1, false).unwrap();
+    assert!(result.removed_generations.is_empty());
+    assert!(!temp.path().join("modules-1.json").exists());
+    for name in ["modules-01.json", "modules-2.json", "modules-99.json"] {
+        assert!(temp.path().join(name).exists());
+    }
+}
